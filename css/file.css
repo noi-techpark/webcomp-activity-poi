@@ -1,0 +1,92 @@
+body {
+	margin: 0px;
+}
+p {
+	font-family: calibri, verdana, arial;
+}
+.itemVisualizerContainer {
+	width: 100vw;
+}
+.itemTitle {
+	display: flex;
+	border-bottom: 1px solid;
+	box-shadow: 0 4px 2px -2px gray;
+	height: 7vh;
+}
+.titleDiv {
+	flex: 1;
+	text-align: center;
+}
+.itemInfoContainer {
+	height: 90vh;
+	overflow-y: scroll;
+}
+.itemInfo {
+	margin-top: 10px;
+}
+.info {
+	width: 94vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+.infoTitle {
+	box-shadow: 0 4px 2px -2px gray;
+}
+.fas {
+	color: orange;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.fas.fa-chevron-up {
+	color: black;
+	margin-top: 3vh;
+	margin-bottom: 1vh;
+	height: 3vh;
+}
+.fas.fa-chevron-down {
+	color: black;
+	margin-top: 3vh;
+	margin-bottom: 1vh;
+	height: 3vh;
+}
+.image {
+	width: 90vw;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.titleParagraph{
+	margin-block-start: 2vh;
+	margin-block-end: 1vh;
+	font-size: 4vh;
+	color: orange;
+}
+.infoTitleParagraph{
+	font-size: 20px;
+}
+.text{
+	font-size: 18px;
+}
+
+@media only screen and (min-width: 600px) {
+	.itemVisualizerContainer {
+		width: 30vw;
+	}
+	.titleArrowDiv {
+		display: none;
+	}
+	.itemInfo {
+		width: 28vw;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+	}
+	.info {
+		width: 26vw;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.image {
+		width: 26vw;
+	}
+}
