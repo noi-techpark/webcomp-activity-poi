@@ -4,10 +4,10 @@ body {
 p {
 	font-family: calibri, verdana, arial;
 }
-.itemVisualizerContainer {
+.mainContainer {
 	width: 100vw;
 }
-.itemTitle {
+.title {
 	display: flex;
 	border-bottom: 1px solid;
 	box-shadow: 0 4px 2px -2px gray;
@@ -17,8 +17,9 @@ p {
 	flex: 1;
 	text-align: center;
 }
-.itemInfoContainer {
+.infoContainer {
 	height: 90vh;
+	width: 100%;
 	overflow-y: scroll;
 }
 .itemInfo {
@@ -32,6 +33,20 @@ p {
 .infoTitle {
 	box-shadow: 0 4px 2px -2px gray;
 }
+
+.searchInstance {
+	box-shadow: 0 4px 2px -2px gray;
+	margin-left: auto;
+	margin-right: auto;
+	width: 94%;
+}
+
+.searchInstanceParagraph {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
 .fas {
 	color: orange;
 	margin-right: 10px;
@@ -69,7 +84,7 @@ p {
 }
 
 @media only screen and (min-width: 600px) {
-	.itemVisualizerContainer {
+	.mainContainer {
 		width: 30vw;
 	}
 	.titleArrowDiv {
