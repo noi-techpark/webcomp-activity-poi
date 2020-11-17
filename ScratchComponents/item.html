@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/all.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="css/file.css" />
+	</head>
+	<body>
+		<div class="mainContainer">
+			<div class="title">
+				<div class="titleDiv">
+					<p class="titleParagraph">POI or Activity Title</p>
+				</div>
+				<div class="titleArrowDiv">
+					<i class="fas fa-chevron-up" onclick="expand(this)"></i>
+				</div>
+			</div>
+			<div class="infoContainer">
+				<div class="itemInfo" id="itemInformation">
+					<div class="infoTitle" id="informationTitle">
+						<p class="infoTitleParagraph"><i class="fas fa-info-circle"></i>Informations</p>
+					</div>
+					<div class="info" id="information">
+						<div class="informationInstance">
+							<p class="text"><b>Categoria</b><br>
+							Mountain bike<br>
+							piste e circuiti sciistici</p>
+						</div>
+						<div class="informationInstance">
+							<p class="text"><b>Età adatta</b><br>
+							dagli 8 anni ai 99 anni</p>
+						</div>
+						<div class="informationInstance">
+							<p class="text"><b>Dislivello e altitudine</b><br>
+							Dislivello totale: 2000 m<br>
+							Punto più basso: 1000 m<br>
+							Punto più alto: 3000 m</p>
+						</div>
+						<div class="informationInstance">
+							<p class="text"><b>Località</b><br>
+							Ski area Val Comelico</p>
+						</div>
+					</div>
+				</div>
+				<div class="itemInfo" id="itemDescription">
+					<div class="infoTitle" id="descriptionTitle">
+						<p class="infoTitleParagraph"><i class="fas fa-file-alt"></i>Description</p>
+					</div>
+					<div class="info" id="description">
+						<p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <br><b>Read more...</b></p>
+					</div>
+				</div>
+				<div class="itemInfo" id="itemPhotos">
+					<div class="infoTitle" id="photosTitle">
+						<p class="infoTitleParagraph"><i class="fas fa-image"></i>Photos</p>
+					</div>
+					<div class="info" id="photos">
+						<img class="image" src="skiarea.jpg" alt="ski area">
+					</div>
+				</div>
+
+				<div class="itemInfo" id="itemContacts">
+					<div class="infoTitle" id="contactsTitle">
+						<p class="infoTitleParagraph"><i class="fas fa-id-card"></i>Contacts</p>
+					</div>
+					<div class="info" id="contacts">
+						<p class="text"><b>Val d'Ega Turismo</b><br>
+						Stadtplatz 3, Welschnofen, Switzerland</p>
+						<p class="text"><i class="fas fa-envelope"></i>traubesterzing@gmail.com<br>
+						<i class="fas fa-phone-alt"></i>+39 0471 93315</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		function expand(icon){
+			icon.classList.toggle("fa-chevron-up");
+			icon.classList.toggle("fa-chevron-down");
+			//add here code to expand or shrink the itemVisualizer
+		}
+	</script>
+</html>
