@@ -13,5 +13,4 @@ class ItemVisualizer extends HTMLElement {
     }
 }
 
-
 customElements.define('ItemVisualizer', ItemVisualizer);
