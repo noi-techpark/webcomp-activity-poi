@@ -33,12 +33,26 @@
 		{
 			let item = items[i]
 			
-			console.log(item.GpsInfo[0].Longitude)
+			console.log(item.Type)
+			
+
+			var markerIcon = L.icon(
+			{
+				iconUrl : 'img/map_markers/' + item.Type +'.png',
+				// shadowUrl : 'leaf-shadow.png',
+
+				iconSize : [ 60/2, 99/2 ], // size of the icon
+				// shadowSize : [ 50, 64 ], // size of the shadow
+				// iconAnchor : [ 22, 94 ], // point of the icon which will
+													// correspond to marker's location
+				// shadowAnchor : [ 4, 62 ], // the same for the shadow
+				// popupAnchor : [ -3, -76 ]
+				// point from which the popup should open relative to the iconAnchor
+			});
 
 			// show a marker on the map
-			L.marker({
-				lon : item.GpsInfo[0].Longitude,
-				lat : item.GpsInfo[0].Latitude
+			L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude], {
+				icon: markerIcon
 			}).bindPopup('The center of the world').addTo(map);
 		}
 	}
