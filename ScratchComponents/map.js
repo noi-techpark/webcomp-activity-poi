@@ -29,6 +29,8 @@
 		
 		console.log(items)
 		
+		var cluster = L.markerClusterGroup();
+		
 		for (let i = 0; i < items.length; i++)
 		{
 			let item = items[i]
@@ -49,12 +51,16 @@
 				// popupAnchor : [ -3, -76 ]
 				// point from which the popup should open relative to the iconAnchor
 			});
+			
+			cluster.addLayer(L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude], {
+				icon: markerIcon
+			}));
 
 			// show a marker on the map
-			L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude], {
-				icon: markerIcon
-			}).bindPopup('The center of the world').addTo(map);
+			// .bindPopup('The center of the world').addTo(map);
 		}
+		
+		map.addLayer(cluster);
 	}
 	
 	main();
