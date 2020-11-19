@@ -38,7 +38,7 @@
 						</div>
 						<div class="informationInstance">
 							<p class="text"><b>Località</b><br>
-							Ski area Val Comelico</p>
+							<span>Ski area Val Comelico</span></p>
 						</div>
 					</div>
 				</div>
@@ -79,5 +79,27 @@
 			icon.classList.toggle("fa-chevron-down");
 			//add here code to expand or shrink the itemVisualizer
 		}
+		async function main()
+		{
+			// read data json
+			
+			let response = await fetch('map.json')
+			let json = await response.json()
+			let item = json.Items[0]
+			let lang = 'it'
+			
+			// copy values from json to html
+			
+			updateView(item, lang)
+			
+		}
+		function updateView(item, lang)
+		{
+			document.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText
+			document.querySelector('div.informationInstance > p').innerHTML = item.PoiType
+			document.querySelector('div.informationInstance span').innerHTML = item.LocationInfo.TvInfo.Name[lang]
+			// ...
+		}
+		main()
 	</script>
 </html>
