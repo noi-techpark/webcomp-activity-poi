@@ -47,8 +47,40 @@ p {
 }
 
 .subCategory {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: left;
 	display: none;
-	
+	background-color: white;
+	border-radius: 3vh;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+	position: absolute;
+	width: 230px;
+	z-index: 1;
+}
+.subCategory::before {
+	content: "";
+	position: absolute;
+	border-style: solid;
+	left: 15px;
+	border-width: 0 10px 8px 1px;
+	border-color: transparent transparent #ccc transparent;
+	top: -8px;
+}
+
+.subCategory::after {
+	content: "";
+	position: absolute;
+	border-style:solid;
+	left:16px;
+	border-width: 0 9px 7px 0;
+	border-color: transparent transparent #fff transparent;
+	top: -7px;
+}
+
+.subcategory:hover {
+	display: block;
 }
 
 @media only screen and (min-width: 650px) {
