@@ -80,12 +80,18 @@
 		}
 		async function main()
 		{
+			// parameters
+			let index_match = window.location.search.match(new RegExp("[?&]index=([^&]+)"));
+			let lang_match  = window.location.search.match(new RegExp("[?&]lang=([^&]+)"));
+
+			let index = index_match != null ? index_match[1]: 0;
+			let lang  = lang_match  != null ? lang_match[1]: 'it';
+
 			// read data json
 			
 			let response = await fetch('map.json')
 			let json = await response.json()
-			let item = json.Items[0]
-			let lang = 'it'
+			let item = json.Items[index]
 			
 			// copy values from json to html
 			
