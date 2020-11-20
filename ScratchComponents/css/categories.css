@@ -14,43 +14,55 @@ p {
 	margin: auto;
 }
 
-.category {
-	margin: 1vw;
+.dropdownCategory {
 	display: inline-block;
-	text-decoration: none;
-	color: #668ad8;
-	width: 11vw;
-	height: 11vw;
-	line-height: 11vw;
-	border-radius: 50%;
-	border: solid 2px #668ad8;
-	text-align: center;
+	width: 10vw;
+	height: 10vw;
+	max-height: 65px;
+	max-width: 65px;
+	min-height: 40px;
+	min-width: 40px;
 	vertical-align: middle;
-	overflow: hidden;
-	font-weight: bold;
-}
-.category:hover {
-    background: #b3e1ff;
 }
 
-@media only screen and (min-width: 600px) {
+.dropdownCategory:hover .subCategory {
+	display: block;
+}
+
+.category {
+	display: inline-block;
+	width: 10vw;
+	height: 10vw;
+	max-height: 65px;
+	max-width: 65px;
+	min-height: 40px;
+	min-width: 40px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.categoryImage {
+	width: 100%;
+	height: 100%;
+}
+
+.subCategory {
+	display: none;
+	
+}
+
+@media only screen and (min-width: 650px) {
 	.categoriesContainer {
 		width: 56vw;
 		height: 6vw;
 	}
 	
 	.category {
-		width: 6vw;
-		height: 6vw;
-		line-height: 6vw;
+		width: 5vw;
+		height: 5vw;
 	}
-}
-
-@media only screen and (min-width: 1000px) {
-	
-	.category {
-		width: 65px;
-		height: 65px;
-		line-height: 65px;
+	.dropdownCategory {
+		width: 5vw;
+		height: 5vw;
 	}
 }
