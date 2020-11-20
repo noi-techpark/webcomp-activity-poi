@@ -37,6 +37,7 @@ class InteractiveMap extends HTMLElement {
 
     set elementsonmap(value){
         this.setAttribute('elementsonmap', value);
+        this.render();
     }
 
     get elementonclick(){
@@ -53,7 +54,7 @@ class InteractiveMap extends HTMLElement {
     }
 
     render(){
-        this.$area.innerHTML = this.elementsonmap;
+        this.$area.innerHTML = this.elementsonmap; //TODO: draw on map the elements
     }
 }
 

@@ -22,7 +22,7 @@ class Search extends HTMLElement {
 
 
     static get observedAttributes() {
-        return ['search','resultonclick'];
+        return ['search','resultonclick','resultsitems'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -45,6 +45,16 @@ class Search extends HTMLElement {
     set resultonclick(value){
         this.setAttribute('resultonclick', value);
         this.$resultitem.addEventListener('click',value);
+    }
+
+    get resultsitems(){
+        return this.getAttribute('resultsitems');
+    }
+
+    set resultsitems(value){
+        this.setAttribute('resultsitems', value);
+
+        //display results
     }
 
     render(){

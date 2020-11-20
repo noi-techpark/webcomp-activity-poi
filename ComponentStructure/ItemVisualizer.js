@@ -32,6 +32,7 @@ class ItemVisualizer extends HTMLElement {
 
     set elementid(value) {
         this.setAttribute('elementid', value);
+        //writeElementInformation(value) -> it gets the data and displays it
     }
 
     render(){

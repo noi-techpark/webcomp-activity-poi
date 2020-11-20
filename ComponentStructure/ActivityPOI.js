@@ -2,22 +2,66 @@
 var displayedElements = [];
 
 
-//functions
+//FUNCTIONS
 
+/**
+ * @param: elementID
+ * @what: based on the element clicked on the map, it shows
+ * the details of the element in the ItemVisualizer
+ * @returns: null
+ * */
 function showPOIActivityFromMap(){
     alert("an element in the map has been clicked");
+
+    //displayedElements = [elementID]
+    //itemVisualizer.elementid = elementID;
+    //itemVisualizer.style.zindex = 99999;
+    //searchItems.style.zindex = 0;
 }
 
+/**
+ * @param: search input
+ * @what: it makes an API call to have the list of item results,
+ * and it displays them
+ * @returns: null
+ * */
 function searchPOIActivitiesByName(){
     alert("search function");
+
+    //results = API call to get results
+    //searchItems.resultsitems = results
 }
 
+/**
+ * @param: {"categoryID":boolean} -> true if selected, false otherwise
+ * @what:
+ * @returns: null
+ * */
 function searchPOIActivitiesByCategories(){
     alert("search by categories");
+
+    //update categoriesChoice.activecategories
+    //elementsID = search elements with the categories = true
+    //displayedElements = elementsID
+    //update interactiveMap.elementsonmap
+    //update searchItems.resultonclick
+    //searchItems.style.zindex = 99999;
+    //itemVisualizer.style.zindex = 0;
 }
 
+/**
+ * @param: elementID
+ * @what: based on the element clicked on the list, it shows
+ * the details of the element in the ItemVisualizer
+ * @returns: null
+ * */
 function showPOIActivityFromList(){
     alert("an item from the result list has been clicked");
+
+    //displayedElements = [elementID]
+    //itemVisualizer.elementid = elementID;
+    //itemVisualizer.style.zindex = 99999;
+    //searchItems.style.zindex = 0;
 }
 
 
