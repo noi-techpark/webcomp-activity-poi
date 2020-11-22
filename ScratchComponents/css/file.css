@@ -70,9 +70,9 @@ p {
 	margin-right: auto;
 }
 .titleParagraph{
-	margin-block-start: 2vh;
-	margin-block-end: 1vh;
-	font-size: 4vh;
+	margin-block-start: 1vw;
+	margin-block-end: 1vw;
+	font-size: 18px;
 	color: orange;
 }
 .infoTitleParagraph{
