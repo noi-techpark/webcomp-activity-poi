@@ -100,23 +100,78 @@
 		}
 		function updateView(item, lang)
 		{
-			document.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title
-			document.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText
-			document.querySelector('span#category').innerHTML = item.PoiType
-			document.querySelector('span#ageFrom').innerHTML = item.AgeFrom
-			document.querySelector('span#ageTo').innerHTML = item.AgeTo
-			document.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference //oppure AltitudeSumUp?
-			document.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint
-			document.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint
-			document.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang]
+			document.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
+			document.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+			document.querySelector('span#category').innerHTML = item.PoiType;
+			document.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
+			document.querySelector('span#ageTo').innerHTML = item.AgeTo;
+			document.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
+			document.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
+			document.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+			document.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
 			//image gallery -> item.ImageGallery --- How to add a Gallery
-			document.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName
-			document.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address
-			document.querySelector('span#city').innerHTML = item.ContactInfos[lang].City
-			document.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName
-			document.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email
-			document.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber
+			document.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
+			document.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
+			document.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
+			document.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
+			document.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
+			document.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
 			// ...
+			
+			//update colour of icons and title
+			var fas = document.getElementsByClassName("fas");
+			var lenfas =  fas.length;
+			var titlePar = document.getElementsByClassName("titleParagraph");
+
+			switch(item.Type) {
+				case "Anderes":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#6554B7";
+					}
+					titlePar[0].style.color="#6554B7";
+					break;
+				case "Essen Trinken":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#7fCC86";
+					}
+					titlePar[0].style.color="#7fCC86";
+					break;
+				case "Geschäfte und Dienstleister":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#E37454";
+					}
+					titlePar[0].style.color="#E37454";
+					break;
+				case "Kultur Sehenswürdigkeiten":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#FB8464";
+					}
+					titlePar[0].style.color="#FB8464";
+					break;
+				case "Mobilität":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#846CEC";
+					}
+					titlePar[0].style.color="#846CEC";
+					break;
+				case "Sommer":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#3DDCD4";
+					}
+					titlePar[0].style.color="#3DDCD4";
+					break;
+				case "Wellness Entspannung":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#EBE38C";
+					}
+					titlePar[0].style.color="#EBE38C";
+					break;
+				case "Winter":
+					for(var i=0 ; i<lenfas; i++){
+					   fas[i].style.color="#3D8CC4";
+					}
+					titlePar[0].style.color="#3D8CC4";
+			}
 		}
 		main()
 	</script>
