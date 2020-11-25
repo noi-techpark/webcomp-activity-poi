@@ -1,3 +1,36 @@
+.fas {
+  color: orange;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
+.fas.fa-chevron-up {
+  color: black;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  height: 3vh;
+}
+
+.fas.fa-chevron-down {
+  color: black;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  height: 3vh;
+}
+
+.text {
+  font-size: 18px;
+}
+
+.titleParagraph {
+  margin-block-start: 1vw;
+  margin-block-end: 1vw;
+  font-size: 18px;
+  color: orange;
+}
+
+.infoTitleParagraph {
+  font-size: 20px;
+}
 
 /*# sourceMappingURL=atoms.css.map */
