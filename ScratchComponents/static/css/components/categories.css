@@ -1,0 +1,117 @@
+.categoriesContainer {
+  text-align: center;
+  width: 100vw;
+  height: 15vh;
+}
+
+.dropdownCategory {
+  display: inline-block;
+  width: 10vw;
+  height: 10vw;
+  max-height: 65px;
+  max-width: 65px;
+  min-height: 35px;
+  min-width: 35px;
+  text-align: left;
+  position: relative;
+}
+
+.dropdownCategory:hover .subCategory {
+  display: block;
+}
+
+.category {
+  display: inline-block;
+  width: 10vw;
+  height: 10vw;
+  max-height: 65px;
+  max-width: 65px;
+  min-height: 35px;
+  min-width: 35px;
+  overflow: hidden;
+}
+
+.categoryImage {
+  width: 100%;
+  height: 100%;
+}
+
+.subCategory {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  display: none;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  white-space: nowrap;
+  width: auto;
+  z-index: 1;
+}
+
+.subCategoryLeft {
+  left: 10px;
+}
+
+.subCategoryRight {
+  right: 0px;
+}
+
+.subCategory::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 10px 8px 1px;
+  border-color: transparent transparent #ccc transparent;
+  top: -8px;
+}
+
+.subCategoryRight::before {
+  right: 15px;
+}
+
+.subCategoryLeft::before {
+  left: 15px;
+}
+
+.subCategory::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 9px 7px 0;
+  border-color: transparent transparent #fff transparent;
+  top: -7px;
+}
+
+.subCategoryRight::after {
+  right: 16px;
+}
+
+.subCategoryLeft::after {
+  left: 16px;
+}
+
+.subcategory:hover {
+  display: block;
+}
+
+@media only screen and (min-width: 650px) {
+  .categoriesContainer {
+    width: 56vw;
+    height: 6vw;
+  }
+
+  .category {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .dropdownCategory {
+    width: 5vw;
+    height: 5vw;
+  }
+}
+
+/*# sourceMappingURL=categories.css.map */
