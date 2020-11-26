@@ -1,6 +1,70 @@
 .mainContainer {
 	width: 100vw;
 }
+.mainContainer.Anderes {
+	.titleParagraph{
+		color:#6554B7;
+	}
+	.fas{
+		color:#6554B7;
+	}
+}
+.mainContainer.Essen {
+	.titleParagraph{
+		color:#7fCC86;
+	}
+	.fas{
+		color:#7fCC86;
+	}
+}
+.mainContainer.Geschäfte {
+	.titleParagraph{
+		color:#E37454;
+	}
+	.fas{
+		color:#E37454;
+	}
+}
+.mainContainer.Kultur {
+	.titleParagraph{
+		color:#FB8464;
+	}
+	.fas{
+		color:#FB8464;
+	}
+}
+.mainContainer.Mobilität {
+	.titleParagraph{
+		color:#846CEC;
+	}
+	.fas{
+		color:#846CEC;
+	}
+}
+.mainContainer.Sommer {
+	.titleParagraph{
+		color:#3DDCD4;
+	}
+	.fas{
+		color:#3DDCD4;
+	}
+}
+.mainContainer.Wellness {
+	.titleParagraph{
+		color:#3D8CC4;
+	}
+	.fas{
+		color:#3D8CC4;
+	}
+}
+.mainContainer.Winter {
+	.titleParagraph{
+		color:#3D8CC4;
+	}
+	.fas{
+		color:#3D8CC4;
+	}
+}
 .title {
 	display: flex;
 	border-bottom: 1px solid;

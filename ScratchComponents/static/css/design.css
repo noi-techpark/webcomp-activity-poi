@@ -1,3 +1,4 @@
+@charset "UTF-8";
 p {
   font-family: calibri, verdana, arial;
 }
@@ -42,6 +43,62 @@ html, body {
 
 .mainContainer {
   width: 100vw;
+}
+
+.mainContainer.Anderes .titleParagraph {
+  color: #6554B7;
+}
+.mainContainer.Anderes .fas {
+  color: #6554B7;
+}
+
+.mainContainer.Essen .titleParagraph {
+  color: #7fCC86;
+}
+.mainContainer.Essen .fas {
+  color: #7fCC86;
+}
+
+.mainContainer.Geschäfte .titleParagraph {
+  color: #E37454;
+}
+.mainContainer.Geschäfte .fas {
+  color: #E37454;
+}
+
+.mainContainer.Kultur .titleParagraph {
+  color: #FB8464;
+}
+.mainContainer.Kultur .fas {
+  color: #FB8464;
+}
+
+.mainContainer.Mobilität .titleParagraph {
+  color: #846CEC;
+}
+.mainContainer.Mobilität .fas {
+  color: #846CEC;
+}
+
+.mainContainer.Sommer .titleParagraph {
+  color: #3DDCD4;
+}
+.mainContainer.Sommer .fas {
+  color: #3DDCD4;
+}
+
+.mainContainer.Wellness .titleParagraph {
+  color: #3D8CC4;
+}
+.mainContainer.Wellness .fas {
+  color: #3D8CC4;
+}
+
+.mainContainer.Winter .titleParagraph {
+  color: #3D8CC4;
+}
+.mainContainer.Winter .fas {
+  color: #3D8CC4;
 }
 
 .title {
