@@ -5,10 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<interactive-map></interactive-map>
-<categories-choice></categories-choice>
-<item-visualizer></item-visualizer>
-<search-items></search-items>
+	<div id="webcomponentsContainer">
+		<div id="mapContainer">
+			<interactive-map></interactive-map>
+		</div>
+		<div id="categoriesContainer">
+			<categories-choice></categories-choice>
+		</div>
+		<div id="itemContainer">
+			<item-visualizer></item-visualizer>
+		</div>
+		<div id="searchContainer">
+			<search-items></search-items>
+		</div>
+	</div>
 
 
 <script src="InteractiveMap.js"></script>
@@ -17,5 +27,39 @@
 <script src="Search.js"></script>
 
 <script src="ActivityPOI.js"></script>
+
+<style>
+	html, body, #webcomponentsContainer {
+		height: 100%;
+		margin: 0px;
+		padding; 0px;
+		overflow: hidden;
+	}
+	
+	#mapContainer {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	#categoriesContainer {
+		position: absolute;
+		top: 0;
+		left: 50%;
+	}
+	
+	#itemContainer {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	
+	#searchContainer {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
+
 </body>
 </html>
