@@ -1,5 +1,6 @@
 const itemVisualizer_template = document.createElement('template');
 
+//TODO:copy html
 itemVisualizer_template.innerHTML = `
     <h1>ItemVisualizer</h1>
     <p id="elementID"></p>
@@ -30,6 +31,7 @@ class ItemVisualizer extends HTMLElement {
         return this.getAttribute('elementid');
     }
 
+    //TODO: data api function here
     set elementid(value) {
         this.setAttribute('elementid', value);
         //writeElementInformation(value) -> it gets the data and displays it

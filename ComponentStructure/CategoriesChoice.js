@@ -1,5 +1,6 @@
 const categoriesChoice_template = document.createElement('template');
 
+//TODO: html here
 categoriesChoice_template.innerHTML = `
     <h1>CategoriesChoice</h1>
     <p id="categories"></p>

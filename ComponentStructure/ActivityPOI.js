@@ -30,6 +30,7 @@ function searchPOIActivitiesByName(){
 
     //results = API call to get results
     //searchItems.resultsitems = results
+    //set elements on map
 }
 
 /**
@@ -78,6 +79,7 @@ itemVisualizer.elementid = 999;
 
 const interactiveMap = document.querySelector('interactive-map');
 interactiveMap.elementsonmap = [{"elementID":1,"lat":45,"lon":45}];
+//here the onclick function of the map markers' is set
 interactiveMap.elementonclick = showPOIActivityFromMap;
 
 /**
