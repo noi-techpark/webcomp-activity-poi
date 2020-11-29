@@ -17,7 +17,7 @@
 							alt="img_alt"
 						>
 					</div>
-					<div class="subCategory subCategoryLeft" id="subCategoryKultur">
+					<div class="subCategory">
 						<p style="color: #FB8464;">Culture and Attractions</p>
 						<div class="subCategoryItem">
 							<input type="checkbox" id="museums" name="museums" value="museums">
@@ -57,7 +57,16 @@
 					
 					let category = category_template.cloneNode(true)
 					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
+					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
 					category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
+					let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
+					imageFileName = imageFileName.replace(/\u00f6/g, "oe")
+					imageFileName = imageFileName.replace(/\u00fc/g, "ue")
+					imageFileName = imageFileName.replace(/\u00c4/g, "Ae")
+					imageFileName = imageFileName.replace(/\u00d6/g, "Oe")
+					imageFileName = imageFileName.replace(/\u00dc/g, "Ue")
+					imageFileName = imageFileName.trim()
+					category.querySelector('img.categoryImage').src = "/img/category_icons/" + imageFileName + ".svg"
 					category_parent.appendChild(category)
 
 					let sub_category_template = category.querySelector('div.subCategoryItem')
@@ -74,7 +83,17 @@
 						sub_category.querySelector('label').textContent = subtype.TypeDesc[lang]
 						sub_category_parent.appendChild(sub_category)
 					}
-					
+				}
+				
+				let subCat = document.querySelectorAll('div.subCategory');
+				for (let j = 0; j < subCat.length/2; j++)
+				{
+					subCat[j].classList.add('subCategoryLeft');
+					console.log(subCat[j].classList)
+				}
+				for (let j = subCat.length/2; j < subCat.length; j++)
+				{
+					subCat[j].classList.add('subCategoryRight');
 				}
 				
 			}
