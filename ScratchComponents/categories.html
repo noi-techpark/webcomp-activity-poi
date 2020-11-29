@@ -18,7 +18,7 @@
 						>
 					</div>
 					<div class="subCategory">
-						<p style="color: #FB8464;">Culture and Attractions</p>
+						<p>Culture and Attractions</p>
 						<div class="subCategoryItem">
 							<input type="checkbox" id="museums" name="museums" value="museums">
 							<label for="museums">Museums</label>
@@ -57,7 +57,9 @@
 					
 					let category = category_template.cloneNode(true)
 					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
-					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
+					let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc["de"].replace(/ .*/,'');
+					console.log(subCategoryTitle)
+					category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
 					category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
 					let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
 					imageFileName = imageFileName.replace(/\u00f6/g, "oe")

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .categoriesContainer {
   text-align: center;
   width: 100vw;
@@ -95,6 +96,38 @@
 
 .subCategoryRight::after {
   right: 16px;
+}
+
+.subCategoryTitleAnderes {
+  color: #6554B7;
+}
+
+.subCategoryTitleEssen {
+  color: #7fCC86;
+}
+
+.subCategoryTitleGeschäfte {
+  color: #E37454;
+}
+
+.subCategoryTitleKultur {
+  color: #FB8464;
+}
+
+.subCategoryTitleVerkehr {
+  color: #846CEC;
+}
+
+.subCategoryTitleSommer {
+  color: #3DDCD4;
+}
+
+.subCategoryTitleWellness {
+  color: #E9E28C;
+}
+
+.subCategoryTitleWinter {
+  color: #3D8CC4;
 }
 
 @media only screen and (min-width: 650px) {

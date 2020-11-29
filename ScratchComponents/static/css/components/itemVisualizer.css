@@ -31,10 +31,10 @@
   color: #FB8464;
 }
 
-.mainContainer.Mobilität .titleParagraph {
+.mainContainer.Verkehr .titleParagraph {
   color: #846CEC;
 }
-.mainContainer.Mobilität .fas {
+.mainContainer.Verkehr .fas {
   color: #846CEC;
 }
 
@@ -46,10 +46,10 @@
 }
 
 .mainContainer.Wellness .titleParagraph {
-  color: #3D8CC4;
+  color: #E9E28C;
 }
 .mainContainer.Wellness .fas {
-  color: #3D8CC4;
+  color: #E9E28C;
 }
 
 .mainContainer.Winter .titleParagraph {
