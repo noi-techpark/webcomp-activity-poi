@@ -10,8 +10,16 @@ var displayedElements = [];
  * the details of the element in the ItemVisualizer
  * @returns: null
  * */
-function showPOIActivityFromMap(){
-    alert("an element in the map has been clicked");
+function showPOIActivityFromMap(id){
+	console.log('itemVisualizer')
+   console.log(itemVisualizer)
+   
+   //displayedElements = [elementID]
+   // itemVisualizer.elementid = id;
+   itemVisualizer.setAttribute('elementid', id);
+   // itemVisualizer.elementid = id
+   //itemVisualizer.style.zindex = 99999;
+   //searchItems.style.zindex = 0;
 
     //displayedElements = [elementID]
     //itemVisualizer.elementid = elementID;
@@ -56,11 +64,15 @@ function searchPOIActivitiesByCategories(){
  * the details of the element in the ItemVisualizer
  * @returns: null
  * */
-function showPOIActivityFromList(){
-    alert("an item from the result list has been clicked");
+function showPOIActivityFromList(id){
+    alert("an item from the result list has been clicked2");
 
+    console.log('itemVisualizer')
+    console.log(itemVisualizer)
+    
     //displayedElements = [elementID]
-    //itemVisualizer.elementid = elementID;
+    // itemVisualizer.elementid = id;
+    itemVisualizer.setAttribute('elementid', id);
     //itemVisualizer.style.zindex = 99999;
     //searchItems.style.zindex = 0;
 }
@@ -71,30 +83,30 @@ function showPOIActivityFromList(){
  * */
 
 const itemVisualizer = document.querySelector('item-visualizer');
-itemVisualizer.elementid = 999;
+// itemVisualizer.elementid = 999;
 
 /**
  * InteractiveMap component
  * */
 
 const interactiveMap = document.querySelector('interactive-map');
-interactiveMap.elementsonmap = [{"elementID":1,"lat":45,"lon":45}];
+// interactiveMap.elementsonmap = [{"elementID":1,"lat":45,"lon":45}];
 //here the onclick function of the map markers' is set
-interactiveMap.elementonclick = showPOIActivityFromMap;
+// interactiveMap.elementonclick = showPOIActivityFromMap;
 
 /**
  * CategoriesChoice component
  * */
 
 const categoriesChoice = document.querySelector('categories-choice');
-categoriesChoice.categoriesinformation = [{"categoryID":1,"category-name":{"EN":"museum","IT":"museo"},"category-icon":"directory","category-color":"#ff8360"}];
-categoriesChoice.activecategories = {1:false};
-categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
+// categoriesChoice.categoriesinformation = [{"categoryID":1,"category-name":{"EN":"museum","IT":"museo"},"category-icon":"directory","category-color":"#ff8360"}];
+// categoriesChoice.activecategories = {1:false};
+// categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
 
 
 /**
  * SearchItems component
  * */
 const searchItems = document.querySelector('search-items');
-searchItems.search = searchPOIActivitiesByName;
-searchItems.resultonclick = showPOIActivityFromList;
+// searchItems.search = searchPOIActivitiesByName;
+// searchItems.resultonclick = showPOIActivityFromList;

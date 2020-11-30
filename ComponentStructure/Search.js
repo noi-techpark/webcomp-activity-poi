@@ -1,9 +1,11 @@
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
+<div style="background-color: white">
     <h1>Search</h1>
+    <input >
     <button id="search-button">Search button</button>
-    <div id="result-item"></div>
+</div>
 `;
 
 
