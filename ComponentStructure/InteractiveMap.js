@@ -28,6 +28,7 @@ class InteractiveMap extends HTMLElement {
 
     //TODO: not finding the div with id "mapid"
     async connectedCallback(){
+
         // initialize Leaflet
         var map = L.map('mapid').setView({
             lon : 11.4,
