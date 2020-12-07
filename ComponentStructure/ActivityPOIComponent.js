@@ -64,7 +64,7 @@ class ActivityPOIComponent extends HTMLElement{
 
         const itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
         console.log(itemVisualizer.getAttributeNames());
-        itemVisualizer.elementid = 999;
+        itemVisualizer.elementid = "smgpoi107";
 
         /**
          * InteractiveMap component

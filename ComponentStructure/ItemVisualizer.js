@@ -100,7 +100,17 @@ class ItemVisualizer extends HTMLElement {
 
         let response = await fetch('map.json')
         let json = await response.json()
-        let item = json.Items[index]
+
+        let item;
+
+        for(var i = 0; i < json.Items.length; i++){
+
+            if(json.Items[i].Id == this.elementid){
+                item = json.Items[i];
+            }
+        }
+
+
 
         this._shadowRoot.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
         this._shadowRoot.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
@@ -140,10 +150,57 @@ class ItemVisualizer extends HTMLElement {
     set elementid(value) {
         this.setAttribute('elementid', value);
         //writeElementInformation(value) -> it gets the data and displays it
+        //this.render();
+
+        console.log(value);
     }
 
-    render(){
+    async render(){
         //this.$area.innerHTML = this.elementid;
+
+        // parameters
+        let index_match = window.location.search.match(new RegExp("[?&]index=([^&]+)"));
+        let lang_match  = window.location.search.match(new RegExp("[?&]lang=([^&]+)"));
+
+        let index = index_match != null ? index_match[1]: 0;
+        let lang  = lang_match  != null ? lang_match[1]: 'it';
+
+        // read data json
+
+        let response = await fetch('map.json')
+        let json = await response.json()
+
+        let item;
+
+        for(var i = 0; i < json.Items.length; i++){
+
+            if(json.Items[i].Id == this.elementid){
+                item = json.Items[i];
+            }
+        }
+
+
+
+        this._shadowRoot.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
+        this._shadowRoot.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+        this._shadowRoot.querySelector('span#category').innerHTML = item.PoiType;
+        this._shadowRoot.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
+        this._shadowRoot.querySelector('span#ageTo').innerHTML = item.AgeTo;
+        this._shadowRoot.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
+        this._shadowRoot.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
+        this._shadowRoot.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+        this._shadowRoot.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
+        //image gallery -> item.ImageGallery --- How to add a Gallery
+        this._shadowRoot.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
+        this._shadowRoot.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
+        this._shadowRoot.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
+        this._shadowRoot.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
+        this._shadowRoot.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
+        this._shadowRoot.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
+        // ...
+
+        //update colour of icons and title
+        this._shadowRoot.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
     }
 }
 
