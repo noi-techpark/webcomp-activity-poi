@@ -16,6 +16,12 @@ categoriesChoice_template.innerHTML = `
             </div>
         </div>
       </div>
+      
+      <style>
+      @import "static/css/components/categories.css";
+      @import "static/css/theme.css";
+      @import "static/css/atoms.css";
+        </style>
 `;
 
 
@@ -40,8 +46,6 @@ class CategoriesChoice extends HTMLElement {
 
     }
 
-    //TODO: @Davide
-    // the following error is returned: "Uncaught (in promise) SyntaxError: Unexpected token < in JSON at position 0: line 116"
     async connectedCallback(){
 
         // parameters
