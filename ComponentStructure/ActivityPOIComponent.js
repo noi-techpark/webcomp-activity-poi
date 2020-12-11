@@ -43,6 +43,7 @@ activityPOI_template.innerHTML = `
         right: 0;
         overflow: hidden;
         height: 100%;
+        z-index: 9999
     }
     
     #searchContainer {
@@ -59,6 +60,8 @@ activityPOI_template.innerHTML = `
 class ActivityPOIComponent extends HTMLElement{
     constructor(){
         super();
+        
+        let thiswebcomponent = this
 
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(activityPOI_template.content.cloneNode(true));
@@ -75,7 +78,10 @@ class ActivityPOIComponent extends HTMLElement{
 
         this.$interactiveMap = this._shadowRoot.querySelector('interactive-map');
         //here the onclick function of the map markers' is set
-        this.$interactiveMap.elementonclick = showPOIActivityFromMap;
+        this.$interactiveMap.markerclick = function(id) {
+      	  // alert('hei: ' + id)
+      	  thiswebcomponent.$itemVisualizer.setAttribute('apoiid',id);
+        };
 
         /**
          * CategoriesChoice component
@@ -131,21 +137,6 @@ class ActivityPOIComponent extends HTMLElement{
 
 
 
-}
-
-/**
- * @param: elementID
- * @what: based on the element clicked on the map, it shows
- * the details of the element in the ItemVisualizer
- * @returns: null
- * */
-function showPOIActivityFromMap(){
-    alert("an element in the map has been clicked");
-
-    //displayedElements = [elementID]
-    //itemVisualizer.elementid = elementID;
-    //itemVisualizer.style.zindex = 99999;
-    //searchItems.style.zindex = 0;
 }
 
 /**
