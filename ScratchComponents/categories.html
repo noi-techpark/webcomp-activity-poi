@@ -52,8 +52,8 @@
 					if (type.Type != 'Type')
 						continue;
 					
-					// console.log(type.Key)
-					// console.log(type.TypeDesc[lang])
+					console.log(type.TypeDesc[lang]);
+
 					
 					let category = category_template.cloneNode(true)
 					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]

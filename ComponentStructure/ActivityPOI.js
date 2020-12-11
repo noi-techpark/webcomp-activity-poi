@@ -83,7 +83,7 @@ function showPOIActivityFromList(id){
  * */
 
 const itemVisualizer = document.querySelector('item-visualizer');
-// itemVisualizer.elementid = 999;
+itemVisualizer.elementid = "smgpoi107";
 
 /**
  * InteractiveMap component

@@ -1,0 +1,122 @@
+.mainContainer {
+	width: 100vw;
+}
+.mainContainer.Anderes {
+	.titleParagraph{
+		color:#6554B7;
+	}
+	.fas{
+		color:#6554B7;
+	}
+}
+.mainContainer.Essen {
+	.titleParagraph{
+		color:#7fCC86;
+	}
+	.fas{
+		color:#7fCC86;
+	}
+}
+.mainContainer.Geschäfte {
+	.titleParagraph{
+		color:#E37454;
+	}
+	.fas{
+		color:#E37454;
+	}
+}
+.mainContainer.Kultur {
+	.titleParagraph{
+		color:#FB8464;
+	}
+	.fas{
+		color:#FB8464;
+	}
+}
+.mainContainer.Verkehr {
+	.titleParagraph{
+		color:#846CEC;
+	}
+	.fas{
+		color:#846CEC;
+	}
+}
+.mainContainer.Sommer {
+	.titleParagraph{
+		color:#3DDCD4;
+	}
+	.fas{
+		color:#3DDCD4;
+	}
+}
+.mainContainer.Wellness {
+	.titleParagraph{
+		color:#E9E28C;
+	}
+	.fas{
+		color:#E9E28C;
+	}
+}
+.mainContainer.Winter {
+	.titleParagraph{
+		color:#3D8CC4;
+	}
+	.fas{
+		color:#3D8CC4;
+	}
+}
+.title {
+	display: flex;
+	border-bottom: 1px solid;
+	box-shadow: 0 4px 2px -2px gray;
+}
+.titleDiv {
+	flex: 1;
+	text-align: center;
+}
+
+.resultContainer {
+	/*height: calc(100%-titleDivHeight) ???*/
+	width: 100%;
+	overflow-y: scroll;
+}
+.itemInfo {
+	margin-top: 10px;
+}
+.infoTitle {
+	box-shadow: 0 4px 2px -2px gray;
+}
+.info {
+	width: 94vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+.image {
+	width: 90vw;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media only screen and (min-width: 600px) {
+	.mainContainer {
+		width: 30vw;
+	}
+	.titleArrowDiv {
+		display: none;
+	}
+	.itemInfo {
+		width: 28vw;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+	}
+	.info {
+		width: 26vw;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.image {
+		width: 26vw;
+	}
+}
