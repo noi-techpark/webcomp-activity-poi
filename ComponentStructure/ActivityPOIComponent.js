@@ -88,101 +88,24 @@ class ActivityPOIComponent extends HTMLElement{
          * */
 
         this.$categoriesChoice = this._shadowRoot.querySelector('categories-choice');
-        this.$categoriesChoice.activecategories = {1:false};
-        this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
+        // this.$categoriesChoice.activecategories = {1:false};
+        // this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
 
 
         /**
          * SearchItems component
          * */
         this.$searchItems = this._shadowRoot.querySelector('search-items');
-        this.$searchItems.search = searchPOIActivitiesByName;
-        this.$searchItems.resultonclick = showPOIActivityFromList;
+        // this.$searchItems.search = searchPOIActivitiesByName;
+        // this.$searchItems.resultonclick = showPOIActivityFromList;
     }
 
     async connectedCallback(){
-        let response_1 = await fetch('map.json')
-        let json = await response_1.json()
-
-        let items = json.Items;
-
-        this.$itemVisualizer.elementid = "smgpoi107";
-        this.$interactiveMap.elementsonmap = {items};
-
-        let response_2 = await fetch('poi-types.json')
-        let types = await response_2.json();
-
-        let category_types = [];
-
-        for(var i = 0; i < types.length; i++){
-            let type = types[i]
-
-            if (type.Type != 'Type')
-                continue;
-
-            category_types.push(type);
-
-            for (let j = 0; j < types.length; j++)
-            {
-                let subtype = types[j]
-                if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
-                    continue;
-
-                category_types.push(subtype);
-            }
-        }
-
-        this.$categoriesChoice.categoriesinformation = {category_types};
+        
     }
 
 
 
-}
-
-/**
- * @param: search input
- * @what: it makes an API call to have the list of item results,
- * and it displays them
- * @returns: null
- * */
-function searchPOIActivitiesByName(){
-    alert("search function");
-
-    //results = API call to get results
-    //searchItems.resultsitems = results
-    //set elements on map
-}
-
-/**
- * @param: {"categoryID":boolean} -> true if selected, false otherwise
- * @what:
- * @returns: null
- * */
-function searchPOIActivitiesByCategories(){
-    alert("search by categories");
-
-    //update categoriesChoice.activecategories
-    //elementsID = search elements with the categories = true
-    //displayedElements = elementsID
-    //update interactiveMap.elementsonmap
-    //update searchItems.resultonclick
-    //searchItems.style.zindex = 99999;
-    //itemVisualizer.style.zindex = 0;
-}
-
-/**
- * @param: elementID
- * @what: based on the element clicked on the list, it shows
- * the details of the element in the ItemVisualizer
- * @returns: null
- * */
-function showPOIActivityFromList(){
-    alert("an item from the result list has been clicked");
-
-    //displayedElements = [elementID]
-    //itemVisualizer.elementid = elementID;
-    //itemVisualizer.style.zindex = 99999;
-    //searchItems.style.zindex = 0;
 }
 
 customElements.define('activity-poi', ActivityPOIComponent);

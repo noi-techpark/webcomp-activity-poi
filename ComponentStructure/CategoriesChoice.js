@@ -53,12 +53,7 @@ class CategoriesChoice extends HTMLElement {
 
     async connectedCallback(){
 
-        // parameters
-        let index_match = window.location.search.match(new RegExp("[?&]index=([^&]+)"));
-        let lang_match  = window.location.search.match(new RegExp("[?&]lang=([^&]+)"));
-
-        let index = index_match != null ? index_match[1]: 0;
-        let lang  = lang_match  != null ? lang_match[1]: 'it';
+        let lang = 'it';
 
         let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
         let category_parent = category_template.parentElement
@@ -108,6 +103,13 @@ class CategoriesChoice extends HTMLElement {
                     // console.log(subtype)
                     let sub_category = sub_category_template.cloneNode(true)
                     sub_category.querySelector('label').textContent = subtype.TypeDesc[lang]
+                    sub_category.querySelector('input').addEventListener('click', 
+                    (function(type_Bitmask, Subtype_Bitmask, inputElement) {
+                  	  return function()
+                  	  {
+                     	  alert('cat:' + type_Bitmask + '/' + Subtype_Bitmask + inputElement.checked)
+                  	  };
+                    })(type.Bitmask, subtype.Bitmask, sub_category.querySelector('input')))
                     sub_category_parent.appendChild(sub_category)
                 }
             }
@@ -125,120 +127,9 @@ class CategoriesChoice extends HTMLElement {
         }
 
 
-
-    }
-
-
-    static get observedAttributes() {
-        return ['categoriesinformation','activecategories','onchangeselectedcategories'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-
-
-        this.render();
-    }
-
-    get categoriesinformation(){
-        return this.getAttribute('categoriesinformation');
-    }
-
-    get activecategories(){
-        return this.getAttribute('activecategories');
-    }
-
-    get onchangeselectedcategories(){
-        return this.getAttribute('onchangeselectedcategories');
-    }
-
-    set categoriesinformation(value){
-        this.setAttribute('categoriesinformation',value);
-        this.render()
-    }
-
-    set activecategories(value){
-        this.setAttribute('activecategories',value);
-    }
-
-    set onchangeselectedcategories(value){
-        this.setAttribute('onchangeselectedcategories',value);
-        //TODO: add functionality that is triggered when checkbox is selected or not
-        //this.$checkbox.addEventListener('change',value);
-    }
-
-
-    render() {
-        //this.$area1.innerHTML = this.categoriesinformation;
-        //this.$area2.innerHTML = this.activecategories;
-
-        // parameters
-        let index_match = window.location.search.match(new RegExp("[?&]index=([^&]+)"));
-        let lang_match  = window.location.search.match(new RegExp("[?&]lang=([^&]+)"));
-
-        let index = index_match != null ? index_match[1]: 0;
-        let lang  = lang_match  != null ? lang_match[1]: 'it';
-
-        //let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
-        let category_parent = this.$category_template.parentElement
-        this.$category_template.remove()
-
-        let types = this.categoriesinformation;
-        console.log(types);
-
-        if(types != null){
-            //Types
-            for (let i = 0; i < types[0].length; i++)
-            {
-                let type = types[i]
-                if (type.Type != 'Type')
-                    continue;
-
-                // console.log(type.Key)
-                // console.log(type.TypeDesc[lang])
-
-                let category = this.$category_template.cloneNode(true)
-                category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
-                let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc["de"].replace(/ .*/,'');
-                console.log(subCategoryTitle)
-                category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
-                category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
-                let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
-                imageFileName = imageFileName.replace(/\u00f6/g, "oe")
-                imageFileName = imageFileName.replace(/\u00fc/g, "ue")
-                imageFileName = imageFileName.replace(/\u00c4/g, "Ae")
-                imageFileName = imageFileName.replace(/\u00d6/g, "Oe")
-                imageFileName = imageFileName.replace(/\u00dc/g, "Ue")
-                imageFileName = imageFileName.trim()
-                category.querySelector('img.categoryImage').src = "/img/category_icons/" + imageFileName + ".svg"
-                category_parent.appendChild(category)
-
-                //let sub_category_template = category.querySelector('div.subCategoryItem')
-                //let sub_category_parent = sub_category_template.parentElement
-                this.$sub_category_template.remove()
-
-                for (let j = 0; j < types.length; j++)
-                {
-                    let subtype = types[j]
-                    if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
-                        continue;
-                    // console.log(subtype)
-                    let sub_category = sub_category_template.cloneNode(true)
-                    sub_category.querySelector('label').textContent = subtype.TypeDesc[lang]
-                    sub_category_parent.appendChild(sub_category)
-                }
-            }
-
-            let subCat = document.querySelectorAll('div.subCategory');
-            for (let j = 0; j < subCat.length/2; j++)
-            {
-                subCat[j].classList.add('subCategoryLeft');
-                console.log(subCat[j].classList)
-            }
-            for (let j = subCat.length/2; j < subCat.length; j++)
-            {
-                subCat[j].classList.add('subCategoryRight');
-            }
-        }
 
     }
 
