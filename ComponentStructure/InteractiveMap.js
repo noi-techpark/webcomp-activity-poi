@@ -80,9 +80,11 @@ class InteractiveMap extends HTMLElement {
     async attributeChangedCallback(name, oldVal, newVal) {
    	 // alert(name + ': ' + newVal)
    	 
+   	 let thiswebcomponent = this
+   	 
    	 this.markerClusterGroup.clearLayers();
    	 
-	  		let response = await fetch('map.json')
+   	   let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?pagesize=100&language=it&type=' + newVal)
 			let json = await response.json()
 			
 			let items = json.Items;
