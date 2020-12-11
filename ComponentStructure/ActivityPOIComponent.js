@@ -2,9 +2,7 @@ const activityPOI_template = document.createElement('template');
 
 activityPOI_template.innerHTML = `
     <div id="webcomponentsContainer">
-        <div id="mapContainer">
-            <interactive-map></interactive-map>
-        </div>
+        <interactive-map></interactive-map>
         <div id="categoriesContainer">
             <categories-choice></categories-choice>
         </div>
@@ -18,6 +16,12 @@ activityPOI_template.innerHTML = `
     
     
     <style>
+    
+    :host {
+        display: block;
+        height: 100%;
+    }
+    
     @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
     
     html, body, #webcomponentsContainer {
@@ -27,28 +31,27 @@ activityPOI_template.innerHTML = `
         overflow: hidden;
     }
     
-    #mapContainer {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    
     #categoriesContainer {
         position: absolute;
         top: 0;
-        left: 50%;
+        left: 25%;
     }
     
     #itemContainer {
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
+        overflow: hidden;
+        height: 100%;
     }
     
     #searchContainer {
         position: absolute;
         top: 0;
         left: 0;
+        overflow: hidden;
+        height: 30%;
+        z-index: 9999
     }
     </style>
 `;
