@@ -91,7 +91,7 @@ class ItemVisualizer extends HTMLElement {
 
     
     async attributeChangedCallback(name, oldVal, newVal) {
-       if (name == 'apoiid')
+       if (name === 'apoiid')
        {
       	 // alert(newVal)
       	 console.log(newVal)
