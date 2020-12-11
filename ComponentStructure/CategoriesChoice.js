@@ -63,6 +63,8 @@ class CategoriesChoice extends HTMLElement {
 
         let response = await fetch('poi-types.json')
         let types = await response.json()
+        
+        let thiswebcomponent = this
 
         if(types != null){
             //Types
@@ -107,7 +109,7 @@ class CategoriesChoice extends HTMLElement {
                     (function(type_Bitmask, Subtype_Bitmask, inputElement) {
                   	  return function()
                   	  {
-                     	  alert('cat:' + type_Bitmask + '/' + Subtype_Bitmask + inputElement.checked)
+                  		  thiswebcomponent.oncategorychange(type_Bitmask, Subtype_Bitmask, inputElement.checked)
                   	  };
                     })(type.Bitmask, subtype.Bitmask, sub_category.querySelector('input')))
                     sub_category_parent.appendChild(sub_category)

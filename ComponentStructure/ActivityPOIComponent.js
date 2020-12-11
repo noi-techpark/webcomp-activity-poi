@@ -88,6 +88,10 @@ class ActivityPOIComponent extends HTMLElement{
          * */
 
         this.$categoriesChoice = this._shadowRoot.querySelector('categories-choice');
+        this.$categoriesChoice.oncategorychange = function(type_bitmask, subtype_bitmask, isenabled)
+        {
+      	  thiswebcomponent.$interactiveMap.setAttribute("mask", "123")
+        }
         // this.$categoriesChoice.activecategories = {1:false};
         // this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
 

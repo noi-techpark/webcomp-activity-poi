@@ -65,15 +65,27 @@ class InteractiveMap extends HTMLElement {
 	  		// show the scale bar on the lower left corner
 	  		L.control.scale().addTo(map);
 	  		
+	  		thiswebcomponent.markerClusterGroup = L.markerClusterGroup();
+			
+			map.addLayer(thiswebcomponent.markerClusterGroup);
+	  		
+   	 },0);
+    }
+    
+    static get observedAttributes() {
+       return ['mask'];
+    }
+
+    
+    async attributeChangedCallback(name, oldVal, newVal) {
+   	 // alert(name + ': ' + newVal)
+   	 
+   	 this.markerClusterGroup.clearLayers();
+   	 
 	  		let response = await fetch('map.json')
 			let json = await response.json()
-			console.log(json)
 			
 			let items = json.Items;
-			
-			console.log(items)
-			
-			var cluster = L.markerClusterGroup();
 			
 			for (let i = 0; i < items.length; i++)
 			{
@@ -103,15 +115,12 @@ class InteractiveMap extends HTMLElement {
 				
 				})(item.Id));
 				
-				cluster.addLayer(marker);
+				this.markerClusterGroup.addLayer(marker);
 
 				// show a marker on the map
 				// .bindPopup('The center of the world').addTo(map);
 			}
-			
-			map.addLayer(cluster);
-	  		
-   	 },0);
+
     }
 
 }
