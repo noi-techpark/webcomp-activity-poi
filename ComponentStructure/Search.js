@@ -2,6 +2,7 @@ const search_template = document.createElement('template');
 
 search_template.innerHTML = `
     <div class="mainContainer">
+    <input type="text" placeholder="Search...">
     <div class="title">
     <div class="titleDiv">
     <p class="titleParagraph">Search title (Museums)</p>
@@ -36,54 +37,6 @@ search_template.innerHTML = `
     <p class="text"><b>Museum name</b><br />Museum category</p>
 </div>
 </div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
 </div>
 </div>
 </div>
@@ -109,7 +62,17 @@ class Search extends HTMLElement {
         //this.$elementID = "elementID";
 
         this.$searchbutton = this._shadowRoot.querySelector("#search-button");
-        this.$resultitem = this._shadowRoot.querySelector("#result-item");
+
+        //container of result items
+        this.$resultsContainer = this._shadowRoot.querySelector(".resultContainer");
+        this.$resultsContainer.style.display = "none";
+
+        //result items
+        this.$resultitem = this._shadowRoot.querySelector(".searchInstance");
+
+        //title of the search results
+        this.$searchResultsTitle = this._shadowRoot.querySelector(".title");
+        this.$searchResultsTitle.style.display = "none";
     }
 
 

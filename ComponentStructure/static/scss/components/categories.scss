@@ -37,9 +37,7 @@
 }
 
 .subCategory {
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
+	padding: 20px;
 	text-align: left;
 	display: none;
 	background-color: white;
@@ -115,10 +113,17 @@
 	color: #3D8CC4;
 }
 
+.subCategoryItem{
+	margin-top: 10px;
+}
+
 @media only screen and (min-width: 650px) {
 	.categoriesContainer {
-		width: 56vw;
-		height: 6vw;
+		width: fit-content;
+		height: fit-content;
+		top: 20px;
+		position: relative;
+		z-index: 9999;
 	}
 	
 	.dropdownCategory {

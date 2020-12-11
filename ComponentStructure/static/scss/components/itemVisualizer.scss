@@ -67,8 +67,10 @@
 }
 .title {
 	display: flex;
-	border-bottom: 1px solid;
-	box-shadow: 0 4px 2px -2px gray;
+	//border-bottom: 1px solid;
+	//box-shadow: 0 4px 2px -2px gray;
+	padding: 20px;
+	border-bottom: solid 1px #aaa;
 }
 .titleDiv {
 	flex: 1;
@@ -79,12 +81,16 @@
 	/*height: calc(100%-titleDivHeight) ???*/
 	width: 100%;
 	overflow-y: scroll;
+	font-size: 14px;
+	color: #70757A;
 }
 .itemInfo {
-	margin-top: 10px;
+	//margin-top: 10px;
 }
 .infoTitle {
-	box-shadow: 0 4px 2px -2px gray;
+	box-shadow: 0 4px 6px -2px #0000002b;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .info {
 	width: 94vw;
@@ -101,20 +107,23 @@
 @media only screen and (min-width: 600px) {
 	.mainContainer {
 		width: 30vw;
+		max-height: 100vh;
+		overflow: scroll;
+		background: #fff;
+		box-shadow: 0 0 6px #0000001c;
 	}
 	.titleArrowDiv {
 		display: none;
 	}
 	.itemInfo {
-		width: 28vw;
+		//width: 28vw;
 		margin-left: auto;
 		margin-right: auto;
 		margin-top: 10px;
 	}
 	.info {
-		width: 26vw;
-		margin-left: auto;
-		margin-right: auto;
+		padding: 20px;
+		width: calc(100% - 40px);
 	}
 	.image {
 		width: 26vw;

@@ -2,8 +2,7 @@
 .categoriesContainer {
   text-align: center;
   width: 100vw;
-  height: 15vh;
-}
+  height: 15vh; }
 
 .dropdownCategory {
   display: inline-block;
@@ -14,12 +13,10 @@
   min-height: 35px;
   min-width: 35px;
   text-align: left;
-  position: relative;
-}
+  position: relative; }
 
 .dropdownCategory:hover .subCategory {
-  display: block;
-}
+  display: block; }
 
 .category {
   display: inline-block;
@@ -29,18 +26,14 @@
   max-width: 65px;
   min-height: 35px;
   min-width: 35px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .categoryImage {
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
 .subCategory {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
   text-align: left;
   display: none;
   background-color: white;
@@ -49,8 +42,7 @@
   position: absolute;
   white-space: nowrap;
   width: auto;
-  z-index: 1;
-}
+  z-index: 1; }
 
 .subCategory::before {
   content: "";
@@ -58,8 +50,7 @@
   border-style: solid;
   border-width: 0 10px 8px 1px;
   border-color: transparent transparent #ccc transparent;
-  top: -8px;
-}
+  top: -8px; }
 
 .subCategory::after {
   content: "";
@@ -67,84 +58,70 @@
   border-style: solid;
   border-width: 0 9px 7px 0;
   border-color: transparent transparent #fff transparent;
-  top: -7px;
-}
+  top: -7px; }
 
 .subcategory:hover {
-  display: block;
-}
+  display: block; }
 
 .subCategoryLeft {
-  left: 10px;
-}
+  left: 10px; }
 
 .subCategoryLeft::before {
-  left: 15px;
-}
+  left: 15px; }
 
 .subCategoryLeft::after {
-  left: 16px;
-}
+  left: 16px; }
 
 .subCategoryRight {
-  right: 0px;
-}
+  right: 0px; }
 
 .subCategoryRight::before {
-  right: 15px;
-}
+  right: 15px; }
 
 .subCategoryRight::after {
-  right: 16px;
-}
+  right: 16px; }
 
 .subCategoryTitleAnderes {
-  color: #6554B7;
-}
+  color: #6554B7; }
 
 .subCategoryTitleEssen {
-  color: #7fCC86;
-}
+  color: #7fCC86; }
 
 .subCategoryTitleGeschäfte {
-  color: #E37454;
-}
+  color: #E37454; }
 
 .subCategoryTitleKultur {
-  color: #FB8464;
-}
+  color: #FB8464; }
 
 .subCategoryTitleVerkehr {
-  color: #846CEC;
-}
+  color: #846CEC; }
 
 .subCategoryTitleSommer {
-  color: #3DDCD4;
-}
+  color: #3DDCD4; }
 
 .subCategoryTitleWellness {
-  color: #E9E28C;
-}
+  color: #E9E28C; }
 
 .subCategoryTitleWinter {
-  color: #3D8CC4;
-}
+  color: #3D8CC4; }
+
+.subCategoryItem {
+  margin-top: 10px; }
 
 @media only screen and (min-width: 650px) {
   .categoriesContainer {
-    width: 56vw;
-    height: 6vw;
-  }
+    width: fit-content;
+    height: fit-content;
+    top: 20px;
+    position: relative;
+    z-index: 9999; }
 
   .dropdownCategory {
     width: 5vw;
-    height: 5vw;
-  }
+    height: 5vw; }
 
   .category {
     width: 5vw;
-    height: 5vw;
-  }
-}
+    height: 5vw; } }
 
 /*# sourceMappingURL=categories.css.map */
