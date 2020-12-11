@@ -1,14 +1,18 @@
+.mainContainer {
+  width: 30vw;
+  padding: 10px;
+  background: #fff;
+  height: 100vh;
+  overflow: scroll;
+  box-shadow: 0 0 6px #0000001c;
+  padding: 20px; }
+
 .searchInstance {
-  box-shadow: 0 4px 2px -2px gray;
-  margin-left: auto;
-  margin-right: auto;
-  width: 94%;
-}
+  border-bottom: solid 1px #ccc;
+  padding: 10px; }
 
 .searchInstanceParagraph {
   margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
+  margin-right: auto; }
 
 /*# sourceMappingURL=search.css.map */

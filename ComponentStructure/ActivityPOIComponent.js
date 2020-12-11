@@ -18,6 +18,8 @@ activityPOI_template.innerHTML = `
     
     
     <style>
+    @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+    
     html, body, #webcomponentsContainer {
         height: 100%;
         margin: 0px;
@@ -62,36 +64,70 @@ class ActivityPOIComponent extends HTMLElement{
          * ItemVisualizer component
          * */
 
-        const itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
-        console.log(itemVisualizer.getAttributeNames());
-        itemVisualizer.elementid = "smgpoi107";
+        this.$itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
 
         /**
          * InteractiveMap component
          * */
 
-        const interactiveMap = this._shadowRoot.querySelector('interactive-map');
-        interactiveMap.elementsonmap = [{"elementID":1,"lat":45,"lon":45}];
+        this.$interactiveMap = this._shadowRoot.querySelector('interactive-map');
         //here the onclick function of the map markers' is set
-        interactiveMap.elementonclick = showPOIActivityFromMap;
+        this.$interactiveMap.elementonclick = showPOIActivityFromMap;
 
         /**
          * CategoriesChoice component
          * */
 
-        const categoriesChoice = this._shadowRoot.querySelector('categories-choice');
-        categoriesChoice.categoriesinformation = [{"categoryID":1,"category-name":{"EN":"museum","IT":"museo"},"category-icon":"directory","category-color":"#ff8360"}];
-        categoriesChoice.activecategories = {1:false};
-        categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
+        this.$categoriesChoice = this._shadowRoot.querySelector('categories-choice');
+        this.$categoriesChoice.activecategories = {1:false};
+        this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
 
 
         /**
          * SearchItems component
          * */
-        const searchItems = this._shadowRoot.querySelector('search-items');
-        searchItems.search = searchPOIActivitiesByName;
-        searchItems.resultonclick = showPOIActivityFromList;
+        this.$searchItems = this._shadowRoot.querySelector('search-items');
+        this.$searchItems.search = searchPOIActivitiesByName;
+        this.$searchItems.resultonclick = showPOIActivityFromList;
     }
+
+    async connectedCallback(){
+        let response_1 = await fetch('map.json')
+        let json = await response_1.json()
+
+        let items = json.Items;
+
+        this.$itemVisualizer.elementid = "smgpoi107";
+        this.$interactiveMap.elementsonmap = {items};
+
+        let response_2 = await fetch('poi-types.json')
+        let types = await response_2.json();
+
+        let category_types = [];
+
+        for(var i = 0; i < types.length; i++){
+            let type = types[i]
+
+            if (type.Type != 'Type')
+                continue;
+
+            category_types.push(type);
+
+            for (let j = 0; j < types.length; j++)
+            {
+                let subtype = types[j]
+                if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
+                    continue;
+
+                category_types.push(subtype);
+            }
+        }
+
+        this.$categoriesChoice.categoriesinformation = {category_types};
+    }
+
+
+
 }
 
 /**

@@ -1,12 +1,13 @@
 const interactiveMap_template = document.createElement('template');
 
 interactiveMap_template.innerHTML = `
-
-    <h1>InteractiveMap</h1>
-    <p id="elements"></p>
-    <div id="marker">fake marker</div>
-    
     <div id="mapid"></div>
+    
+    <style>
+    #mapid{
+    height: 100vh;
+    }
+</style>
 `;
 
 
@@ -20,17 +21,18 @@ class InteractiveMap extends HTMLElement {
         this._shadowRoot.appendChild(interactiveMap_template.content.cloneNode(true));
         //this.elementsOnMap = [{"elementID":1,"lat":45,"lon":45}];
 
-        this.$area = this._shadowRoot.querySelector('#elements');
+        //this.$area = this._shadowRoot.querySelector('#elements');
 
-        this.$marker = this._shadowRoot.querySelector('#marker');
+        //this.$marker = this._shadowRoot.querySelector('#marker');
 
     }
 
     //TODO: not finding the div with id "mapid"
     async connectedCallback(){
+        console.log(document.getElementById("mapid"));
 
         // initialize Leaflet
-        var map = L.map('mapid').setView({
+        var map = L.map(this._shadowRoot.getElementById("mapid")).setView({
             lon : 11.4,
             lat : 46.6
         }, 9);
@@ -46,13 +48,13 @@ class InteractiveMap extends HTMLElement {
         // show the scale bar on the lower left corner
         L.control.scale().addTo(map);
 
+        //let items = this.elementsonmap;
+
         let response = await fetch('map.json')
         let json = await response.json()
         console.log(json)
 
         let items = json.Items;
-
-        console.log(items)
 
         var cluster = L.markerClusterGroup();
 
@@ -61,7 +63,6 @@ class InteractiveMap extends HTMLElement {
             let item = items[i]
 
             console.log(item.Type)
-
 
             var markerIcon = L.icon(
                 {
@@ -89,7 +90,7 @@ class InteractiveMap extends HTMLElement {
     }
 
     render() {
-        this.innerHTML = `<h1>InteractiveMap</h1>`;
+
     }
 
     static get observedAttributes() {
@@ -111,7 +112,7 @@ class InteractiveMap extends HTMLElement {
 
     set elementonclick(value){
         this.setAttribute('elementonclick', value);
-        this.$marker.addEventListener('click',value);
+        //this.$marker.addEventListener('click',value);
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -119,7 +120,8 @@ class InteractiveMap extends HTMLElement {
     }
 
     render(){
-        this.$area.innerHTML = this.elementsonmap; //TODO: draw on map the elements
+        //TODO: draw on map the elements
+        //this.$area.innerHTML = this.elementsonmap;
     }
 }
 

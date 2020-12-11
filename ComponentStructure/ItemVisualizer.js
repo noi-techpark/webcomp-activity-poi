@@ -110,28 +110,29 @@ class ItemVisualizer extends HTMLElement {
             }
         }
 
+        if(item != null){
+            this._shadowRoot.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
+            this._shadowRoot.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+            this._shadowRoot.querySelector('span#category').innerHTML = item.PoiType;
+            this._shadowRoot.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
+            this._shadowRoot.querySelector('span#ageTo').innerHTML = item.AgeTo;
+            this._shadowRoot.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
+            this._shadowRoot.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
+            this._shadowRoot.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+            this._shadowRoot.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
+            //image gallery -> item.ImageGallery --- How to add a Gallery
+            this._shadowRoot.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
+            this._shadowRoot.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
+            this._shadowRoot.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
+            this._shadowRoot.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
+            this._shadowRoot.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
+            this._shadowRoot.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
+            // ...
 
+            //update colour of icons and title
+            this._shadowRoot.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
+        }
 
-        this._shadowRoot.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
-        this._shadowRoot.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
-        this._shadowRoot.querySelector('span#category').innerHTML = item.PoiType;
-        this._shadowRoot.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
-        this._shadowRoot.querySelector('span#ageTo').innerHTML = item.AgeTo;
-        this._shadowRoot.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
-        this._shadowRoot.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
-        this._shadowRoot.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
-        this._shadowRoot.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
-        //image gallery -> item.ImageGallery --- How to add a Gallery
-        this._shadowRoot.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
-        this._shadowRoot.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
-        this._shadowRoot.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
-        this._shadowRoot.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
-        this._shadowRoot.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
-        this._shadowRoot.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
-        // ...
-
-        //update colour of icons and title
-        this._shadowRoot.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
     }
 
     static get observedAttributes() {

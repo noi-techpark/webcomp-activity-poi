@@ -40,7 +40,7 @@
 
 			var markerIcon = L.icon(
 			{
-				iconUrl : 'img/map_markers/' + item.Type +'.png',
+				iconUrl : './img/map_markers/' + item.Type +'.png',
 				// shadowUrl : 'leaf-shadow.png',
 
 				iconSize : [ 60/2, 99/2 ], // size of the icon
