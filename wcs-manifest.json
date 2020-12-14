@@ -1,0 +1,114 @@
+{
+  "title": "ActivityPOIWebcomponent",
+  "description": "description",
+  "descriptionAbstract": "description abstract?",
+  "license": "AGPL-3.0-or-later",
+  "copyrightHolders": [
+    {
+      "name": "NOI",
+      "email": "info@noi.bz.it",
+      "organization": "NOI AG/SpA Südtirol - Alto Adige",
+      "organizationUrl": "https://noi.bz.it"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Chiara Masci",
+      "email": "chiara@huprocess.com",
+      "organization": "Huprocess",
+      "organizationUrl": "https://huprocess.com"
+    },
+    {
+      "name": "Davide Montesin",
+      "email": "d@vide.bz",
+      "organization": "Catchsolve",
+      "organizationUrl": "https://www.catch-solve.tech"
+    },
+    {
+      "name": "Monika Candela",
+      "email": "",
+      "organization": "Huprocess",
+      "organizationUrl": "https://huprocess.com"
+    }
+  ],
+  "image": "wcs-logo.png",
+  "searchTags": [
+    "testing",
+    "tools"
+  ],
+  "dist": {
+    "basePath": "dist",
+    "files": [
+      "no-existing-widget.min.js"
+    ]
+  },
+  "configuration": {
+    "tagName": "activity-poi",
+    "options": [
+      {
+        "key": "lat",
+        "type": "text",
+        "label": "Latitude of the center of the map",
+        "required": false,
+        "options": {
+          "default": "46.4983"
+        }
+      },
+      {
+        "key": "lon",
+        "type": "text",
+        "label": "Longitude of the center of the map",
+        "required": false,
+        "options": {
+          "default": "11.3548"
+        }
+      }
+    ,
+      {
+        "key": "lan",
+        "type": "select",
+        "label": "Language",
+        "required": false,
+        "options": {
+          "values": [
+            "en",
+            "de",
+            "it"
+          ],
+          "default": "en"
+        }
+      },
+      {
+        "key": "categories",
+        "type": "multiselect",
+        "label": "Categories to show",
+        "required": false,
+        "options": {
+          "values": [
+            "All categories",
+            "Winter",
+            "Wellness Entspannung",
+            "Verkehr und Transport",
+            "Sommer",
+            "Mobilitaet",
+            "Kultur und Sehenswuerdigkeiten",
+            "Geschaefte und Dienstleister",
+            "Essen Trinken",
+            "Anderes"
+          ],
+          "default": "All categories"
+        }
+      }
+    ,
+      {
+        "key": "directions",
+        "type": "null",
+        "label": "Activate 'Get directions' button ",
+        "required": false,
+        "options": {
+          "default": true
+        }
+      }
+    ]
+  }
+}
