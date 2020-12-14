@@ -35,8 +35,8 @@ activityPOI_template.innerHTML = `
         position: absolute;
         top: 0;
         right: 35vw;
-        width: 420px;
-        margin-right: -210px;
+        width: 40vw;
+        margin-right: -20vw;
     }
     
     #itemContainer {

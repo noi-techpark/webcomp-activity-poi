@@ -71,41 +71,57 @@ button, a.button {
   color: #6554B7; }
 .mainContainer.Anderes .fas {
   color: #6554B7; }
+.mainContainer.Anderes .button {
+  background: #6554B7; }
 
 .mainContainer.Essen .titleParagraph {
   color: #7fCC86; }
 .mainContainer.Essen .fas {
   color: #7fCC86; }
+.mainContainer.Essen .button {
+  background: #7fCC86; }
 
 .mainContainer.Geschäfte .titleParagraph {
   color: #E37454; }
 .mainContainer.Geschäfte .fas {
   color: #E37454; }
+.mainContainer.Geschäfte .button {
+  background: #E37454; }
 
 .mainContainer.Kultur .titleParagraph {
   color: #FB8464; }
 .mainContainer.Kultur .fas {
   color: #FB8464; }
+.mainContainer.Kultur .button {
+  background: #FB8464; }
 
 .mainContainer.Verkehr .titleParagraph {
   color: #846CEC; }
 .mainContainer.Verkehr .fas {
   color: #846CEC; }
+.mainContainer.Verkehr .button {
+  background: #846CEC; }
 
 .mainContainer.Sommer .titleParagraph {
   color: #3DDCD4; }
 .mainContainer.Sommer .fas {
   color: #3DDCD4; }
+.mainContainer.Sommer .button {
+  background: #3DDCD4; }
 
 .mainContainer.Wellness .titleParagraph {
   color: #E9E28C; }
 .mainContainer.Wellness .fas {
   color: #E9E28C; }
+.mainContainer.Wellness .button {
+  background: #E9E28C; }
 
 .mainContainer.Winter .titleParagraph {
   color: #3D8CC4; }
 .mainContainer.Winter .fas {
   color: #3D8CC4; }
+.mainContainer.Winter .button {
+  background: #3D8CC4; }
 
 .title {
   display: flex;
