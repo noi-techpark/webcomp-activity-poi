@@ -77,10 +77,11 @@
 @media only screen and (min-width: 600px) {
   .mainContainer {
     width: 30vw;
-    max-height: 100vh;
+    height: 100vh;
     overflow: scroll;
     background: #fff;
-    box-shadow: 0 0 6px #0000001c; }
+    box-shadow: 0 0 6px #0000001c;
+    padding: 20px; }
 
   .titleArrowDiv {
     display: none; }

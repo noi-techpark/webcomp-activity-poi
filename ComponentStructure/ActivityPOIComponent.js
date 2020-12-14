@@ -34,16 +34,19 @@ activityPOI_template.innerHTML = `
     #categoriesContainer {
         position: absolute;
         top: 0;
-        left: 25%;
+        right: 35vw;
+        width: 420px;
+        margin-right: -210px;
     }
     
     #itemContainer {
         position: absolute;
         top: 0;
-        right: 0;
+        left: 0;
         overflow: hidden;
-        height: 100%;
-        z-index: 9999
+        height: 100vh;
+        box-sizing: border-box;
+        z-index: 999;
     }
     
     #searchContainer {
@@ -51,8 +54,9 @@ activityPOI_template.innerHTML = `
         top: 0;
         left: 0;
         overflow: hidden;
-        height: 30%;
-        z-index: 9999
+        z-index: 9999;
+        height: 100vh;
+        box-sizing: border-box;
     }
     </style>
 `;
@@ -71,6 +75,15 @@ class ActivityPOIComponent extends HTMLElement{
          * */
 
         this.$itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
+        this.$itemContainer = this._shadowRoot.querySelector('#itemContainer');
+
+        /**
+         * SearchItems component
+         * */
+        this.$searchItems = this._shadowRoot.querySelector('search-items');
+        this.$searchContainer = this._shadowRoot.querySelector('#searchContainer');
+        // this.$searchItems.search = searchPOIActivitiesByName;
+        // this.$searchItems.resultonclick = showPOIActivityFromList;
 
         /**
          * InteractiveMap component
@@ -81,6 +94,8 @@ class ActivityPOIComponent extends HTMLElement{
         this.$interactiveMap.markerclick = function(id) {
       	  // alert('hei: ' + id)
       	  thiswebcomponent.$itemVisualizer.setAttribute('apoiid',id);
+      	  thiswebcomponent.$searchContainer.style.zIndex = 9999;
+      	  thiswebcomponent.$itemContainer.style.zIndex = 99999;
         };
 
         /**
@@ -94,14 +109,6 @@ class ActivityPOIComponent extends HTMLElement{
         }
         // this.$categoriesChoice.activecategories = {1:false};
         // this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
-
-
-        /**
-         * SearchItems component
-         * */
-        this.$searchItems = this._shadowRoot.querySelector('search-items');
-        // this.$searchItems.search = searchPOIActivitiesByName;
-        // this.$searchItems.resultonclick = showPOIActivityFromList;
     }
 
     async connectedCallback(){
