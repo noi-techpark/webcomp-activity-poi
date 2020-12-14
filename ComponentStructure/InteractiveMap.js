@@ -93,8 +93,6 @@ class InteractiveMap extends HTMLElement {
 			{
 				let item = items[i]
 				
-				console.log(item)
-				
 
 				var markerIcon = L.icon(
 				{

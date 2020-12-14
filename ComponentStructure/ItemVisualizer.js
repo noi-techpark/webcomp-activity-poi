@@ -34,6 +34,9 @@ Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
     <p class="text"><b>Località</b><br>
     <span id="location"></span></p>
 </div>
+<div class="informationInstance">
+<a id="directions" class="button" target="_blank">Get directions</a>
+</div>
 </div>
 </div>
 <div class="itemInfo" id="itemDescription">
@@ -112,7 +115,6 @@ class ItemVisualizer extends HTMLElement {
 				// copy values from json to html
 				
 				var root_element = this._shadowRoot
-				
 			
 				root_element.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
 				root_element.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
@@ -130,6 +132,7 @@ class ItemVisualizer extends HTMLElement {
 				root_element.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
 				root_element.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
 				root_element.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
+				root_element.querySelector('a#directions').setAttribute("href","http://maps.google.com/maps?q="+item.GpsInfo[0].Latitude+","+item.GpsInfo[0].Longitude);
 				// ...
 				
 				//update colour of icons and title

@@ -39,4 +39,14 @@ input[type="text"] {
 label {
   font-family: arial; }
 
+button, a.button {
+  padding: 10px 20px;
+  background: #3DDCD4;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  display: -webkit-inline-box; }
+  button:hover, a.button:hover {
+    cursor: pointer; }
+
 /*# sourceMappingURL=atoms.css.map */

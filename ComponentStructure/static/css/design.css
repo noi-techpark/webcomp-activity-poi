@@ -2,7 +2,8 @@
 * {
   margin: 0;
   padding: 0;
-  border: 0; }
+  border: 0;
+  font-family: calibri, verdana, arial; }
 
 p {
   font-family: calibri, verdana, arial;
@@ -52,6 +53,16 @@ input[type="text"] {
 
 label {
   font-family: arial; }
+
+button, a.button {
+  padding: 10px 20px;
+  background: #3DDCD4;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  display: -webkit-inline-box; }
+  button:hover, a.button:hover {
+    cursor: pointer; }
 
 .mainContainer {
   width: 100vw; }
