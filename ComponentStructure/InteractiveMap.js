@@ -73,7 +73,7 @@ class InteractiveMap extends HTMLElement {
     }
     
     static get observedAttributes() {
-       return ['mask'];
+       return ['mask', 'apoiid'];
     }
 
     
@@ -82,9 +82,18 @@ class InteractiveMap extends HTMLElement {
    	 
    	 let thiswebcomponent = this
    	 
+   	 // alert(this.getAttribute('apoiid'))
+   	 
+   	 let params = new URLSearchParams()
+ 	    params.append('pagesize','100')
+ 	    if (this.getAttribute('mask') != null)
+ 	   	 params.append('type', this.getAttribute('mask'))
+ 	    if (this.getAttribute('apoiid') != null)
+ 	   	 params.append('idlist', this.getAttribute('apoiid'))
+   	 
    	 this.markerClusterGroup.clearLayers();
    	 
-   	   let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?pagesize=100&language=it&type=' + newVal)
+   	   let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?' + params.toString())
 			let json = await response.json()
 			
 			let items = json.Items;

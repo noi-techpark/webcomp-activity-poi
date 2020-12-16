@@ -83,7 +83,11 @@ class ActivityPOIComponent extends HTMLElement{
         this.$searchItems = this._shadowRoot.querySelector('search-items');
         this.$searchContainer = this._shadowRoot.querySelector('#searchContainer');
         // this.$searchItems.search = searchPOIActivitiesByName;
-        // this.$searchItems.resultonclick = showPOIActivityFromList;
+        this.$searchItems.onresultclick = function(apoiid)
+        {
+      	  thiswebcomponent.$interactiveMap.setAttribute("apoiid", apoiid)
+      	  thiswebcomponent.$interactiveMap.removeAttribute("mask")
+        }
 
         /**
          * InteractiveMap component
@@ -106,6 +110,7 @@ class ActivityPOIComponent extends HTMLElement{
         this.$categoriesChoice.oncategorychange = function(type_bitmask, subtype_bitmask, isenabled)
         {
       	  thiswebcomponent.$interactiveMap.setAttribute("mask", type_bitmask)
+      	  thiswebcomponent.$interactiveMap.removeAttribute("apoiid")
         }
         // this.$categoriesChoice.activecategories = {1:false};
         // this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;

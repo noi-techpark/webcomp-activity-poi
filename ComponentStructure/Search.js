@@ -59,10 +59,12 @@ class Search extends HTMLElement {
             	webcomponent.doSearch(input.value)
             }
         });
+        
     }
     
     async doSearch(searchtxt)
     {
+   	   let webcomponent = this;
    	 
    	   while (this.resultsContainer.lastElementChild)
    	   	this.resultsContainer.removeChild(this.resultsContainer.lastElementChild);
@@ -86,10 +88,12 @@ class Search extends HTMLElement {
    	 		let row = this.searchInstance_template.cloneNode(true)
    	 		this.resultsContainer.appendChild(row)
    	 		row.querySelector('p.text').textContent = list[i].Shortname
-   	 		row.addEventListener('click', function()
-   	 		{
-   	 			alert('click')
-   	 		})
+   	 		row.addEventListener('click', (function(apoiid) {
+   	 			return function()
+   	 			{
+   	 				webcomponent.onresultclick(apoiid)
+   	 			}
+   	 		})(list[i].Id));
    	 	}
     }
 
