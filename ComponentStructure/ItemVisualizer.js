@@ -86,11 +86,29 @@ class ItemVisualizer extends HTMLElement {
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(itemVisualizer_template.content.cloneNode(true));
 
+        this.language = "it";
+
     }
 
     static get observedAttributes() {
-        return ['apoiid'];
+        return ['apoiid','directions','language'];
     }
+
+	get language() {
+		return this.getAttribute('language');
+	}
+
+	set language(val) {
+		this.setAttribute('language', val);
+	}
+
+	get apoiid() {
+		return this.getAttribute('apoiid');
+	}
+
+	set apoiid(val) {
+		this.setAttribute('apoiid', val);
+	}
 
     
     async attributeChangedCallback(name, oldVal, newVal) {
@@ -104,7 +122,7 @@ class ItemVisualizer extends HTMLElement {
 				// let lang_match  = window.location.search.match(new RegExp("[?&]lang=([^&]+)"));
 	
 				// let index = index_match != null ? index_match[1]: 0;
-				let lang  = 'it'; // lang_match  != null ? lang_match[1]: 'it';
+				let lang  = this.language; // lang_match  != null ? lang_match[1]: 'it';
 	
 				// read data json
 				
@@ -139,6 +157,49 @@ class ItemVisualizer extends HTMLElement {
 				root_element.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
 			
        }
+
+       if(name == 'directions'){
+       		if(newVal)
+       			this._shadowRoot.querySelector('a#directions').style.display = "block";
+		   	else
+				this._shadowRoot.querySelector('a#directions').style.display = "none";
+	   }
+
+       if(name == 'language' && this.apoiid != null){
+		   let lang  = newVal; // lang_match  != null ? lang_match[1]: 'it';
+
+		   // read data json
+
+		   let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi/' + this.apoiid)
+		   let json = await response.json()
+		   let item = json
+
+		   // copy values from json to html
+
+		   var root_element = this._shadowRoot
+
+		   root_element.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
+		   root_element.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+		   root_element.querySelector('span#category').innerHTML = item.PoiType;
+		   root_element.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
+		   root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
+		   root_element.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
+		   root_element.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
+		   root_element.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+		   root_element.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
+		   //image gallery -> item.ImageGallery --- How to add a Gallery
+		   root_element.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
+		   root_element.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
+		   root_element.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
+		   root_element.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
+		   root_element.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
+		   root_element.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
+		   root_element.querySelector('a#directions').setAttribute("href","http://maps.google.com/maps?q="+item.GpsInfo[0].Latitude+","+item.GpsInfo[0].Longitude);
+		   // ...
+
+		   //update colour of icons and title
+		   root_element.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
+	   }
     }
     
 

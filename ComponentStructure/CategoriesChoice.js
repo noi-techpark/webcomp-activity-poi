@@ -49,11 +49,25 @@ class CategoriesChoice extends HTMLElement {
         this.$sub_category_template = this.$category_template.querySelector('div.subCategoryItem')
         this.$sub_category_parent = this.$sub_category_template.parentElement
 
+        this.language = 'it';
+
+    }
+
+    static get observedAttributes() {
+        return ['language'];
+    }
+
+    get language() {
+        return this.getAttribute('language');
+    }
+
+    set language(val) {
+        this.setAttribute('language', val);
     }
 
     async connectedCallback(){
 
-        let lang = 'it';
+        let lang = this.language;
 
         let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
         let category_parent = category_template.parentElement
@@ -131,8 +145,88 @@ class CategoriesChoice extends HTMLElement {
 
     }
 
-    attributeChangedCallback(name, oldVal, newVal) {
+    //TODO: categories are appended
+    async attributeChangedCallback(name, oldVal, newVal) {
+        console.log(name);
 
+        if(name == 'language'){
+
+            console.log(newVal);
+            let lang = newVal;
+
+            let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
+            let category_parent = category_template.parentElement
+            category_template.remove()
+
+            //let types = this.categoriesinformation;
+
+            let response = await fetch('poi-types.json')
+            let types = await response.json()
+
+            let thiswebcomponent = this
+
+            if(types != null){
+                //Types
+                for (let i = 0; i < types.length; i++)
+                {
+                    let type = types[i]
+                    if (type.Type != 'Type')
+                        continue;
+
+                    console.log(type.Key)
+                    console.log(type.TypeDesc[lang])
+
+                    let category = category_template.cloneNode(true)
+                    category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
+                    let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc["de"].replace(/ .*/,'');
+                    console.log(subCategoryTitle)
+                    category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
+                    category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
+                    let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
+                    imageFileName = imageFileName.replace(/\u00f6/g, "oe")
+                    imageFileName = imageFileName.replace(/\u00fc/g, "ue")
+                    imageFileName = imageFileName.replace(/\u00c4/g, "Ae")
+                    imageFileName = imageFileName.replace(/\u00d6/g, "Oe")
+                    imageFileName = imageFileName.replace(/\u00dc/g, "Ue")
+                    imageFileName = imageFileName.trim()
+                    category.querySelector('img.categoryImage').src = "./img/category_icons/" + imageFileName + ".svg"
+                    category_parent.appendChild(category)
+
+                    let sub_category_template = category.querySelector('div.subCategoryItem')
+                    let sub_category_parent = sub_category_template.parentElement
+                    sub_category_template.remove()
+
+                    for (let j = 0; j < types.length; j++)
+                    {
+                        let subtype = types[j]
+                        if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
+                            continue;
+                        // console.log(subtype)
+                        let sub_category = sub_category_template.cloneNode(true)
+                        sub_category.querySelector('label').textContent = subtype.TypeDesc[lang]
+                        sub_category.querySelector('input').addEventListener('click',
+                            (function(type_Bitmask, Subtype_Bitmask, inputElement) {
+                                return function()
+                                {
+                                    thiswebcomponent.oncategorychange(type_Bitmask, Subtype_Bitmask, inputElement.checked)
+                                };
+                            })(type.Bitmask, subtype.Bitmask, sub_category.querySelector('input')))
+                        sub_category_parent.appendChild(sub_category)
+                    }
+                }
+
+                let subCat = document.querySelectorAll('div.subCategory');
+                for (let j = 0; j < subCat.length/2; j++)
+                {
+                    subCat[j].classList.add('subCategoryLeft');
+                    console.log(subCat[j].classList)
+                }
+                for (let j = subCat.length/2; j < subCat.length; j++)
+                {
+                    subCat[j].classList.add('subCategoryRight');
+                }
+            }
+        }
     }
 
 

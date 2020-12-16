@@ -98,7 +98,7 @@ class Search extends HTMLElement {
     }
 
     static get observedAttributes() {
-        // return ['search','resultonclick','resultsitems'];
+        // return ['search','resultonclick','resultsitems','language'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

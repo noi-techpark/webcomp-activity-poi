@@ -116,8 +116,33 @@ class ActivityPOIComponent extends HTMLElement{
         // this.$categoriesChoice.onchangeselectedcategories = searchPOIActivitiesByCategories;
     }
 
-    async connectedCallback(){
-        
+    static get observedAttributes() {
+        return ['lat','lon','radius','language','categories','directions'];
+    }
+
+    async attributeChangedCallback(name, oldVal, newVal) {
+        if (name === 'lat') {
+            this.$interactiveMap.lat = newVal
+        }
+        else if (name === 'lon') {
+            this.$interactiveMap.lon = newVal
+        }
+        else if (name === 'radius') {
+            this.$interactiveMap.radius = newVal
+        }
+        else if (name === 'language') {
+            this.$categoriesChoice.language = newVal
+            console.log(this.$categoriesChoice.language);
+            this.$itemVisualizer.language = newVal
+            this.$searchItems.language = newVal
+        }
+        else if (name === 'categories') {
+
+        }
+        else if (name === 'directions') {
+            this.$itemVisualizer.directions = newVal
+        }
+
     }
 
 

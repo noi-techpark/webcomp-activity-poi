@@ -34,6 +34,11 @@ class InteractiveMap extends HTMLElement {
 
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(interactiveMap_template.content.cloneNode(true));
+
+        this.lat = 46.6;
+        this.lon = 11.4;
+
+        console.log(this.lat);
     }
     
     connectedCallback()
@@ -49,9 +54,9 @@ class InteractiveMap extends HTMLElement {
    	 
        
 	  		// initialize Leaflet
-	  		var map = L.map(mapdiv).setView({
-	  			lon : 11.4,
-	  			lat : 46.6
+		    thiswebcomponent.map = L.map(mapdiv).setView({
+	  			lon : thiswebcomponent.lon,
+	  			lat : thiswebcomponent.lat
 	  		}, 9);
 	
 	  		// add the OpenStreetMap tiles
@@ -60,21 +65,37 @@ class InteractiveMap extends HTMLElement {
 	  						{
 	  							maxZoom : 19,
 	  							attribution : '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-	  						}).addTo(map);
+	  						}).addTo(thiswebcomponent.map);
 	
 	  		// show the scale bar on the lower left corner
-	  		L.control.scale().addTo(map);
+	  		L.control.scale().addTo(thiswebcomponent.map);
 	  		
 	  		thiswebcomponent.markerClusterGroup = L.markerClusterGroup();
-			
-			map.addLayer(thiswebcomponent.markerClusterGroup);
+
+		    thiswebcomponent.map.addLayer(thiswebcomponent.markerClusterGroup);
 	  		
    	 },0);
     }
     
     static get observedAttributes() {
-       return ['mask', 'apoiid'];
+       return ['mask','lat','lon','radius', 'apoiid'];
     }
+
+	get lat() {
+		return this.getAttribute('lat');
+	}
+
+	set lat(val) {
+		this.setAttribute('lat', val);
+	}
+
+	get lon() {
+		return this.getAttribute('lon');
+	}
+
+	set lon(val) {
+		this.setAttribute('lon', val);
+	}
 
     
     async attributeChangedCallback(name, oldVal, newVal) {
@@ -130,7 +151,15 @@ class InteractiveMap extends HTMLElement {
 				// .bindPopup('The center of the world').addTo(map);
 			}
 
+		if (name == 'lat'){
+			thiswebcomponent.map.setView(new L.LatLng(newVal, this.lon), 9);
+		}
+		if(name == "lon")
+			thiswebcomponent.map.setView(new L.LatLng(this.lat, newVal), 9);
+
     }
+
+
 
 }
 

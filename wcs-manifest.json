@@ -65,7 +65,17 @@
       }
     ,
       {
-        "key": "lan",
+        "key": "radius",
+        "type": "text",
+        "label": "Map radius (km)",
+        "required": false,
+        "options": {
+          "default": "10"
+        }
+      }
+      ,
+      {
+        "key": "language",
         "type": "select",
         "label": "Language",
         "required": false,
