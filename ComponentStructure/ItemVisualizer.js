@@ -89,7 +89,7 @@ class ItemVisualizer extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['apoiid'];
+        return ['apoiid','directions','language'];
     }
 
     
@@ -139,6 +139,12 @@ class ItemVisualizer extends HTMLElement {
 				root_element.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/,''));
 			
        }
+       else if(name == 'directions'){
+       		if(newVal)
+       			this._shadowRoot.querySelector('a#directions').style.display = "block";
+		   	else
+				this._shadowRoot.querySelector('a#directions').style.display = "none";
+	   }
     }
     
 
