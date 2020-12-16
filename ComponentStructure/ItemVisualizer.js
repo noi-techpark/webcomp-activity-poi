@@ -165,7 +165,7 @@ class ItemVisualizer extends HTMLElement {
 				this._shadowRoot.querySelector('a#directions').style.display = "none";
 	   }
 
-       if(name == 'language'){
+       if(name == 'language' && this.apoiid != null){
 		   let lang  = newVal; // lang_match  != null ? lang_match[1]: 'it';
 
 		   // read data json

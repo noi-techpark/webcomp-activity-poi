@@ -127,6 +127,7 @@ class ActivityPOIComponent extends HTMLElement{
         }
         else if (name === 'language') {
             this.$categoriesChoice.language = newVal
+            console.log(this.$categoriesChoice.language);
             this.$itemVisualizer.language = newVal
             this.$searchItems.language = newVal
         }
