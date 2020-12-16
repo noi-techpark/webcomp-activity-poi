@@ -17,26 +17,6 @@ search_template.innerHTML = `
     <p class="text"><b>Museum name</b><br />Museum category</p>
 </div>
 </div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
-<div class="searchInstance">
-    <div class="searchInstanceParagraph">
-    <p class="text"><b>Museum name</b><br />Museum category</p>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -55,6 +35,8 @@ search_template.innerHTML = `
 class Search extends HTMLElement {
     constructor() {
         super();
+        
+        let webcomponent = this;
 
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(search_template.content.cloneNode(true));
@@ -64,60 +46,59 @@ class Search extends HTMLElement {
         this.$searchbutton = this._shadowRoot.querySelector("#search-button");
 
         //container of result items
-        this.$resultsContainer = this._shadowRoot.querySelector(".resultContainer");
-        this.$resultsContainer.style.display = "none";
+        this.resultsContainer = this._shadowRoot.querySelector(".resultContainer");
+        this.resultsContainer.style.display = "none";
 
         //result items
-        this.$resultitem = this._shadowRoot.querySelector(".searchInstance");
+        this.searchInstance_template = this._shadowRoot.querySelector(".searchInstance");
+        this.resultsContainer.removeChild(this.searchInstance_template)
 
-        //title of the search results
-        this.$searchResultsTitle = this._shadowRoot.querySelector(".title");
-        this.$searchResultsTitle.style.display = "none";
+        let input = this._shadowRoot.querySelector("input");
+        input.addEventListener("keyup", function(event) {
+            if (event.code === 'Enter') {
+            	webcomponent.doSearch(input.value)
+            }
+        });
+    }
+    
+    async doSearch(searchtxt)
+    {
+   	 
+   	   while (this.resultsContainer.lastElementChild)
+   	   	this.resultsContainer.removeChild(this.resultsContainer.lastElementChild);
+				
+   	   this.resultsContainer.style.display = "block";
+
+   	   let params = new URLSearchParams()
+   	   params.append('pagenumber','1')
+   	   params.append('pagesize','100')
+   	   params.append('searchfilter',searchtxt)
+   	   
+   	   // alert(params.toString())
+   	   
+   	 	let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?' + params.toString())
+		   let json = await response.json()
+
+		   let list = json.Items;
+   	 	// console.log(list)
+   	 	for (let i = 0; i < list.length; i++)
+   	 	{
+   	 		let row = this.searchInstance_template.cloneNode(true)
+   	 		this.resultsContainer.appendChild(row)
+   	 		row.querySelector('p.text').textContent = list[i].Shortname
+   	 		row.addEventListener('click', function()
+   	 		{
+   	 			alert('click')
+   	 		})
+   	 	}
     }
 
-
     static get observedAttributes() {
-        return ['search','resultonclick','resultsitems'];
+        // return ['search','resultonclick','resultsitems'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-        this.render();
     }
-
-    get search(){
-        return this.getAttribute('search');
-    }
-
-    //TODO: add function
-    set search(value){
-        this.setAttribute('search', value);
-        //this.$searchbutton.addEventListener('click',value);
-    }
-
-    get resultonclick(){
-        return this.getAttribute('search');
-    }
-
-    //TODO: add function
-    set resultonclick(value){
-        this.setAttribute('resultonclick', value);
-        //this.$resultitem.addEventListener('click',value);
-    }
-
-    get resultsitems(){
-        return this.getAttribute('resultsitems');
-    }
-
-    set resultsitems(value){
-        this.setAttribute('resultsitems', value);
-
-        //display results
-    }
-
-    render(){
-
-    }
-
 
 }
 
