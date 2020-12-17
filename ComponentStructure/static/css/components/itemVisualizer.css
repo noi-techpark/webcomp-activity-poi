@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .mainContainer {
-  width: 100vw; }
+  width: 100vw;
+  z-index: 9999; }
 
 .mainContainer.Anderes .titleParagraph {
   color: #6554B7; }

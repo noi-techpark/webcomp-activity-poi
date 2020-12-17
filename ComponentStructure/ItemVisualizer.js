@@ -44,18 +44,19 @@ Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
     <div class="infoTitle" id="descriptionTitle">
     <p class="infoTitleParagraph"><i class="fas fa-file-alt"></i>Description</p>
 </div>
+
 <div class="info" id="description">
     <p class="text"></p>
     </div>
     </div>
-    <div class="itemInfo" id="itemPhotos">
+ <!--   <div class="itemInfo" id="itemPhotos">
     <div class="infoTitle" id="photosTitle">
     <p class="infoTitleParagraph"><i class="fas fa-image"></i>Photos</p>
 </div>
 <div class="info" id="photos">
     <img class="image" src="skiarea.jpg" alt="ski area">
     </div>
-    </div>
+    </div>-->
 
     <div class="itemInfo" id="itemContacts">
     <div class="infoTitle" id="contactsTitle">
@@ -146,24 +147,24 @@ class ItemVisualizer extends HTMLElement {
 				root_element.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
 
 				root_element.querySelector('span#category').innerHTML = item.PoiType;
-				if(item.PoiType == null || item.PoiType == ""){
-					root_element.querySelector('span#category').parentElement.remove();
-				}
+				//if(item.PoiType == null || item.PoiType == ""){
+				//	root_element.querySelector('span#category').parentElement.remove();
+				//}
 
 				root_element.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
 		        root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
 
-				if(item.AgeTo == 0 || item.AgeFrom == 0){
-					root_element.querySelector('span#ageTo').parentElement.remove()
-				}
+				//if(item.AgeTo == 0 || item.AgeFrom == 0){
+				//	root_element.querySelector('span#ageTo').parentElement.remove()
+				//}
 
 				   root_element.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
 				   root_element.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
 				   root_element.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
 
-				if(item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0){
-					root_element.querySelector('span#altitudeDifference').parentElement.remove();
-				}
+				//if(item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0){
+				//	root_element.querySelector('span#altitudeDifference').parentElement.remove();
+				//}
 
 				root_element.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
 				//image gallery -> item.ImageGallery --- How to add a Gallery

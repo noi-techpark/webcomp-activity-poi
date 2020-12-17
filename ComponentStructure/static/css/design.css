@@ -62,7 +62,8 @@ button, a.button {
     cursor: pointer; }
 
 .mainContainer {
-  width: 100vw; }
+  width: 100vw;
+  z-index: 9999; }
 
 .mainContainer.Anderes .titleParagraph {
   color: #6554B7; }
@@ -187,7 +188,8 @@ button, a.button {
   overflow: scroll;
   box-shadow: 0 0 6px #0000001c;
   padding: 20px;
-  transition: 0.5s; }
+  transition: 0.5s;
+  z-index: 99999; }
 
 .searchInstance {
   border-bottom: solid 1px #ccc;
