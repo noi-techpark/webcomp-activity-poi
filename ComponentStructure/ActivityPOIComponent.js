@@ -78,9 +78,14 @@ class ActivityPOIComponent extends HTMLElement{
 
         this.$itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
         this.$itemContainer = this._shadowRoot.querySelector('#itemContainer');
+        this.$itemContainer.style.display = "none";
+
         this.$itemVisualizer.closebuttonfunction = function(){
-            thiswebcomponent.$searchContainer.style.zIndex = 99999;
-            thiswebcomponent.$itemContainer.style.zIndex = 9999;
+            //thiswebcomponent.$searchContainer.style.zIndex = 99999;
+            //thiswebcomponent.$itemContainer.style.zIndex = 9999;
+
+            thiswebcomponent.$searchContainer.style.display = "block";
+            thiswebcomponent.$itemContainer.style.display = "none";
         };
 
         /**
@@ -103,8 +108,11 @@ class ActivityPOIComponent extends HTMLElement{
         this.$interactiveMap.markerclick = function(id) {
       	  // alert('hei: ' + id)
       	  thiswebcomponent.$itemVisualizer.setAttribute('apoiid',id);
-      	  thiswebcomponent.$searchContainer.style.zIndex = 9999;
-      	  thiswebcomponent.$itemContainer.style.zIndex = 99999;
+      	  //thiswebcomponent.$searchContainer.style.zIndex = 9999;
+      	  //thiswebcomponent.$itemContainer.style.zIndex = 99999;
+
+            thiswebcomponent.$searchContainer.style.display = "none";
+            thiswebcomponent.$itemContainer.style.display = "block";
         };
 
         /**

@@ -1,11 +1,16 @@
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
-    <div class="mainContainer">
-    <input type="text" placeholder="Search...">
+    <div class="mainContainer notShowingResults">
+    
+    <div class="searchBox">
+     <input type="text" placeholder="Search...">
+     <i class="fas fa-search action"></i>
+    </div>
+    
     <div class="title">
     <div class="titleDiv">
-    <p class="titleParagraph">Search title (Museums)</p>
+    <p class="titleParagraph">Search title</p>
 </div>
 <div class="titleArrowDiv">
     <i class="fas fa-chevron-up" onclick="expand(this)"></i>
@@ -23,6 +28,7 @@ search_template.innerHTML = `
 </div>
 
 <style>
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "static/css/components/search.css";
 @import "static/css/theme.css";
 @import "static/css/atoms.css";
@@ -45,6 +51,9 @@ class Search extends HTMLElement {
 
         this.$searchbutton = this._shadowRoot.querySelector("#search-button");
 
+        //container of everything
+		this.mainContainer = this._shadowRoot.querySelector(".mainContainer");
+
         //container of result items
         this.resultsContainer = this._shadowRoot.querySelector(".resultContainer");
         this.resultsContainer.style.display = "none";
@@ -59,6 +68,18 @@ class Search extends HTMLElement {
             	webcomponent.doSearch(input.value)
             }
         });
+
+        this.actionButton = this._shadowRoot.querySelector(".action");
+        this.actionButton.addEventListener("click",function(){
+        	if (webcomponent.actionButton.classList.contains("fa-search")){
+				webcomponent.doSearch(input.value)
+			} else if(webcomponent.actionButton.classList.contains("fa-times")){
+				webcomponent.mainContainer.classList.remove("showingResults");
+				webcomponent.mainContainer.classList.add("notShowingResults");
+				webcomponent.actionButton.classList.remove("fa-times");
+				webcomponent.actionButton.classList.add("fa-search");
+			}
+		})
         
     }
     
@@ -68,6 +89,11 @@ class Search extends HTMLElement {
    	 
    	   while (this.resultsContainer.lastElementChild)
    	   	this.resultsContainer.removeChild(this.resultsContainer.lastElementChild);
+
+		this.mainContainer.classList.remove("notShowingResults");
+   	   this.mainContainer.classList.add("showingResults");
+   	   this.actionButton.classList.remove("fa-search");
+		this.actionButton.classList.add("fa-times");
 				
    	   this.resultsContainer.style.display = "block";
 
