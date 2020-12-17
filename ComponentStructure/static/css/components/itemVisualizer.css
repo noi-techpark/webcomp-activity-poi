@@ -58,7 +58,11 @@
 .mainContainer.Winter .button {
   background: #3D8CC4; }
 
+#closebutton {
+  float: right; }
+
 .title {
+  clear: both;
   display: flex;
   padding: 20px;
   border-bottom: solid 1px #aaa; }

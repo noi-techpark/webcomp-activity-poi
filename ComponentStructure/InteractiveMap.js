@@ -37,8 +37,6 @@ class InteractiveMap extends HTMLElement {
 
         this.lat = 46.6;
         this.lon = 11.4;
-
-        console.log(this.lat);
     }
     
     connectedCallback()

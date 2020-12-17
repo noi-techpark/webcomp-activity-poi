@@ -2,6 +2,7 @@ const itemVisualizer_template = document.createElement('template');
 
 itemVisualizer_template.innerHTML = `
    <div class="mainContainer">
+   <p id="closebutton"><i class="fas fa-times"></i></p> 
     <div class="title">
     <div class="titleDiv" id="Title">
     <p class="titleParagraph">POI or Activity Title</p>
@@ -71,6 +72,7 @@ Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
 </div>
 
 <style>
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "static/css/components/itemVisualizer.css";
 @import "static/css/theme.css";
 @import "static/css/atoms.css";
@@ -91,7 +93,7 @@ class ItemVisualizer extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['apoiid','directions','language'];
+        return ['apoiid','directions','language','closebuttonfunction'];
     }
 
 	get language() {
@@ -112,6 +114,12 @@ class ItemVisualizer extends HTMLElement {
 
     
     async attributeChangedCallback(name, oldVal, newVal) {
+
+		let thiswebcomponent = this
+
+		let closebutton = this._shadowRoot.querySelector("#closebutton");
+		closebutton.addEventListener('click',function() {thiswebcomponent.closebuttonfunction()});
+
        if (name === 'apoiid')
        {
       	 // alert(newVal)

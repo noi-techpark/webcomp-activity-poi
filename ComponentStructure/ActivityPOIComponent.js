@@ -74,14 +74,19 @@ class ActivityPOIComponent extends HTMLElement{
          * ItemVisualizer component
          * */
 
+        this.$searchContainer = this._shadowRoot.querySelector('#searchContainer');
+
         this.$itemVisualizer = this._shadowRoot.querySelector('item-visualizer');
         this.$itemContainer = this._shadowRoot.querySelector('#itemContainer');
+        this.$itemVisualizer.closebuttonfunction = function(){
+            thiswebcomponent.$searchContainer.style.zIndex = 99999;
+            thiswebcomponent.$itemContainer.style.zIndex = 9999;
+        };
 
         /**
          * SearchItems component
          * */
         this.$searchItems = this._shadowRoot.querySelector('search-items');
-        this.$searchContainer = this._shadowRoot.querySelector('#searchContainer');
         // this.$searchItems.search = searchPOIActivitiesByName;
         this.$searchItems.onresultclick = function(apoiid)
         {
@@ -132,7 +137,6 @@ class ActivityPOIComponent extends HTMLElement{
         }
         else if (name === 'language') {
             this.$categoriesChoice.language = newVal
-            console.log(this.$categoriesChoice.language);
             this.$itemVisualizer.language = newVal
             this.$searchItems.language = newVal
         }

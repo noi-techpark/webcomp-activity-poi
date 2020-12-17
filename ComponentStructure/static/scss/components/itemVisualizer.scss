@@ -89,7 +89,12 @@
 		background:#3D8CC4;
 	}
 }
+
+#closebutton{
+	float:right;
+}
 .title {
+	clear: both;
 	display: flex;
 	//border-bottom: 1px solid;
 	//box-shadow: 0 4px 2px -2px gray;
