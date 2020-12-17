@@ -1,6 +1,7 @@
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
+	
     <div class="mainContainer notShowingResults">
     
     <div class="searchBox">
@@ -13,7 +14,6 @@ search_template.innerHTML = `
     <p class="titleParagraph">Search title</p>
 </div>
 <div class="titleArrowDiv">
-    <i class="fas fa-chevron-up" onclick="expand(this)"></i>
     </div>
     </div>
     <div class="resultContainer">
@@ -28,7 +28,7 @@ search_template.innerHTML = `
 </div>
 
 <style>
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "static/css/all.css";
 @import "static/css/components/search.css";
 @import "static/css/theme.css";
 @import "static/css/atoms.css";

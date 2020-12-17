@@ -2,7 +2,7 @@ const itemVisualizer_template = document.createElement('template');
 
 itemVisualizer_template.innerHTML = `
    <div class="mainContainer">
-   <p id="closebutton"><i class="fas fa-times"></i></p> 
+   <p id="closebutton"><i class="fa fa-times"></i></p> 
     <div class="title">
     <div class="titleDiv" id="Title">
     <p class="titleParagraph">POI or Activity Title</p>
@@ -18,9 +18,9 @@ itemVisualizer_template.innerHTML = `
 </div>
 <div class="info" id="information">
     <div class="informationInstance">
-    <p class="text"><b>Categoria</b><br>
-    <span id="category"></span></p>
-</div>
+    	<p class="text"><b>Categoria</b><br>
+    	<span id="category"></span></p>
+	</div>
 <div class="informationInstance">
     <p class="text"><b>Età adatta</b><br>
 <span id="ageFrom"></span>-<span id="ageTo"></span></p>
@@ -72,7 +72,7 @@ Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
 </div>
 
 <style>
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "static/css/all.css";
 @import "static/css/components/itemVisualizer.css";
 @import "static/css/theme.css";
 @import "static/css/atoms.css";
@@ -144,12 +144,27 @@ class ItemVisualizer extends HTMLElement {
 			
 				root_element.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
 				root_element.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+
 				root_element.querySelector('span#category').innerHTML = item.PoiType;
+				if(item.PoiType == null || item.PoiType == ""){
+					root_element.querySelector('span#category').parentElement.remove();
+				}
+
 				root_element.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
-				root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
-				root_element.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
-				root_element.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
-				root_element.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+		        root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
+
+				if(item.AgeTo == 0 || item.AgeFrom == 0){
+					root_element.querySelector('span#ageTo').parentElement.remove()
+				}
+
+				   root_element.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
+				   root_element.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
+				   root_element.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+
+				if(item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0){
+					root_element.querySelector('span#altitudeDifference').parentElement.remove();
+				}
+
 				root_element.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
 				//image gallery -> item.ImageGallery --- How to add a Gallery
 				root_element.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
