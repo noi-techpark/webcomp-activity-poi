@@ -1,0 +1,189 @@
+.categoriesContainer {
+	text-align:center;
+	width: auto !important;
+	//height: 15vh;
+
+	@media screen and (max-width:768px){
+		background: white;
+		padding: 10px;
+	}
+}
+
+.dropdownCategory {
+	display: inline-block;
+	width: 10vw;
+	height: 10vw;
+	max-height: 65px;
+	max-width: 65px;
+	min-height: 35px;
+	min-width: 35px;
+	text-align: left;
+	position: relative;
+
+
+	&.selected .category::before{
+		content: '';
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		-moz-border-radius: 7.5px;
+		-webkit-border-radius: 7.5px;
+		border-radius: 7.5px;
+		background-color: #dc5d3a;
+
+		position: absolute;
+		z-index: 99999999999999999999;
+		bottom: 5px;
+		right: 5px;
+
+		@media screen and (max-width:768px){
+			width: 10px;
+			height: 10px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			bottom: 2px;
+			right: 2px;
+		}
+	}
+}
+
+.dropdownCategory:hover .subCategory {
+	display: block;
+}
+
+.category {
+	display: inline-block;
+	width: 10vw;
+	height: 10vw;
+	max-height: 65px;
+	max-width: 65px;
+	min-height: 35px;
+	min-width: 35px;
+	overflow: hidden;
+}
+
+.categoryImage {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+}
+
+.subCategory {
+	padding: 20px;
+	text-align: left;
+	display: none;
+	background-color: white;
+	border-radius: 7px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+	position: absolute; 
+	white-space: nowrap;
+	width:auto; 
+	z-index: 1;
+
+	@media only screen and (max-width:768px){
+		position: fixed;
+		right: 10vw;
+		left: 10vw;
+		bottom: 20vh;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		border-style: solid;
+		border-width: 0 10px 8px 1px;
+		border-color: transparent transparent #ccc transparent;
+		top: -8px;
+
+		@media only screen and (max-width:1024px){
+			content:none;
+		}
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		border-style:solid;
+		border-width: 0 9px 7px 0;
+		border-color: transparent transparent #fff transparent;
+		top: -7px;
+
+		@media only screen and (max-width:768px){
+			content:none;
+		}
+	}
+}
+
+.subcategory:hover {
+	display: block;
+}
+
+.subCategoryLeft {
+	left: 10px;
+}
+.subCategoryLeft::before {
+	left: 15px;
+}
+.subCategoryLeft::after {
+	left:16px;
+}
+
+.subCategoryRight {
+	right: 0px;
+}
+.subCategoryRight::before {
+	right: 15px;
+}
+.subCategoryRight::after {
+	right:16px;
+}
+
+.subCategoryTitleAnderes {
+	color: #6554B7;
+}
+.subCategoryTitleEssen {
+	color: #7fCC86;
+}
+.subCategoryTitleGeschäfte {
+	color: #E37454;
+}
+.subCategoryTitleKultur {
+	color: #FB8464;
+}
+.subCategoryTitleVerkehr {
+	color: #846CEC;
+}
+.subCategoryTitleSommer {
+	color: #3DDCD4;
+}
+.subCategoryTitleWellness {
+	color: #E9E28C;
+}
+.subCategoryTitleWinter {
+	color: #3D8CC4;
+}
+
+.subCategoryItem{
+	margin-top: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+	.categoriesContainer {
+		width: fit-content;
+		height: fit-content;
+		top: 20px;
+		position: relative;
+		z-index: 9999;
+	}
+	
+	.dropdownCategory {
+		width: 5vw;
+		height: 5vw;
+	}
+	
+	.category {
+		width: 5vw;
+		height: 5vw;
+	}
+}

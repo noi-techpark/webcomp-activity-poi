@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link href="src/static/css/all.css" rel="stylesheet" type="text/css">
+    <style>
+    html, body{
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    </style>
+</head>
+<body>
+<activity-poi 
+    lat-lon-zoom="[46.6,11.4,12]" 
+    radius="10000" 
+    lang="it" 
+    xcategory-filter="sommer/*,winter/skirundtouren pisten"
+    ></activity-poi>
+
+<script>
+    window.paths = {
+        css: "./src/static/css/",
+        css_components: "./src/static/css/components/",
+        img: "./src/static/img/",
+        img_category_icons: "./src/static/img/category_icons/",
+        img_map_markers: "./src/static/img/map_markers/",
+        data:"./src/static/data/"
+    };
+</script>
+
+<script src="src/strings.js"></script>
+
+<script src="src/InteractiveMapComponent.js"></script>
+<script src="src/CategoriesChoiceComponent.js"></script>
+<script src="src/ItemVisualizerComponent.js"></script>
+<script src="src/SearchComponent.js"></script>
+<script src="src/ActivityPOIComponent.js"></script>
+
+</body>
+</html>

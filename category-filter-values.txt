@@ -1,0 +1,67 @@
+kultur sehenswürdigkeiten/museen
+kultur sehenswürdigkeiten/naturparkhäuser
+kultur sehenswürdigkeiten/kirchen klöster
+kultur sehenswürdigkeiten/architektur
+kultur sehenswürdigkeiten/bergwerke
+kultur sehenswürdigkeiten/sehenswerte plätze
+kultur sehenswürdigkeiten/burgen schlösser
+wellness entspannung/wellnessbehandlungen
+wellness entspannung/therme wasserwelten
+essen trinken/weinkellereien
+sommer/wandern
+sommer/bergsteigen
+sommer/klettern
+sommer/radfahren radtouren
+sommer/radverleih
+sommer/badeseen freibäder
+sommer/wassersport
+sommer/reiten
+sommer/freizeit erlebnis
+sommer/laufen fitness
+sommer/golf
+sommer/paragleiten
+sommer/angeln fischen
+winter/skigebiete
+winter/skirundtouren pisten
+winter/snowparks
+winter/skischulen skiverleih
+winter/skitouren
+winter/schneeschuhwandern
+winter/winterwandern
+winter/rodeln
+winter/eislaufen
+winter/pferdeschlittenfahrten
+winter/eisklettern
+winter/weihnachtsmärkte
+winter/langlaufen
+anderes/allergiefreier urlaub
+anderes/ohne zuordnung
+anderes/familienurlaub
+anderes/sagen
+anderes/klettertour
+anderes/aufstiegsanlagen
+anderes/stadtrundgang
+anderes/weitere kultur und sehenswürdigkeiten
+anderes/kulturzentren und theater
+anderes/parks und grünanlagen
+anderes/verleihe
+anderes/spiel und sportanlagen
+anderes/guides schulen
+mobilität/zugbahnhöfe
+mobilität/bushaltestellen
+mobilität/parkplätze
+mobilität/tankstellen benzin diesel
+mobilität/e-tankstellen ladestationen
+mobilität/taxi, mietwagen mit fahrer, bus
+mobilität/carsharing
+mobilität/tankstellen methan
+mobilität/tankstellen autogas
+mobilität/tankstellen wasserstoff
+mobilität/weitere verkehr und transport
+mobilität/e-bike ladestation
+mobilität/fahrradbox
+geschäfte und dienstleister/geschäfte
+geschäfte und dienstleister/dienstleister
+geschäfte und dienstleister/öffentliche einrichtungen
+geschäfte und dienstleister/nachtleben und unterhaltung
+geschäfte und dienstleister/gesundheit
