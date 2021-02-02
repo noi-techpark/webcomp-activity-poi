@@ -1,7 +1,7 @@
 {
   "title": "ActivityPOIWebcomponent",
-  "description": "description",
-  "descriptionAbstract": "description abstract?",
+  "description": "It is a web component that can be integrated in other software (for example websites) to show the activities and point of interests of South Tyrol. They are shown on a map and they can be filtered based on the category or a search term. Each point of interest/activity has a corresponding marker on the map and its details are displayed when it is clicked on it.",
+  "descriptionAbstract": "It is a web component that can be integrated in other software (for example websites) to show the activities and point of interests of South Tyrol. They are shown on a map and they can be filtered based on the category or a search term. Each point of interest/activity has a corresponding marker on the map and its details are displayed when it is clicked on it.",
   "license": "AGPL-3.0-or-later",
   "copyrightHolders": [
     {
@@ -31,7 +31,7 @@
       "organizationUrl": "https://huprocess.com"
     }
   ],
-  "image": "wcs-logo.png",
+  "image": "screenshot.png",
   "searchTags": [
     "testing",
     "tools"
@@ -39,7 +39,35 @@
   "dist": {
     "basePath": "dist",
     "files": [
-      "no-existing-widget.min.js"
+      "category_icons_Anderes.png",
+      "category_icons_Essen_Trinken.png",
+      "category_icons_Gesch_fte_und_Dienstleister.png",
+      "category_icons_Kultur_Sehensw_rdigkeiten.png",
+      "category_icons_Mobilit_t.png",
+      "category_icons_Sommer.png",
+      "category_icons_Verkehr_und_Transport.png",
+      "category_icons_Wellness_Entspannung.png",
+      "category_icons_Winter.png",
+      "fa-solid-900.eot",
+      "fa-solid-900.svg",
+      "fa-solid-900.ttf",
+      "fa-solid-900.woff",
+      "fa-solid-900.woff2",
+      "ActivityPOIComponent.css",
+      "all.css",
+      "atoms.css",
+      "categories.css",
+      "itemVisualizer.css",
+      "map.css",
+      "search.css",
+      "theme.css",
+      "poi-types.json"
+
+    ],
+    "scripts": [
+      {
+        "file": "bundle.js"
+      }
     ]
   },
   "configuration": {
