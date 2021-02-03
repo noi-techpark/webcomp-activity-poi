@@ -99,6 +99,8 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map = content.querySelector('interactive-map');
 		// forward attributes
 		this.interactive_map.setAttribute('lat-lon-zoom', this.getAttribute('lat-lon-zoom'))
+		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
+		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
 		this.interactive_map.markerclick = function(id)
 		{
 			item_visualizer.setAttribute('apoiid', id);

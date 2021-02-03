@@ -247,6 +247,7 @@ class ItemVisualizerComponent extends HTMLElement
 		root_element.querySelector('#localityLabel').innerText = strings["locality"][lang];
 		root_element.querySelector('#itemContacts .infoTitleParagraph').innerText = strings["contacts"][lang];
 		root_element.querySelector('#altitudeLabel').innerText = strings["difference-altitude"][lang];
+		root_element.querySelector('a#directions').textContent = strings["get-directions"][lang];
 	}
 
 
