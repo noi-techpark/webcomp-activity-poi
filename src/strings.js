@@ -43,5 +43,15 @@ window.strings = {
     "en": "Contacts",
     "it": "Contatti",
     "de": "Kontakte"
+  },
+  "get-directions": {
+    "en": "Get directions",
+    "it": "Come arrivare",
+    "de": "Anweisungen"
+  },
+  "search":{
+    "en": "Search",
+    "it": "Cerca",
+    "de": "Suchen"
   }
 }

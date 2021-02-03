@@ -85,6 +85,9 @@ class InteractiveMapComponent extends HTMLElement
 		let mapdiv = this.shadowRoot.querySelector('#mapid');
 
 		let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
+		
+		let radius = this.getAttribute('radius')
+		let showradius = this.getAttribute('showradius')
 
 		let thiswebcomponent = this
 
@@ -110,6 +113,10 @@ class InteractiveMapComponent extends HTMLElement
 
 				thiswebcomponent.markerClusterGroup = L.markerClusterGroup();
 				map.addLayer(thiswebcomponent.markerClusterGroup);
+				
+				if (radius != null && radius != 'null' && showradius != null && showradius == 'true')
+					L.circle([lat_lon_zoom[0], lat_lon_zoom[1]], {"radius": parseInt(radius)}).addTo(map);
+
 
 			},
 			500)

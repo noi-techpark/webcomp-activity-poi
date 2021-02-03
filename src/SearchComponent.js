@@ -124,6 +124,7 @@ class SearchComponent extends HTMLElement
 		inputBox.style.borderColor = "#eee";
 		lensBox.style.borderColor = "#eee";
 
+
 		if (txt.length > 0 && txt.length < 3)
 		{
 			err.style.display = "block";
@@ -139,17 +140,23 @@ class SearchComponent extends HTMLElement
 
 	static get observedAttributes()
 	{
-		return ['items','showResults']
+		return ['items','showResults','lang']
 	}
 
 	attributeChangedCallback(name, oldVal, newVal)
 	{
+		if (name == 'lang'){
+			let lang = this.getAttribute('lang');
+			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
+			inputBox.placeholder = strings["search"][lang];
+			this.warningText.textContent = strings["warning-filters"][lang];
+
+		}
 		if (name == 'items')
 		{
 			let webcomponent = this;
 			
 			let lang = this.getAttribute('lang')
-			this.warningText.textContent = strings["warning-filters"][lang];
 			
 			this.resultsContainer.textContent = ''
 			let list = JSON.parse(newVal);
