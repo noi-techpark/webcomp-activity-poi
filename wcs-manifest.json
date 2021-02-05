@@ -67,7 +67,7 @@
     "scripts": [
       {
         "file": "bundle.js",
-        "parameter": "type='module'"
+        "parameter": ""
       }
     ]
   },
