@@ -61,12 +61,13 @@
       "map.css",
       "search.css",
       "theme.css",
-      "poi-types.json"
-
+      "poi-types.json",
+      "bundle.js"
     ],
     "scripts": [
       {
-        "file": "bundle.js"
+        "file": "bundle.js",
+        "parameter": "type='module'"
       }
     ]
   },
