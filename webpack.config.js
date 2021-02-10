@@ -4,7 +4,8 @@ module.exports = {
     entry: './app.js',
     output: {
         path: __dirname + '/dist',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -35,7 +36,8 @@ module.exports = {
                 { from: "./src/static/css/theme.css", to: "." },
                 { from: "./src/static/css/atoms.css", to: "." },
                 { from: "./src/static/data", to: "." },
-                { from: "./src/static/webfonts", to: "." }
+                { from: "./src/static/webfonts", to: "." },
+                { from: "./index.html", to: "." }
             ],
         })
     ],

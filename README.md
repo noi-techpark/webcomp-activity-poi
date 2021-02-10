@@ -109,8 +109,19 @@ npm install
 
 ### Build
 
-The application can be accessed by accessing ActivityPOIComponent.html
-There is no need for building the project in development mode
+```bash
+npm run build
+```
+
+## Development
+
+In order to serve the application locally, execute the following command
+
+```bash
+npm run server
+```
+
+Then, access to localhost:3000 from your browser.
 
 ## Deployment
 
