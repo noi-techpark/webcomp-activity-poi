@@ -117,7 +117,7 @@ class InteractiveMapComponent extends HTMLElement
 				if (radius != null && radius != 'null' && showradius != null && showradius == 'true')
 					L.circle([lat_lon_zoom[0], lat_lon_zoom[1]], {"radius": parseInt(radius)}).addTo(map);
 
-
+				// omnivore.gpx('929A071DF22BB88A2563E3C2AECA7689.gpx').addTo(map);
 			},
 			500)
 	}
@@ -152,7 +152,7 @@ class InteractiveMapComponent extends HTMLElement
 				let item = items[i]
 				var markerIcon = L.icon(
 				{
-					iconUrl: paths.img_map_markers + "map_markers_" + item.Type + '.png',
+					iconUrl: paths.img_map_markers + "map_markers_" + item.ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_') + '.png',
 					iconSize: [60 / 2, 99 / 2]
 				});
 
@@ -161,14 +161,14 @@ class InteractiveMapComponent extends HTMLElement
 					let marker = L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude],
 					{
 						icon: markerIcon
-					}).on('click', (function(Id)
+					}).on('click', (function(item)
 					{
 						return function()
 						{
-							thiswebcomponent.markerclick(Id);
+							thiswebcomponent.markerclick(item);
 						}
 
-					})(item.Id));
+					})(item));
 
 					marker_arr.push(marker)
 

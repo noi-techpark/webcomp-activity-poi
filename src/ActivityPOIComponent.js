@@ -101,9 +101,9 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map.setAttribute('lat-lon-zoom', this.getAttribute('lat-lon-zoom'))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
-		this.interactive_map.markerclick = function(id)
+		this.interactive_map.markerclick = function(item)
 		{
-			item_visualizer.setAttribute('apoiid', id);
+			item_visualizer.setAttribute('apoiid', item.Id);
 			searchContainer.style.display = "none";
 			itemContainer.style.display = "block";
 		};
@@ -128,6 +128,10 @@ class ActivityPOIComponent extends HTMLElement
 			item_visualizer.setAttribute('apoiid', item.Id);
 			searchContainer.style.display = "none";
 			itemContainer.style.display = "block";
+
+			// console.log(item.GpsTrack)
+			// alert(item.GpsTrack[1].GpxTrackUrl)
+
 		}
 
 		
