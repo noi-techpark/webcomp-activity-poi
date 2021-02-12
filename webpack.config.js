@@ -26,6 +26,9 @@ module.exports = {
             }
         ],
     },
+    optimization: {
+       minimize: true,
+    },
     plugins: [
         new CopyPlugin({
             patterns: [
