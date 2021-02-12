@@ -15,7 +15,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "...",
     "build": "webpack --mode production",
     "server": "node server.js",
     "lint": "...",
