@@ -78,7 +78,7 @@
         "key": "lat",
         "type": "text",
         "label": "Latitude of the center of the map",
-        "required": false,
+        "required": true,
         "options": {
           "default": "46.4983"
         }
@@ -87,19 +87,28 @@
         "key": "lon",
         "type": "text",
         "label": "Longitude of the center of the map",
-        "required": false,
+        "required": true,
         "options": {
           "default": "11.3548"
+        }
+      },
+      {
+        "key": "zoom",
+        "type": "text",
+        "label": "Zoom of the map",
+        "required": true,
+        "options": {
+          "default": "10"
         }
       }
     ,
       {
         "key": "radius",
         "type": "text",
-        "label": "Map radius (km)",
+        "label": "Map radius (m)",
         "required": false,
         "options": {
-          "default": "10"
+          "default": "500000"
         }
       }
       ,
