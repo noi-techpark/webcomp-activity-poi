@@ -727,7 +727,7 @@ class ActivityPOIComponent extends HTMLElement
 		
 		let categories_choice = content.querySelector('categories-choice')
 		// forward attributes
-		categories_choice.setAttribute('lang', this.getAttribute('language'))
+		categories_choice.setAttribute('lang', this.getAttribute('lang'))
 		// Set attribute with null convert to null string, this i because I put an if :-(
 		if (this.getAttribute('category-filter'))
 			categories_choice.setAttribute('category-filter', this.getAttribute('category-filter'))
@@ -756,7 +756,7 @@ class ActivityPOIComponent extends HTMLElement
 		
 		let item_visualizer = content.querySelector('item-visualizer');
 		// forward attributes
-		item_visualizer.setAttribute('lang', this.getAttribute('language'))
+		item_visualizer.setAttribute('lang', this.getAttribute('lang'))
 		let itemContainer = content.querySelector('#itemContainer');
 		let searchContainer = content.querySelector('#searchContainer');
 		itemContainer.style.display = "none";
@@ -773,11 +773,7 @@ class ActivityPOIComponent extends HTMLElement
 		
 		this.interactive_map = content.querySelector('interactive-map');
 		// forward attributes
-		let lat = parseFloat(this.getAttribute('lat'))
-		let lon = parseFloat(this.getAttribute('lon'))
-		let zoom = parseInt(this.getAttribute('zoom'))
-		
-		this.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([lat,lon,zoom]))
+		this.interactive_map.setAttribute('lat-lon-zoom', this.getAttribute('lat-lon-zoom'))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
 		this.interactive_map.markerclick = function(item)
@@ -791,7 +787,7 @@ class ActivityPOIComponent extends HTMLElement
 		
 		this.search_items = content.querySelector('search-items');
 		// forward attributes
-		this.search_items.setAttribute('lang', this.getAttribute('language'))
+		this.search_items.setAttribute('lang', this.getAttribute('lang'))
 		this.search_items.search_text_changed = function(new_text)
 		{
 			thiswebcomponent.last_search = new_text
@@ -830,10 +826,7 @@ class ActivityPOIComponent extends HTMLElement
 
 		loading.style.display = "block";
 		
-		// let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
-		
-		let lat = parseFloat(this.getAttribute('lat'))
-		let lon = parseFloat(this.getAttribute('lon'))
+		let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
 		
 		let radius = this.getAttribute('radius')
 
@@ -844,8 +837,8 @@ class ActivityPOIComponent extends HTMLElement
 			params.append('pagesize', '10000')
 			params.append('searchfilter', this.last_search)
 			params.append('odhtagfilter', this.last_subcategories)
-			params.append('latitude', lat)
-			params.append('longitude', lon)
+			params.append('latitude', lat_lon_zoom[0])
+			params.append('longitude', lat_lon_zoom[1])
 			if (radius !== null)
 				params.append('radius', radius)
 
