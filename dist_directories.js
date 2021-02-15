@@ -13,5 +13,6 @@ window.paths = {
     img: bundle_script_src,
     img_category_icons: bundle_script_src,
     img_map_markers: bundle_script_src,
+    img_fa_icons: bundle_script_src,
     data: bundle_script_src
 };

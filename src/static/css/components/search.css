@@ -26,9 +26,11 @@
   background: #fffbc1;
   left: 0;
   padding: 20px; }
-  .warning p, .warning i {
+  .warning p, .warning i, .warning img, .warning svg {
     color: #b3ab31;
     float: left; }
+  .warning img, .warning svg {
+    height: 18px; }
   .warning p {
     width: 90%;
     margin-left: 10px; }
@@ -89,7 +91,9 @@
     border-bottom-left-radius: 0;
     margin: 0;
     font-size: 18px;
-    line-height: 36px; }
+    line-height: 36px;
+    padding: 10px;
+    height: 18px; }
 
 #error {
   display: none;
