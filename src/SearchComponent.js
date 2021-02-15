@@ -1,14 +1,15 @@
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
-	
+
     <div class="mainContainer notShowingResults">
-    
+
     <div class="searchBox">
      <input type="text" placeholder="Search...">
-     <i class="fas fa-search action"></i>
+     <!--<i class="fas fa-search action"></i>-->
+     <img class="action" src="` + paths.img_fa_icons + `search-solid.svg" onload="SVGInject(this)"></img>
     </div>
-    
+
     <div class="title">
     	<div class="titleDiv">
     		<p class="titleParagraph">Search title</p>
@@ -16,27 +17,27 @@ search_template.innerHTML = `
 		<div class="titleArrowDiv">
     	</div>
     </div>
-    
+
     <div class="resultContainer">
     	<div class="searchInstance">
     		<!--Image added-->
         	<img>
-    		
+
     		<div class="searchInstanceParagraph">
     		<p class="text"><b>Museum name</b><br />Museum category</p>
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="error">
      		<p></p>
 		</div>
-	
+
 	<!--Added warning-->
     <div class="warning">
-    <i class="fa fa-exclamation-triangle"></i>
+    <img class="svg" src="` + paths.img_fa_icons + `exclamation-triangle-solid.svg" onload="SVGInject(this)"></img>
 	<p>The search results are limited to the categories that are selected on the map</p>
-	
+
 </div>
 </div>
 </div>
@@ -155,9 +156,9 @@ class SearchComponent extends HTMLElement
 		if (name == 'items')
 		{
 			let webcomponent = this;
-			
+
 			let lang = this.getAttribute('lang')
-			
+
 			this.resultsContainer.textContent = ''
 			let list = JSON.parse(newVal);
 

@@ -26,9 +26,6 @@ module.exports = {
             }
         ],
     },
-    optimization: {
-       minimize: false,
-    },
     plugins: [
         new CopyPlugin({
             patterns: [
@@ -40,6 +37,7 @@ module.exports = {
                 { from: "./src/static/css/atoms.css", to: "." },
                 { from: "./src/static/data", to: "." },
                 { from: "./src/static/webfonts", to: "." },
+                { from: "./src/strings.js", to: "." },
                 { from: "./index.html", to: "." }
             ],
         })

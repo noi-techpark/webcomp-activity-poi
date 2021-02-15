@@ -10,7 +10,7 @@
 	.titleParagraph{
 		color:#6554B7;
 	}
-	.fas{
+	.fas,svg{
 		color:#6554B7;
 	}
 	.button{
@@ -21,7 +21,7 @@
 	.titleParagraph{
 		color:#7fCC86;
 	}
-	.fas{
+	.fas,svg{
 		color:#7fCC86;
 	}
 	.button{
@@ -32,7 +32,7 @@
 	.titleParagraph{
 		color:#E37454;
 	}
-	.fas{
+	.fas,svg{
 		color:#E37454;
 	}
 	.button{
@@ -43,7 +43,7 @@
 	.titleParagraph{
 		color:#FB8464;
 	}
-	.fas{
+	.fas,svg{
 		color:#FB8464;
 	}
 	.button{
@@ -54,7 +54,7 @@
 	.titleParagraph{
 		color:#846CEC;
 	}
-	.fas{
+	.fas,svg{
 		color:#846CEC;
 	}
 	.button{
@@ -65,7 +65,7 @@
 	.titleParagraph{
 		color:#3DDCD4;
 	}
-	.fas{
+	.fas,svg{
 		color:#3DDCD4;
 	}
 	.button{
@@ -76,7 +76,7 @@
 	.titleParagraph{
 		color:#E9E28C;
 	}
-	.fas{
+	.fas,svg{
 		color:#E9E28C;
 	}
 	.button{
@@ -87,7 +87,7 @@
 	.titleParagraph{
 		color:#3D8CC4;
 	}
-	.fas{
+	.fas,svg{
 		color:#3D8CC4;
 	}
 	.button{
@@ -127,8 +127,10 @@
 	padding-bottom: 10px;
 	overflow: auto;
 
-	.fas{
+	.fas,svg{
 		float:left;
+    height:18px;
+    margin-right:10px;
 	}
 
 	.infoTitleParagraph{
@@ -136,6 +138,13 @@
 		float:left;
 	}
 }
+
+.fas,svg{
+  float:left;
+  height:18px;
+  margin-right:10px;
+}
+
 .info {
 	width: auto;
 	margin-left: auto;

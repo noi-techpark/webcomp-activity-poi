@@ -1,7 +1,9 @@
 {
   "name": "activity-poi-component",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "globalthis": "^1.0.1"
+  },
   "devDependencies": {
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.1",
@@ -15,6 +17,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "start": "...",
     "build": "webpack --mode production",
     "server": "node server.js",
     "lint": "...",

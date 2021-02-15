@@ -24,13 +24,17 @@ interactiveMap_template.innerHTML = `
 class InteractiveMapComponent extends HTMLElement
 {
 
+
+
 	constructor()
 	{
 		super();
+
 		this.attachShadow({ mode: 'open' });
+
 		this.map = null
 		this.markerClusterGroup = null
-		this.gpx_layer = null
+
 	}
 
 	/**
@@ -69,16 +73,6 @@ class InteractiveMapComponent extends HTMLElement
 				leaflet_cluster_js.onload = success
 			})
 			document.head.appendChild(leaflet_cluster_js)
-			await semaphore
-			
-			let leaflet_omnivore_gpx_js = document.createElement('script')
-			leaflet_omnivore_gpx_js.setAttribute('src', 'https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js')
-	
-			semaphore = new Promise(function(success, error)
-			{
-				leaflet_omnivore_gpx_js.onload = success
-			})
-			document.head.appendChild(leaflet_omnivore_gpx_js)
 			await semaphore
 		}
 
@@ -123,6 +117,7 @@ class InteractiveMapComponent extends HTMLElement
 				if (radius != null && radius != 'null' && showradius != null && showradius == 'true')
 					L.circle([lat_lon_zoom[0], lat_lon_zoom[1]], {"radius": parseInt(radius)}).addTo(map);
 
+
 			},
 			500)
 	}
@@ -139,7 +134,7 @@ class InteractiveMapComponent extends HTMLElement
 	 */
 	static get observedAttributes()
 	{
-		return ['lat-lon-zoom', 'items', 'gpx'];
+		return ['lat-lon-zoom', 'items'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
@@ -157,7 +152,7 @@ class InteractiveMapComponent extends HTMLElement
 				let item = items[i]
 				var markerIcon = L.icon(
 				{
-					iconUrl: paths.img_map_markers + "map_markers_" + item.ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_') + '.png',
+					iconUrl: paths.img_map_markers + "map_markers_" + item.Type + '.png',
 					iconSize: [60 / 2, 99 / 2]
 				});
 
@@ -166,14 +161,14 @@ class InteractiveMapComponent extends HTMLElement
 					let marker = L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude],
 					{
 						icon: markerIcon
-					}).on('click', (function(item)
+					}).on('click', (function(Id)
 					{
 						return function()
 						{
-							thiswebcomponent.markerclick(item);
+							thiswebcomponent.markerclick(Id);
 						}
 
-					})(item));
+					})(item.Id));
 
 					marker_arr.push(marker)
 
@@ -199,19 +194,6 @@ class InteractiveMapComponent extends HTMLElement
 			let lon = json[1]
 			let zoom = json[2]
 			thiswebcomponent.map.setView(new L.LatLng(lat, lon), zoom);
-		}
-		
-		if (name == 'gpx' && thiswebcomponent.map !== null)
-		{
-			if (this.gpx_layer != null)
-				this.map.removeLayer(this.gpx_layer)
-			this.gpx_layer = null
-			if (newVal !== null)
-			{
-				let gpxurl = newVal
-				gpxurl = gpxurl.replace('https://lcs.lts.it/downloads/gpx/','https://tourism.opendatahub.bz.it/api/Activity/Gpx/')
-				this.gpx_layer = omnivore.gpx(gpxurl).addTo(this.map);
-			}
 		}
 
 	}

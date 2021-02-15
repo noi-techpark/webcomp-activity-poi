@@ -80,19 +80,6 @@ class ActivityPOIComponent extends HTMLElement
 		// item-visualizer
 		// 
 		
-		function show_item_visualizer(item)
-		{
-			item_visualizer.setAttribute('apoiid', item.Id);
-			searchContainer.style.display = "none";
-			itemContainer.style.display = "block";
-
-			if (item.GpsTrack && item.GpsTrack[1].GpxTrackUrl)
-			{
-				thiswebcomponent.interactive_map.setAttribute('gpx', item.GpsTrack[1].GpxTrackUrl)
-			}
-
-		}
-		
 		let item_visualizer = content.querySelector('item-visualizer');
 		// forward attributes
 		item_visualizer.setAttribute('lang', this.getAttribute('lang'))
@@ -103,7 +90,6 @@ class ActivityPOIComponent extends HTMLElement
 		{
 			searchContainer.style.display = "block";
 			itemContainer.style.display = "none";
-			thiswebcomponent.interactive_map.removeAttribute('gpx')
 		}
 		
 		//
@@ -115,13 +101,15 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map.setAttribute('lat-lon-zoom', this.getAttribute('lat-lon-zoom'))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
-		this.interactive_map.markerclick = function(item)
+		this.interactive_map.markerclick = function(id)
 		{
-			show_item_visualizer(item)
+			item_visualizer.setAttribute('apoiid', id);
+			searchContainer.style.display = "none";
+			itemContainer.style.display = "block";
 		};
 
 		//
-		// search-items
+		// interactive-map
 		// 
 		
 		this.search_items = content.querySelector('search-items');
@@ -134,9 +122,12 @@ class ActivityPOIComponent extends HTMLElement
 		}
 		this.search_items.onresultclick = function(item)
 		{
+			console.log(item.GpsInfo[0].Latitude)
+			console.log(item.GpsInfo[0].Longitude)
 			thiswebcomponent.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude, 19]));
-			show_item_visualizer(item)
-
+			item_visualizer.setAttribute('apoiid', item.Id);
+			searchContainer.style.display = "none";
+			itemContainer.style.display = "block";
 		}
 
 		
