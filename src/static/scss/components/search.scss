@@ -10,6 +10,7 @@
 	z-index: 99999;
 	box-sizing: border-box;
 
+
 	@media only screen and (max-width:768px){
 		width: 100vw;
 		box-sizing: border-box;
@@ -33,10 +34,14 @@
 	left: 0;
 	padding: 20px;
 
-	p,i{
+	p,i,img,svg{
 		color:#b3ab31;
 		float:left;
 	}
+
+  img,svg{
+    height:18px;
+  }
 
 	p{
 		width: 90%;
@@ -121,6 +126,8 @@
 		margin:0;
 		font-size: 18px;
 		line-height: 36px;
+    padding: 10px;
+    height: 18px;
 	}
 }
 
