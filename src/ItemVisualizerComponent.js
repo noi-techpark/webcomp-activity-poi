@@ -2,85 +2,105 @@ const itemVisualizer_template = document.createElement('template');
 
 itemVisualizer_template.innerHTML = `
 	<div class="mainContainer">
-		<p id="closebutton"><i class="fa fa-times"></i></p> 
-		
-		<!--Title of the POI/Activity-->
-    	<div class="title">
-    		<div class="titleDiv" id="Title">
-    			<p class="titleParagraph">POI or Activity Title</p>
-			</div>
-		
-			<div class="titleArrowDiv">
-    			<i class="fas fa-chevron-up" onclick="expand(this)"></i>
-    		</div>
-    	</div>
-    	
-    	<!--General info such as category, age, altitude, place and "get directions" button--->
-    	<div class="resultContainer">
-			<div class="itemInfo" id="itemInformation">
-    			<div class="infoTitle" id="informationTitle">
-    				<i class="fas fa-info-circle"></i><p class="infoTitleParagraph">Informations</p>
-				</div>
-				
-				<div class="info" id="information">
-    				<div class="informationInstance">
-    					<p class="text categoryLabel">
-    					<b id="categoryLabel" >Categoria</b><br>
-    					<span id="category"></span></p>
-					</div>
-					
-					<div class="informationInstance">
-						<p class="text">
-						<b id="ageLabel">Età adatta</b><br>
-						<span id="ageFrom"></span>-<span id="ageTo"></span></p>
-					</div>
-				
-					<div class="informationInstance">
-						<p id="altitudeLabel" class="text"><b>Dislivello e altitudine</b><br>
-						Dislivello totale: <span id="altitudeDifference"></span> m<br>
-						Punto più basso: <span id="altitudeLowestPoint"></span> m<br>
-						Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
-					</div>
-				
-					<div class="informationInstance">
-						<p class="text">
-						<b id="localityLabel">Località</b><br>
-						<span id="location"></span></p>
-					</div>
+    <p id="closebutton">
+    <img src="` + paths.img_fa_icons + `times-solid.svg" onload="SVGInject(this)"></img>
+    </p>
 
-					<div class="informationInstance">
-						<a id="directions" class="button" target="_blank">Get directions</a>
-					</div>
-			</div>
-		
-		</div>
-		
-		<!--Descriptive text of the POI/Activity-->
-		<div class="itemInfo" id="itemDescription">
-			<div class="infoTitle" id="descriptionTitle">
-				<i class="fas fa-file-alt"></i><p class="infoTitleParagraph">Description</p>
-			</div>
+    <!--Title of the POI/Activity-->
+      <div class="title">
+        <div class="titleDiv" id="Title">
+          <p class="titleParagraph">POI or Activity Title</p>
+      </div>
 
-			<div class="info" id="description">
-				<p class="text"></p>
-			</div>
-    	</div>
+      <div class="titleArrowDiv">
+          <!--<i class="fas fa-chevron-up" onclick="expand(this)"></i>-->
+          <img src="` + paths.img_fa_icons + `chevron-up-solid.svg" onload="SVGInject(this)"></img>
+        </div>
+      </div>
+
+      <!--General info such as category, age, altitude, place and "get directions" button--->
+      <div class="resultContainer">
+      <div class="itemInfo" id="itemInformation">
+          <div class="infoTitle" id="informationTitle">
+            <!--<i class="fas fa-info-circle"></i>-->
+            <img src="` + paths.img_fa_icons + `info-circle-solid.svg" onload="SVGInject(this)"></img>
+            <p class="infoTitleParagraph">Informations</p>
+        </div>
+
+        <div class="info" id="information">
+            <div class="informationInstance">
+              <p class="text categoryLabel">
+              <b id="categoryLabel" >Categoria</b><br>
+              <span id="category"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <p class="text">
+            <b id="ageLabel">Età adatta</b><br>
+            <span id="ageFrom"></span>-<span id="ageTo"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <p id="altitudeLabel" class="text"><b>Dislivello e altitudine</b><br>
+            Dislivello totale: <span id="altitudeDifference"></span> m<br>
+            Punto più basso: <span id="altitudeLowestPoint"></span> m<br>
+            Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
+          </div>
+
+          <div class="informationInstance">
+            <p class="text">
+            <b id="localityLabel">Località</b><br>
+            <span id="location"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <a id="directions" class="button" target="_blank">Get directions</a>
+          </div>
+      </div>
+
+    </div>
+
+    <!--Descriptive text of the POI/Activity-->
+    <div class="itemInfo" id="itemDescription">
+      <div class="infoTitle" id="descriptionTitle">
+        <!--<i class="fas fa-file-alt"></i>-->
+        <img src="` + paths.img_fa_icons + `file-alt-solid.svg" onload="SVGInject(this)"></img>
+        <p class="infoTitleParagraph">Description</p>
+      </div>
+
+      <div class="info" id="description">
+        <p class="text"></p>
+      </div>
+      </div>
 
 
-		<!--Contacts-->
-    	<div class="itemInfo" id="itemContacts">
-    		<div class="infoTitle" id="contactsTitle">
-    			<i class="fas fa-id-card"></i><p class="infoTitleParagraph">Contacts</p>
-			</div>
-			
-			<div class="info" id="contacts">
-    			<p class="text"><b><span id="companyName"></span></b><br>
-				<span id="address"></span>, <span id="city"></span>, <span id="country"></span></p>
-				<p class="text"><i class="fas fa-envelope"></i><span id="email"></span><br>
-				<i class="fas fa-phone-alt"></i><span id="phoneNumber"></span></p>
-			</div>
-		</div>
-	</div>
+    <!--Contacts-->
+      <div class="itemInfo" id="itemContacts">
+        <div class="infoTitle" id="contactsTitle">
+          <!--<i class="fas fa-id-card"></i>-->
+          <img src="` + paths.img_fa_icons + `id-card-solid.svg" onload="SVGInject(this)"></img>
+          <p class="infoTitleParagraph">Contacts</p>
+      </div>
+
+      <div class="info" id="contacts">
+          <p class="text"><b><span id="companyName"></span></b><br>
+        <span id="address"></span>, <span id="city"></span>, <span id="country"></span></p>
+        <p class="text">
+        <span>
+        <img src="` + paths.img_fa_icons + `envelope-solid.svg" onload="SVGInject(this)"></img>
+        <span id="email"></span>
+        </span>
+        </p>
+
+        <p class="text" style="clear: both;">
+        <span>
+        <img src="` + paths.img_fa_icons + `phone-alt-solid.svg" onload="SVGInject(this)"></img>
+        <span id="phoneNumber"></span>
+        </p>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -88,7 +108,7 @@ itemVisualizer_template.innerHTML = `
 @import "` + paths.css_components + `itemVisualizer.css";
 @import "` + paths.css + `theme.css";
 @import "` + paths.css + `atoms.css";
-</style> 
+</style>
 `;
 
 
@@ -100,7 +120,7 @@ class ItemVisualizerComponent extends HTMLElement
 		super();
 
 		let thiswebcomponent = this
-		
+
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.appendChild(itemVisualizer_template.content.cloneNode(true));
 

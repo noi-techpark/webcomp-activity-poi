@@ -19,6 +19,7 @@ window.paths = {
     img: bundle_script_src,
     img_category_icons: bundle_script_src,
     img_map_markers: bundle_script_src,
+    img_fa_icons: bundle_script_src,
     data: bundle_script_src
 };
 
@@ -78,7 +79,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.categoriesContai
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas {\n    float: left; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -118,7 +119,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "#mapid {\n  height: 100%; }\n", ""]);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i {\n    color: #b3ab31;\n    float: left; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    height: 18px; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -138,7 +139,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  pa
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\np {\n  font-family: calibri, verdana, arial;\n  color: #70757A; }\n\na {\n  font-family: calibri, verdana, arial; }\n\nhtml, body {\n  height: 100%;\n  margin: 0px; }\n\n.fas {\n  margin-right: 10px;\n  margin-left: 10px; }\n\n.fas.fa-chevron-up {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.fas.fa-chevron-down {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.text {\n  font-size: 14px; }\n\n.titleParagraph {\n  margin-block-start: 1vw;\n  margin-block-end: 1vw;\n  font-size: 18px; }\n\n.infoTitleParagraph {\n  font-size: 14px;\n  margin: 0; }\n\ninput[type=\"text\"] {\n  width: 100%;\n  border: solid 1px #eee;\n  border-radius: 5px;\n  font-size: 18px;\n  padding: 8px;\n  box-sizing: border-box; }\n\nlabel {\n  font-family: arial; }\n\nbutton, a.button {\n  padding: 10px 20px;\n  background: #3DDCD4;\n  border-radius: 5px;\n  text-decoration: none;\n  color: #fff;\n  display: -webkit-inline-box; }\n  button:hover, a.button:hover {\n    cursor: pointer; }\n\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas {\n    float: left; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n.mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i {\n    color: #b3ab31;\n    float: left; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n\n#mapid {\n  height: 100%; }\n\n.categoriesContainer {\n  text-align: center;\n  width: auto !important; }\n  @media screen and (max-width: 768px) {\n    .categoriesContainer {\n      background: white;\n      padding: 10px; } }\n\n.dropdownCategory {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  text-align: left;\n  position: relative; }\n  .dropdownCategory.selected .category::before {\n    content: '';\n    display: inline-block;\n    width: 15px;\n    height: 15px;\n    -moz-border-radius: 7.5px;\n    -webkit-border-radius: 7.5px;\n    border-radius: 7.5px;\n    background-color: #dc5d3a;\n    position: absolute;\n    z-index: 99999999999999999999;\n    bottom: 5px;\n    right: 5px; }\n    @media screen and (max-width: 768px) {\n      .dropdownCategory.selected .category::before {\n        width: 10px;\n        height: 10px;\n        -moz-border-radius: 5px;\n        -webkit-border-radius: 5px;\n        border-radius: 5px;\n        bottom: 2px;\n        right: 2px; } }\n\n.dropdownCategory:hover .subCategory {\n  display: block; }\n\n.category {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  overflow: hidden; }\n\n.categoryImage {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0; }\n\n.subCategory {\n  padding: 20px;\n  text-align: left;\n  display: none;\n  background-color: white;\n  border-radius: 7px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);\n  position: absolute;\n  white-space: nowrap;\n  width: auto;\n  z-index: 1; }\n  @media only screen and (max-width: 768px) {\n    .subCategory {\n      position: fixed;\n      right: 10vw;\n      left: 10vw;\n      bottom: 20vh; } }\n  .subCategory::before {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 10px 8px 1px;\n    border-color: transparent transparent #ccc transparent;\n    top: -8px; }\n    @media only screen and (max-width: 1024px) {\n      .subCategory::before {\n        content: none; } }\n  .subCategory::after {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 9px 7px 0;\n    border-color: transparent transparent #fff transparent;\n    top: -7px; }\n    @media only screen and (max-width: 768px) {\n      .subCategory::after {\n        content: none; } }\n\n.subcategory:hover {\n  display: block; }\n\n.subCategoryLeft {\n  left: 10px; }\n\n.subCategoryLeft::before {\n  left: 15px; }\n\n.subCategoryLeft::after {\n  left: 16px; }\n\n.subCategoryRight {\n  right: 0px; }\n\n.subCategoryRight::before {\n  right: 15px; }\n\n.subCategoryRight::after {\n  right: 16px; }\n\n.subCategoryTitleAnderes {\n  color: #6554B7; }\n\n.subCategoryTitleEssen {\n  color: #7fCC86; }\n\n.subCategoryTitleGeschäfte {\n  color: #E37454; }\n\n.subCategoryTitleKultur {\n  color: #FB8464; }\n\n.subCategoryTitleVerkehr {\n  color: #846CEC; }\n\n.subCategoryTitleSommer {\n  color: #3DDCD4; }\n\n.subCategoryTitleWellness {\n  color: #E9E28C; }\n\n.subCategoryTitleWinter {\n  color: #3D8CC4; }\n\n.subCategoryItem {\n  margin-top: 10px; }\n\n@media only screen and (min-width: 768px) {\n  .categoriesContainer {\n    width: fit-content;\n    height: fit-content;\n    top: 20px;\n    position: relative;\n    z-index: 9999; }\n\n  .dropdownCategory {\n    width: 5vw;\n    height: 5vw; }\n\n  .category {\n    width: 5vw;\n    height: 5vw; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\np {\n  font-family: calibri, verdana, arial;\n  color: #70757A; }\n\na {\n  font-family: calibri, verdana, arial; }\n\nhtml, body {\n  height: 100%;\n  margin: 0px; }\n\n.fas {\n  margin-right: 10px;\n  margin-left: 10px; }\n\n.fas.fa-chevron-up {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.fas.fa-chevron-down {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.text {\n  font-size: 14px; }\n\n.titleParagraph {\n  margin-block-start: 1vw;\n  margin-block-end: 1vw;\n  font-size: 18px; }\n\n.infoTitleParagraph {\n  font-size: 14px;\n  margin: 0; }\n\ninput[type=\"text\"] {\n  width: 100%;\n  border: solid 1px #eee;\n  border-radius: 5px;\n  font-size: 18px;\n  padding: 8px;\n  box-sizing: border-box; }\n\nlabel {\n  font-family: arial; }\n\nbutton, a.button {\n  padding: 10px 20px;\n  background: #3DDCD4;\n  border-radius: 5px;\n  text-decoration: none;\n  color: #fff;\n  display: -webkit-inline-box; }\n  button:hover, a.button:hover {\n    cursor: pointer; }\n\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n.mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    height: 18px; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n\n#mapid {\n  height: 100%; }\n\n.categoriesContainer {\n  text-align: center;\n  width: auto !important; }\n  @media screen and (max-width: 768px) {\n    .categoriesContainer {\n      background: white;\n      padding: 10px; } }\n\n.dropdownCategory {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  text-align: left;\n  position: relative; }\n  .dropdownCategory.selected .category::before {\n    content: '';\n    display: inline-block;\n    width: 15px;\n    height: 15px;\n    -moz-border-radius: 7.5px;\n    -webkit-border-radius: 7.5px;\n    border-radius: 7.5px;\n    background-color: #dc5d3a;\n    position: absolute;\n    z-index: 99999999999999999999;\n    bottom: 5px;\n    right: 5px; }\n    @media screen and (max-width: 768px) {\n      .dropdownCategory.selected .category::before {\n        width: 10px;\n        height: 10px;\n        -moz-border-radius: 5px;\n        -webkit-border-radius: 5px;\n        border-radius: 5px;\n        bottom: 2px;\n        right: 2px; } }\n\n.dropdownCategory:hover .subCategory {\n  display: block; }\n\n.category {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  overflow: hidden; }\n\n.categoryImage {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0; }\n\n.subCategory {\n  padding: 20px;\n  text-align: left;\n  display: none;\n  background-color: white;\n  border-radius: 7px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);\n  position: absolute;\n  white-space: nowrap;\n  width: auto;\n  z-index: 1; }\n  @media only screen and (max-width: 768px) {\n    .subCategory {\n      position: fixed;\n      right: 10vw;\n      left: 10vw;\n      bottom: 20vh; } }\n  .subCategory::before {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 10px 8px 1px;\n    border-color: transparent transparent #ccc transparent;\n    top: -8px; }\n    @media only screen and (max-width: 1024px) {\n      .subCategory::before {\n        content: none; } }\n  .subCategory::after {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 9px 7px 0;\n    border-color: transparent transparent #fff transparent;\n    top: -7px; }\n    @media only screen and (max-width: 768px) {\n      .subCategory::after {\n        content: none; } }\n\n.subcategory:hover {\n  display: block; }\n\n.subCategoryLeft {\n  left: 10px; }\n\n.subCategoryLeft::before {\n  left: 15px; }\n\n.subCategoryLeft::after {\n  left: 16px; }\n\n.subCategoryRight {\n  right: 0px; }\n\n.subCategoryRight::before {\n  right: 15px; }\n\n.subCategoryRight::after {\n  right: 16px; }\n\n.subCategoryTitleAnderes {\n  color: #6554B7; }\n\n.subCategoryTitleEssen {\n  color: #7fCC86; }\n\n.subCategoryTitleGeschäfte {\n  color: #E37454; }\n\n.subCategoryTitleKultur {\n  color: #FB8464; }\n\n.subCategoryTitleVerkehr {\n  color: #846CEC; }\n\n.subCategoryTitleSommer {\n  color: #3DDCD4; }\n\n.subCategoryTitleWellness {\n  color: #E9E28C; }\n\n.subCategoryTitleWinter {\n  color: #3D8CC4; }\n\n.subCategoryItem {\n  margin-top: 10px; }\n\n@media only screen and (min-width: 768px) {\n  .categoriesContainer {\n    width: fit-content;\n    height: fit-content;\n    top: 20px;\n    position: relative;\n    z-index: 9999; }\n\n  .dropdownCategory {\n    width: 5vw;\n    height: 5vw; }\n\n  .category {\n    width: 5vw;\n    height: 5vw; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1543,85 +1544,105 @@ const itemVisualizer_template = document.createElement('template');
 
 itemVisualizer_template.innerHTML = `
 	<div class="mainContainer">
-		<p id="closebutton"><i class="fa fa-times"></i></p> 
-		
-		<!--Title of the POI/Activity-->
-    	<div class="title">
-    		<div class="titleDiv" id="Title">
-    			<p class="titleParagraph">POI or Activity Title</p>
-			</div>
-		
-			<div class="titleArrowDiv">
-    			<i class="fas fa-chevron-up" onclick="expand(this)"></i>
-    		</div>
-    	</div>
-    	
-    	<!--General info such as category, age, altitude, place and "get directions" button--->
-    	<div class="resultContainer">
-			<div class="itemInfo" id="itemInformation">
-    			<div class="infoTitle" id="informationTitle">
-    				<i class="fas fa-info-circle"></i><p class="infoTitleParagraph">Informations</p>
-				</div>
-				
-				<div class="info" id="information">
-    				<div class="informationInstance">
-    					<p class="text categoryLabel">
-    					<b id="categoryLabel" >Categoria</b><br>
-    					<span id="category"></span></p>
-					</div>
-					
-					<div class="informationInstance">
-						<p class="text">
-						<b id="ageLabel">Età adatta</b><br>
-						<span id="ageFrom"></span>-<span id="ageTo"></span></p>
-					</div>
-				
-					<div class="informationInstance">
-						<p id="altitudeLabel" class="text"><b>Dislivello e altitudine</b><br>
-						Dislivello totale: <span id="altitudeDifference"></span> m<br>
-						Punto più basso: <span id="altitudeLowestPoint"></span> m<br>
-						Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
-					</div>
-				
-					<div class="informationInstance">
-						<p class="text">
-						<b id="localityLabel">Località</b><br>
-						<span id="location"></span></p>
-					</div>
+    <p id="closebutton">
+    <img src="` + paths.img_fa_icons + `times-solid.svg" onload="SVGInject(this)"></img>
+    </p>
 
-					<div class="informationInstance">
-						<a id="directions" class="button" target="_blank">Get directions</a>
-					</div>
-			</div>
-		
-		</div>
-		
-		<!--Descriptive text of the POI/Activity-->
-		<div class="itemInfo" id="itemDescription">
-			<div class="infoTitle" id="descriptionTitle">
-				<i class="fas fa-file-alt"></i><p class="infoTitleParagraph">Description</p>
-			</div>
+    <!--Title of the POI/Activity-->
+      <div class="title">
+        <div class="titleDiv" id="Title">
+          <p class="titleParagraph">POI or Activity Title</p>
+      </div>
 
-			<div class="info" id="description">
-				<p class="text"></p>
-			</div>
-    	</div>
+      <div class="titleArrowDiv">
+          <!--<i class="fas fa-chevron-up" onclick="expand(this)"></i>-->
+          <img src="` + paths.img_fa_icons + `chevron-up-solid.svg" onload="SVGInject(this)"></img>
+        </div>
+      </div>
+
+      <!--General info such as category, age, altitude, place and "get directions" button--->
+      <div class="resultContainer">
+      <div class="itemInfo" id="itemInformation">
+          <div class="infoTitle" id="informationTitle">
+            <!--<i class="fas fa-info-circle"></i>-->
+            <img src="` + paths.img_fa_icons + `info-circle-solid.svg" onload="SVGInject(this)"></img>
+            <p class="infoTitleParagraph">Informations</p>
+        </div>
+
+        <div class="info" id="information">
+            <div class="informationInstance">
+              <p class="text categoryLabel">
+              <b id="categoryLabel" >Categoria</b><br>
+              <span id="category"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <p class="text">
+            <b id="ageLabel">Età adatta</b><br>
+            <span id="ageFrom"></span>-<span id="ageTo"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <p id="altitudeLabel" class="text"><b>Dislivello e altitudine</b><br>
+            Dislivello totale: <span id="altitudeDifference"></span> m<br>
+            Punto più basso: <span id="altitudeLowestPoint"></span> m<br>
+            Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
+          </div>
+
+          <div class="informationInstance">
+            <p class="text">
+            <b id="localityLabel">Località</b><br>
+            <span id="location"></span></p>
+          </div>
+
+          <div class="informationInstance">
+            <a id="directions" class="button" target="_blank">Get directions</a>
+          </div>
+      </div>
+
+    </div>
+
+    <!--Descriptive text of the POI/Activity-->
+    <div class="itemInfo" id="itemDescription">
+      <div class="infoTitle" id="descriptionTitle">
+        <!--<i class="fas fa-file-alt"></i>-->
+        <img src="` + paths.img_fa_icons + `file-alt-solid.svg" onload="SVGInject(this)"></img>
+        <p class="infoTitleParagraph">Description</p>
+      </div>
+
+      <div class="info" id="description">
+        <p class="text"></p>
+      </div>
+      </div>
 
 
-		<!--Contacts-->
-    	<div class="itemInfo" id="itemContacts">
-    		<div class="infoTitle" id="contactsTitle">
-    			<i class="fas fa-id-card"></i><p class="infoTitleParagraph">Contacts</p>
-			</div>
-			
-			<div class="info" id="contacts">
-    			<p class="text"><b><span id="companyName"></span></b><br>
-				<span id="address"></span>, <span id="city"></span>, <span id="country"></span></p>
-				<p class="text"><i class="fas fa-envelope"></i><span id="email"></span><br>
-				<i class="fas fa-phone-alt"></i><span id="phoneNumber"></span></p>
-			</div>
-		</div>
-	</div>
+    <!--Contacts-->
+      <div class="itemInfo" id="itemContacts">
+        <div class="infoTitle" id="contactsTitle">
+          <!--<i class="fas fa-id-card"></i>-->
+          <img src="` + paths.img_fa_icons + `id-card-solid.svg" onload="SVGInject(this)"></img>
+          <p class="infoTitleParagraph">Contacts</p>
+      </div>
+
+      <div class="info" id="contacts">
+          <p class="text"><b><span id="companyName"></span></b><br>
+        <span id="address"></span>, <span id="city"></span>, <span id="country"></span></p>
+        <p class="text">
+        <span>
+        <img src="` + paths.img_fa_icons + `envelope-solid.svg" onload="SVGInject(this)"></img>
+        <span id="email"></span>
+        </span>
+        </p>
+
+        <p class="text" style="clear: both;">
+        <span>
+        <img src="` + paths.img_fa_icons + `phone-alt-solid.svg" onload="SVGInject(this)"></img>
+        <span id="phoneNumber"></span>
+        </p>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -1629,7 +1650,7 @@ itemVisualizer_template.innerHTML = `
 @import "` + paths.css_components + `itemVisualizer.css";
 @import "` + paths.css + `theme.css";
 @import "` + paths.css + `atoms.css";
-</style> 
+</style>
 `;
 
 
@@ -1641,7 +1662,7 @@ class ItemVisualizerComponent extends HTMLElement
 		super();
 
 		let thiswebcomponent = this
-		
+
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.appendChild(itemVisualizer_template.content.cloneNode(true));
 
@@ -1805,42 +1826,42 @@ customElements.define('item-visualizer', ItemVisualizerComponent);
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
-	
-    <div class="mainContainer notShowingResults">
-    
+
+        <div class="mainContainer notShowingResults">
+
     <div class="searchBox">
      <input type="text" placeholder="Search...">
-     <i class="fas fa-search action"></i>
+     <img class="action" src="` + paths.img_fa_icons + `search-solid.svg" onload="SVGInject(this)"></img>
     </div>
-    
+
     <div class="title">
-    	<div class="titleDiv">
-    		<p class="titleParagraph">Search title</p>
-		</div>
-		<div class="titleArrowDiv">
-    	</div>
+     <div class="titleDiv">
+      <p class="titleParagraph">Search title</p>
+  </div>
+  <div class="titleArrowDiv">
+     </div>
     </div>
-    
+
     <div class="resultContainer">
-    	<div class="searchInstance">
-    		<!--Image added-->
-        	<img>
-    		
-    		<div class="searchInstanceParagraph">
-    		<p class="text"><b>Museum name</b><br />Museum category</p>
-			</div>
-		</div>
-	</div>
-	
-	<div id="error">
-     		<p></p>
-		</div>
-	
-	<!--Added warning-->
+     <div class="searchInstance">
+      <!--Image added-->
+         <img>
+
+      <div class="searchInstanceParagraph">
+      <p class="text"><b>Museum name</b><br />Museum category</p>
+   </div>
+  </div>
+ </div>
+
+ <div id="error">
+     <p></p>
+  </div>
+
+ <!--Added warning-->
     <div class="warning">
-    <i class="fa fa-exclamation-triangle"></i>
-	<p>The search results are limited to the categories that are selected on the map</p>
-	
+    <img class="svg" src="` + paths.img_fa_icons + `exclamation-triangle-solid.svg" onload="SVGInject(this)"></img>
+ <p>The search results are limited to the categories that are selected on the map</p>
+
 </div>
 </div>
 </div>
@@ -1959,9 +1980,9 @@ class SearchComponent extends HTMLElement
 		if (name == 'items')
 		{
 			let webcomponent = this;
-			
+
 			let lang = this.getAttribute('lang')
-			
+
 			this.resultsContainer.textContent = ''
 			let list = JSON.parse(newVal);
 
@@ -2008,6 +2029,23 @@ class SearchComponent extends HTMLElement
 }
 
 customElements.define('search-items', SearchComponent);
+
+
+/***/ }),
+
+/***/ 576:
+/***/ ((module) => {
+
+!function(o,l){var r,a,s="createElement",g="getElementsByTagName",b="length",E="style",d="title",y="undefined",k="setAttribute",w="getAttribute",x=null,A="__svgInject",C="--inject-",S=new RegExp(C+"\\d+","g"),I="LOAD_FAIL",t="SVG_NOT_SUPPORTED",L="SVG_INVALID",v=["src","alt","onload","onerror"],j=l[s]("a"),G=typeof SVGRect!=y,f={useCache:!0,copyAttributes:!0,makeIdsUnique:!0},N={clipPath:["clip-path"],"color-profile":x,cursor:x,filter:x,linearGradient:["fill","stroke"],marker:["marker",
+    "marker-end","marker-mid","marker-start"],mask:x,pattern:["fill","stroke"],radialGradient:["fill","stroke"]},u=1,c=2,O=1;function T(e){return(r=r||new XMLSerializer).serializeToString(e)}function P(e,r){var t,n,i,o,a=C+O++,f=/url\("?#([a-zA-Z][\w:.-]*)"?\)/g,u=e.querySelectorAll("[id]"),c=r?[]:x,l={},s=[],d=!1;if(u[b]){for(i=0;i<u[b];i++)(n=u[i].localName)in N&&(l[n]=1);for(n in l)(N[n]||[n]).forEach(function(e){s.indexOf(e)<0&&s.push(e)});s[b]&&s.push(E);var v,p,m,h=e[g]("*"),y=e;for(i=-1;y!=x;
+){if(y.localName==E)(m=(p=y.textContent)&&p.replace(f,function(e,r){return c&&(c[r]=1),"url(#"+r+a+")"}))!==p&&(y.textContent=m);else if(y.hasAttributes()){for(o=0;o<s[b];o++)v=s[o],(m=(p=y[w](v))&&p.replace(f,function(e,r){return c&&(c[r]=1),"url(#"+r+a+")"}))!==p&&y[k](v,m);["xlink:href","href"].forEach(function(e){var r=y[w](e);/^\s*#/.test(r)&&(r=r.trim(),y[k](e,r+a),c&&(c[r.substring(1)]=1))})}y=h[++i]}for(i=0;i<u[b];i++)t=u[i],c&&!c[t.id]||(t.id+=a,d=!0)}return d}function V(e,r,t,n){if(r){
+  r[k]("data-inject-url",t);var i=e.parentNode;if(i){n.copyAttributes&&function c(e,r){for(var t,n,i,o=e.attributes,a=0;a<o[b];a++)if(n=(t=o[a]).name,-1==v.indexOf(n))if(i=t.value,n==d){var f,u=r.firstElementChild;u&&u.localName.toLowerCase()==d?f=u:(f=l[s+"NS"]("http://www.w3.org/2000/svg",d),r.insertBefore(f,u)),f.textContent=i}else r[k](n,i)}(e,r);var o=n.beforeInject,a=o&&o(e,r)||r;i.replaceChild(a,e),e[A]=u,m(e);var f=n.afterInject;f&&f(e,a)}}else D(e,n)}function p(){for(var e={},r=arguments,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   t=0;t<r[b];t++){var n=r[t];for(var i in n)n.hasOwnProperty(i)&&(e[i]=n[i])}return e}function _(e,r){if(r){var t;try{t=function i(e){return(a=a||new DOMParser).parseFromString(e,"text/xml")}(e)}catch(o){return x}return t[g]("parsererror")[b]?x:t.documentElement}var n=l.createElement("div");return n.innerHTML=e,n.firstElementChild}function m(e){e.removeAttribute("onload")}function n(e){console.error("SVGInject: "+e)}function i(e,r,t){e[A]=c,t.onFail?t.onFail(e,r):n(r)}function D(e,r){m(e),i(e,L,r)
+}function F(e,r){m(e),i(e,t,r)}function M(e,r){i(e,I,r)}function q(e){e.onload=x,e.onerror=x}function R(e){n("no img element")}var e=function z(e,r){var t=p(f,r),h={};function n(a,f){f=p(t,f);var e=function(r){var e=function(){var e=f.onAllFinish;e&&e(),r&&r()};if(a&&typeof a[b]!=y){var t=0,n=a[b];if(0==n)e();else for(var i=function(){++t==n&&e()},o=0;o<n;o++)u(a[o],f,i)}else u(a,f,e)};return typeof Promise==y?e():new Promise(e)}function u(u,c,e){if(u){var r=u[A];if(r)Array.isArray(r)?r.push(e
+):e();else{if(q(u),!G)return F(u,c),void e();var t=c.beforeLoad,n=t&&t(u)||u[w]("src");if(!n)return""===n&&M(u,c),void e();var i=[];u[A]=i;var l=function(){e(),i.forEach(function(e){e()})},s=function f(e){return j.href=e,j.href}(n),d=c.useCache,v=c.makeIdsUnique,p=function(r){d&&(h[s].forEach(function(e){e(r)}),h[s]=r)};if(d){var o,a=function(e){if(e===I)M(u,c);else if(e===L)D(u,c);else{var r,t=e[0],n=e[1],i=e[2];v&&(t===x?(t=P(r=_(n,!1),!1),e[0]=t,e[2]=t&&T(r)):t&&(n=function o(e){
+  return e.replace(S,C+O++)}(i))),r=r||_(n,!1),V(u,r,s,c)}l()};if(typeof(o=h[s])!=y)return void(o.isCallbackQueue?o.push(a):a(o));(o=[]).isCallbackQueue=!0,h[s]=o}!function m(e,r,t){if(e){var n=new XMLHttpRequest;n.onreadystatechange=function(){if(4==n.readyState){var e=n.status;200==e?r(n.responseXML,n.responseText.trim()):400<=e?t():0==e&&t()}},n.open("GET",e,!0),n.send()}}(s,function(e,r){var t=e instanceof Document?e.documentElement:_(r,!0),n=c.afterLoad;if(n){var i=n(t,r)||t;if(i){
+  var o="string"==typeof i;r=o?i:T(t),t=o?_(i,!0):i}}if(t instanceof SVGElement){var a=x;if(v&&(a=P(t,!1)),d){var f=a&&T(t);p([a,r,f])}V(u,t,s,c)}else D(u,c),p(L);l()},function(){M(u,c),p(I),l()})}}else R()}return G&&function i(e){var r=l[g]("head")[0];if(r){var t=l[s](E);t.type="text/css",t.appendChild(l.createTextNode(e)),r.appendChild(t)}}('img[onload^="'+e+'("]{visibility:hidden;}'),n.setOptions=function(e){t=p(t,e)},n.create=z,n.err=function(e,r){e?e[A]!=c&&(q(e),G?(m(e),M(e,t)):F(e,t),r&&(m(
+  e),e.src=r)):R()},o[e]=n}("SVGInject"); true&&"object"==typeof module.exports&&(module.exports=e)}(window,document);
 
 
 /***/ }),
@@ -2159,6 +2197,8 @@ __webpack_require__(611);
 __webpack_require__(898);
 
 __webpack_require__(313);
+__webpack_require__(576);
+
 })();
 
 /******/ })()
