@@ -39,31 +39,41 @@
   "dist": {
     "basePath": "dist",
     "files": [
+      "ActivityPOIComponent.css",
+      "ActivityPOIComponent.css.map",
+      "all.css",
+      "atoms.css",
+      "bundle.js",
+      "categories.css",
+      "categories.css.map",
       "category_icons_Anderes.png",
       "category_icons_Essen_Trinken.png",
       "category_icons_Gesch_fte_und_Dienstleister.png",
       "category_icons_Kultur_Sehensw_rdigkeiten.png",
       "category_icons_Mobilit_t.png",
+      "category_icons_Mobilitaet.png",
       "category_icons_Sommer.png",
       "category_icons_Verkehr_und_Transport.png",
       "category_icons_Wellness_Entspannung.png",
       "category_icons_Winter.png",
+      "chevron-up-solid.svg",
+      "envelope-solid.svg",
+      "exclamation-triangle-solid.svg",
       "fa-solid-900.eot",
       "fa-solid-900.svg",
       "fa-solid-900.ttf",
       "fa-solid-900.woff",
       "fa-solid-900.woff2",
-      "ActivityPOIComponent.css",
-      "all.css",
-      "atoms.css",
-      "categories.css",
+      "file-alt-solid.svg",
+      "id-card-solid.svg",
+      "index.html",
+      "info-circle-solid.svg",
       "itemVisualizer.css",
+      "itemVisualizer.css.map",
       "map.css",
-      "search.css",
-      "theme.css",
-      "poi-types.json",
-      "bundle.js",
+      "map.css.map",
       "map_markers_Anderes.png",
+      "map_markers_Culture_and_attractions.svg",
       "map_markers_Essen_Trinken.png",
       "map_markers_Gesch_fte_und_Dienstleister.png",
       "map_markers_Kultur_Sehensw_rdigkeiten.png",
@@ -71,7 +81,14 @@
       "map_markers_Sommer.png",
       "map_markers_Wellness_Entspannung.png",
       "map_markers_Winter.png",
-      "strings.js"
+      "phone-alt-solid.svg",
+      "poi-types.json",
+      "search-solid.svg",
+      "search.css",
+      "search.css.map",
+      "strings.js",
+      "theme.css",
+      "times-solid.svg"
     ],
     "scripts": [
       {
@@ -109,8 +126,7 @@
         "options": {
           "default": "10"
         }
-      }
-    ,
+      },
       {
         "key": "radius",
         "type": "text",
@@ -119,8 +135,7 @@
         "options": {
           "default": "500000"
         }
-      }
-      ,
+      },
       {
         "key": "language",
         "type": "select",
@@ -155,8 +170,7 @@
           ],
           "default": "All categories"
         }
-      }
-    ,
+      },
       {
         "key": "directions",
         "type": "null",
