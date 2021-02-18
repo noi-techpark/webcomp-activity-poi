@@ -44,6 +44,16 @@ pipeline {
                 sh 'npm run build'
             }
         }
+		stage('Update wcs-manifest.json') {
+            steps {
+                sh """
+                    ls cdn/noi/ | jq -R -s -c 'split("\\n")[:-1]' | jq '.' > files-list.json
+                    jq '.dist.files = input' wcs-manifest.json files-list.json > wcs-manifest-tmp.json
+                    mv wcs-manifest-tmp.json wcs-manifest.json
+                    rm -f files-list.json
+                """
+            }
+        }
         stage('Git Tag') {
             steps {
                 sshagent (credentials: ['jenkins_github_ssh_key']) {
