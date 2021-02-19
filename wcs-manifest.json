@@ -141,7 +141,7 @@
       {
         "key": "radius",
         "type": "text",
-        "label": "Map radius (m)",
+        "label": "Map search radius (m)",
         "required": false,
         "options": {
           "default": "500000"
@@ -159,6 +159,19 @@
             "it"
           ],
           "default": "en"
+        }
+      },
+      {
+        "key": "showradius",
+        "type": "select",
+        "label": "Show search radius on map",
+        "required": false,
+        "options": {
+          "values": [
+            "false",
+            "true"
+          ],
+          "default": "false"
         }
       },
       {
