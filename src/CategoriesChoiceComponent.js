@@ -116,7 +116,7 @@ class CategoriesChoiceComponent extends HTMLElement
 
 			let skip = false
 			if (category_filter !== null)
-				if ((',' + category_filter + ',').indexOf(',' + type.Id + '/' + subtype.Id + ',') < 0 && (',' + category_filter + ',').indexOf(',' + type.Id + '/*,') < 0)
+				if ((',' + category_filter + ',').indexOf(',' + type.Id + '/' + subtype.Id + ',') < 0 && (',' + category_filter + ',').indexOf(',' + type.Id /* + '/*' */ +',') < 0)
 					skip = true;
 			
 			if (skip)
