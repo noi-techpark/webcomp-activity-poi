@@ -80,7 +80,7 @@
 .resultContainer {
   /*height: calc(100%-titleDivHeight) ???*/
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   font-size: 14px;
   color: #70757A; }
 
