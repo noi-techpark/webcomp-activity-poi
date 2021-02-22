@@ -53,5 +53,10 @@ window.strings = {
     "en": "Search",
     "it": "Cerca",
     "de": "Suchen"
+  },
+  "loading":{
+    "en":"LOADING",
+    "it":"CARICAMENTO",
+    "de":"WIRD GELADEN"
   }
 }

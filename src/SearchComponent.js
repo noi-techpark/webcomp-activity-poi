@@ -5,7 +5,7 @@ search_template.innerHTML = `
         <div class="mainContainer notShowingResults">
 
     <div class="searchBox">
-     <input type="text" placeholder="Search...">
+     <input type="text">
      <img class="action" src="` + paths.img_fa_icons + `search-solid.svg" onload="SVGInject(this)"></img>
     </div>
 
@@ -149,7 +149,7 @@ class SearchComponent extends HTMLElement
 			let lang = this.getAttribute('lang');
 			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
 			inputBox.placeholder = strings["search"][lang];
-			this.warningText.textContent = strings["warning-filters"][lang];
+			this.warningText.textContent = window.strings["warning-filters"][lang];
 
 		}
 		if (name == 'items')
