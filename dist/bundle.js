@@ -1413,9 +1413,13 @@ class InteractiveMapComponent extends HTMLElement
 
 		setTimeout(function()
 			{
-				let map = L.map(mapdiv)
+				let map = L.map(mapdiv, { zoomControl: false })
 				thiswebcomponent.map = map
 
+				L.control.zoom({
+					position:'bottomright'
+				}).addTo(map);
+				
 				map.setView(
 				{
 					lon: lat_lon_zoom[1],
