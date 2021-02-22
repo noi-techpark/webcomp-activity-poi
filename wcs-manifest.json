@@ -141,10 +141,10 @@
       {
         "key": "radius",
         "type": "text",
-        "label": "Map search radius (m)",
+        "label": "Map search radius (m) [ empty = unlimited ]",
         "required": false,
         "options": {
-          "default": "500000"
+          "default": ""
         }
       },
       {
