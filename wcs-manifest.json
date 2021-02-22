@@ -33,8 +33,10 @@
   ],
   "image": "wcs-logo.png",
   "searchTags": [
-    "testing",
-    "tools"
+    "tourism",
+    "poi",
+    "activity",
+    "map"
   ],
   "dist": {
     "basePath": "dist",
@@ -130,10 +132,10 @@
       {
         "key": "radius",
         "type": "text",
-        "label": "Map search radius (m)",
+        "label": "Map search radius (m): Empty means unlimited (that is, no radius filter)",
         "required": false,
         "options": {
-          "default": "500000"
+          "default": ""
         }
       },
       {
@@ -166,7 +168,7 @@
       {
         "key": "category-filter",
         "type": "multiselect",
-        "label": "Categories/Subcategories to show",
+        "label": "Categories/Subcategories to show (hold CTRL or your system-specific action-key to select more than one)",
         "required": false,
         "options": {
           "values": [
