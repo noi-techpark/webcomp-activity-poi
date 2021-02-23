@@ -1,16 +1,10 @@
-Replace all `ToDo` notes in this file and adjust also the following files:
-- package.json:
-    - Adjust the general parts like name, description, ...
-    - Adjust the scripts `npm run start`, `npm run build`, `npm run lint` and
-      `npm run test` or change them if you use `yarn` for instance
-- wcs-manifest.json:
-    - Adjust the general parts like title, description, ...
-    - Adjust the configuration part with all possible configuration options
-      (https://webcomponents.opendatahub.bz.it/getting-started) and test them with the [Validator](https://webcomponents.opendatahub.bz.it/validator/)
+# Activity & POI web component
 
-# ToDo: Project Name
-
-ToDo: Description of the project.
+This is a web component that can be integrated in other software (for example
+websites) to show the activities and point of interests of South Tyrol. They are
+shown on a map and they can be filtered based on the category or a search term.
+Each point of interest/activity has a corresponding marker on the map and its
+details are displayed when it is clicked on it.
 
 ## Table of contents
 
@@ -23,7 +17,8 @@ ToDo: Description of the project.
 
 ## Usage
 
-ToDo: Include the webcompscript file `dist/bundle.js` in your HTML and define the web component like this:
+Include the webcompscript file `dist/bundle.js` in your HTML and define the web
+component like this:
 
 ```html
 <activity-poi lat-lon-zoom="[46.6,11.4,8]" radius="10000"></activity-poi>
@@ -67,7 +62,7 @@ Options: "All categories","Winter", "Wellness Entspannung","Verkehr und Transpor
 
 #### directions
 
-Activate 'Get directions' button 
+Activate 'Get directions' button
 
 Type: boolean
 
@@ -83,7 +78,9 @@ To build the project, the following prerequisites must be met:
 - ToDo: Check the prerequisites
 - Node 12 / NPM 6
 
-For a ready to use Docker environment with all prerequisites already installed and prepared, you can check out the [Docker environment](#docker-environment) section.
+For a ready to use Docker environment with all prerequisites already installed
+and prepared, you can check out the [Docker environment](#docker-environment)
+section.
 
 ### Source code
 
