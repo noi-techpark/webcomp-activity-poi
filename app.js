@@ -1,4 +1,6 @@
 require("./dist_directories.js");
+require('./src/strings.js');
+require('./src/static/scripts/svg-inject.min.js');
 
 require("./src/ActivityPOIComponent.js");
 require("./src/CategoriesChoiceComponent.js");
@@ -13,5 +15,4 @@ require('./src/static/css/components/itemVisualizer.css');
 require('./src/static/css/components/map.css');
 require('./src/static/css/components/search.css');
 
-require('./src/strings.js');
-require('./src/static/scripts/svg-inject.min.js');
+

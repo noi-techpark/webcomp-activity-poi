@@ -79,7 +79,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.categoriesContai
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box;\n  overflow: auto; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: hidden;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: auto;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -119,7 +119,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "#mapid {\n  height: 100%; }\n", ""]);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    height: 18px; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    max-height: 18px;\n    max-width: 6%; }\n  .warning p {\n    max-width: 85%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -139,7 +139,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".mainContainer {\n  width: 30vw;\n  pa
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\np {\n  font-family: calibri, verdana, arial;\n  color: #70757A; }\n\na {\n  font-family: calibri, verdana, arial; }\n\nhtml, body {\n  height: 100%;\n  margin: 0px; }\n\n.fas {\n  margin-right: 10px;\n  margin-left: 10px; }\n\n.fas.fa-chevron-up {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.fas.fa-chevron-down {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.text {\n  font-size: 14px; }\n\n.titleParagraph {\n  margin-block-start: 1vw;\n  margin-block-end: 1vw;\n  font-size: 18px; }\n\n.infoTitleParagraph {\n  font-size: 14px;\n  margin: 0; }\n\ninput[type=\"text\"] {\n  width: 100%;\n  border: solid 1px #eee;\n  border-radius: 5px;\n  font-size: 18px;\n  padding: 8px;\n  box-sizing: border-box; }\n\nlabel {\n  font-family: arial; }\n\nbutton, a.button {\n  padding: 10px 20px;\n  background: #3DDCD4;\n  border-radius: 5px;\n  text-decoration: none;\n  color: #fff;\n  display: -webkit-inline-box; }\n  button:hover, a.button:hover {\n    cursor: pointer; }\n\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: scroll;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: scroll;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n.mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    height: 18px; }\n  .warning p {\n    width: 90%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n\n#mapid {\n  height: 100%; }\n\n.categoriesContainer {\n  text-align: center;\n  width: auto !important; }\n  @media screen and (max-width: 768px) {\n    .categoriesContainer {\n      background: white;\n      padding: 10px; } }\n\n.dropdownCategory {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  text-align: left;\n  position: relative; }\n  .dropdownCategory.selected .category::before {\n    content: '';\n    display: inline-block;\n    width: 15px;\n    height: 15px;\n    -moz-border-radius: 7.5px;\n    -webkit-border-radius: 7.5px;\n    border-radius: 7.5px;\n    background-color: #dc5d3a;\n    position: absolute;\n    z-index: 99999999999999999999;\n    bottom: 5px;\n    right: 5px; }\n    @media screen and (max-width: 768px) {\n      .dropdownCategory.selected .category::before {\n        width: 10px;\n        height: 10px;\n        -moz-border-radius: 5px;\n        -webkit-border-radius: 5px;\n        border-radius: 5px;\n        bottom: 2px;\n        right: 2px; } }\n\n.dropdownCategory:hover .subCategory {\n  display: block; }\n\n.category {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  overflow: hidden; }\n\n.categoryImage {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0; }\n\n.subCategory {\n  padding: 20px;\n  text-align: left;\n  display: none;\n  background-color: white;\n  border-radius: 7px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);\n  position: absolute;\n  white-space: nowrap;\n  width: auto;\n  z-index: 1; }\n  @media only screen and (max-width: 768px) {\n    .subCategory {\n      position: fixed;\n      right: 10vw;\n      left: 10vw;\n      bottom: 20vh; } }\n  .subCategory::before {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 10px 8px 1px;\n    border-color: transparent transparent #ccc transparent;\n    top: -8px; }\n    @media only screen and (max-width: 1024px) {\n      .subCategory::before {\n        content: none; } }\n  .subCategory::after {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 9px 7px 0;\n    border-color: transparent transparent #fff transparent;\n    top: -7px; }\n    @media only screen and (max-width: 768px) {\n      .subCategory::after {\n        content: none; } }\n\n.subcategory:hover {\n  display: block; }\n\n.subCategoryLeft {\n  left: 10px; }\n\n.subCategoryLeft::before {\n  left: 15px; }\n\n.subCategoryLeft::after {\n  left: 16px; }\n\n.subCategoryRight {\n  right: 0px; }\n\n.subCategoryRight::before {\n  right: 15px; }\n\n.subCategoryRight::after {\n  right: 16px; }\n\n.subCategoryTitleAnderes {\n  color: #6554B7; }\n\n.subCategoryTitleEssen {\n  color: #7fCC86; }\n\n.subCategoryTitleGeschäfte {\n  color: #E37454; }\n\n.subCategoryTitleKultur {\n  color: #FB8464; }\n\n.subCategoryTitleVerkehr {\n  color: #846CEC; }\n\n.subCategoryTitleSommer {\n  color: #3DDCD4; }\n\n.subCategoryTitleWellness {\n  color: #E9E28C; }\n\n.subCategoryTitleWinter {\n  color: #3D8CC4; }\n\n.subCategoryItem {\n  margin-top: 10px; }\n\n@media only screen and (min-width: 768px) {\n  .categoriesContainer {\n    width: fit-content;\n    height: fit-content;\n    top: 20px;\n    position: relative;\n    z-index: 9999; }\n\n  .dropdownCategory {\n    width: 5vw;\n    height: 5vw; }\n\n  .category {\n    width: 5vw;\n    height: 5vw; } }\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n* {\n  margin: 0;\n  padding: 0;\n  border: 0; }\n\np {\n  font-family: calibri, verdana, arial;\n  color: #70757A; }\n\na {\n  font-family: calibri, verdana, arial; }\n\nhtml, body {\n  height: 100%;\n  margin: 0px; }\n\n.fas {\n  margin-right: 10px;\n  margin-left: 10px; }\n\n.fas.fa-chevron-up {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.fas.fa-chevron-down {\n  color: black;\n  margin-top: 3vh;\n  margin-bottom: 1vh;\n  height: 3vh; }\n\n.text {\n  font-size: 14px; }\n\n.titleParagraph {\n  margin-block-start: 1vw;\n  margin-block-end: 1vw;\n  font-size: 18px; }\n\n.infoTitleParagraph {\n  font-size: 14px;\n  margin: 0; }\n\ninput[type=\"text\"] {\n  width: 100%;\n  border: solid 1px #eee;\n  border-radius: 5px;\n  font-size: 18px;\n  padding: 8px;\n  box-sizing: border-box; }\n\nlabel {\n  font-family: arial; }\n\nbutton, a.button {\n  padding: 10px 20px;\n  background: #3DDCD4;\n  border-radius: 5px;\n  text-decoration: none;\n  color: #fff;\n  display: -webkit-inline-box; }\n  button:hover, a.button:hover {\n    cursor: pointer; }\n\n.mainContainer {\n  width: 100vw;\n  z-index: 9999;\n  background: white;\n  height: 100vh;\n  padding: 20px;\n  box-sizing: border-box;\n  overflow: auto; }\n\n.mainContainer.Anderes .titleParagraph {\n  color: #6554B7; }\n.mainContainer.Anderes .fas, .mainContainer.Anderes svg {\n  color: #6554B7; }\n.mainContainer.Anderes .button {\n  background: #6554B7; }\n\n.mainContainer.Essen .titleParagraph {\n  color: #7fCC86; }\n.mainContainer.Essen .fas, .mainContainer.Essen svg {\n  color: #7fCC86; }\n.mainContainer.Essen .button {\n  background: #7fCC86; }\n\n.mainContainer.Geschäfte .titleParagraph {\n  color: #E37454; }\n.mainContainer.Geschäfte .fas, .mainContainer.Geschäfte svg {\n  color: #E37454; }\n.mainContainer.Geschäfte .button {\n  background: #E37454; }\n\n.mainContainer.Kultur .titleParagraph {\n  color: #FB8464; }\n.mainContainer.Kultur .fas, .mainContainer.Kultur svg {\n  color: #FB8464; }\n.mainContainer.Kultur .button {\n  background: #FB8464; }\n\n.mainContainer.Verkehr .titleParagraph {\n  color: #846CEC; }\n.mainContainer.Verkehr .fas, .mainContainer.Verkehr svg {\n  color: #846CEC; }\n.mainContainer.Verkehr .button {\n  background: #846CEC; }\n\n.mainContainer.Sommer .titleParagraph {\n  color: #3DDCD4; }\n.mainContainer.Sommer .fas, .mainContainer.Sommer svg {\n  color: #3DDCD4; }\n.mainContainer.Sommer .button {\n  background: #3DDCD4; }\n\n.mainContainer.Wellness .titleParagraph {\n  color: #E9E28C; }\n.mainContainer.Wellness .fas, .mainContainer.Wellness svg {\n  color: #E9E28C; }\n.mainContainer.Wellness .button {\n  background: #E9E28C; }\n\n.mainContainer.Winter .titleParagraph {\n  color: #3D8CC4; }\n.mainContainer.Winter .fas, .mainContainer.Winter svg {\n  color: #3D8CC4; }\n.mainContainer.Winter .button {\n  background: #3D8CC4; }\n\n#closebutton {\n  float: right; }\n\n.title {\n  clear: both;\n  display: flex;\n  padding: 20px;\n  border-bottom: solid 1px #aaa; }\n\n.titleDiv {\n  flex: 1;\n  text-align: center; }\n\n.resultContainer {\n  /*height: calc(100%-titleDivHeight) ???*/\n  width: 100%;\n  overflow-y: hidden;\n  font-size: 14px;\n  color: #70757A; }\n\n.infoTitle {\n  box-shadow: 0 4px 6px -2px #0000002b;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  overflow: auto; }\n  .infoTitle .fas, .infoTitle svg {\n    float: left;\n    height: 18px;\n    margin-right: 10px; }\n  .infoTitle .infoTitleParagraph {\n    width: calc(100% - 80px);\n    float: left; }\n\n.fas, svg {\n  float: left;\n  height: 18px;\n  margin-right: 10px; }\n\n.info {\n  width: auto;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 20px; }\n\n.image {\n  width: 90vw;\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n#directions {\n  margin-top: 10px; }\n\n.titleArrowDiv {\n  display: none; }\n\n[class$=\"Label\"] {\n  font-weight: 600; }\n\n@media only screen and (min-width: 768px) {\n  .mainContainer {\n    width: 30vw;\n    height: 100vh;\n    overflow: auto;\n    background: #fff;\n    box-shadow: 0 0 6px #0000001c;\n    padding: 20px; }\n\n  .itemInfo {\n    margin-left: auto;\n    margin-right: auto;\n    margin-top: 10px; }\n\n  .info {\n    padding: 20px;\n    width: calc(100% - 40px); }\n\n  .image {\n    width: 26vw; } }\n.mainContainer {\n  width: 30vw;\n  padding: 10px;\n  background: #fff;\n  height: 100vh;\n  overflow: scroll;\n  box-shadow: 0 0 6px #0000001c;\n  padding: 20px;\n  transition: 0.5s;\n  z-index: 99999;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    .mainContainer {\n      width: 100vw;\n      box-sizing: border-box;\n      max-height: 78px !important; } }\n  .mainContainer .title {\n    display: none; }\n\n#closebutton:hover {\n  cursor: pointer; }\n\n.warning {\n  position: absolute;\n  bottom: 0;\n  background: #fffbc1;\n  left: 0;\n  padding: 20px; }\n  .warning p, .warning i, .warning img, .warning svg {\n    color: #b3ab31;\n    float: left; }\n  .warning img, .warning svg {\n    max-height: 18px;\n    max-width: 6%; }\n  .warning p {\n    max-width: 85%;\n    margin-left: 10px; }\n\n.searchInstance {\n  border-bottom: solid 1px #ccc;\n  padding: 10px;\n  transition: 0.2s;\n  clear: both;\n  overflow: auto; }\n  .searchInstance:hover {\n    cursor: pointer;\n    background: #cccccc; }\n  .searchInstance img {\n    float: left;\n    width: 15%;\n    max-width: 60px; }\n  .searchInstance .searchInstanceParagraph {\n    margin-left: auto;\n    margin-right: auto;\n    float: right;\n    width: 80%; }\n\n.searchInstanceParagraph {\n  margin-left: auto;\n  margin-right: auto; }\n\n.notShowingResults {\n  max-height: 80px;\n  overflow: hidden; }\n  .notShowingResults .warning {\n    display: none; }\n\n.showingResults {\n  max-height: 100vh !important;\n  overflow: scroll; }\n\n.searchBox {\n  display: flex;\n  margin-bottom: 20px; }\n  .searchBox input[type=\"text\"] {\n    outline: none;\n    width: 90%;\n    border: solid 1px #eee;\n    border-radius: 5px;\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n    font-size: 18px;\n    padding: 8px;\n    box-sizing: border-box;\n    border-right: 0; }\n  .searchBox .action {\n    width: 10%;\n    border: solid 1px #eee;\n    border-left: 0;\n    border-radius: 5px;\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n    margin: 0;\n    font-size: 18px;\n    line-height: 36px;\n    padding: 10px;\n    height: 18px; }\n\n#error {\n  display: none;\n  width: 30vw;\n  padding: 10px 20px;\n  z-index: 99999;\n  position: fixed;\n  color: #cc8d7b;\n  background: #fff;\n  left: 0;\n  font-family: calibri, verdana, arial;\n  font-size: 12px;\n  margin-top: -20px;\n  box-sizing: border-box; }\n  @media only screen and (max-width: 768px) {\n    #error {\n      z-index: 99999;\n      position: fixed;\n      color: #cc8d7b;\n      background: #fff;\n      width: 100vw;\n      left: 0;\n      padding: 10px; } }\n\n#mapid {\n  height: 100%; }\n\n.categoriesContainer {\n  text-align: center;\n  width: auto !important; }\n  @media screen and (max-width: 768px) {\n    .categoriesContainer {\n      background: white;\n      padding: 10px; } }\n\n.dropdownCategory {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  text-align: left;\n  position: relative; }\n  .dropdownCategory.selected .category::before {\n    content: '';\n    display: inline-block;\n    width: 15px;\n    height: 15px;\n    -moz-border-radius: 7.5px;\n    -webkit-border-radius: 7.5px;\n    border-radius: 7.5px;\n    background-color: #dc5d3a;\n    position: absolute;\n    z-index: 99999999999999999999;\n    bottom: 5px;\n    right: 5px; }\n    @media screen and (max-width: 768px) {\n      .dropdownCategory.selected .category::before {\n        width: 10px;\n        height: 10px;\n        -moz-border-radius: 5px;\n        -webkit-border-radius: 5px;\n        border-radius: 5px;\n        bottom: 2px;\n        right: 2px; } }\n\n.dropdownCategory:hover .subCategory {\n  display: block; }\n\n.category {\n  display: inline-block;\n  width: 10vw;\n  height: 10vw;\n  max-height: 65px;\n  max-width: 65px;\n  min-height: 35px;\n  min-width: 35px;\n  overflow: hidden; }\n\n.categoryImage {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0; }\n\n.subCategory {\n  padding: 20px;\n  text-align: left;\n  display: none;\n  background-color: white;\n  border-radius: 7px;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);\n  position: absolute;\n  white-space: nowrap;\n  width: auto;\n  z-index: 1; }\n  @media only screen and (max-width: 768px) {\n    .subCategory {\n      position: fixed;\n      right: 10vw;\n      left: 10vw;\n      bottom: 20vh; } }\n  .subCategory::before {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 10px 8px 1px;\n    border-color: transparent transparent #ccc transparent;\n    top: -8px; }\n    @media only screen and (max-width: 1024px) {\n      .subCategory::before {\n        content: none; } }\n  .subCategory::after {\n    content: \"\";\n    position: absolute;\n    border-style: solid;\n    border-width: 0 9px 7px 0;\n    border-color: transparent transparent #fff transparent;\n    top: -7px; }\n    @media only screen and (max-width: 768px) {\n      .subCategory::after {\n        content: none; } }\n\n.subcategory:hover {\n  display: block; }\n\n.subCategoryLeft {\n  left: 10px; }\n\n.subCategoryLeft::before {\n  left: 15px; }\n\n.subCategoryLeft::after {\n  left: 16px; }\n\n.subCategoryRight {\n  right: 0px; }\n\n.subCategoryRight::before {\n  right: 15px; }\n\n.subCategoryRight::after {\n  right: 16px; }\n\n.subCategoryTitleAnderes {\n  color: #6554B7; }\n\n.subCategoryTitleEssen {\n  color: #7fCC86; }\n\n.subCategoryTitleGeschäfte {\n  color: #E37454; }\n\n.subCategoryTitleKultur {\n  color: #FB8464; }\n\n.subCategoryTitleVerkehr {\n  color: #846CEC; }\n\n.subCategoryTitleSommer {\n  color: #3DDCD4; }\n\n.subCategoryTitleWellness {\n  color: #E9E28C; }\n\n.subCategoryTitleWinter {\n  color: #3D8CC4; }\n\n.subCategoryItem {\n  margin-top: 10px; }\n\n@media only screen and (min-width: 768px) {\n  .categoriesContainer {\n    width: fit-content;\n    height: fit-content;\n    top: 20px;\n    position: relative;\n    z-index: 9999; }\n\n  .dropdownCategory {\n    width: 5vw;\n    height: 5vw; }\n\n  .category {\n    width: 5vw;\n    height: 5vw; } }\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -674,19 +674,19 @@ activityPOI_template.innerHTML = `
         <div id="searchContainer">
             <search-items></search-items>
         </div>
-        
+
         <div id="loading" style="display:none">
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <p>LOADING</p>
         </div>
     </div>
-    
-    
+
+
     <style>
-    
+
     @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
     @import "` + paths.css_components + `ActivityPOIComponent.css";
-    
+
     </style>
 `;
 
@@ -694,14 +694,17 @@ class ActivityPOIComponent extends HTMLElement
 {
 
 
-	
+
 	constructor()
 	{
 		super();
 
-		console.log('activity poi constructor')
+    this._shadowRoot = this.attachShadow(
+      {
+        mode: 'open'
+      });
 
-		this.attachShadow({ mode: 'open' });
+		console.log('activity poi constructor')
 
 		this.last_search = '';
 		this.last_subcategories = '';
@@ -710,22 +713,22 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map = null
 
 	}
-	
-	
+
+
 	connectedCallback()
 	{
 		let thiswebcomponent = this
-		
+
 		console.log('activity poi connect')
 		console.log(this.shadowRoot)
-		
+
 		let content = activityPOI_template.content.cloneNode(true)
 		console.log(content)
-		
+
 		//
 		// categories-choice
-		// 
-		
+		//
+
 		let categories_choice = content.querySelector('categories-choice')
 		// forward attributes
 		categories_choice.setAttribute('lang', this.getAttribute('language'))
@@ -740,8 +743,8 @@ class ActivityPOIComponent extends HTMLElement
 
 		//
 		// item-visualizer
-		// 
-		
+		//
+
 		function show_item_visualizer(item)
 		{
 			item_visualizer.setAttribute('apoiid', item.Id);
@@ -754,7 +757,7 @@ class ActivityPOIComponent extends HTMLElement
 			}
 
 		}
-		
+
 		let item_visualizer = content.querySelector('item-visualizer');
 		// forward attributes
 		item_visualizer.setAttribute('lang', this.getAttribute('language'))
@@ -767,17 +770,17 @@ class ActivityPOIComponent extends HTMLElement
 			itemContainer.style.display = "none";
 			thiswebcomponent.interactive_map.removeAttribute('gpx')
 		}
-		
+
 		//
 		// interactive-map
-		// 
-		
+		//
+
 		this.interactive_map = content.querySelector('interactive-map');
 		// forward attributes
 		let lat = parseFloat(this.getAttribute('lat'))
 		let lon = parseFloat(this.getAttribute('lon'))
 		let zoom = parseInt(this.getAttribute('zoom'))
-		
+
 		this.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([lat,lon,zoom]))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
@@ -788,8 +791,8 @@ class ActivityPOIComponent extends HTMLElement
 
 		//
 		// search-items
-		// 
-		
+		//
+
 		this.search_items = content.querySelector('search-items');
 		// forward attributes
 		this.search_items.setAttribute('lang', this.getAttribute('language'))
@@ -805,9 +808,13 @@ class ActivityPOIComponent extends HTMLElement
 
 		}
 
-		
+		//loading
+    this.loadingText = content.querySelector("#loading p");
+    this.loadingText.textContent = strings["loading"][this.getAttribute('language')]
+
+
 		this.shadowRoot.appendChild(content)
-		
+
 }
 
 
@@ -826,16 +833,16 @@ class ActivityPOIComponent extends HTMLElement
 		console.log(this.last_subcategories)
 
 		let list = []
-		
+
 		let loading = this.shadowRoot.querySelector('#loading');
 
 		loading.style.display = "block";
-		
+
 		// let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
-		
+
 		let lat = parseFloat(this.getAttribute('lat'))
 		let lon = parseFloat(this.getAttribute('lon'))
-		
+
 		let radius = this.getAttribute('radius')
 
 		if (this.last_search.length > 0 || this.last_subcategories.length > 0)
@@ -874,11 +881,12 @@ class ActivityPOIComponent extends HTMLElement
 	 * */
 	static get observedAttributes()
 	{
-		return ['lat', 'lon', 'radius', 'categories', 'directions'];
+		return ['lat', 'lon', 'radius', 'categories', 'directions','language'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
 	{
+
 
 //		if (name === 'lat')
 //		{
@@ -906,6 +914,7 @@ class ActivityPOIComponent extends HTMLElement
 }
 
 customElements.define('activity-poi', ActivityPOIComponent);
+
 
 /***/ }),
 
@@ -1834,7 +1843,7 @@ search_template.innerHTML = `
         <div class="mainContainer notShowingResults">
 
     <div class="searchBox">
-     <input type="text" placeholder="Search...">
+     <input type="text">
      <img class="action" src="` + paths.img_fa_icons + `search-solid.svg" onload="SVGInject(this)"></img>
     </div>
 
@@ -1978,7 +1987,7 @@ class SearchComponent extends HTMLElement
 			let lang = this.getAttribute('lang');
 			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
 			inputBox.placeholder = strings["search"][lang];
-			this.warningText.textContent = strings["warning-filters"][lang];
+			this.warningText.textContent = window.strings["warning-filters"][lang];
 
 		}
 		if (name == 'items')
@@ -2112,8 +2121,14 @@ window.strings = {
     "en": "Search",
     "it": "Cerca",
     "de": "Suchen"
+  },
+  "loading":{
+    "en":"LOADING",
+    "it":"CARICAMENTO",
+    "de":"WIRD GELADEN"
   }
 }
+
 
 /***/ })
 
@@ -2186,6 +2201,8 @@ window.strings = {
 /************************************************************************/
 (() => {
 __webpack_require__(851);
+__webpack_require__(313);
+__webpack_require__(576);
 
 __webpack_require__(263);
 __webpack_require__(425);
@@ -2200,8 +2217,7 @@ __webpack_require__(309);
 __webpack_require__(611);
 __webpack_require__(898);
 
-__webpack_require__(313);
-__webpack_require__(576);
+
 
 })();
 

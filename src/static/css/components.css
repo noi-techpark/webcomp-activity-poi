@@ -5,7 +5,8 @@
   background: white;
   height: 100vh;
   padding: 20px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  overflow: auto; }
 
 .mainContainer.Anderes .titleParagraph {
   color: #6554B7; }
@@ -79,7 +80,7 @@
 .resultContainer {
   /*height: calc(100%-titleDivHeight) ???*/
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   font-size: 14px;
   color: #70757A; }
 
@@ -126,7 +127,7 @@
   .mainContainer {
     width: 30vw;
     height: 100vh;
-    overflow: scroll;
+    overflow: auto;
     background: #fff;
     box-shadow: 0 0 6px #0000001c;
     padding: 20px; }
@@ -174,9 +175,10 @@
     color: #b3ab31;
     float: left; }
   .warning img, .warning svg {
-    height: 18px; }
+    max-height: 18px;
+    max-width: 6%; }
   .warning p {
-    width: 90%;
+    max-width: 85%;
     margin-left: 10px; }
 
 .searchInstance {

@@ -12,19 +12,19 @@ activityPOI_template.innerHTML = `
         <div id="searchContainer">
             <search-items></search-items>
         </div>
-        
+
         <div id="loading" style="display:none">
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <p>LOADING</p>
         </div>
     </div>
-    
-    
+
+
     <style>
-    
+
     @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
     @import "` + paths.css_components + `ActivityPOIComponent.css";
-    
+
     </style>
 `;
 
@@ -32,14 +32,17 @@ class ActivityPOIComponent extends HTMLElement
 {
 
 
-	
+
 	constructor()
 	{
 		super();
 
-		console.log('activity poi constructor')
+    this._shadowRoot = this.attachShadow(
+      {
+        mode: 'open'
+      });
 
-		this.attachShadow({ mode: 'open' });
+		console.log('activity poi constructor')
 
 		this.last_search = '';
 		this.last_subcategories = '';
@@ -48,22 +51,22 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map = null
 
 	}
-	
-	
+
+
 	connectedCallback()
 	{
 		let thiswebcomponent = this
-		
+
 		console.log('activity poi connect')
 		console.log(this.shadowRoot)
-		
+
 		let content = activityPOI_template.content.cloneNode(true)
 		console.log(content)
-		
+
 		//
 		// categories-choice
-		// 
-		
+		//
+
 		let categories_choice = content.querySelector('categories-choice')
 		// forward attributes
 		categories_choice.setAttribute('lang', this.getAttribute('language'))
@@ -78,8 +81,8 @@ class ActivityPOIComponent extends HTMLElement
 
 		//
 		// item-visualizer
-		// 
-		
+		//
+
 		function show_item_visualizer(item)
 		{
 			item_visualizer.setAttribute('apoiid', item.Id);
@@ -92,7 +95,7 @@ class ActivityPOIComponent extends HTMLElement
 			}
 
 		}
-		
+
 		let item_visualizer = content.querySelector('item-visualizer');
 		// forward attributes
 		item_visualizer.setAttribute('lang', this.getAttribute('language'))
@@ -105,17 +108,17 @@ class ActivityPOIComponent extends HTMLElement
 			itemContainer.style.display = "none";
 			thiswebcomponent.interactive_map.removeAttribute('gpx')
 		}
-		
+
 		//
 		// interactive-map
-		// 
-		
+		//
+
 		this.interactive_map = content.querySelector('interactive-map');
 		// forward attributes
 		let lat = parseFloat(this.getAttribute('lat'))
 		let lon = parseFloat(this.getAttribute('lon'))
 		let zoom = parseInt(this.getAttribute('zoom'))
-		
+
 		this.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([lat,lon,zoom]))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
@@ -126,8 +129,8 @@ class ActivityPOIComponent extends HTMLElement
 
 		//
 		// search-items
-		// 
-		
+		//
+
 		this.search_items = content.querySelector('search-items');
 		// forward attributes
 		this.search_items.setAttribute('lang', this.getAttribute('language'))
@@ -143,9 +146,13 @@ class ActivityPOIComponent extends HTMLElement
 
 		}
 
-		
+		//loading
+    this.loadingText = content.querySelector("#loading p");
+    this.loadingText.textContent = strings["loading"][this.getAttribute('language')]
+
+
 		this.shadowRoot.appendChild(content)
-		
+
 }
 
 
@@ -164,16 +171,16 @@ class ActivityPOIComponent extends HTMLElement
 		console.log(this.last_subcategories)
 
 		let list = []
-		
+
 		let loading = this.shadowRoot.querySelector('#loading');
 
 		loading.style.display = "block";
-		
+
 		// let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
-		
+
 		let lat = parseFloat(this.getAttribute('lat'))
 		let lon = parseFloat(this.getAttribute('lon'))
-		
+
 		let radius = this.getAttribute('radius')
 
 		if (this.last_search.length > 0 || this.last_subcategories.length > 0)
@@ -212,11 +219,12 @@ class ActivityPOIComponent extends HTMLElement
 	 * */
 	static get observedAttributes()
 	{
-		return ['lat', 'lon', 'radius', 'categories', 'directions'];
+		return ['lat', 'lon', 'radius', 'categories', 'directions','language'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
 	{
+
 
 //		if (name === 'lat')
 //		{

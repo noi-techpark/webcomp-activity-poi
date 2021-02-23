@@ -40,11 +40,12 @@
 	}
 
   img,svg{
-    height:18px;
+    max-height: 18px;
+    max-width: 6%;
   }
 
 	p{
-		width: 90%;
+    max-width: 85%;
 		margin-left: 10px;
 	}
 }
