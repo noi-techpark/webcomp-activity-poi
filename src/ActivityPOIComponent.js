@@ -190,10 +190,12 @@ class ActivityPOIComponent extends HTMLElement
 			params.append('pagesize', '10000')
 			params.append('searchfilter', this.last_search)
 			params.append('odhtagfilter', this.last_subcategories)
-			params.append('latitude', lat)
-			params.append('longitude', lon)
-			if (radius !== null)
+			if (radius !== null && radius !== '')
+			{
 				params.append('radius', radius)
+				params.append('latitude', lat)
+				params.append('longitude', lon)
+			}
 
 			let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?' + params.toString())
 			let json = await response.json();
