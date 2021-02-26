@@ -189,11 +189,24 @@ class ActivityPOIComponent extends HTMLElement
 			params.append('pagenumber', '1')
 			params.append('pagesize', '10000')
 			params.append('searchfilter', this.last_search)
-			params.append('odhtagfilter', this.last_subcategories)
-			params.append('latitude', lat)
-			params.append('longitude', lon)
-			if (radius !== null)
+
+			// if no subcategory was selected but exists a filter, then use filter
+			if (this.last_subcategories == '' && this.getAttribute('category-filter'))
+			{
+				let cat_filter = this.getAttribute('category-filter');
+				// remove category if subcategory is also specified in two step (at beginning and in the midle (lookbehind is not supported by iOS))
+				cat_filter = cat_filter.replace(new RegExp('^[^/,]+/',''),'')
+				cat_filter = cat_filter.replace(new RegExp(',[^/,]+/','g'),',')
+				params.append('odhtagfilter', cat_filter)
+			}
+			else
+				params.append('odhtagfilter', this.last_subcategories)
+			if (radius !== null && radius !== '')
+			{
 				params.append('radius', radius)
+				params.append('latitude', lat)
+				params.append('longitude', lon)
+			}
 
 			let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?' + params.toString())
 			let json = await response.json();
