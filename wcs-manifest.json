@@ -90,17 +90,6 @@
       "search.css.map",
       "strings.js",
       "theme.css",
-      "poi-types.json",
-      "bundle.js",
-      "map_markers_Anderes.png",
-      "map_markers_Essen_Trinken.png",
-      "map_markers_Gesch_fte_und_Dienstleister.png",
-      "map_markers_Kultur_Sehensw_rdigkeiten.png",
-      "map_markers_Mobilit_t.png",
-      "map_markers_Sommer.png",
-      "map_markers_Wellness_Entspannung.png",
-      "map_markers_Winter.png",
-      "strings.js",
       "times-solid.svg"
     ],
     "scripts": [
