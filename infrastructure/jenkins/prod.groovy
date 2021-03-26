@@ -12,7 +12,6 @@ pipeline {
         string(name: 'VERSION', defaultValue: '1.0.0', description: 'Version (without a leading "v")', trim: true)
     }
     environment {
-        // Web Components' default variables
         WC_GIT_REMOTE = get_git_remote()
         WC_GIT_BRANCH = get_git_branch()
         WC_DIST_PATH = "dist"
@@ -21,7 +20,7 @@ pipeline {
         stage('Clean') {
             steps {
                 sh '''
-                    rm -rf dist node_modules
+                    rm -rf dist
                 '''
             }
         }
@@ -30,21 +29,12 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Test') {
-            steps {
-                // FIXME
-                sh '''
-                    echo "FIXME: npm run lint missing"
-                    echo "FIXME: npm run test missing"
-                '''
-            }
-        }
         stage('Build') {
             steps {
                 sh 'npm run build'
             }
         }
-		stage('Update wcs-manifest.json') {
+        stage('Update wcs-manifest.json') {
             steps {
                 sh """
                     ls ${WC_DIST_PATH} | jq -R -s -c 'split("\\n")[:-1]' | jq '.' > files-list.json
