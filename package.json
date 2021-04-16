@@ -16,12 +16,9 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "server": "node server.js",
-    "lint": "...",
-    "test": "...",
-    "build:cdn": "stencil build --docs --config stencil.config-cdn.ts"
+    "start": "node server.js"
   },
-  "description": "Replace all `ToDo` notes in this file and adjust also the following files: - package.json:     - Adjust the general parts like name, description, ...     - Adjust the scripts `npm run start`, `npm run build`, `npm run lint` and       `npm run test` or change them if you use `yarn` for instance - wcs-manifest.json:     - Adjust the general parts like title, description, ...     - Adjust the configuration part with all possible configuration options       (https://webcomponents.opendatahub.bz.it/getting-started) and test them with the [Validator](https://webcomponents.opendatahub.bz.it/validator/)",
+  "description": "This is a web component that can be integrated in other software (for example websites) to show the activities and point of interests of South Tyrol. They are shown on a map and they can be filtered based on the category or a search term. Each point of interest/activity has a corresponding marker on the map and its details are displayed when it is clicked on it.",
   "version": "1.0.0",
   "main": "src/ActivityPOIComponent.js",
   "repository": {
