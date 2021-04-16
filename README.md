@@ -1,5 +1,7 @@
 # Activity & POI web component
 
+[![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-activity-poi)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-activity-poi)
+
 This is a web component that can be integrated in other software (for example
 websites) to show the activities and point of interests of South Tyrol. They are
 shown on a map and they can be filtered based on the category or a search term.
@@ -18,10 +20,19 @@ details are displayed when it is clicked on it.
 ## Usage
 
 Include the webcompscript file `dist/bundle.js` in your HTML and define the web
-component like this:
+component like this for example:
 
 ```html
-<activity-poi lat-lon-zoom="[46.6,11.4,8]" radius="10000"></activity-poi>
+<activity-poi
+  lat="46.4983"
+  lon="11.3548"
+  zoom="10"
+  radius="10000"
+  language="en"
+  showradius="false"
+  category-filter=""
+  directions
+></activity-poi>
 ```
 
 ### Attributes
@@ -64,7 +75,7 @@ Options: "All categories","Winter", "Wellness Entspannung","Verkehr und Transpor
 
 Activate 'Get directions' button
 
-Type: boolean
+Type: null (exists or is absent, no value allowed)
 
 ## Getting started
 
@@ -115,7 +126,7 @@ npm run build
 In order to serve the application locally, execute the following command
 
 ```bash
-npm run server
+npm run start
 ```
 
 Then, access to localhost:3000 from your browser.
@@ -178,7 +189,8 @@ docker-compose run --rm app /bin/bash -c "npm run test"
 
 ### Support
 
-For support, please contact [d@vide.bz](mailto:d@vide.bz) or [chiara@huprocess.com](mailto:chiara@huprocess.com).
+For support, please contact [help@opendatahub.bz.it](help@opendatahub.bz.it),
+[d@vide.bz](mailto:d@vide.bz) or [chiara@huprocess.com](mailto:chiara@huprocess.com).
 
 ### Contributing
 
