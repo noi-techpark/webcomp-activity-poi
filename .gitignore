@@ -5,3 +5,5 @@
 /.settings/
 /node_modules/
 /davide/
+/.vscode
+/.idea
