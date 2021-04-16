@@ -17,12 +17,6 @@ pipeline {
 						sh 'npm install'
 					}
 				}
-				stage('Test') {
-					steps {
-						sh 'echo WARNING: npm run lint MISSING!'
-						sh 'echo WARNING: npm run test MISSING!'
-					}
-				}
 				stage('Build') {
 					steps {
 						sh 'npm run build'
