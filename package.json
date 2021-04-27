@@ -22,12 +22,12 @@
   "main": "src/ActivityPOIComponent.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chiaramasci/ActivityPOIWebcomponent.git"
+    "url": "git+https://github.com/noi-techpark/webcomp-activity-poi.git"
   },
   "author": "Chiara Masci",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/chiaramasci/ActivityPOIWebcomponent/issues"
+    "url": "https://github.com/noi-techpark/webcomp-activity-poi/issues"
   },
-  "homepage": "https://github.com/chiaramasci/ActivityPOIWebcomponent#readme"
+  "homepage": "https://github.com/noi-techpark/webcomp-activity-poi#readme"
 }
