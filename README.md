@@ -8,14 +8,34 @@ shown on a map and they can be filtered based on the category or a search term.
 Each point of interest/activity has a corresponding marker on the map and its
 details are displayed when it is clicked on it.
 
-## Table of contents
+- [Activity & POI web component](#activity--poi-web-component)
+  - [Usage](#usage)
+    - [Attributes](#attributes)
+      - [lat](#lat)
+      - [lon](#lon)
+      - [radius](#radius)
+      - [language](#language)
+      - [categories](#categories)
+      - [directions](#directions)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Source code](#source-code)
+    - [Dependencies](#dependencies)
+    - [Build](#build)
+  - [Development](#development)
+  - [Deployment](#deployment)
+  - [Docker environment](#docker-environment)
+    - [Installation](#installation)
+    - [Dependenices](#dependenices)
+    - [Start and stop the containers](#start-and-stop-the-containers)
+    - [Running commands inside the container](#running-commands-inside-the-container)
+  - [Information](#information)
+    - [Support](#support)
+    - [Contributing](#contributing)
+    - [Documentation](#documentation)
+    - [Boilerplate](#boilerplate)
+    - [License](#license)
 
-- [Usage](#usage)
-- [Gettings started](#getting-started)
-- [Tests and linting](#tests-and-linting)
-- [Deployment](#deployment)
-- [Docker environment](#docker-environment)
-- [Information](#information)
 
 ## Usage
 
@@ -23,7 +43,7 @@ Include the webcompscript file `dist/bundle.js` in your HTML and define the web
 component like this for example:
 
 ```html
-<activity-poi
+<odh-activity-poi
   lat="46.4983"
   lon="11.3548"
   zoom="10"
@@ -32,7 +52,7 @@ component like this for example:
   showradius="false"
   category-filter=""
   directions
-></activity-poi>
+></odh-activity-poi>
 ```
 
 ### Attributes

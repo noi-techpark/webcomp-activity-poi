@@ -1,5 +1,5 @@
 {
-  "name": "activity-poi-component",
+  "name": "odh-activity-poi",
   "private": true,
   "devDependencies": {
     "copy-webpack-plugin": "^7.0.0",

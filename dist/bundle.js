@@ -926,7 +926,7 @@ class ActivityPOIComponent extends HTMLElement
 
 }
 
-customElements.define('activity-poi', ActivityPOIComponent);
+customElements.define('odh-activity-poi', ActivityPOIComponent);
 
 
 /***/ }),
