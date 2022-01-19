@@ -1,6 +1,7 @@
 # Activity & POI web component
 
 [![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-activity-poi)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-activity-poi)
+[![ci webcomp-activity-poi](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/ci.yml/badge.svg)](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/ci.yml)
 
 This is a web component that can be integrated in other software (for example
 websites) to show the activities and point of interests of South Tyrol. They are
