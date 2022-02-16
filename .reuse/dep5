@@ -4,28 +4,9 @@ Upstream-Contact: Peter Moser <p.moser@noi.bz.it>
 Source: https://github.com/noi-techpark/webcomp-activity-poi
 
 Files: src/* work/* dist/* e2e/* example/* ActivityPOIComponent.html app.js category-filter-values.txt dist_directories.js index.html server.js
-Copyright: (c) 2021 Chiara Masci <chiara@huprocess.com>
-           (c) 2021 Davide Montesin <d@vide.bz>
-           (c) 2021 Monika Candela
+Copyright: (c) 2021 NOI Techpark <info@noi.bz.it>
 License: AGPL-3.0-or-later
 
-Files: src/*.md src/*.txt .env.* *.js.LICENSE.txt *.json .env
-Copyright: (c) 2021 Chiara Masci <chiara@huprocess.com>
-           (c) 2021 Davide Montesin <d@vide.bz>
-           (c) 2021 Monika Candela
-License: CC0-1.0
-
-Files: infrastructure/* docker-compose.yml .editorconfig
-Copyright: (c) 2021 Peter Moser <p.moser@noi.bz.it>
-License: CC0-1.0
-
-Files: .gitignore README.md package.json wcs-manifest.json yarn.lock webpack.* wcs-logo.* karma.conf.js browserslist
-Copyright: (c) 2021 Chiara Masci <chiara@huprocess.com>
-           (c) 2021 Davide Montesin <d@vide.bz>
-           (c) 2021 Monika Candela
-           (c) 2021 Peter Moser <p.moser@noi.bz.it>
-License: CC0-1.0
-
-Files: .github/workflows/ci.yml
-Copyright: (c) 2022 Simon Dalvai <s.dalvai@noi.bz.it>
+Files: src/*.md src/*.txt .env.* *.js.LICENSE.txt *.json .env infrastructure/* docker-compose.yml .editorconfig .gitignore .github/workflows/ci.yml README.md package.json wcs-manifest.json yarn.lock webpack.* wcs-logo.* karma.conf.js browserslist
+Copyright: (c) 2021 NOI Techpark <info@noi.bz.it>
 License: CC0-1.0
