@@ -213,7 +213,7 @@ class InteractiveMapComponent extends HTMLElement
 			if (newVal !== null)
 			{
 				let gpxurl = newVal
-				gpxurl = gpxurl.replace('https://lcs.lts.it/downloads/gpx/','https://tourism.opendatahub.bz.it/api/Activity/Gpx/')
+				gpxurl = gpxurl.replace('https://lcs.lts.it/downloads/gpx/','https://tourism.opendatahub.bz.it/v1/Activity/Gpx?origin=webcomp-activity-poi')
 				this.gpx_layer = omnivore.gpx(gpxurl).addTo(this.map);
 			}
 		}

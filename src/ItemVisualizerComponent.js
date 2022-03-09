@@ -161,7 +161,7 @@ class ItemVisualizerComponent extends HTMLElement
 			let lang = this.getAttribute('lang')
 
 			// read data json
-			let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi/' + newVal)
+			let response = await fetch('https://tourism.opendatahub.bz.it/v1/ODHActivityPoi/' + newVal + '?origin=webcomp-activity-poi')
 			let json = await response.json()
 			let item = json
 

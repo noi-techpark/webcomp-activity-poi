@@ -189,6 +189,8 @@ class ActivityPOIComponent extends HTMLElement
 			params.append('pagenumber', '1')
 			params.append('pagesize', '10000')
 			params.append('searchfilter', this.last_search)
+			params.append('origin', 'webcomp-activity-poi')
+
 
 			// if no subcategory was selected but exists a filter, then use filter
 			if (this.last_subcategories == '' && this.getAttribute('category-filter'))
@@ -208,7 +210,7 @@ class ActivityPOIComponent extends HTMLElement
 				params.append('longitude', lon)
 			}
 
-			let response = await fetch('https://tourism.opendatahub.bz.it/api/ODHActivityPoi?' + params.toString())
+			let response = await fetch('https://tourism.opendatahub.bz.it/v1/ODHActivityPoi?' + params.toString())
 			let json = await response.json();
 			list = json.Items;
 		}
