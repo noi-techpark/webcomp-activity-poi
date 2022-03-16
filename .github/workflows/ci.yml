@@ -41,7 +41,7 @@ jobs:
 
   deploy-prod:
     runs-on: ubuntu-20.04
-    if: github.ref == 'refs/heads/prod'
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: test
     concurrency: deploy-prod
     steps:
