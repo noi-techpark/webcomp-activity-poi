@@ -7,6 +7,6 @@ Files: src/* work/* dist/* e2e/* example/* ActivityPOIComponent.html app.js cate
 Copyright: (c) 2021 NOI Techpark <info@noi.bz.it>
 License: AGPL-3.0-or-later
 
-Files: src/*.md src/*.txt .env.* *.js.LICENSE.txt *.json .env infrastructure/* docker-compose.yml .editorconfig .gitignore .github/workflows/ci.yml README.md package.json wcs-manifest.json yarn.lock webpack.* wcs-logo.* karma.conf.js browserslist
+Files: src/*.md src/*.txt .env.* *.js.LICENSE.txt *.json .env infrastructure/* docker-compose.yml .editorconfig .gitignore .github/workflows/main.yml README.md package.json wcs-manifest.json yarn.lock webpack.* wcs-logo.* karma.conf.js browserslist
 Copyright: (c) 2021 NOI Techpark <info@noi.bz.it>
 License: CC0-1.0
