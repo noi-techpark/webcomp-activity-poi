@@ -3,9 +3,11 @@
   "private": true,
   "devDependencies": {
     "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.0.1",
+    "css-loader": "^5.2.7",
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^12.6.0",
     "style-loader": "^2.0.0",
     "web-components-loader": "^0.1.2",
     "webpack": "^5.16.0",

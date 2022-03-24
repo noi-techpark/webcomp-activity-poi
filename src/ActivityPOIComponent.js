@@ -1,3 +1,5 @@
+import componentStyle from './static/scss/components/ActivityPOIComponent.scss'
+
 const activityPOI_template = document.createElement('template');
 
 activityPOI_template.innerHTML = `
@@ -21,10 +23,7 @@ activityPOI_template.innerHTML = `
 
 
     <style>
-
-    @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
-    @import "` + paths.css_components + `ActivityPOIComponent.css";
-
+		${componentStyle}
     </style>
 `;
 

@@ -11,11 +11,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [
-                    { loader: 'style-loader', options: { injectType: 'styleTag' } },
-                    'css-loader',
-                ],
+                test: /\.(s*)css$/,
+                use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }]
             },
             {
                 test: /\.(png|jpg|svg)$/,
@@ -35,13 +32,7 @@ module.exports = {
             patterns: [
               { from: "./src/static/img/category_icons", to: "." },
               { from: "./src/static/img/map_markers", to: "." },
-              { from: "./src/static/img/fa_icons", to: "."},
-              { from: "./src/static/css/components", to: "." },
-              { from: "./src/static/css/all.css", to: "." },
-              { from: "./src/static/css/theme.css", to: "." },
-              { from: "./src/static/css/atoms.css", to: "." },
               { from: "./src/static/data", to: "." },
-              { from: "./src/static/webfonts", to: "." },
               { from: "./src/strings.js", to: "." },
               { from: "./index.html", to: "." }
             ],
