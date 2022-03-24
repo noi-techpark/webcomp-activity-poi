@@ -1,6 +1,8 @@
 const categoriesChoice_template = document.createElement('template');
 import categoriesStyle from './static/scss/components/categories.scss';
 import themeStyle from './static/scss/theme.scss';
+import atomsStyle from './static/scss/atoms.scss'
+
 
 categoriesChoice_template.innerHTML = `
     <div class="categoriesContainer">
@@ -21,6 +23,7 @@ categoriesChoice_template.innerHTML = `
       <style>
 	  	${categoriesStyle}
 		${themeStyle}
+		${atomsStyle}
       </style>
 `;
 

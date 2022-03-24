@@ -33,12 +33,7 @@ module.exports = {
               { from: "./src/static/img/category_icons", to: "." },
               { from: "./src/static/img/map_markers", to: "." },
               { from: "./src/static/img/fa_icons", to: "."},
-              { from: "./src/static/css/components", to: "." },
-              { from: "./src/static/css/all.css", to: "." },
-              { from: "./src/static/css/theme.css", to: "." },
-              { from: "./src/static/css/atoms.css", to: "." },
               { from: "./src/static/data", to: "." },
-              { from: "./src/static/webfonts", to: "." },
               { from: "./src/strings.js", to: "." },
               { from: "./index.html", to: "." }
             ],
