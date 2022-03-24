@@ -104,7 +104,6 @@ itemVisualizer_template.innerHTML = `
 </div>
 
 <style>
-@import "` + paths.css + `all.css";
 @import "` + paths.css_components + `itemVisualizer.css";
 @import "` + paths.css + `theme.css";
 @import "` + paths.css + `atoms.css";
