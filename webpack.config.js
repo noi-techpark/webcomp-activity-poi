@@ -32,7 +32,6 @@ module.exports = {
             patterns: [
               { from: "./src/static/img/category_icons", to: "." },
               { from: "./src/static/img/map_markers", to: "." },
-              { from: "./src/static/img/fa_icons", to: "."},
               { from: "./src/static/data", to: "." },
               { from: "./src/strings.js", to: "." },
               { from: "./index.html", to: "." }
