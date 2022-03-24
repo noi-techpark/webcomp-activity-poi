@@ -11,11 +11,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [
-                    { loader: 'style-loader', options: { injectType: 'styleTag' } },
-                    'css-loader',
-                ],
+                test: /\.(s*)css$/,
+                use: [{ loader: 'css-loader' }, { loader: 'sass-loader' }]
             },
             {
                 test: /\.(png|jpg|svg)$/,
