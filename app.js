@@ -9,7 +9,6 @@ require("./src/ItemVisualizerComponent.js");
 require("./src/SearchComponent.js");
 
 require('./src/static/css/design.css');
-require('./src/static/css/components/ActivityPOIComponent.css');
 require('./src/static/css/components/categories.css');
 require('./src/static/css/components/itemVisualizer.css');
 require('./src/static/css/components/map.css');
