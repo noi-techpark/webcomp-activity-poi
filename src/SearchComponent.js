@@ -42,10 +42,238 @@ search_template.innerHTML = `
 </div>
 
 <style>
-@import "` + paths.css + `all.css";
-@import "` + paths.css_components + `search.css";
-@import "` + paths.css + `theme.css";
-@import "` + paths.css + `atoms.css";
+.mainContainer {
+    width: 30vw;
+    padding: 10px;
+    background: #fff;
+    height: 100vh;
+    overflow: scroll;
+    box-shadow: 0 0 6px #0000001c;
+    padding: 20px;
+    transition: 0.5s;
+    z-index: 99999;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 768px) {
+    .mainContainer {
+        width: 100vw;
+        box-sizing: border-box;
+        max-height: 78px !important;
+    }
+}
+.mainContainer .title {
+    display: none;
+}
+
+#closebutton:hover {
+    cursor: pointer;
+}
+
+.warning {
+    position: absolute;
+    bottom: 0;
+    background: #fffbc1;
+    left: 0;
+    padding: 20px;
+}
+.warning p,
+.warning i,
+.warning img,
+.warning svg {
+    color: #b3ab31;
+    float: left;
+}
+.warning img,
+.warning svg {
+    max-height: 18px;
+    max-width: 6%;
+}
+.warning p {
+    max-width: 85%;
+    margin-left: 10px;
+}
+
+.searchInstance {
+    border-bottom: solid 1px #ccc;
+    padding: 10px;
+    transition: 0.2s;
+    clear: both;
+    overflow: auto;
+}
+.searchInstance:hover {
+    cursor: pointer;
+    background: #cccccc;
+}
+.searchInstance img {
+    float: left;
+    width: 15%;
+    max-width: 60px;
+}
+.searchInstance .searchInstanceParagraph {
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+    width: 80%;
+}
+
+.searchInstanceParagraph {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notShowingResults {
+    max-height: 80px;
+    overflow: hidden;
+}
+.notShowingResults .warning {
+    display: none;
+}
+
+.showingResults {
+    max-height: 100vh !important;
+    overflow: scroll;
+}
+
+.searchBox {
+    display: flex;
+    margin-bottom: 20px;
+}
+.searchBox input[type="text"] {
+    outline: none;
+    width: 90%;
+    border: solid 1px #eee;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font-size: 18px;
+    padding: 8px;
+    box-sizing: border-box;
+    border-right: 0;
+}
+.searchBox .action {
+    width: 10%;
+    border: solid 1px #eee;
+    border-left: 0;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin: 0;
+    font-size: 18px;
+    line-height: 36px;
+    padding: 10px;
+    height: 18px;
+}
+
+#error {
+    display: none;
+    width: 30vw;
+    padding: 10px 20px;
+    z-index: 99999;
+    position: fixed;
+    color: #cc8d7b;
+    background: #fff;
+    left: 0;
+    font-family: calibri, verdana, arial;
+    font-size: 12px;
+    margin-top: -20px;
+    box-sizing: border-box;
+}
+@media only screen and (max-width: 768px) {
+  #error {
+      z-index: 99999;
+      position: fixed;
+      color: #cc8d7b;
+      background: #fff;
+      width: 100vw;
+      left: 0;
+      padding: 10px;
+  }
+}
+
+	
+<!-- THEME -->
+*{
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+p {
+	font-family: calibri, verdana, arial;
+	color:#70757A;
+}
+
+a{
+	font-family: calibri, verdana, arial;
+}
+
+html, body {
+	height: 100%;
+	margin: 0px;
+}
+
+<!-- ATOMS -->
+
+.fas {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+	
+.fas.fa-chevron-up {
+	color: black;
+	margin-top: 3vh;
+	margin-bottom: 1vh;
+	height: 3vh;
+}
+	
+.fas.fa-chevron-down {
+	color: black;
+	margin-top: 3vh;
+	margin-bottom: 1vh;
+	height: 3vh;
+}
+	
+.text {
+	font-size: 14px;
+}
+	
+.titleParagraph {
+	margin-block-start: 1vw;
+	margin-block-end: 1vw;
+	font-size: 18px;
+}
+	
+.infoTitleParagraph {
+	font-size: 14px;
+	margin: 0;
+}
+	
+input[type="text"] {
+	width: 100%;
+	border: solid 1px #eee;
+	border-radius: 5px;
+	font-size: 18px;
+	padding: 8px;
+	box-sizing: border-box;
+}
+	
+label {
+	font-family: arial;
+}
+	
+button,
+a.button {
+	padding: 10px 20px;
+	background: #3ddcd4;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #fff;
+	display: -webkit-inline-box;
+}
+
+button:hover, a.button:hover {
+	cursor: pointer;
+}
 </style>
 `;
 
