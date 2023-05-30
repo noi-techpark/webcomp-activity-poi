@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import componentStyle from './static/scss/components/ActivityPOIComponent.scss'
 
 const activityPOI_template = document.createElement('template');

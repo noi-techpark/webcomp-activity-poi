@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 window.strings = {
   "warning-filters": {
     "en": "The search results are limited to the categories that are selected on the map",

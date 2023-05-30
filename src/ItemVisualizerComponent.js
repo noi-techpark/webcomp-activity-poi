@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2021 NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import themeStyle from './static/scss/theme.scss';
 import componentStyle from './static/scss/components/itemVisualizer.scss'
 import atomsStyle from './static/scss/atoms.scss'
