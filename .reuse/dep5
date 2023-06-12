@@ -3,6 +3,6 @@ Upstream-Name: webcomp-activity-poi
 Upstream-Contact: NOI Techpark <digital@noi.bz.it>
 Source: https://github.com/noi-techpark/webcomp-activity-poi
 
-Files: infrastructure/* src/static/data/poi-types.json src/static/img/* .editorconfig .gitignore .category-filter-values.txt LICENSE.md *.json wcs-logo.png .github category-filter-values.txt
+Files: infrastructure/* src/static/data/poi-types.json src/static/img/* .editorconfig .pre-commit-config.yaml .gitignore .category-filter-values.txt LICENSE.md *.json wcs-logo.png .github category-filter-values.txt
 Copyright: (c) NOI Techpark <digital@noi.bz.it>
 License: CC0-1.0
