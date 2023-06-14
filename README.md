@@ -16,7 +16,7 @@ shown on a map and they can be filtered based on the category or a search term.
 Each point of interest/activity has a corresponding marker on the map and its
 details are displayed when it is clicked on it.
 
-Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.bz.it/webcomponent/0e5fbede-4a21-4dd3-bf85-7d2be71dfb12)!
+Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.com/webcomponent/0e5fbede-4a21-4dd3-bf85-7d2be71dfb12)!
 
 - [Activity & POI web component](#activity--poi-web-component)
   - [Usage](#usage)
@@ -219,7 +219,7 @@ docker-compose run --rm app /bin/bash -c "npm run test"
 
 ### Support
 
-For support, please contact [help@opendatahub.bz.it](help@opendatahub.bz.it),
+For support, please contact [help@opendatahub.com](help@opendatahub.com),
 [d@vide.bz](mailto:d@vide.bz) or [chiara@huprocess.com](mailto:chiara@huprocess.com).
 
 ### Contributing
