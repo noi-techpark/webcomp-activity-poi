@@ -61,7 +61,7 @@ pipeline {
 								WC_DIST_PATH=$(jq -r ".dist.basePath" wcs-manifest.json)
 								mkdir -p ~/.ssh
 								ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-								git config --global user.email "info@opendatahub.bz.it"
+								git config --global user.email "info@opendatahub.com"
 								git config --global user.name "Jenkins"
 								git remote set-url ${WC_GIT_REMOTE} ${GIT_URL}
 								git add ${WC_DIST_PATH}/*

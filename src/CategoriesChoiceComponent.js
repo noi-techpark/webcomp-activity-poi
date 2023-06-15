@@ -170,7 +170,7 @@ class CategoriesChoiceComponent extends HTMLElement {
 
 		let lang = this.getAttribute('lang')
 
-		let response = await fetch(/* paths.data + 'poi-types.json' */ 'https://tourism.opendatahub.bz.it/v1/ODHActivityPoiTypes?origin=webcomp-activity-poi')
+		let response = await fetch(/* paths.data + 'poi-types.json' */ 'https://tourism.opendatahub.com/v1/ODHActivityPoiTypes?origin=webcomp-activity-poi')
 		let types = await response.json()
 
 		let category_has_subcat_selected = []

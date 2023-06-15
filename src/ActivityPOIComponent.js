@@ -213,7 +213,7 @@ class ActivityPOIComponent extends HTMLElement
 				params.append('longitude', lon)
 			}
 
-			let response = await fetch('https://tourism.opendatahub.bz.it/v1/ODHActivityPoi?' + params.toString())
+			let response = await fetch('https://tourism.opendatahub.com/v1/ODHActivityPoi?' + params.toString())
 			let json = await response.json();
 			list = json.Items;
 		}
