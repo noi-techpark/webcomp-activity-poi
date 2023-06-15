@@ -6,7 +6,7 @@
   "Items": [
     {
       "Id": "smgpoi107",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi107",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi107",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [],
@@ -76,15 +76,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "weihnachtsmärkte",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/weihnachtsm%C3%A4rkte"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/weihnachtsm%C3%A4rkte"
         },
         {
           "Id": "ländliche christkindlmärkte",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/l%C3%A4ndliche%20christkindlm%C3%A4rkte"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/l%C3%A4ndliche%20christkindlm%C3%A4rkte"
         }
       ],
       "PoiType": "Ländliche Christkindlmärkte",
@@ -217,7 +217,7 @@
             "pl": "Santa Cristina/St. Christina",
             "ru": "Санта-Кристина/St. Christina"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822E151CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822E151CA11D18F1400A02427D15E"
         },
         "AreaInfo": null,
         "RegionInfo": {
@@ -232,7 +232,7 @@
             "pl": "Val Gardena/Gröden",
             "ru": "Валь-Гардена/Gröden"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1EC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1EC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD8FE51C911D18F1400A02427D15E",
@@ -246,7 +246,7 @@
             "pl": "S.Cristina Gherdëina/S.Cristina Val Gardena/S.Cristina Gherdëina/St.Christina in Gröden",
             "ru": "Сан-Кристина Гердëина/Сан-Кристина Валь Гардена"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD8FE51C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD8FE51C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "F0A9687C8AC347D988A77B7BE19EEA06",
@@ -260,7 +260,7 @@
             "pl": "S.Cristina Val Gardena/St.Christina in Gröden",
             "ru": "Санта-Кристина-Вальгардена"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/F0A9687C8AC347D988A77B7BE19EEA06"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/F0A9687C8AC347D988A77B7BE19EEA06"
         }
       },
       "MasterPoiIds": null,
@@ -343,17 +343,17 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Weihnachtsmärkte",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Weihnachtsm%C3%A4rkte",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Weihnachtsm%C3%A4rkte",
           "Type": "SubType"
         },
         {
           "Id": "Ländliche Christkindlmärkte",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/L%C3%A4ndliche%20Christkindlm%C3%A4rkte",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/L%C3%A4ndliche%20Christkindlm%C3%A4rkte",
           "Type": "PoiType"
         }
       ],
@@ -364,13 +364,13 @@
     },
     {
       "Id": "smgpoi01cfeff8da586e548327e539276c42f3",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi01cfeff8da586e548327e539276c42f3",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi01cfeff8da586e548327e539276c42f3",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -448,15 +448,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -616,7 +616,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -630,7 +630,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -644,7 +644,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -658,7 +658,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -672,7 +672,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -774,12 +774,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -790,13 +790,13 @@
     },
     {
       "Id": "smgpoib66fa66da650717e0964a4e30a716dae",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoib66fa66da650717e0964a4e30a716dae",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoib66fa66da650717e0964a4e30a716dae",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -874,15 +874,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -1042,7 +1042,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -1056,7 +1056,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -1070,7 +1070,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -1084,7 +1084,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -1098,7 +1098,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -1191,12 +1191,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -1207,13 +1207,13 @@
     },
     {
       "Id": "smgpoi98dccbb4d6a1f8cc477d9631a8b703f8",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi98dccbb4d6a1f8cc477d9631a8b703f8",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi98dccbb4d6a1f8cc477d9631a8b703f8",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -1291,15 +1291,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -1459,7 +1459,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -1473,7 +1473,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -1487,7 +1487,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -1501,7 +1501,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -1515,7 +1515,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -1617,12 +1617,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -1633,13 +1633,13 @@
     },
     {
       "Id": "smgpoi8683d8a950d921aec3e8fecadd8928b8",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi8683d8a950d921aec3e8fecadd8928b8",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi8683d8a950d921aec3e8fecadd8928b8",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -1717,15 +1717,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -1885,7 +1885,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -1899,7 +1899,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -1913,7 +1913,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -1927,7 +1927,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -1941,7 +1941,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -2043,12 +2043,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -2059,13 +2059,13 @@
     },
     {
       "Id": "smgpoib633594e831bee18af6735d3bafa01e1",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoib633594e831bee18af6735d3bafa01e1",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoib633594e831bee18af6735d3bafa01e1",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -2143,15 +2143,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -2311,7 +2311,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -2325,7 +2325,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -2339,7 +2339,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -2353,7 +2353,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -2367,7 +2367,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -2469,12 +2469,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -2485,21 +2485,21 @@
     },
     {
       "Id": "smgpoi28804cf99975d1e3dccfb1c2619ac03a",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi28804cf99975d1e3dccfb1c2619ac03a",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi28804cf99975d1e3dccfb1c2619ac03a",
       "Type": "Sommer",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "7803058FB9EB4185ABA201CD7FDB1EB8",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/7803058FB9EB4185ABA201CD7FDB1EB8"
+          "Self": "https://tourism.opendatahub.com/api/Area/7803058FB9EB4185ABA201CD7FDB1EB8"
         },
         {
           "Id": "B1C58F0E5E8761F384EB192356296D3F",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/B1C58F0E5E8761F384EB192356296D3F"
+          "Self": "https://tourism.opendatahub.com/api/Area/B1C58F0E5E8761F384EB192356296D3F"
         },
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -2579,15 +2579,15 @@
       "ODHTags": [
         {
           "Id": "sommer",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/sommer"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/sommer"
         },
         {
           "Id": "radfahren radtouren",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/radfahren%20radtouren"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/radfahren%20radtouren"
         },
         {
           "Id": "mountainbike",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/mountainbike"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/mountainbike"
         }
       ],
       "PoiType": "Mountainbike",
@@ -2747,7 +2747,7 @@
             "pl": "San Candido/Innichen",
             "ru": "Сан-Кандидо/Innichen"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822DA51CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822DA51CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "7803058FB9EB4185ABA201CD7FDB1EB8",
@@ -2761,7 +2761,7 @@
             "pl": "Niederdorf",
             "ru": "Niederdorf"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/7803058FB9EB4185ABA201CD7FDB1EB8"
+          "Self": "https://tourism.opendatahub.com/api/Area/7803058FB9EB4185ABA201CD7FDB1EB8"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -2775,7 +2775,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD5FF51C911D18F1400A02427D15E",
@@ -2789,7 +2789,7 @@
             "pl": "Villabassa/Niederdorf",
             "ru": "Виллабасса"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD5FF51C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD5FF51C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "01D4DD1D1DE545C38EDF9B74387DEFCE",
@@ -2803,7 +2803,7 @@
             "pl": "Villabassa/Niederdorf",
             "ru": "Виллабасса"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/01D4DD1D1DE545C38EDF9B74387DEFCE"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/01D4DD1D1DE545C38EDF9B74387DEFCE"
         }
       },
       "MasterPoiIds": null,
@@ -2905,17 +2905,17 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Sommer",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Sommer",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Sommer",
           "Type": "Type"
         },
         {
           "Id": "Radfahren Radtouren",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Radfahren%20Radtouren",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Radfahren%20Radtouren",
           "Type": "SubType"
         },
         {
           "Id": "Mountainbike",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Mountainbike",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Mountainbike",
           "Type": "PoiType"
         }
       ],
@@ -2926,13 +2926,13 @@
     },
     {
       "Id": "smgpoif443a24d8eecd6879f8c45e1f740b311",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoif443a24d8eecd6879f8c45e1f740b311",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoif443a24d8eecd6879f8c45e1f740b311",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         }
       ],
       "SmgId": "",
@@ -3017,15 +3017,15 @@
       "ODHTags": [
         {
           "Id": "winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/winter"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/winter"
         },
         {
           "Id": "langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/langlaufen"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/langlaufen"
         },
         {
           "Id": "dolomiti nordic ski",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/dolomiti%20nordic%20ski"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/dolomiti%20nordic%20ski"
         }
       ],
       "PoiType": "",
@@ -3192,7 +3192,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако/Toblach"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822A751CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "C30DA5E46A194185A84AA8C774964E2A",
@@ -3206,7 +3206,7 @@
             "pl": "Toblach ",
             "ru": "Toblach "
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/C30DA5E46A194185A84AA8C774964E2A"
+          "Self": "https://tourism.opendatahub.com/api/Area/C30DA5E46A194185A84AA8C774964E2A"
         },
         "RegionInfo": {
           "Id": "D2633A1FC24E11D18F1B006097B8970B",
@@ -3220,7 +3220,7 @@
             "pl": "Tre Cime Dolomiti/Drei Zinnen Dolomiten",
             "ru": "Чиме Доломитовые Альпы/Drei Zinnen Dolomiten"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1FC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1FC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD72951C911D18F1400A02427D15E",
@@ -3234,7 +3234,7 @@
             "pl": "Gandelle-Franadega-Fienili/Kandellen-Frondeigen-Stadlern",
             "ru": "Ганделле-Франадега-Фьенили"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD72951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD72951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "4F97133F32724CA599FEDAFED08C7773",
@@ -3248,7 +3248,7 @@
             "pl": "Dobbiaco/Toblach",
             "ru": "Доббиако"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/4F97133F32724CA599FEDAFED08C7773"
         }
       },
       "MasterPoiIds": null,
@@ -3350,12 +3350,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Langlaufen",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Langlaufen",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Langlaufen",
           "Type": "SubType"
         }
       ],
@@ -3366,13 +3366,13 @@
     },
     {
       "Id": "smgpoi2379cd9828158d300cf0c677ef6431fa",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi2379cd9828158d300cf0c677ef6431fa",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi2379cd9828158d300cf0c677ef6431fa",
       "Type": "Geschäfte und Dienstleister",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "63AF84FDAE72498C90490531AF693706",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/63AF84FDAE72498C90490531AF693706"
+          "Self": "https://tourism.opendatahub.com/api/Area/63AF84FDAE72498C90490531AF693706"
         }
       ],
       "SmgId": "",
@@ -3443,19 +3443,19 @@
       "ODHTags": [
         {
           "Id": "geschäfte und dienstleister",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/gesch%C3%A4fte%20und%20dienstleister"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/gesch%C3%A4fte%20und%20dienstleister"
         },
         {
           "Id": "geschäfte",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/gesch%C3%A4fte"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/gesch%C3%A4fte"
         },
         {
           "Id": "getränke",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/getr%C3%A4nke"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/getr%C3%A4nke"
         },
         {
           "Id": "lebensmittel",
-          "Self": "https://tourism.opendatahub.bz.it/api/ODHTag/lebensmittel"
+          "Self": "https://tourism.opendatahub.com/api/ODHTag/lebensmittel"
         }
       ],
       "PoiType": "Getränke",
@@ -3582,7 +3582,7 @@
             "pl": "Bolzano/Bozen",
             "ru": "Больцано/Bozen"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/5228229451CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/5228229451CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "63AF84FDAE72498C90490531AF693706",
@@ -3596,7 +3596,7 @@
             "pl": "Bozen",
             "ru": "Bozen"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/63AF84FDAE72498C90490531AF693706"
+          "Self": "https://tourism.opendatahub.com/api/Area/63AF84FDAE72498C90490531AF693706"
         },
         "RegionInfo": {
           "Id": "D2633A1CC24E11D18F1B006097B8970B",
@@ -3610,7 +3610,7 @@
             "pl": "Bolzano/Bozen i okolice",
             "ru": "Больцано/Bozen и окрестности"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A1CC24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A1CC24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD66151C911D18F1400A02427D15E",
@@ -3624,7 +3624,7 @@
             "pl": "Bolzano Centro/Bozen Zentrum",
             "ru": "Больцано Чентро"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD66151C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD66151C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "50FCFD4334A04DB087C1FD10ED864018",
@@ -3638,7 +3638,7 @@
             "pl": "Bolzano/Bozen",
             "ru": "Больцано"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/50FCFD4334A04DB087C1FD10ED864018"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/50FCFD4334A04DB087C1FD10ED864018"
         }
       },
       "MasterPoiIds": null,
@@ -3745,17 +3745,17 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Geschäfte und Dienstleister",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Gesch%C3%A4fte%20und%20Dienstleister",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Gesch%C3%A4fte%20und%20Dienstleister",
           "Type": "Type"
         },
         {
           "Id": "Geschäfte",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Gesch%C3%A4fte",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Gesch%C3%A4fte",
           "Type": "SubType"
         },
         {
           "Id": "Getränke",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Getr%C3%A4nke",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Getr%C3%A4nke",
           "Type": "PoiType"
         }
       ],
@@ -3766,17 +3766,17 @@
     },
     {
       "Id": "smgpoi0a7428b48777b69eb4c1a615926e5f3c",
-      "Self": "https://tourism.opendatahub.bz.it/api/ODHActivityPoi/smgpoi0a7428b48777b69eb4c1a615926e5f3c",
+      "Self": "https://tourism.opendatahub.com/api/ODHActivityPoi/smgpoi0a7428b48777b69eb4c1a615926e5f3c",
       "Type": "Winter",
       "AgeTo": 0,
       "Areas": [
         {
           "Id": "A83807ED5F5A4282A9C99965AF3D8C7B",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/A83807ED5F5A4282A9C99965AF3D8C7B"
+          "Self": "https://tourism.opendatahub.com/api/Area/A83807ED5F5A4282A9C99965AF3D8C7B"
         },
         {
           "Id": "DA0278F8527F4440B53F62E4377E1454",
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/DA0278F8527F4440B53F62E4377E1454"
+          "Self": "https://tourism.opendatahub.com/api/Area/DA0278F8527F4440B53F62E4377E1454"
         }
       ],
       "SmgId": "",
@@ -3999,7 +3999,7 @@
             "pl": "Ortles/Ortler",
             "ru": "Ортлер (Ortler)"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/TourismAssociation/522822EB51CA11D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/TourismAssociation/522822EB51CA11D18F1400A02427D15E"
         },
         "AreaInfo": {
           "Id": "DA0278F8527F4440B53F62E4377E1454",
@@ -4013,7 +4013,7 @@
             "pl": "Skigebiet Sulden",
             "ru": "Skigebiet Sulden"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Area/DA0278F8527F4440B53F62E4377E1454"
+          "Self": "https://tourism.opendatahub.com/api/Area/DA0278F8527F4440B53F62E4377E1454"
         },
         "RegionInfo": {
           "Id": "D2633A24C24E11D18F1B006097B8970B",
@@ -4027,7 +4027,7 @@
             "pl": "Val Venosta/Vinschgau",
             "ru": "Валь-Веноста/Vinschgau"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Region/D2633A24C24E11D18F1B006097B8970B"
+          "Self": "https://tourism.opendatahub.com/api/Region/D2633A24C24E11D18F1B006097B8970B"
         },
         "DistrictInfo": {
           "Id": "79CBD97951C911D18F1400A02427D15E",
@@ -4041,7 +4041,7 @@
             "pl": "Solda/Sulden",
             "ru": "Сольда"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/District/79CBD97951C911D18F1400A02427D15E"
+          "Self": "https://tourism.opendatahub.com/api/District/79CBD97951C911D18F1400A02427D15E"
         },
         "MunicipalityInfo": {
           "Id": "9FF0DA1AE73E4B6F824709734DEE43B0",
@@ -4055,7 +4055,7 @@
             "pl": "Stelvio/Stilfs",
             "ru": "Стельвио"
           },
-          "Self": "https://tourism.opendatahub.bz.it/api/Municipality/9FF0DA1AE73E4B6F824709734DEE43B0"
+          "Self": "https://tourism.opendatahub.com/api/Municipality/9FF0DA1AE73E4B6F824709734DEE43B0"
         }
       },
       "MasterPoiIds": null,
@@ -4162,12 +4162,12 @@
       "ODHActivityPoiTypes": [
         {
           "Id": "Winter",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Winter",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Winter",
           "Type": "Type"
         },
         {
           "Id": "Skirundtouren Pisten",
-          "Self": "https://tourism.opendatahub.bz.it/api/OdhActivityPoiTypes/Skirundtouren%20Pisten",
+          "Self": "https://tourism.opendatahub.com/api/OdhActivityPoiTypes/Skirundtouren%20Pisten",
           "Type": "SubType"
         }
       ],
