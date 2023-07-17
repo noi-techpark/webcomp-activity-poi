@@ -4,6 +4,7 @@
   "descriptionAbstract": "A web component to show activities and point of interests of South Tyrol.",
   "license": "AGPL-3.0-or-later",
   "repositoryUrl": "https://github.com/noi-techpark/webcomp-activity-poi.git", 
+  "shortName": "activity-and-poi",
   "copyrightHolders": [
     {
       "name": "NOI",
@@ -222,8 +223,7 @@
             "winter/snowparks",
             "winter/weihnachtsmärkte",
             "winter/winterwandern"
-          ],
-          "default": ""
+          ]
         }
       },
       {
