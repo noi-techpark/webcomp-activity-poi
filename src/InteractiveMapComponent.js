@@ -11,7 +11,7 @@ interactiveMap_template.innerHTML = `
           crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
-    
+
     <style>
        #mapid{
           height: 100%;
@@ -44,11 +44,11 @@ class InteractiveMapComponent extends HTMLElement
 	{
 
 		console.log('map connected')
-		
+
 		// dinamically load scripts, if not already added
-		
+
 		let leaflet_js = document.querySelector('script[data-activity-poi-webcomponent-loaded]')
-		
+
 		if (leaflet_js == null)
 		{
 			leaflet_js = document.createElement('script')
@@ -56,28 +56,28 @@ class InteractiveMapComponent extends HTMLElement
 			leaflet_js.setAttribute('src', 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js')
 			leaflet_js.setAttribute('integrity', 'sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==')
 			leaflet_js.setAttribute('crossorigin', '')
-			
+
 			let semaphore = new Promise(function(success, error)
 			{
 				leaflet_js.onload = success
 			})
-			
+
 			document.head.appendChild(leaflet_js)
 			await semaphore
-			
+
 			let leaflet_cluster_js = document.createElement('script')
 			leaflet_cluster_js.setAttribute('src', 'https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js')
-	
+
 			semaphore = new Promise(function(success, error)
 			{
 				leaflet_cluster_js.onload = success
 			})
 			document.head.appendChild(leaflet_cluster_js)
 			await semaphore
-			
+
 			let leaflet_omnivore_gpx_js = document.createElement('script')
 			leaflet_omnivore_gpx_js.setAttribute('src', 'https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js')
-	
+
 			semaphore = new Promise(function(success, error)
 			{
 				leaflet_omnivore_gpx_js.onload = success
@@ -87,7 +87,7 @@ class InteractiveMapComponent extends HTMLElement
 		}
 
 		// setup map
-		
+
 		let content = interactiveMap_template.content.cloneNode(true)
 
 		this.shadowRoot.appendChild(content)
@@ -95,7 +95,7 @@ class InteractiveMapComponent extends HTMLElement
 		let mapdiv = this.shadowRoot.querySelector('#mapid');
 
 		let lat_lon_zoom = JSON.parse(this.getAttribute('lat-lon-zoom'))
-		
+
 		let radius = this.getAttribute('radius')
 		let showradius = this.getAttribute('showradius')
 
@@ -109,7 +109,7 @@ class InteractiveMapComponent extends HTMLElement
 				L.control.zoom({
 					position:'bottomright'
 				}).addTo(map);
-				
+
 				map.setView(
 				{
 					lon: lat_lon_zoom[1],
@@ -120,7 +120,7 @@ class InteractiveMapComponent extends HTMLElement
 					'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 					{
 						maxZoom: 19,
-						attribution:'&copy; <a href="https://opendatahub.com">OpenDataHub.com</a> || &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+						attribution:'<a href="https://opendatahub.com">OpenDataHub.com</a> | &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
 
 					}).addTo(map);
 
@@ -128,7 +128,7 @@ class InteractiveMapComponent extends HTMLElement
 
 				thiswebcomponent.markerClusterGroup = L.markerClusterGroup();
 				map.addLayer(thiswebcomponent.markerClusterGroup);
-				
+
 				if (radius != null && radius != 'null' && showradius != null && showradius == 'true')
 					L.circle([lat_lon_zoom[0], lat_lon_zoom[1]], {"radius": parseInt(radius)}).addTo(map);
 
@@ -144,7 +144,7 @@ class InteractiveMapComponent extends HTMLElement
 	 * - lat-lon-zoom: latitude, longitude and zoom of the map center
 	 * - items (json): list of the elements to show on the map
 	 *
-	 * 
+	 *
 	 */
 	static get observedAttributes()
 	{
@@ -209,7 +209,7 @@ class InteractiveMapComponent extends HTMLElement
 			let zoom = json[2]
 			thiswebcomponent.map.setView(new L.LatLng(lat, lon), zoom);
 		}
-		
+
 		if (name == 'gpx' && thiswebcomponent.map !== null)
 		{
 			if (this.gpx_layer != null)
