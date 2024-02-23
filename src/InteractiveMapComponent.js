@@ -120,7 +120,7 @@ class InteractiveMapComponent extends HTMLElement
 					'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 					{
 						maxZoom: 19,
-						attribution:'<a href="https://opendatahub.com">OpenDataHub.com</a> | &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+						attribution:'<a target="_blank" href="https://opendatahub.com">OpenDataHub.com</a> | &copy; <a target="_blank" href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
 
 					}).addTo(map);
 
