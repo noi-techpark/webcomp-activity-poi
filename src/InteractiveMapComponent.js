@@ -35,7 +35,6 @@ class InteractiveMapComponent extends HTMLElement
 		this.map = null
 		this.markerClusterGroup = null
 		this.gpx_layer = null
-		this.geolocationWatchId = null
 		this.currentLocationMarker = null
 		this.currentLocationCircle = null
 	}
@@ -188,7 +187,7 @@ class InteractiveMapComponent extends HTMLElement
 	 */
 	static get observedAttributes()
 	{
-		return ['lat-lon-zoom', 'items', 'gpx', 'show-current-location', 'lang'];
+		return ['lat-lon-zoom', 'items', 'gpx', 'show-current-location', 'marker-color', 'lang'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
@@ -255,6 +254,12 @@ class InteractiveMapComponent extends HTMLElement
 			let lon = json[1]
 			let zoom = json[2]
 			thiswebcomponent.map.setView(new L.LatLng(lat, lon), zoom);
+			
+			// Update current location marker if it's enabled
+			if (thiswebcomponent.getAttribute('show-current-location'))
+			{
+				thiswebcomponent.handleCurrentLocationChange(thiswebcomponent.getAttribute('show-current-location'))
+			}
 		}
 
 		if (name == 'gpx' && thiswebcomponent.map !== null)
@@ -275,10 +280,52 @@ class InteractiveMapComponent extends HTMLElement
 			thiswebcomponent.handleCurrentLocationChange(newVal)
 		}
 
+		if (name == 'marker-color' && thiswebcomponent.map !== null)
+		{
+			// Update marker color if current location is enabled
+			if (thiswebcomponent.getAttribute('show-current-location'))
+			{
+				thiswebcomponent.handleCurrentLocationChange(thiswebcomponent.getAttribute('show-current-location'))
+			}
+		}
+
 	}
 
 	/**
-	 * Handle enabling/disabling current location tracking
+	 * Generate SVG HTML for teardrop/pin marker
+	 * @param {string} color - Color for the marker
+	 * @returns {string} SVG HTML string
+	 */
+	markerHtml(color)
+	{
+		// Teardrop/pin shape marker
+		return `
+			<svg width="24" height="36" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<path d="M12 0C5.373 0 0 5.373 0 12c0 8 12 24 12 24s12-16 12-24C24 5.373 18.627 0 12 0z" fill="${color}" stroke="white" stroke-width="2"/>
+				<circle cx="12" cy="12" r="4" fill="white"/>
+			</svg>
+		`;
+	}
+
+	/**
+	 * Create Leaflet divIcon with custom marker
+	 * @param {string} color - Color for the marker
+	 * @returns {L.DivIcon} Leaflet divIcon
+	 */
+	createDivIcon(color)
+	{
+		return L.divIcon({
+			className: 'wcmc-div-icon',
+			html: this.markerHtml(color),
+			iconSize: [24, 36],
+			iconAnchor: [12, 36],
+			popupAnchor: [0, -36],
+		});
+	}
+
+	/**
+	 * Handle enabling/disabling current location marker
+	 * Uses the lat/lon from the lat-lon-zoom attribute instead of browser geolocation
 	 * @param {string|null} newVal - Attribute value (truthy to enable, null/empty to disable)
 	 */
 	handleCurrentLocationChange(newVal)
@@ -286,107 +333,41 @@ class InteractiveMapComponent extends HTMLElement
 		// Disable if attribute is removed or falsy
 		if (!newVal || newVal === 'false')
 		{
-			this.stopGeolocation()
+			this.removeCurrentLocationMarker()
 			return
 		}
 
-		// Enable geolocation
-		if (!navigator.geolocation)
+		// Get coordinates from lat-lon-zoom attribute
+		let latLonZoomAttr = this.getAttribute('lat-lon-zoom')
+		if (!latLonZoomAttr)
 		{
-			console.warn(this.t('geolocation-not-supported'))
+			console.warn('Cannot show current location: lat-lon-zoom attribute not set')
 			return
 		}
 
-		// If already watching, don't start again
-		if (this.geolocationWatchId !== null)
-		{
-			return
-		}
+		let latLonZoom = JSON.parse(latLonZoomAttr)
+		let lat = latLonZoom[0]
+		let lon = latLonZoom[1]
 
-		let thiswebcomponent = this
+		// Get marker color from attribute, default to '#3388ff' (blue)
+		let markerColor = this.getAttribute('marker-color') || '#3388ff'
 
-		// Success handler
-		function onGeolocationSuccess(position)
-		{
-			let lat = position.coords.latitude
-			let lon = position.coords.longitude
-			let accuracy = position.coords.accuracy
+		// Remove existing marker and circle if they exist
+		this.removeCurrentLocationMarker()
 
-			// Remove existing marker and circle if they exist
-			if (thiswebcomponent.currentLocationMarker)
-			{
-				thiswebcomponent.map.removeLayer(thiswebcomponent.currentLocationMarker)
-			}
-			if (thiswebcomponent.currentLocationCircle)
-			{
-				thiswebcomponent.map.removeLayer(thiswebcomponent.currentLocationCircle)
-			}
-
-			// Create marker for current location
-			thiswebcomponent.currentLocationMarker = L.marker([lat, lon], {
-				title: thiswebcomponent.t('current-location-label')
-			})
-			thiswebcomponent.currentLocationMarker.bindPopup(thiswebcomponent.t('current-location-label'))
-			thiswebcomponent.currentLocationMarker.addTo(thiswebcomponent.map)
-
-			// Add accuracy circle
-			thiswebcomponent.currentLocationCircle = L.circle([lat, lon], {
-				radius: accuracy,
-				fillColor: '#3388ff',
-				fillOpacity: 0.2,
-				color: '#3388ff',
-				weight: 1
-			})
-			thiswebcomponent.currentLocationCircle.addTo(thiswebcomponent.map)
-		}
-
-		// Error handler
-		function onGeolocationError(error)
-		{
-			let errorMessage = ''
-			switch(error.code)
-			{
-				case error.PERMISSION_DENIED:
-					errorMessage = thiswebcomponent.t('geolocation-permission-denied')
-					break
-				case error.POSITION_UNAVAILABLE:
-					errorMessage = thiswebcomponent.t('geolocation-unavailable')
-					break
-				case error.TIMEOUT:
-					errorMessage = thiswebcomponent.t('geolocation-unavailable')
-					break
-				default:
-					errorMessage = thiswebcomponent.t('geolocation-unavailable')
-					break
-			}
-			console.warn(errorMessage)
-			// Clean up on error
-			thiswebcomponent.stopGeolocation()
-		}
-
-		// Start watching position
-		this.geolocationWatchId = navigator.geolocation.watchPosition(
-			onGeolocationSuccess,
-			onGeolocationError,
-			{
-				enableHighAccuracy: true,
-				timeout: 10000,
-				maximumAge: 0
-			}
-		)
+		// Create marker for current location with custom icon
+		let customIcon = this.createDivIcon(markerColor)
+		this.currentLocationMarker = L.marker([lat, lon], {
+			icon: customIcon
+		})
+		this.currentLocationMarker.addTo(this.map)
 	}
 
 	/**
-	 * Stop geolocation tracking and remove marker/circle
+	 * Remove current location marker and circle
 	 */
-	stopGeolocation()
+	removeCurrentLocationMarker()
 	{
-		if (this.geolocationWatchId !== null)
-		{
-			navigator.geolocation.clearWatch(this.geolocationWatchId)
-			this.geolocationWatchId = null
-		}
-
 		if (this.currentLocationMarker && this.map)
 		{
 			this.map.removeLayer(this.currentLocationMarker)
@@ -398,14 +379,6 @@ class InteractiveMapComponent extends HTMLElement
 			this.map.removeLayer(this.currentLocationCircle)
 			this.currentLocationCircle = null
 		}
-	}
-
-	/**
-	 * Clean up geolocation when component is disconnected
-	 */
-	disconnectedCallback()
-	{
-		this.stopGeolocation()
 	}
 
 }

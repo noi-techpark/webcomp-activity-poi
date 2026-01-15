@@ -149,6 +149,11 @@ class ActivityPOIComponent extends HTMLElement
 		{
 			this.interactive_map.setAttribute('show-current-location', this.getAttribute('show-current-location'))
 		}
+		// Forward marker-color attribute if present
+		if (this.getAttribute('marker-color'))
+		{
+			this.interactive_map.setAttribute('marker-color', this.getAttribute('marker-color'))
+		}
 		// Forward language for translations
 		this.interactive_map.setAttribute('lang', this.getAttribute('language'))
 		this.interactive_map.markerclick = function(item)
@@ -263,7 +268,7 @@ class ActivityPOIComponent extends HTMLElement
 	 * */
 	static get observedAttributes()
 	{
-		return ['lat', 'lon', 'radius', 'categories', 'directions','language', 'show-current-location'];
+		return ['lat', 'lon', 'radius', 'categories', 'directions','language', 'show-current-location', 'marker-color'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
@@ -277,6 +282,17 @@ class ActivityPOIComponent extends HTMLElement
 			else
 			{
 				this.interactive_map.removeAttribute('show-current-location')
+			}
+		}
+		if (name === 'marker-color' && this.interactive_map)
+		{
+			if (newVal !== null)
+			{
+				this.interactive_map.setAttribute('marker-color', newVal)
+			}
+			else
+			{
+				this.interactive_map.removeAttribute('marker-color')
 			}
 		}
 		if (name === 'language' && this.interactive_map)
