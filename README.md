@@ -107,6 +107,14 @@ Activate 'Get directions' button
 
 Type: null (exists or is absent, no value allowed)
 
+#### show-current-location
+
+Show current location on map
+
+Type: boolean (default: false)
+
+When enabled, displays the user's current position on the map using the browser's geolocation API. Requires browser geolocation permission. The marker label and error messages are translated based on the component's `language` attribute.
+
 ## Getting started
 
 These instructions will get you a copy of the project up and running
