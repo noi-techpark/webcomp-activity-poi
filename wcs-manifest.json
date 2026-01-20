@@ -232,6 +232,15 @@
         "options": {
           "default": true
         }
+      },
+      {
+        "key": "show-current-location",
+        "type": "bool",
+        "label": "Mostra posizione corrente su mappa",
+        "required": false,
+        "options": {
+          "default": false
+        }
       }
     ]
   }

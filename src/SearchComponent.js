@@ -179,18 +179,24 @@ class SearchComponent extends HTMLElement
 				this.resultsContainer.append(noResultsDiv);
 			}
 
-			for (let i = 0; i < list.length; i++)
+		for (let i = 0; i < list.length; i++)
+		{
+			// Skip items without required data
+			if (!list[i].ODHActivityPoiTypes || !list[i].ODHActivityPoiTypes[0] || !list[i].Detail || !list[i].Detail[lang])
 			{
-				console.log(i)
-				let row = this.searchInstance_template.cloneNode(true)
-				this.resultsContainer.appendChild(row)
+				continue;
+			}
+			
+			console.log(i)
+			let row = this.searchInstance_template.cloneNode(true)
+			this.resultsContainer.appendChild(row)
 
-				//this part added
-				let imageFileName = list[i].ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_');
-				console.log(imageFileName);
-				row.querySelector('img').src = paths.img_category_icons + "category_icons_" + imageFileName + ".png"
+			//this part added
+			let imageFileName = list[i].ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_');
+			console.log(imageFileName);
+			row.querySelector('img').src = paths.img_category_icons + "category_icons_" + imageFileName + ".png"
 
-				row.querySelector('p.text').textContent = list[i].Detail[lang].Title
+			row.querySelector('p.text').textContent = list[i].Detail[lang].Title
 				row.addEventListener('click', (function(item)
 				{
 					return function()

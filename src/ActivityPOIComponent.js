@@ -55,6 +55,25 @@ class ActivityPOIComponent extends HTMLElement
 
 	}
 
+	/**
+	 * Translation helper function that normalizes language and falls back to "en"
+	 * @param {string} key - Translation key from strings object
+	 * @returns {string} Translated string
+	 */
+	t(key)
+	{
+		let lang = this.getAttribute('language');
+		if (lang)
+		{
+			lang = lang.toLowerCase().trim();
+		}
+		if (!lang || !['it', 'de', 'en'].includes(lang))
+		{
+			lang = 'en';
+		}
+		return strings[key] && strings[key][lang] ? strings[key][lang] : '';
+	}
+
 
 	connectedCallback()
 	{
@@ -125,6 +144,18 @@ class ActivityPOIComponent extends HTMLElement
 		this.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([lat,lon,zoom]))
 		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
+		// Forward show-current-location attribute if present
+		if (this.getAttribute('show-current-location'))
+		{
+			this.interactive_map.setAttribute('show-current-location', this.getAttribute('show-current-location'))
+		}
+		// Forward marker-color attribute if present
+		if (this.getAttribute('marker-color'))
+		{
+			this.interactive_map.setAttribute('marker-color', this.getAttribute('marker-color'))
+		}
+		// Forward language for translations
+		this.interactive_map.setAttribute('lang', this.getAttribute('language'))
 		this.interactive_map.markerclick = function(item)
 		{
 			show_item_visualizer(item)
@@ -237,12 +268,37 @@ class ActivityPOIComponent extends HTMLElement
 	 * */
 	static get observedAttributes()
 	{
-		return ['lat', 'lon', 'radius', 'categories', 'directions','language'];
+		return ['lat', 'lon', 'radius', 'categories', 'directions','language', 'show-current-location', 'marker-color'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
 	{
-
+		if (name === 'show-current-location' && this.interactive_map)
+		{
+			if (newVal !== null)
+			{
+				this.interactive_map.setAttribute('show-current-location', newVal)
+			}
+			else
+			{
+				this.interactive_map.removeAttribute('show-current-location')
+			}
+		}
+		if (name === 'marker-color' && this.interactive_map)
+		{
+			if (newVal !== null)
+			{
+				this.interactive_map.setAttribute('marker-color', newVal)
+			}
+			else
+			{
+				this.interactive_map.removeAttribute('marker-color')
+			}
+		}
+		if (name === 'language' && this.interactive_map)
+		{
+			this.interactive_map.setAttribute('lang', newVal)
+		}
 
 //		if (name === 'lat')
 //		{

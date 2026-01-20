@@ -62,5 +62,25 @@ window.strings = {
     "en":"LOADING",
     "it":"CARICAMENTO",
     "de":"WIRD GELADEN"
+  },
+  "current-location-label": {
+    "en": "Current location",
+    "it": "Posizione attuale",
+    "de": "Aktueller Standort"
+  },
+  "geolocation-not-supported": {
+    "en": "Geolocation is not supported by this browser.",
+    "it": "Geolocalizzazione non supportata dal browser.",
+    "de": "Geolokalisierung wird vom Browser nicht unterstützt."
+  },
+  "geolocation-permission-denied": {
+    "en": "Geolocation permission denied.",
+    "it": "Permesso geolocalizzazione negato.",
+    "de": "Geolokalisierungsberechtigung verweigert."
+  },
+  "geolocation-unavailable": {
+    "en": "Location unavailable.",
+    "it": "Posizione non disponibile.",
+    "de": "Standort nicht verfügbar."
   }
 }
