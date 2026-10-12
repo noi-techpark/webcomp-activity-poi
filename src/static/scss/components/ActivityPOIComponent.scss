@@ -19,13 +19,10 @@ html, body, #webcomponentsContainer {
   .activity-poi__language_picker {
     display: inline;
     position: absolute;
-    right: 16px;
-    z-index: 10000;
-    top: 80px;
-
-    @media only screen and (min-width: 768px) {
-      top: 16px;
-    }
+    /* Top-right corner; search panel keeps right padding so text never sits under it */
+    top: 12px;
+    right: 12px;
+    z-index: 100001;
   }
   
   #categoriesContainer {

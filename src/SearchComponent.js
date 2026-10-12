@@ -16,6 +16,12 @@ search_template.innerHTML = `
 
         <div class="mainContainer notShowingResults">
 
+    <div class="panelActions">
+      <button type="button" id="minimizeSearchButton" title="Minimize search" aria-label="Minimize search" hidden>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 320 512" width="14" height="14"><path fill="currentColor" d="M34.5 239L285.1 39.4c15.4-12.3 38.9-1.3 38.9 18.6v396c0 19.9-23.5 30.9-38.9 18.6L34.5 273c-11.9-9.5-11.9-28.5 0-34z"/></svg>
+      </button>
+    </div>
+
     <div class="searchBox">
      <input type="text">
      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="action svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
@@ -102,24 +108,76 @@ class SearchComponent extends HTMLElement
 		});
 
 		this.actionButton = this._shadowRoot.querySelector(".action");
+		this.minimizeButton = this._shadowRoot.querySelector("#minimizeSearchButton");
+		this._resultsCollapsed = false;
+		this._hasResultItems = false;
+
 		this.actionButton.addEventListener("click", function()
 		{
 			if (webcomponent.actionButton.classList.contains("fa-search"))
 			{
-				// webcomponent.doSearch(input.value)
+				if (webcomponent._resultsCollapsed && webcomponent._hasResultItems)
+				{
+					webcomponent.expandResults();
+					return;
+				}
 				webcomponent.on_search_text_changed(input.value)
 			}
 			else if (webcomponent.actionButton.classList.contains("fa-times"))
 			{
-				webcomponent.mainContainer.classList.remove("showingResults");
-				webcomponent.mainContainer.classList.add("notShowingResults");
-				webcomponent.actionButton.classList.remove("fa-times");
-				webcomponent.actionButton.classList.add("fa-search");
+				webcomponent.collapseResults();
 			}
 		})
 
+		this.minimizeButton.addEventListener("click", function()
+		{
+			webcomponent.collapseResults();
+		});
+
 		this.warningText = this._shadowRoot.querySelector(".warning p");
 
+	}
+
+	collapseResults()
+	{
+		this._resultsCollapsed = true;
+		this.mainContainer.classList.remove("showingResults");
+		this.mainContainer.classList.add("notShowingResults");
+		this.resultsContainer.style.display = "none";
+		this.actionButton.classList.remove("fa-times");
+		this.actionButton.classList.add("fa-search");
+		this.minimizeButton.hidden = true;
+		if (typeof this.onminimize === 'function')
+		{
+			this.onminimize();
+		}
+	}
+
+	expandResults()
+	{
+		if (!this._hasResultItems)
+		{
+			return;
+		}
+		this._resultsCollapsed = false;
+		this.resultsContainer.style.display = "block";
+		this.mainContainer.classList.remove("notShowingResults");
+		this.mainContainer.classList.add("showingResults");
+		this.actionButton.classList.remove("fa-search");
+		this.actionButton.classList.add("fa-times");
+		this.minimizeButton.hidden = false;
+		if (typeof this.onexpand === 'function')
+		{
+			this.onexpand();
+		}
+	}
+
+	updateMinimizeLabel(lang)
+	{
+		const safeLang = ['en', 'de', 'it'].indexOf(lang) >= 0 ? lang : 'en';
+		const label = strings['minimize-search'][safeLang];
+		this.minimizeButton.setAttribute('title', label);
+		this.minimizeButton.setAttribute('aria-label', label);
 	}
 
 	async on_search_text_changed(txt)
@@ -142,10 +200,17 @@ class SearchComponent extends HTMLElement
 			resultContainer.style.display = "none";
 			inputBox.style.borderColor = "#cc8d7b";
 			lensBox.style.borderColor = "#cc8d7b";
-			err.textContent = 'Almeno 3 caratteri';
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
+			err.textContent = strings['search-min-chars'][lang];
 
 			return
 		}
+		// New search should open results again after a minimize
+		this._resultsCollapsed = false;
 		this.search_text_changed(txt)
 	}
 
@@ -165,7 +230,7 @@ class SearchComponent extends HTMLElement
 			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
 			inputBox.placeholder = strings.search[lang];
 			this.warningText.textContent = window.strings['warning-filters'][lang];
-
+			this.updateMinimizeLabel(lang);
 		}
 		if (name == 'items')
 		{
@@ -179,6 +244,7 @@ class SearchComponent extends HTMLElement
 
 			this.resultsContainer.textContent = ''
 			let list = JSON.parse(newVal || '[]');
+			this._hasResultItems = true;
 
 			if (list.length == 0){
 				let noResultsDiv = document.createElement("div");
@@ -209,6 +275,10 @@ class SearchComponent extends HTMLElement
 			{
 				return function()
 				{
+					webcomponent._resultsCollapsed = false;
+					webcomponent.minimizeButton.hidden = true;
+					webcomponent.actionButton.classList.remove("fa-times");
+					webcomponent.actionButton.classList.add("fa-search");
 					webcomponent.mainContainer.classList.remove("showingResults");
 					webcomponent.mainContainer.classList.add("notShowingResults");
 					webcomponent.onresultclick(clickedItem)
@@ -216,9 +286,20 @@ class SearchComponent extends HTMLElement
 			})(item));
 		}
 
-			this.resultsContainer.style.display = "block";
-			this.mainContainer.classList.remove("notShowingResults");
-			this.mainContainer.classList.add("showingResults");
+			// Keep collapsed if the user minimized (e.g. language refresh must not trap them)
+			if (this._resultsCollapsed)
+			{
+				this.resultsContainer.style.display = "none";
+				this.mainContainer.classList.remove("showingResults");
+				this.mainContainer.classList.add("notShowingResults");
+				this.actionButton.classList.remove("fa-times");
+				this.actionButton.classList.add("fa-search");
+				this.minimizeButton.hidden = true;
+			}
+			else
+			{
+				this.expandResults();
+			}
 		}
 	}
 

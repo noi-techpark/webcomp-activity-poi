@@ -82,30 +82,21 @@ export class LanguagePicker extends LitElement {
         ? html` <div class="languagePicker__menu">
             <div
               class="languagePicker__menu__element"
-              @click=${() => {
-                this.changeLanguageAction(this.supportedLanguages.IT);
-                this.isOpen = false;
-              }}
+              @click=${() => this.selectLanguage(this.supportedLanguages.IT)}
             >
               <img src=${flagIt} alt="italiano" />
               ${this.supportedLanguages.IT.toUpperCase()}
             </div>
             <div
               class="languagePicker__menu__element"
-              @click=${() => {
-                this.changeLanguageAction(this.supportedLanguages.DE);
-                this.isOpen = false;
-              }}
+              @click=${() => this.selectLanguage(this.supportedLanguages.DE)}
             >
               <img src=${flagDe} alt="deutsch" />
               ${this.supportedLanguages.DE.toUpperCase()}
             </div>
             <div
               class="languagePicker__menu__element"
-              @click=${() => {
-                this.changeLanguageAction(this.supportedLanguages.EN);
-                this.isOpen = false;
-              }}
+              @click=${() => this.selectLanguage(this.supportedLanguages.EN)}
             >
               <img src=${flagEn} alt="english" />
               ${this.supportedLanguages.EN.toUpperCase()}
@@ -113,6 +104,20 @@ export class LanguagePicker extends LitElement {
           </div>`
         : ''}
     </div>`;
+  }
+
+  selectLanguage(language) {
+    this.isOpen = false;
+    if (typeof this.changeLanguageAction === 'function') {
+      this.changeLanguageAction(language);
+    }
+    this.dispatchEvent(
+      new CustomEvent('language-change', {
+        detail: { language },
+        bubbles: true,
+        composed: true
+      })
+    );
   }
 }
 

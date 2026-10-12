@@ -51,9 +51,6 @@ class InteractiveMapComponent extends HTMLElement
 	 * */
 	async connectedCallback()
 	{
-
-		console.log('map connected')
-
 		// dinamically load scripts, if not already added
 
 		let leaflet_js = document.querySelector('script[data-activity-poi-webcomponent-loaded]')

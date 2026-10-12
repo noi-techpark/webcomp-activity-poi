@@ -5,6 +5,7 @@
 import {
 	categoryThemeClass,
 	resolveItemMainCategoryId,
+	tagLabelById,
 	tourismUrl,
 	withOrigin
 } from './odhApi.js'
@@ -56,11 +57,12 @@ itemVisualizer_template.innerHTML = `
             <span id="ageFrom"></span>-<span id="ageTo"></span></p>
           </div>
 
-          <div class="informationInstance">
-            <p id="altitudeLabel" class="text"><b>Dislivello e altitudine</b><br>
-            Dislivello totale: <span id="altitudeDifference"></span> m<br>
-            Punto più basso: <span id="altitudeLowestPoint"></span> m<br>
-            Punto più alto: <span id="altitudeHighestPoint"></span> m</p>
+          <div class="informationInstance" id="altitudeBlock">
+            <p class="text">
+            <b id="altitudeLabel">Altitude</b><br>
+            <span id="altitudeTotalLabel">Total ascent</span>: <span id="altitudeDifference"></span> m<br>
+            <span id="altitudeLowestLabel">Lowest point</span>: <span id="altitudeLowestPoint"></span> m<br>
+            <span id="altitudeHighestLabel">Highest point</span>: <span id="altitudeHighestPoint"></span> m</p>
           </div>
 
           <div class="informationInstance">
@@ -112,8 +114,8 @@ itemVisualizer_template.innerHTML = `
         <span>
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
         <span id="phoneNumber"></span>
-        </p>
         </span>
+        </p>
       </div>
     </div>
   </div>
@@ -129,6 +131,20 @@ itemVisualizer_template.innerHTML = `
 
 
 
+function normalizeItemLang(value)
+{
+	let lang = (value || 'en').toLowerCase().trim();
+	if (lang === 'du' || lang === 'ger' || lang === 'ge')
+	{
+		lang = 'de';
+	}
+	if (['en', 'de', 'it'].indexOf(lang) < 0)
+	{
+		lang = 'en';
+	}
+	return lang;
+}
+
 class ItemVisualizerComponent extends HTMLElement
 {
 	constructor()
@@ -136,6 +152,9 @@ class ItemVisualizerComponent extends HTMLElement
 		super();
 
 		let thiswebcomponent = this
+
+		this._uiLang = 'en';
+		this._loadedItem = null;
 
 		this.attachShadow({ mode: 'open' });
 		this.shadowRoot.appendChild(itemVisualizer_template.content.cloneNode(true));
@@ -158,49 +177,76 @@ class ItemVisualizerComponent extends HTMLElement
 			}
 		});
 
-		this.mainContainer = this.querySelector(".mainContainer");
+		this.mainContainer = this.shadowRoot.querySelector(".mainContainer");
+		this.updateLabels(this.shadowRoot, this._uiLang);
 	}
 
 	/**
-	 * Functions to update the information displayed in the ItemVisualizerComponent:
-	 * - observedAttributes()
-	 * - attributeChangedCallback()
-	 * - get/set language()
-	 * - get/set apoiid()
-	 *
-	 * When the attributes 'apoiid','directions','language' are changed, the following happens:
-	 * - 'apoiid' (string): new data is retrieved from the ODH API and the obtained information is displayed
-	 * - 'directions' (boolean): the "Get directions" button is either displayed or hidden
-	 * - 'language' ('it','de','en'): new data is retrieved from the ODH API and the obtained information is displayed
-	 *
-	 * */
+	 * Attributes:
+	 * - apoiid: load activity/POI details from the Tourism API
+	 * - lang: UI + content language (en|de|it)
+	 */
 
 	static get observedAttributes()
 	{
-		return ['apoiid', 'lang'];
+		return ['apoiid', 'lang', 'directions'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
 	{
+		if (name === 'directions')
+		{
+			this.applyDirectionsVisibility();
+			return;
+		}
+
 		if (name === 'lang')
 		{
-			const openId = this.getAttribute('apoiid')
+			const lang = normalizeItemLang(newVal);
+			this._uiLang = lang;
+			this.updateLabels(this.shadowRoot, lang);
+			const openId = this.getAttribute('apoiid');
 			if (openId && oldVal !== newVal)
 			{
-				await this.loadItem(openId)
+				await this.loadItem(openId);
 			}
-			return
+			return;
 		}
 
 		if (name === 'apoiid' && newVal)
 		{
-			await this.loadItem(newVal)
+			await this.loadItem(newVal);
+		}
+	}
+
+	applyDirectionsVisibility()
+	{
+		const link = this.shadowRoot && this.shadowRoot.querySelector('a#directions');
+		if (!link)
+		{
+			return;
+		}
+		// Hide only when explicitly disabled; default remains visible
+		const disabled = (this.getAttribute('directions') || '').toLowerCase() === 'false';
+		link.style.display = disabled ? 'none' : '';
+	}
+
+	/** Keep UI language in sync even when the panel is closed. */
+	setLanguage(lang)
+	{
+		const next = normalizeItemLang(lang);
+		this._uiLang = next;
+		this.updateLabels(this.shadowRoot, next);
+		if (this.getAttribute('lang') !== next)
+		{
+			this.setAttribute('lang', next);
 		}
 	}
 
 	async loadItem(id)
 	{
-		let lang = this.getAttribute('lang') || 'en'
+		const lang = normalizeItemLang(this._uiLang || this.getAttribute('lang') || 'en');
+		this._uiLang = lang;
 
 		const params = withOrigin(new URLSearchParams())
 		let response = await fetch(tourismUrl('/v1/ODHActivityPoi/' + encodeURIComponent(id) + '?' + params.toString()))
@@ -210,10 +256,12 @@ class ItemVisualizerComponent extends HTMLElement
 			return
 		}
 		let item = await response.json()
+		this._loadedItem = item;
 
 		var root_element = this.shadowRoot;
+		// Labels first so writeItem never races with wiped altitude markup
+		this.updateLabels(root_element, lang);
 		this.writeItem(item, root_element, lang);
-		this.updateLabels(item, root_element, lang);
 
 		const themeClass = categoryThemeClass(resolveItemMainCategoryId(item))
 		root_element.querySelector('div.mainContainer').className = 'mainContainer ' + themeClass;
@@ -234,10 +282,12 @@ class ItemVisualizerComponent extends HTMLElement
 		root_element.querySelector('div#Title > p').innerHTML = detail.Title || '';
 		root_element.querySelector('div#description > p').innerHTML = detail.BaseText || '';
 
-		const categoryLabel = item.PoiType
+		const mainCategoryId = resolveItemMainCategoryId(item);
+		const categoryLabel = tagLabelById(mainCategoryId, lang)
+			|| item.PoiType
 			|| (item.Tags && item.Tags[0] && item.Tags[0].Name)
 			|| '';
-		root_element.querySelector('span#category').innerHTML = categoryLabel;
+		root_element.querySelector('span#category').textContent = categoryLabel;
 
 		if (!categoryLabel)
 		{
@@ -260,17 +310,18 @@ class ItemVisualizerComponent extends HTMLElement
 			root_element.querySelector('span#ageTo').parentElement.style.display = "block"
 		}
 
-		root_element.querySelector('span#altitudeDifference').innerHTML = item.AltitudeDifference; //oppure AltitudeSumUp?
-		root_element.querySelector('span#altitudeLowestPoint').innerHTML = item.AltitudeLowestPoint;
-		root_element.querySelector('span#altitudeHighestPoint').innerHTML = item.AltitudeHighestPoint;
+		root_element.querySelector('span#altitudeDifference').textContent = item.AltitudeDifference;
+		root_element.querySelector('span#altitudeLowestPoint').textContent = item.AltitudeLowestPoint;
+		root_element.querySelector('span#altitudeHighestPoint').textContent = item.AltitudeHighestPoint;
 
+		const altitudeBlock = root_element.querySelector('#altitudeBlock');
 		if (item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0)
 		{
-			root_element.querySelector('span#altitudeDifference').parentElement.style.display = "none"
+			altitudeBlock.style.display = 'none';
 		}
 		else
 		{
-			root_element.querySelector('span#altitudeDifference').parentElement.style.display = "block"
+			altitudeBlock.style.display = 'block';
 		}
 
 		const locationName = item.LocationInfo
@@ -308,16 +359,21 @@ class ItemVisualizerComponent extends HTMLElement
 		}
 	}
 
-	updateLabels(item, root_element, lang){
-		const safeLang = (lang && strings.information[lang]) ? lang : 'en';
-		root_element.querySelector('#itemInformation .infoTitleParagraph').innerHTML = strings["information"][safeLang];
-		root_element.querySelector('#itemDescription .infoTitleParagraph').innerHTML = strings["description"][safeLang];
-		root_element.querySelector('#categoryLabel').innerText = strings["category"][safeLang];
-		root_element.querySelector('#ageLabel').innerText = strings["suitable-age"][safeLang];
-		root_element.querySelector('#localityLabel').innerText = strings["locality"][safeLang];
-		root_element.querySelector('#itemContacts .infoTitleParagraph').innerText = strings["contacts"][safeLang];
-		root_element.querySelector('#altitudeLabel').innerText = strings["difference-altitude"][safeLang];
-		root_element.querySelector('a#directions').textContent = strings["get-directions"][safeLang];
+	updateLabels(root_element, lang)
+	{
+		const safeLang = normalizeItemLang(lang);
+		root_element.querySelector('#itemInformation .infoTitleParagraph').textContent = strings.information[safeLang];
+		root_element.querySelector('#itemDescription .infoTitleParagraph').textContent = strings.description[safeLang];
+		root_element.querySelector('#categoryLabel').textContent = strings.category[safeLang];
+		root_element.querySelector('#ageLabel').textContent = strings['suitable-age'][safeLang];
+		root_element.querySelector('#localityLabel').textContent = strings.locality[safeLang];
+		root_element.querySelector('#itemContacts .infoTitleParagraph').textContent = strings.contacts[safeLang];
+		root_element.querySelector('#altitudeLabel').textContent = strings['difference-altitude'][safeLang];
+		root_element.querySelector('#altitudeTotalLabel').textContent = strings['altitude-total'][safeLang];
+		root_element.querySelector('#altitudeLowestLabel').textContent = strings['altitude-lowest'][safeLang];
+		root_element.querySelector('#altitudeHighestLabel').textContent = strings['altitude-highest'][safeLang];
+		root_element.querySelector('a#directions').textContent = strings['get-directions'][safeLang];
+		this.applyDirectionsVisibility();
 
 		const minimizeBtn = root_element.querySelector('#minimizebutton');
 		const closeBtn = root_element.querySelector('#closebutton');

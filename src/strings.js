@@ -33,6 +33,21 @@ window.strings = {
     "it": "Altitudine",
     "de": "Höhe"
   },
+  "altitude-total": {
+    "en": "Total ascent",
+    "it": "Dislivello totale",
+    "de": "Gesamter Anstieg"
+  },
+  "altitude-lowest": {
+    "en": "Lowest point",
+    "it": "Punto più basso",
+    "de": "Tiefster Punkt"
+  },
+  "altitude-highest": {
+    "en": "Highest point",
+    "it": "Punto più alto",
+    "de": "Höchster Punkt"
+  },
   "locality": {
     "en": "Locality",
     "it": "Località",
@@ -57,6 +72,11 @@ window.strings = {
     "en": "Search",
     "it": "Cerca",
     "de": "Suchen"
+  },
+  "search-min-chars": {
+    "en": "Enter at least 3 characters",
+    "it": "Almeno 3 caratteri",
+    "de": "Mindestens 3 Zeichen eingeben"
   },
   "loading":{
     "en":"LOADING",
@@ -87,6 +107,16 @@ window.strings = {
     "en": "Minimize panel",
     "it": "Riduci pannello",
     "de": "Panel minimieren"
+  },
+  "minimize-search": {
+    "en": "Minimize search",
+    "it": "Riduci ricerca",
+    "de": "Suche minimieren"
+  },
+  "expand-search": {
+    "en": "Show search results",
+    "it": "Mostra risultati",
+    "de": "Suchergebnisse anzeigen"
   },
   "expand-panel": {
     "en": "Show details",

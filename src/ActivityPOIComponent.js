@@ -80,8 +80,6 @@ class ActivityPOIComponent extends HTMLElement
         mode: 'open'
       });
 
-		console.log('activity poi constructor')
-
 		this.last_search = '';
 		this.last_subcategories = '';
 		this._searchSeq = 0;
@@ -115,11 +113,7 @@ class ActivityPOIComponent extends HTMLElement
 	{
 		let thiswebcomponent = this
 
-		console.log('activity poi connect')
-		console.log(this.shadowRoot)
-
 		let content = activityPOI_template.content.cloneNode(true)
-		console.log(content)
 
 		//
 		// categories-choice
@@ -151,6 +145,11 @@ class ActivityPOIComponent extends HTMLElement
 		let item_visualizer = content.querySelector('item-visualizer');
 		// forward attributes
 		item_visualizer.setAttribute('lang', currentLang)
+		if (this.getAttribute('directions') !== null)
+		{
+			item_visualizer.setAttribute('directions', this.getAttribute('directions'))
+		}
+		this.item_visualizer = item_visualizer;
 		let itemContainer = content.querySelector('#itemContainer');
 		let searchContainer = content.querySelector('#searchContainer');
 		let restoreTab = content.querySelector('#itemRestoreTab');
@@ -185,7 +184,27 @@ class ActivityPOIComponent extends HTMLElement
 
 		function show_item_visualizer(item)
 		{
-			item_visualizer.setAttribute('apoiid', item.Id);
+			const lang = normalizeLanguage(thiswebcomponent.getAttribute('language'));
+			// Always sync UI language before loading details (prevents stuck German labels)
+			if (typeof item_visualizer.setLanguage === 'function')
+			{
+				item_visualizer.setLanguage(lang);
+			}
+			else
+			{
+				item_visualizer.setAttribute('lang', lang);
+			}
+
+			const currentId = item_visualizer.getAttribute('apoiid');
+			if (currentId === item.Id)
+			{
+				item_visualizer.loadItem(item.Id);
+			}
+			else
+			{
+				item_visualizer.setAttribute('apoiid', item.Id);
+			}
+
 			searchContainer.style.display = "none";
 			expandItemPanel();
 
@@ -297,15 +316,76 @@ class ActivityPOIComponent extends HTMLElement
 		const active = normalizeLanguage(lang);
 		this.languagePicker.supportedLanguages = LANGUAGES;
 		this.languagePicker.language = active;
-		this.languagePicker.changeLanguageAction = function (language)
+
+		const applyLanguage = function (language)
 		{
 			const nextLang = normalizeLanguage(language);
 			if (normalizeLanguage(thiswebcomponent.getAttribute('language')) === nextLang)
 			{
+				// Still push lang to children in case they drifted
+				thiswebcomponent.applyLanguageToChildren(nextLang);
 				return;
 			}
 			thiswebcomponent.setAttribute('language', nextLang);
 		};
+
+		this.languagePicker.changeLanguageAction = applyLanguage;
+
+		if (!this._languageChangeBound)
+		{
+			this._languageChangeBound = true;
+			this.languagePicker.addEventListener('language-change', function (event)
+			{
+				if (event && event.detail && event.detail.language)
+				{
+					applyLanguage(event.detail.language);
+				}
+			});
+		}
+	}
+
+	applyLanguageToChildren(lang)
+	{
+		const safeLang = normalizeLanguage(lang);
+		if (this.interactive_map)
+		{
+			this.interactive_map.setAttribute('lang', safeLang);
+		}
+		const categoriesChoice = this.shadowRoot && this.shadowRoot.querySelector('categories-choice');
+		if (categoriesChoice)
+		{
+			categoriesChoice.setAttribute('lang', safeLang);
+		}
+		if (this.search_items)
+		{
+			this.search_items.setAttribute('lang', safeLang);
+			const currentItems = this.search_items.getAttribute('items');
+			if (currentItems)
+			{
+				this.search_items.setAttribute('items', currentItems);
+			}
+		}
+		if (this.item_visualizer)
+		{
+			if (typeof this.item_visualizer.setLanguage === 'function')
+			{
+				this.item_visualizer.setLanguage(safeLang);
+			}
+			else
+			{
+				this.item_visualizer.setAttribute('lang', safeLang);
+			}
+		}
+		if (this.loadingText)
+		{
+			this.loadingText.textContent = strings.loading[safeLang];
+		}
+		if (this.restoreLabel && this.restoreTab && !this.restoreTab.hidden)
+		{
+			this.restoreLabel.textContent = strings['expand-panel'][safeLang];
+			this.restoreTab.setAttribute('aria-label', strings['expand-panel'][safeLang]);
+			this.restoreTab.setAttribute('title', strings['expand-panel'][safeLang]);
+		}
 	}
 
 
@@ -425,40 +505,17 @@ class ActivityPOIComponent extends HTMLElement
 			{
 				this.languagePicker.language = lang;
 			}
-
-			if (this.interactive_map)
+			this.applyLanguageToChildren(lang);
+		}
+		if (name === 'directions' && this.item_visualizer)
+		{
+			if (newVal !== null)
 			{
-				this.interactive_map.setAttribute('lang', lang)
+				this.item_visualizer.setAttribute('directions', newVal);
 			}
-			const categoriesChoice = this.shadowRoot && this.shadowRoot.querySelector('categories-choice')
-			if (categoriesChoice)
+			else
 			{
-				categoriesChoice.setAttribute('lang', lang)
-			}
-			if (this.search_items)
-			{
-				this.search_items.setAttribute('lang', lang)
-				// Re-apply items so titles refresh in the new language
-				const currentItems = this.search_items.getAttribute('items')
-				if (currentItems)
-				{
-					this.search_items.setAttribute('items', currentItems)
-				}
-			}
-			const itemVisualizer = this.shadowRoot && this.shadowRoot.querySelector('item-visualizer')
-			if (itemVisualizer)
-			{
-				itemVisualizer.setAttribute('lang', lang)
-			}
-			if (this.loadingText)
-			{
-				this.loadingText.textContent = strings.loading[lang];
-			}
-			if (this.restoreLabel && this.restoreTab && !this.restoreTab.hidden)
-			{
-				this.restoreLabel.textContent = strings['expand-panel'][lang];
-				this.restoreTab.setAttribute('aria-label', strings['expand-panel'][lang]);
-				this.restoreTab.setAttribute('title', strings['expand-panel'][lang]);
+				this.item_visualizer.removeAttribute('directions');
 			}
 		}
 		if ((name === 'categories' || name === 'category-filter') && this.shadowRoot)

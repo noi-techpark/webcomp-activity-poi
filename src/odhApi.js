@@ -155,13 +155,17 @@ export function tagParentId(tag)
 
 /** parent_id lookup used to resolve L2/L3 tags back to a main category icon */
 let tagParentById = null;
+/** Full Tag objects by Id (for localized labels after the one Tag fetch) */
+let tagsById = null;
 
 function rememberTagParents(allTags)
 {
 	const parents = Object.create(null);
+	const byId = Object.create(null);
 	for (let i = 0; i < allTags.length; i++)
 	{
 		const tag = allTags[i];
+		byId[tag.Id] = tag;
 		const parentId = tagParentId(tag);
 		if (parentId)
 		{
@@ -173,10 +177,26 @@ function rememberTagParents(allTags)
 		{
 			parents[treeId] = parentId;
 		}
+		if (treeId && !byId[treeId])
+		{
+			byId[treeId] = tag;
+		}
 	}
 	// traffic and transport children live under mobility
 	parents.mobility = 'traffic and transport';
 	tagParentById = parents;
+	tagsById = byId;
+}
+
+/** Localized TagName for a Tag Id from the cached Tag fetch. */
+export function tagLabelById(tagId, lang)
+{
+	if (!tagId || !tagsById)
+	{
+		return '';
+	}
+	const tag = tagsById[tagId];
+	return tag ? tagLabel(tag, lang) : '';
 }
 
 /**
@@ -221,6 +241,8 @@ function mainCategoryFromTagId(tagId)
 
 /**
  * Fetch all odhactivitypoi tags needed to build the category tree (one request).
+ * Intentionally no rawfilter on parent_id: main categories have null parent_id
+ * and must be included to build L1 → L2 → L3.
  */
 export async function fetchActivityPoiTags()
 {
