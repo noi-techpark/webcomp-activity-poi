@@ -2,388 +2,404 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-const categoriesChoice_template = document.createElement('template');
 import categoriesStyle from './static/scss/components/categories.scss';
 import themeStyle from './static/scss/theme.scss';
-import atomsStyle from './static/scss/atoms.scss'
+import atomsStyle from './static/scss/atoms.scss';
+import {
+	buildCategoryTree,
+	categoryIconUrl,
+	fetchActivityPoiTags,
+	parseCommaList,
+	resolveMainCategories,
+	tagLabel
+} from './odhApi.js';
 
+const categoriesChoice_template = document.createElement('template');
 
 categoriesChoice_template.innerHTML = `
-    <div class="categoriesContainer">
-        <div class="dropdownCategory">
-            <div class="category">
-            <img class="categoryImage" src="/img/category_icons/Kultur Sehenswuerdigkeiten.svg" alt="img_alt">
-            </div>
-            <div class="subCategory">
-            <p>Culture and Attractions</p>
-            <div class="subCategoryItem">
-                <input type="checkbox" id="museums" name="museums" value="museums">
-                <label for="museums">Museums</label>
-            </div>
-            </div>
-        </div>
-      </div>
-      
-      <style>
-	  	${categoriesStyle}
+	<div class="categoriesContainer">
+		<div class="dropdownCategory">
+			<div class="category">
+				<img class="categoryImage" src="" alt="">
+			</div>
+			<div class="subCategory">
+				<p class="subCategoryTitle"></p>
+				<div class="subCategoryItem">
+					<input type="checkbox">
+					<label></label>
+					<div class="subCategoryLevel3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		${categoriesStyle}
 		${themeStyle}
 		${atomsStyle}
-      </style>
+	</style>
 `;
 
-
-
-
-class CategoriesChoiceComponent extends HTMLElement {
-
-
-
-	constructor() {
+class CategoriesChoiceComponent extends HTMLElement
+{
+	constructor()
+	{
 		super();
-
 		this.attachShadow({ mode: 'open' });
-
-		//		this._shadowRoot = this.attachShadow(
-		//		{
-		//			mode: 'open'
-		//		});
-		//		this._shadowRoot.appendChild(categoriesChoice_template.content.cloneNode(true));
-		//
-		//		//this.$categoriesInformation = [{"categoryID":1,"category-name":{"EN":"museum","IT":"museo"},"category-icon":"directory","category-color":"#ff8360"}];
-		//		//this.$activeCategories = {1:false};
-		//
-		//		this.$area1 = this._shadowRoot.querySelector('#categories');
-		//		this.$area2 = this._shadowRoot.querySelector('#active');
-		//
-		//		this.$checkbox = this._shadowRoot.querySelector('#checkbox');
-		//
-		//
-		//		this.$category_template = this._shadowRoot.querySelector('div.dropdownCategory');
-		//		this.$category_parent = this.$category_template.parentElement
-		//
-		//		this.$sub_category_template = this.$category_template.querySelector('div.subCategoryItem')
-		//		this.$sub_category_parent = this.$sub_category_template.parentElement
-		//
-		//		this.odhtagfilter = ',';
-
-		this.odhtagfilter = ',';
+		this.selectedTagIds = new Set();
+		// Do not initialize oncategorychange here: the host may assign the
+		// callback before upgrade, and a null write in the constructor would wipe it.
 	}
 
-	setup_categories(types, category_template, category_parent, lang, category_has_subcat_selected) {
-		for (let i = 0; i < types.length; i++) {
-			let type = types[i]
-			if (type.Type != 'Type')
-				continue;
+	static get observedAttributes()
+	{
+		return ['lang', 'categories', 'category-filter'];
+	}
 
-			// console.log(type.Id)
-
-			category_has_subcat_selected.push(0)
-
-			let category = category_template.cloneNode(true)
-			category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang] // + ' #' + type.Id
-			let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc[lang].replace(/ .*/, '');
-			// console.log(subCategoryTitle)
-			category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
-			category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
-
-			let imageFileName = type.Key.trim().replace(/[^a-z]/gi, '_')
-			console.log(type);
-
-			category.querySelector('img.categoryImage').src = paths.img_category_icons + "category_icons_" + imageFileName + ".png"
-
-			let sub_category_template = category.querySelector('div.subCategoryItem')
-			let sub_category_parent = sub_category_template.parentElement
-			sub_category_template.remove()
-
-			let sub_number = this.setup_subcategories(types, type, sub_category_template, sub_category_parent, lang, category, category_has_subcat_selected, category_has_subcat_selected.length - 1)
-
-			// if there aren't subcategories - because filtered - then don't add category
-			if (sub_number !== 0)
-				category_parent.appendChild(category)
+	emitFilter()
+	{
+		const filter = Array.from(this.selectedTagIds).join(',');
+		if (typeof this.oncategorychange === 'function')
+		{
+			this.oncategorychange(filter);
 		}
 	}
 
-	setup_subcategories(types, type, sub_category_template, sub_category_parent, lang, category, category_has_subcat_selected, cat_index) {
-		let sub_number = 0;
-
-		let category_filter = this.getAttribute('category-filter')
-
-		// console.log(category_filter)
-
-		for (let j = 0; j < types.length; j++) {
-			let subtype = types[j]
-			if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
-				continue;
-
-			let skip = false
-			if (category_filter !== null)
-				if ((',' + category_filter + ',').indexOf(',' + type.Id + '/' + subtype.Id + ',') < 0 && (',' + category_filter + ',').indexOf(',' + type.Id /* + '/*' */ + ',') < 0)
-					skip = true;
-
-			if (skip)
-				continue;
-
-			// console.log(type.Id + '/' + subtype.Id + '|')
-			sub_number++;
-
-			let sub_category = sub_category_template.cloneNode(true)
-
-			sub_category.querySelector('label').textContent = subtype.TypeDesc[lang] // + ' #' + subtype.Id
-			sub_category_parent.appendChild(sub_category)
-			this.setup_subcategory_click(sub_category, category, category_has_subcat_selected, cat_index, subtype)
+	toggleTag(tagId, checked, categoryEl, selectedCountRef)
+	{
+		if (checked)
+		{
+			this.selectedTagIds.add(tagId);
+			if (selectedCountRef.value === 0)
+			{
+				categoryEl.classList.add('selected');
+			}
+			selectedCountRef.value++;
 		}
-
-		return sub_number
+		else
+		{
+			this.selectedTagIds.delete(tagId);
+			selectedCountRef.value = Math.max(0, selectedCountRef.value - 1);
+			if (selectedCountRef.value === 0)
+			{
+				categoryEl.classList.remove('selected');
+			}
+		}
+		this.emitFilter();
 	}
 
-	setup_subcategory_click(sub_category, category, category_has_subcat_selected, cat_index, subtype) {
-		let thiswebcomponent = this
+	isAllowedByFilter(tagId, categoryFilter)
+	{
+		if (!categoryFilter || categoryFilter.length === 0)
+		{
+			return true;
+		}
+		return categoryFilter.indexOf(tagId) >= 0;
+	}
 
-		sub_category.querySelector('input').addEventListener('click', function () {
-			console.log(this)
-			if (this.checked) {
-				if (category_has_subcat_selected[cat_index] == 0)
-					category.classList.add('selected')
-				category_has_subcat_selected[cat_index]++
-				thiswebcomponent.odhtagfilter += subtype.Id + ','
+	/**
+	 * A L2 node is shown if it or any of its L3 children is allowed,
+	 * or if its parent main category id is listed in category-filter.
+	 */
+	filterLevel2Nodes(level2Nodes, mainId, categoryFilter)
+	{
+		if (!categoryFilter || categoryFilter.length === 0)
+		{
+			return level2Nodes;
+		}
+		if (categoryFilter.indexOf(mainId) >= 0)
+		{
+			return level2Nodes;
+		}
+		const result = [];
+		for (let i = 0; i < level2Nodes.length; i++)
+		{
+			const node = level2Nodes[i];
+			const l2Id = node.tag.Id;
+			const allowedL3 = (node.children || []).filter(function (child)
+			{
+				return categoryFilter.indexOf(child.Id) >= 0;
+			});
+			if (categoryFilter.indexOf(l2Id) >= 0)
+			{
+				result.push({
+					tag: node.tag,
+					children: node.children
+				});
 			}
-			else {
-				category_has_subcat_selected[cat_index]--
-				if (category_has_subcat_selected[cat_index] == 0)
-					category.classList.remove('selected')
-				thiswebcomponent.odhtagfilter = thiswebcomponent.odhtagfilter.replace(',' + subtype.Id + ',', ',')
+			else if (allowedL3.length > 0)
+			{
+				result.push({
+					tag: node.tag,
+					children: allowedL3
+				});
 			}
-			// document.title = (thiswebcomponent.odhtagfilter.slice(1, -1))
-			thiswebcomponent.oncategorychange(thiswebcomponent.odhtagfilter.slice(1, -1))
+		}
+		return result;
+	}
+
+	setupCheckbox(input, label, tag, lang, categoryEl, selectedCountRef)
+	{
+		const checkboxId = 'tag-' + tag.Id.replace(/\s+/g, '-');
+		input.id = checkboxId;
+		input.name = tag.Id;
+		input.value = tag.Id;
+		label.setAttribute('for', checkboxId);
+		label.textContent = tagLabel(tag, lang);
+
+		const thiswebcomponent = this;
+		input.addEventListener('change', function ()
+		{
+			thiswebcomponent.toggleTag(tag.Id, input.checked, categoryEl, selectedCountRef);
 		});
 	}
 
-	async connectedCallback() {
+	renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter)
+	{
+		for (let i = 0; i < tree.length; i++)
+		{
+			const mainNode = tree[i];
+			const mainTag = mainNode.tag;
+			const level2Nodes = this.filterLevel2Nodes(mainNode.children || [], mainTag.Id, categoryFilter);
 
-		let content = categoriesChoice_template.content.cloneNode(true)
+			if (level2Nodes.length === 0 && categoryFilter && categoryFilter.length > 0
+				&& categoryFilter.indexOf(mainTag.Id) < 0)
+			{
+				continue;
+			}
 
-		let category_template = content.querySelector('div.dropdownCategory');
-		let category_parent = category_template.parentElement
-		category_template.remove()
+			const category = categoryTemplate.cloneNode(true);
+			const titleEl = category.querySelector('.subCategoryTitle');
+			titleEl.textContent = tagLabel(mainTag, lang);
+			titleEl.classList.add('subCategoryTitle-' + mainTag.Id.replace(/\s+/g, '-'));
 
-		this.shadowRoot.appendChild(content)
+			const img = category.querySelector('img.categoryImage');
+			img.alt = tagLabel(mainTag, lang);
+			img.src = categoryIconUrl(mainTag.Id);
 
-		let lang = this.getAttribute('lang')
+			const itemTemplate = category.querySelector('div.subCategoryItem');
+			const itemParent = itemTemplate.parentElement;
+			itemTemplate.remove();
 
-		let response = await fetch(/* paths.data + 'poi-types.json' */ 'https://tourism.opendatahub.com/v1/ODHActivityPoiTypes?origin=webcomp-activity-poi')
-		let types = await response.json()
+			const selectedCountRef = { value: 0 };
+			let renderedCount = 0;
 
-		let category_has_subcat_selected = []
+			for (let j = 0; j < level2Nodes.length; j++)
+			{
+				const l2Node = level2Nodes[j];
+				const l2Item = itemTemplate.cloneNode(true);
+				const l2Input = l2Item.querySelector('input');
+				const l2Label = l2Item.querySelector('label');
+				const l3Container = l2Item.querySelector('.subCategoryLevel3');
+				l3Container.textContent = '';
 
-		this.setup_categories(types, category_template, category_parent, lang, category_has_subcat_selected)
+				this.setupCheckbox(l2Input, l2Label, l2Node.tag, lang, category, selectedCountRef);
 
+				const l3Children = l2Node.children || [];
+				for (let k = 0; k < l3Children.length; k++)
+				{
+					const l3Tag = l3Children[k];
+					if (categoryFilter && categoryFilter.length > 0
+						&& categoryFilter.indexOf(mainTag.Id) < 0
+						&& categoryFilter.indexOf(l2Node.tag.Id) < 0
+						&& categoryFilter.indexOf(l3Tag.Id) < 0)
+					{
+						continue;
+					}
+					const l3Item = document.createElement('div');
+					l3Item.className = 'subCategoryItem nested';
+					const l3Input = document.createElement('input');
+					l3Input.type = 'checkbox';
+					const l3Label = document.createElement('label');
+					l3Item.appendChild(l3Input);
+					l3Item.appendChild(l3Label);
+					l3Container.appendChild(l3Item);
+					this.setupCheckbox(l3Input, l3Label, l3Tag, lang, category, selectedCountRef);
+				}
 
-		//		// alert(2)
-		//
-		//		let lang = 'it' // this.getAttribute('lang');
-		//
-		//		// alert(lang)
-		//
-		//		let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
-		//		let category_parent = category_template.parentElement
-		//		category_template.remove()
-		//
-		//		//let types = this.categoriesinformation;
-		//
-		//		let response = await fetch(paths.data + 'poi-types.json')
-		//		let types = await response.json()
-		//
-		//		let thiswebcomponent = this
-		//
-		//		let category_has_subcat_selected = []
-		//
-		//		let cat_sub_filter = '' // ',kultur sehenswürdigkeiten,museen,'
-		//
-		//		if (types != null)
-		//		{
-		//			//Types
-		//			for (let i = 0; i < types.length; i++)
-		//			{
-		//				let type = types[i]
-		//				if (type.Type != 'Type')
-		//					continue;
-		//
-		//				// exclude categories not in filter
-		//				if (cat_sub_filter != '' && cat_sub_filter.indexOf(',' + type.Id + ',') < 0)
-		//					continue;
-		//
-		//
-		//				category_has_subcat_selected.push(0)
-		//
-		//				console.log(type.Id)
-		//				// console.log(type.TypeDesc[lang])
-		//
-		//				let category = category_template.cloneNode(true)
-		//				category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang] // + ' #' + type.Id
-		//				let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc["de"].replace(/ .*/, '');
-		//				console.log(subCategoryTitle)
-		//				category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
-		//				category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
-		//				let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
-		//				imageFileName = imageFileName.replace(/\u00f6/g, "oe")
-		//				imageFileName = imageFileName.replace(/\u00fc/g, "ue")
-		//				imageFileName = imageFileName.replace(/\u00c4/g, "Ae")
-		//				imageFileName = imageFileName.replace(/\u00d6/g, "Oe")
-		//				imageFileName = imageFileName.replace(/\u00dc/g, "Ue")
-		//				imageFileName = imageFileName.trim()
-		//				category.querySelector('img.categoryImage').src = paths.img_category_icons + imageFileName + ".png"
-		//				category_parent.appendChild(category)
-		//
-		//				let sub_category_template = category.querySelector('div.subCategoryItem')
-		//				let sub_category_parent = sub_category_template.parentElement
-		//				sub_category_template.remove()
-		//
-		//				for (let j = 0; j < types.length; j++)
-		//				{
-		//					let subtype = types[j]
-		//					if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
-		//						continue;
-		//
-		//					// exclude categories not in filter
-		//					if (cat_sub_filter != '' && cat_sub_filter.indexOf(',' + subtype.Id + ',') < 0)
-		//						continue;
-		//
-		//					console.log('   ' + subtype.Id)
-		//					let sub_category = sub_category_template.cloneNode(true)
-		//					sub_category.querySelector('label').textContent = subtype.TypeDesc[lang] // + ' #' + subtype.Id
-		//					sub_category.querySelector('input').addEventListener('click',
-		//						(function(type_Bitmask, Subtype_Bitmask, inputElement, subtype_Id, category_has_subcat_selected_idx, category)
-		//						{
-		//							return function()
-		//							{
-		//								if (inputElement.checked)
-		//								{
-		//									thiswebcomponent.odhtagfilter += subtype_Id + ','
-		//									category_has_subcat_selected[category_has_subcat_selected_idx]++
-		//									category.classList.add('selected')
-		//								}
-		//								else
-		//								{
-		//									thiswebcomponent.odhtagfilter = thiswebcomponent.odhtagfilter.replace(',' + subtype_Id + ',', ',')
-		//									category_has_subcat_selected[category_has_subcat_selected_idx]--
-		//									if (category_has_subcat_selected[category_has_subcat_selected_idx] == 0)
-		//										category.classList.remove('selected')
-		//								}
-		//
-		//								document.title = (thiswebcomponent.odhtagfilter.slice(1, -1))
-		//								// alert(thiswebcomponent.odhtagfilter)
-		//								thiswebcomponent.oncategorychange(thiswebcomponent.odhtagfilter.slice(1, -1))
-		//							};
-		//						})(type.Bitmask, subtype.Bitmask, sub_category.querySelector('input'), subtype.Id, category_has_subcat_selected.length - 1, category))
-		//					sub_category_parent.appendChild(sub_category)
-		//				}
-		//			}
-		//
-		//			let subCat = document.querySelectorAll('div.subCategory');
-		//			for (let j = 0; j < subCat.length / 2; j++)
-		//			{
-		//				subCat[j].classList.add('subCategoryLeft');
-		//				console.log(subCat[j].classList)
-		//			}
-		//			for (let j = subCat.length / 2; j < subCat.length; j++)
-		//			{
-		//				subCat[j].classList.add('subCategoryRight');
-		//			}
-		//		}
+				itemParent.appendChild(l2Item);
+				renderedCount++;
+			}
 
+			// Main category with no L2 (e.g. rare): still show a checkbox for the main tag itself
+			if (renderedCount === 0)
+			{
+				const mainItem = itemTemplate.cloneNode(true);
+				const mainInput = mainItem.querySelector('input');
+				const mainLabel = mainItem.querySelector('label');
+				mainItem.querySelector('.subCategoryLevel3').remove();
+				this.setupCheckbox(mainInput, mainLabel, mainTag, lang, category, selectedCountRef);
+				itemParent.appendChild(mainItem);
+				renderedCount++;
+			}
 
+			if (renderedCount > 0)
+			{
+				categoryParent.appendChild(category);
+			}
+		}
+
+		// Position left/right flyouts
+		const subCats = categoryParent.querySelectorAll('div.subCategory');
+		const half = Math.ceil(subCats.length / 2);
+		for (let j = 0; j < subCats.length; j++)
+		{
+			subCats[j].classList.add(j < half ? 'subCategoryLeft' : 'subCategoryRight');
+		}
+
+		this.setupStickyCategoryMenus(categoryParent);
 	}
 
-	//TODO: categories are appended
-	async attributeChangedCallback(name, oldVal, newVal) {
-		console.log(name);
+	/**
+	 * Keep a category submenu open while the user moves to it (important on
+	 * small screens where the panel is position:fixed away from the icon).
+	 * Close only when another category icon is hovered/tapped, or on outside click.
+	 */
+	setupStickyCategoryMenus(categoryParent)
+	{
+		const thiswebcomponent = this;
+		const categories = categoryParent.querySelectorAll('div.dropdownCategory');
 
-		//		if (name == 'language')
-		//		{
-		//
-		//
-		//			alert(1)
-		//			console.log(newVal);
-		//			let lang = newVal;
-		//
-		//			let category_template = this._shadowRoot.querySelector('div.dropdownCategory');
-		//			let category_parent = category_template.parentElement
-		//			category_template.remove()
-		//
-		//			//let types = this.categoriesinformation;
-		//
-		//			let response = await fetch('poi-types.json')
-		//			let types = await response.json()
-		//
-		//			let thiswebcomponent = this
-		//
-		//			if (types != null)
-		//			{
-		//				//Types
-		//				for (let i = 0; i < types.length; i++)
-		//				{
-		//					let type = types[i]
-		//					if (type.Type != 'Type')
-		//						continue;
-		//
-		//					console.log(type.Key)
-		//					console.log(type.TypeDesc[lang])
-		//
-		//					let category = category_template.cloneNode(true)
-		//					category.querySelector('div.subCategory > p').textContent = type.TypeDesc[lang]
-		//					let subCategoryTitle = 'subCategoryTitle' + type.TypeDesc["de"].replace(/ .*/, '');
-		//					console.log(subCategoryTitle)
-		//					category.querySelector('div.subCategory > p').classList.add(subCategoryTitle);
-		//					category.querySelector('img.categoryImage').alt = type.TypeDesc[lang]
-		//					let imageFileName = type.TypeDesc["de"].replace(/\u00e4/g, "ae")
-		//					imageFileName = imageFileName.replace(/\u00f6/g, "oe")
-		//					imageFileName = imageFileName.replace(/\u00fc/g, "ue")
-		//					imageFileName = imageFileName.replace(/\u00c4/g, "Ae")
-		//					imageFileName = imageFileName.replace(/\u00d6/g, "Oe")
-		//					imageFileName = imageFileName.replace(/\u00dc/g, "Ue")
-		//					imageFileName = imageFileName.trim()
-		//					category.querySelector('img.categoryImage').src = paths.img_category_icons + imageFileName + ".png"
-		//					category_parent.appendChild(category)
-		//
-		//					let sub_category_template = category.querySelector('div.subCategoryItem')
-		//					let sub_category_parent = sub_category_template.parentElement
-		//					sub_category_template.remove()
-		//
-		//					for (let j = 0; j < types.length; j++)
-		//					{
-		//						let subtype = types[j]
-		//						if (subtype.Type != 'SubType' || subtype.Parent != type.Key)
-		//							continue;
-		//						// console.log(subtype)
-		//						let sub_category = sub_category_template.cloneNode(true)
-		//						sub_category.querySelector('label').textContent = subtype.TypeDesc[lang]
-		//						sub_category.querySelector('input').addEventListener('click',
-		//							(function(type_Bitmask, Subtype_Bitmask, inputElement)
-		//							{
-		//								return function()
-		//								{
-		//									thiswebcomponent.oncategorychange(type_Bitmask, Subtype_Bitmask, inputElement.checked)
-		//								};
-		//							})(type.Bitmask, subtype.Bitmask, sub_category.querySelector('input')))
-		//						sub_category_parent.appendChild(sub_category)
-		//					}
-		//				}
-		//
-		//				let subCat = document.querySelectorAll('div.subCategory');
-		//				for (let j = 0; j < subCat.length / 2; j++)
-		//				{
-		//					subCat[j].classList.add('subCategoryLeft');
-		//					console.log(subCat[j].classList)
-		//				}
-		//				for (let j = subCat.length / 2; j < subCat.length; j++)
-		//				{
-		//					subCat[j].classList.add('subCategoryRight');
-		//				}
-		//			}
-		//		}
+		function openCategory(categoryEl)
+		{
+			for (let i = 0; i < categories.length; i++)
+			{
+				categories[i].classList.toggle('is-open', categories[i] === categoryEl);
+			}
+		}
+
+		function closeAll()
+		{
+			for (let i = 0; i < categories.length; i++)
+			{
+				categories[i].classList.remove('is-open');
+			}
+		}
+
+		thiswebcomponent._closeAllCategoryMenus = closeAll;
+
+		for (let i = 0; i < categories.length; i++)
+		{
+			const categoryEl = categories[i];
+			const trigger = categoryEl.querySelector('div.category');
+			const submenu = categoryEl.querySelector('div.subCategory');
+
+			if (trigger)
+			{
+				trigger.addEventListener('mouseenter', function ()
+				{
+					openCategory(categoryEl);
+				});
+				trigger.addEventListener('click', function (event)
+				{
+					// Touch / small screens: tap icon to open and keep open
+					event.stopPropagation();
+					openCategory(categoryEl);
+				});
+			}
+
+			if (submenu)
+			{
+				submenu.addEventListener('mouseenter', function ()
+				{
+					openCategory(categoryEl);
+				});
+				submenu.addEventListener('click', function (event)
+				{
+					event.stopPropagation();
+				});
+			}
+		}
+
+		if (!thiswebcomponent._categoryOutsideClickBound)
+		{
+			thiswebcomponent._categoryOutsideClickBound = function (event)
+			{
+				const path = event.composedPath ? event.composedPath() : [];
+				for (let i = 0; i < path.length; i++)
+				{
+					const node = path[i];
+					if (node && node.classList && node.classList.contains('dropdownCategory'))
+					{
+						return;
+					}
+				}
+				if (typeof thiswebcomponent._closeAllCategoryMenus === 'function')
+				{
+					thiswebcomponent._closeAllCategoryMenus();
+				}
+			};
+			document.addEventListener('click', thiswebcomponent._categoryOutsideClickBound);
+		}
 	}
 
+	disconnectedCallback()
+	{
+		if (this._categoryOutsideClickBound)
+		{
+			document.removeEventListener('click', this._categoryOutsideClickBound);
+			this._categoryOutsideClickBound = null;
+		}
+	}
 
+	async connectedCallback()
+	{
+		await this.rebuild();
+	}
+
+	async attributeChangedCallback(name, oldVal, newVal)
+	{
+		if (oldVal === newVal || !this.isConnected)
+		{
+			return;
+		}
+		if (name === 'lang' || name === 'categories' || name === 'category-filter')
+		{
+			await this.rebuild();
+		}
+	}
+
+	async rebuild()
+	{
+		const rebuildToken = (this._rebuildToken = (this._rebuildToken || 0) + 1);
+		const hadSelection = this.selectedTagIds && this.selectedTagIds.size > 0;
+
+		const content = categoriesChoice_template.content.cloneNode(true);
+		const categoryTemplate = content.querySelector('div.dropdownCategory');
+		const categoryParent = categoryTemplate.parentElement;
+		categoryTemplate.remove();
+
+		this.shadowRoot.innerHTML = '';
+		this.shadowRoot.appendChild(content);
+
+		this.selectedTagIds = new Set();
+
+		const lang = this.getAttribute('lang') || 'en';
+		const mainCategories = resolveMainCategories(this.getAttribute('categories'));
+		const categoryFilter = parseCommaList(this.getAttribute('category-filter'));
+
+		try
+		{
+			const allTags = await fetchActivityPoiTags();
+			// Drop result if a newer rebuild started meanwhile
+			if (rebuildToken !== this._rebuildToken)
+			{
+				return;
+			}
+			const tree = buildCategoryTree(allTags, mainCategories);
+			this.renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter);
+		}
+		catch (err)
+		{
+			console.error('Failed to build category menu from Tag API', err);
+		}
+
+		// Selection was cleared with the DOM rebuild — notify parent so map/list reset
+		if (hadSelection && typeof this.oncategorychange === 'function')
+		{
+			this.oncategorychange('');
+		}
+	}
 }
 
 customElements.define('categories-choice', CategoriesChoiceComponent);

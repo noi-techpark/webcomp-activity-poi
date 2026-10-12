@@ -5,6 +5,10 @@
 import themeStyle from './static/scss/theme.scss';
 import componentStyle from './static/scss/components/search.scss'
 import atomsStyle from './static/scss/atoms.scss'
+import {
+	categoryIconUrl,
+	resolveItemMainCategoryId
+} from './odhApi.js'
 
 const search_template = document.createElement('template');
 
@@ -153,27 +157,35 @@ class SearchComponent extends HTMLElement
 	attributeChangedCallback(name, oldVal, newVal)
 	{
 		if (name == 'lang'){
-			let lang = this.getAttribute('lang');
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
 			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
-			inputBox.placeholder = strings["search"][lang];
-			this.warningText.textContent = window.strings["warning-filters"][lang];
+			inputBox.placeholder = strings.search[lang];
+			this.warningText.textContent = window.strings['warning-filters'][lang];
 
 		}
 		if (name == 'items')
 		{
 			let webcomponent = this;
 
-			let lang = this.getAttribute('lang')
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
 
 			this.resultsContainer.textContent = ''
-			let list = JSON.parse(newVal);
+			let list = JSON.parse(newVal || '[]');
 
 			if (list.length == 0){
 				let noResultsDiv = document.createElement("div");
 				noResultsDiv.className = "no-results-warning";
 
 				let noResultsP = document.createElement("p");
-				noResultsP.textContent = strings["no-results"][lang];
+				noResultsP.textContent = strings['no-results'][lang];
 
 				noResultsDiv.append(noResultsP);
 				this.resultsContainer.append(noResultsDiv);
@@ -181,32 +193,28 @@ class SearchComponent extends HTMLElement
 
 		for (let i = 0; i < list.length; i++)
 		{
-			// Skip items without required data
-			if (!list[i].ODHActivityPoiTypes || !list[i].ODHActivityPoiTypes[0] || !list[i].Detail || !list[i].Detail[lang])
+			const item = list[i]
+			const detail = item.Detail && (item.Detail[lang] || item.Detail.en || item.Detail.de || item.Detail.it)
+			if (!detail || !detail.Title)
 			{
 				continue;
 			}
-			
-			console.log(i)
+
 			let row = this.searchInstance_template.cloneNode(true)
 			this.resultsContainer.appendChild(row)
 
-			//this part added
-			let imageFileName = list[i].ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_');
-			console.log(imageFileName);
-			row.querySelector('img').src = paths.img_category_icons + "category_icons_" + imageFileName + ".png"
-
-			row.querySelector('p.text').textContent = list[i].Detail[lang].Title
-				row.addEventListener('click', (function(item)
+			row.querySelector('img').src = categoryIconUrl(resolveItemMainCategoryId(item))
+			row.querySelector('p.text').textContent = detail.Title
+			row.addEventListener('click', (function(clickedItem)
+			{
+				return function()
 				{
-					return function()
-					{
-						webcomponent.mainContainer.classList.remove("showingResults");
-						webcomponent.mainContainer.classList.add("notShowingResults");
-						webcomponent.onresultclick(item)
-					}
-				})(list[i]));
-			}
+					webcomponent.mainContainer.classList.remove("showingResults");
+					webcomponent.mainContainer.classList.add("notShowingResults");
+					webcomponent.onresultclick(clickedItem)
+				}
+			})(item));
+		}
 
 			this.resultsContainer.style.display = "block";
 			this.mainContainer.classList.remove("notShowingResults");

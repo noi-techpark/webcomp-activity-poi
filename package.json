@@ -1,24 +1,31 @@
 {
   "name": "odh-activity-poi",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
-    "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.2.7",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.5",
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
-    "sass": "^1.32.0",
-    "sass-loader": "^12.6.0",
-    "style-loader": "^2.0.0",
-    "to-string-loader": "^1.1.6",
+    "sass": "^1.105.1",
+    "sass-loader": "^16.0.8",
+    "style-loader": "^4.0.0",
+    "svg-url-loader": "^6.0.0",
+    "to-string-loader": "^1.2.0",
     "web-components-loader": "^0.1.2",
-    "webpack": "^5.16.0",
-    "webpack-cli": "^4.4.0",
+    "webpack": "^5.111.1",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "^4.1.0",
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "node server.js"
+    "start": "node server.js",
+    "verify:tags": "node scripts/verify-tag-flow.mjs",
+    "verify:full": "node scripts/full-regression.mjs",
+    "verify:browser": "node scripts/browser-smoke.mjs"
   },
   "description": "This is a web component that can be integrated in other software (for example websites) to show the activities and point of interests of South Tyrol. They are shown on a map and they can be filtered based on the category or a search term. Each point of interest/activity has a corresponding marker on the map and its details are displayed when it is clicked on it.",
   "version": "1.0.0",
@@ -32,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/noi-techpark/webcomp-activity-poi/issues"
   },
-  "homepage": "https://github.com/noi-techpark/webcomp-activity-poi#readme"
+  "homepage": "https://github.com/noi-techpark/webcomp-activity-poi#readme",
+  "dependencies": {
+    "lit-element": "^2.5.1"
+  }
 }

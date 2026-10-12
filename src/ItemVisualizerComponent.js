@@ -2,6 +2,13 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import {
+	categoryThemeClass,
+	resolveItemMainCategoryId,
+	tourismUrl,
+	withOrigin
+} from './odhApi.js'
+
 import themeStyle from './static/scss/theme.scss';
 import componentStyle from './static/scss/components/itemVisualizer.scss'
 import atomsStyle from './static/scss/atoms.scss'
@@ -11,20 +18,20 @@ const itemVisualizer_template = document.createElement('template');
 
 itemVisualizer_template.innerHTML = `
 	<div class="mainContainer">
-    <p id="closebutton">
-    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
-    </p>
+    <div class="panelActions">
+      <button type="button" id="minimizebutton" title="Minimize panel" aria-label="Minimize panel">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 320 512" width="14" height="14"><path fill="currentColor" d="M34.5 239L285.1 39.4c15.4-12.3 38.9-1.3 38.9 18.6v396c0 19.9-23.5 30.9-38.9 18.6L34.5 273c-11.9-9.5-11.9-28.5 0-34z"/></svg>
+      </button>
+      <button type="button" id="closebutton" title="Close" aria-label="Close">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+      </button>
+    </div>
 
     <!--Title of the POI/Activity-->
       <div class="title">
         <div class="titleDiv" id="Title">
           <p class="titleParagraph">POI or Activity Title</p>
       </div>
-
-      <div class="titleArrowDiv">
-          <!--<i class="fas fa-chevron-up" onclick="expand(this)"></i>-->
-          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-up" class="svg-inline--fa fa-chevron-up fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"></path></svg>
-        </div>
       </div>
 
       <!--General info such as category, age, altitude, place and "get directions" button--->
@@ -136,7 +143,19 @@ class ItemVisualizerComponent extends HTMLElement
 		let closebutton = this.shadowRoot.querySelector("#closebutton");
 		closebutton.addEventListener('click', function()
 		{
-			thiswebcomponent.closebuttonfunction()
+			if (typeof thiswebcomponent.closebuttonfunction === 'function')
+			{
+				thiswebcomponent.closebuttonfunction()
+			}
+		});
+
+		let minimizebutton = this.shadowRoot.querySelector("#minimizebutton");
+		minimizebutton.addEventListener('click', function()
+		{
+			if (typeof thiswebcomponent.minimizebuttonfunction === 'function')
+			{
+				thiswebcomponent.minimizebuttonfunction()
+			}
 		});
 
 		this.mainContainer = this.querySelector(".mainContainer");
@@ -158,41 +177,46 @@ class ItemVisualizerComponent extends HTMLElement
 
 	static get observedAttributes()
 	{
-		return ['apoiid'];
+		return ['apoiid', 'lang'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
 	{
-		let thiswebcomponent = this
-
-		if (name === 'apoiid')
+		if (name === 'lang')
 		{
-			let lang = this.getAttribute('lang')
-
-			// read data json
-			let response = await fetch('https://tourism.opendatahub.com/v1/ODHActivityPoi/' + newVal + '?origin=webcomp-activity-poi')
-			let json = await response.json()
-			let item = json
-
-			// copy values from json to html
-			var root_element = this.shadowRoot;
-			this.writeItem(item, root_element, lang);
-			this.updateLabels(item, root_element, lang);
-
-			//update colour of icons and title
-			root_element.querySelector('div.mainContainer').className = "mainContainer";
-			root_element.querySelector('div.mainContainer').classList.add(item.Type.replace(/ .*/, ''));
-
+			const openId = this.getAttribute('apoiid')
+			if (openId && oldVal !== newVal)
+			{
+				await this.loadItem(openId)
+			}
+			return
 		}
 
-//		if (name == 'directions')
-//		{
-//			if (newVal)
-//				this._shadowRoot.querySelector('a#directions').style.display = "block";
-//			else
-//				this._shadowRoot.querySelector('a#directions').style.display = "none";
-//		}
+		if (name === 'apoiid' && newVal)
+		{
+			await this.loadItem(newVal)
+		}
+	}
 
+	async loadItem(id)
+	{
+		let lang = this.getAttribute('lang') || 'en'
+
+		const params = withOrigin(new URLSearchParams())
+		let response = await fetch(tourismUrl('/v1/ODHActivityPoi/' + encodeURIComponent(id) + '?' + params.toString()))
+		if (!response.ok)
+		{
+			console.error('Failed to load activity/POI', id, response.status)
+			return
+		}
+		let item = await response.json()
+
+		var root_element = this.shadowRoot;
+		this.writeItem(item, root_element, lang);
+		this.updateLabels(item, root_element, lang);
+
+		const themeClass = categoryThemeClass(resolveItemMainCategoryId(item))
+		root_element.querySelector('div.mainContainer').className = 'mainContainer ' + themeClass;
 	}
 
 	/**
@@ -206,12 +230,16 @@ class ItemVisualizerComponent extends HTMLElement
 
 	writeItem(item, root_element, lang)
 	{
-		root_element.querySelector('div#Title > p').innerHTML = item.Detail[lang].Title;
-		root_element.querySelector('div#description > p').innerHTML = item.Detail[lang].BaseText;
+		const detail = (item.Detail && (item.Detail[lang] || item.Detail.en || item.Detail.de || item.Detail.it)) || {};
+		root_element.querySelector('div#Title > p').innerHTML = detail.Title || '';
+		root_element.querySelector('div#description > p').innerHTML = detail.BaseText || '';
 
-		root_element.querySelector('span#category').innerHTML = item.PoiType;
+		const categoryLabel = item.PoiType
+			|| (item.Tags && item.Tags[0] && item.Tags[0].Name)
+			|| '';
+		root_element.querySelector('span#category').innerHTML = categoryLabel;
 
-		if (item.PoiType == null || item.PoiType == "")
+		if (!categoryLabel)
 		{
 			root_element.querySelector('span#category').parentElement.style.display = "none"
 		}
@@ -245,19 +273,34 @@ class ItemVisualizerComponent extends HTMLElement
 			root_element.querySelector('span#altitudeDifference').parentElement.style.display = "block"
 		}
 
-		root_element.querySelector('span#location').innerHTML = item.LocationInfo.TvInfo.Name[lang];
-		//image gallery -> item.ImageGallery --- How to add a Gallery
+		const locationName = item.LocationInfo
+			&& item.LocationInfo.TvInfo
+			&& item.LocationInfo.TvInfo.Name
+			&& (item.LocationInfo.TvInfo.Name[lang]
+				|| item.LocationInfo.TvInfo.Name.en
+				|| item.LocationInfo.TvInfo.Name.de
+				|| item.LocationInfo.TvInfo.Name.it);
+		root_element.querySelector('span#location').innerHTML = locationName || '';
 
-		if (item.ContactInfos[lang] != undefined)
+		const contact = item.ContactInfos
+			&& (item.ContactInfos[lang] || item.ContactInfos.en || item.ContactInfos.de || item.ContactInfos.it);
+
+		if (contact)
 		{
 			root_element.querySelector('span#companyName').parentElement.style.display = "block";
-			root_element.querySelector('span#companyName').innerHTML = item.ContactInfos[lang].CompanyName;
-			root_element.querySelector('span#address').innerHTML = item.ContactInfos[lang].Address;
-			root_element.querySelector('span#city').innerHTML = item.ContactInfos[lang].City;
-			root_element.querySelector('span#country').innerHTML = item.ContactInfos[lang].CountryName;
-			root_element.querySelector('span#email').innerHTML = item.ContactInfos[lang].Email;
-			root_element.querySelector('span#phoneNumber').innerHTML = item.ContactInfos[lang].Phonenumber;
-			root_element.querySelector('a#directions').setAttribute("href", "http://maps.google.com/maps?q=" + item.GpsInfo[0].Latitude + "," + item.GpsInfo[0].Longitude);
+			root_element.querySelector('span#companyName').innerHTML = contact.CompanyName;
+			root_element.querySelector('span#address').innerHTML = contact.Address;
+			root_element.querySelector('span#city').innerHTML = contact.City;
+			root_element.querySelector('span#country').innerHTML = contact.CountryName;
+			root_element.querySelector('span#email').innerHTML = contact.Email;
+			root_element.querySelector('span#phoneNumber').innerHTML = contact.Phonenumber;
+			if (item.GpsInfo && item.GpsInfo[0])
+			{
+				root_element.querySelector('a#directions').setAttribute(
+					"href",
+					"https://maps.google.com/maps?q=" + item.GpsInfo[0].Latitude + "," + item.GpsInfo[0].Longitude
+				);
+			}
 		}
 		else
 		{
@@ -266,17 +309,30 @@ class ItemVisualizerComponent extends HTMLElement
 	}
 
 	updateLabels(item, root_element, lang){
-		root_element.querySelector('#itemInformation .infoTitleParagraph').innerHTML = strings["information"][lang];
-		root_element.querySelector('#itemDescription .infoTitleParagraph').innerHTML = strings["description"][lang];
-		console.log(root_element.querySelector('p#categoryLabel'));
-		console.log(root_element.querySelector('span#category'));
-		root_element.querySelector('#categoryLabel').innerText = strings["category"][lang];
-		console.log(root_element.querySelector('span#category'));
-		root_element.querySelector('#ageLabel').innerText = strings["suitable-age"][lang];
-		root_element.querySelector('#localityLabel').innerText = strings["locality"][lang];
-		root_element.querySelector('#itemContacts .infoTitleParagraph').innerText = strings["contacts"][lang];
-		root_element.querySelector('#altitudeLabel').innerText = strings["difference-altitude"][lang];
-		root_element.querySelector('a#directions').textContent = strings["get-directions"][lang];
+		const safeLang = (lang && strings.information[lang]) ? lang : 'en';
+		root_element.querySelector('#itemInformation .infoTitleParagraph').innerHTML = strings["information"][safeLang];
+		root_element.querySelector('#itemDescription .infoTitleParagraph').innerHTML = strings["description"][safeLang];
+		root_element.querySelector('#categoryLabel').innerText = strings["category"][safeLang];
+		root_element.querySelector('#ageLabel').innerText = strings["suitable-age"][safeLang];
+		root_element.querySelector('#localityLabel').innerText = strings["locality"][safeLang];
+		root_element.querySelector('#itemContacts .infoTitleParagraph').innerText = strings["contacts"][safeLang];
+		root_element.querySelector('#altitudeLabel').innerText = strings["difference-altitude"][safeLang];
+		root_element.querySelector('a#directions').textContent = strings["get-directions"][safeLang];
+
+		const minimizeBtn = root_element.querySelector('#minimizebutton');
+		const closeBtn = root_element.querySelector('#closebutton');
+		if (minimizeBtn)
+		{
+			const label = strings['minimize-panel'][safeLang];
+			minimizeBtn.setAttribute('title', label);
+			minimizeBtn.setAttribute('aria-label', label);
+		}
+		if (closeBtn)
+		{
+			const label = strings['close-panel'][safeLang];
+			closeBtn.setAttribute('title', label);
+			closeBtn.setAttribute('aria-label', label);
+		}
 	}
 
 

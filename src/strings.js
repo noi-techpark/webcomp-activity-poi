@@ -82,5 +82,20 @@ window.strings = {
     "en": "Location unavailable.",
     "it": "Posizione non disponibile.",
     "de": "Standort nicht verfügbar."
+  },
+  "minimize-panel": {
+    "en": "Minimize panel",
+    "it": "Riduci pannello",
+    "de": "Panel minimieren"
+  },
+  "expand-panel": {
+    "en": "Show details",
+    "it": "Mostra dettagli",
+    "de": "Details anzeigen"
+  },
+  "close-panel": {
+    "en": "Close",
+    "it": "Chiudi",
+    "de": "Schließen"
   }
 }

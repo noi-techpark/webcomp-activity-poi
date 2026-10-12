@@ -8,49 +8,18 @@ SPDX-License-Identifier: CC0-1.0
 
 [![REUSE Compliance](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/reuse.yml/badge.svg)](https://github.com/noi-techpark/odh-docs/wiki/REUSE#badges)
 [![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-activity-poi)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-activity-poi)
-[![CI](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/ci.yml/badge.svg)](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/ci.yml)
+[![CI](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/main.yml/badge.svg)](https://github.com/noi-techpark/webcomp-activity-poi/actions/workflows/main.yml)
 
-This is a web component that can be integrated in other software (for example
-websites) to show the activities and point of interests of South Tyrol.  They are
-shown on a map and they can be filtered based on the category or a search term.
-Each point of interest/activity has a corresponding marker on the map and its
-details are displayed when it is clicked on it.
+Web component that shows activities and points of interest of South Tyrol on a
+map. Users can filter by ODH **Tags** (main categories with dynamic L2/L3
+submenus) or by search text. Selecting a marker or list result opens the detail
+panel.
 
-Do you want to see it in action? Go to our [web component store](https://webcomponents.opendatahub.com/webcomponent/0e5fbede-4a21-4dd3-bf85-7d2be71dfb12)!
-
-- [Activity & POI web component](#activity--poi-web-component)
-  - [Usage](#usage)
-    - [Attributes](#attributes)
-      - [lat](#lat)
-      - [lon](#lon)
-      - [radius](#radius)
-      - [language](#language)
-      - [categories](#categories)
-      - [directions](#directions)
-  - [Getting started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Source code](#source-code)
-    - [Dependencies](#dependencies)
-    - [Build](#build)
-  - [Development](#development)
-  - [Deployment](#deployment)
-  - [Docker environment](#docker-environment)
-    - [Installation](#installation)
-    - [Dependenices](#dependenices)
-    - [Start and stop the containers](#start-and-stop-the-containers)
-    - [Running commands inside the container](#running-commands-inside-the-container)
-  - [Information](#information)
-    - [Support](#support)
-    - [Contributing](#contributing)
-    - [Documentation](#documentation)
-    - [Boilerplate](#boilerplate)
-    - [License](#license)
-
+Live demo: [web component store](https://webcomponents.opendatahub.com/webcomponent/0e5fbede-4a21-4dd3-bf85-7d2be71dfb12)
 
 ## Usage
 
-Include the webcompscript file `dist/bundle.js` in your HTML and define the web
-component like this for example:
+Include `dist/bundle.js` and place the element:
 
 ```html
 <odh-activity-poi
@@ -60,6 +29,7 @@ component like this for example:
   radius="10000"
   language="en"
   showradius="false"
+  categories="wellness relaxation,eating drinking,summer,winter,culture attractions,traffic and transport,shops and service providers,other"
   category-filter=""
   directions
 ></odh-activity-poi>
@@ -67,197 +37,123 @@ component like this for example:
 
 ### Attributes
 
-#### lat
+| Attribute | Description |
+|-----------|-------------|
+| `lat` / `lon` | Map center (required) |
+| `zoom` | Initial map zoom |
+| `radius` | Search radius in **meters**. Empty = no radius filter |
+| `showradius` | `true` / `false` — draw the radius circle on the map |
+| `language` | `en`, `de`, or `it` |
+| `categories` | Comma-separated **main Tag Ids** shown in the picker. Defaults to the eight ODH main categories listed below |
+| `category-filter` | Optional whitelist of Tag Ids (main, L2, or L3) to limit menu entries |
+| `directions` | Presence flag for the “Get directions” control |
+| `show-current-location` | Show a marker at the map center coordinates |
+| `marker-color` | Color for the current-location marker |
 
-Latitude of the center of the map
+### Default main categories (Tag Ids)
 
-Type: int
+- `wellness relaxation`
+- `eating drinking`
+- `summer`
+- `winter`
+- `culture attractions`
+- `traffic and transport`
+- `shops and service providers`
+- `other`
 
-#### lon
+Submenus (L2 and L3) are built from the Tourism Tag API in one request
+(`validforentity=odhactivitypoi`). Filtering uses the Content API `tagfilter`
+parameter with the selected Tag Ids, comma-separated.
 
-Longitude of the center of the map
+### APIs
 
-Type: int
+- Content API: `https://tourism.api.opendatahub.com/`
+- Tags: `/v1/Tag`
+- Activities / POIs: `/v1/ODHActivityPoi`
 
-#### radius
+### Map / Geo API note
 
-Map radius (km)
-
-Type: int
-
-#### language
-
-Language
-
-Type: string
-Options: "en","de","it"
-
-#### categories
-
-Categories to show
-
-Type: string
-Options: "All categories","Winter", "Wellness Entspannung","Verkehr und Transport",
-"Sommer","Mobilitaet","Kultur und Sehenswuerdigkeiten","Geschaefte und Dienstleister",
-"Essen Trinken","Anderes"
-
-#### directions
-
-Activate 'Get directions' button
-
-Type: null (exists or is absent, no value allowed)
-
-#### show-current-location
-
-Show current location on map
-
-Type: boolean (default: false)
-
-When enabled, displays the user's current position on the map using the browser's geolocation API. Requires browser geolocation permission. The marker label and error messages are translated based on the component's `language` attribute.
+The Geo API (MapLibre vector tiles at `https://geo.api.opendatahub.com`) is a
+good option for large result sets, but tile features currently expose only
+`id` / name / cluster fields — **not** category tags. That makes it impractical
+to keep this component’s per-category marker icons without extra Tourism API
+lookups per feature. This build therefore keeps **Leaflet + Tourism JSON** so
+icons, search list, detail panel, GPX tracks, and radius stay in sync.
 
 ## Getting started
 
-These instructions will get you a copy of the project up and running
-on your local machine for development and testing purposes.
-
 ### Prerequisites
 
-To build the project, the following prerequisites must be met:
-
-- ToDo: Check the prerequisites
-- Node 12 / NPM 6
-
-For a ready to use Docker environment with all prerequisites already installed
-and prepared, you can check out the [Docker environment](#docker-environment)
-section.
+- Node.js **20** or **22**
+- npm 10+
 
 ### Source code
 
-Get a copy of the repository:
-
 ```bash
 git clone https://github.com/noi-techpark/webcomp-activity-poi
-```
-
-Change directory:
-
-```bash
-cd ActivityPOIWebcomponent/
-```
-
-### Dependencies
-
-Download all dependencies:
-
-```bash
+cd webcomp-activity-poi
 npm install
-```
-
-### Build
-
-```bash
 npm run build
 ```
 
 ## Development
 
-In order to serve the application locally, execute the following command
-
 ```bash
 npm run start
 ```
 
-Then, access to localhost:3000 from your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Deployment
-
-To create the distributable files, execute the following command:
 
 ```bash
 npm run build
 ```
 
+Artifacts are written to `dist/` (`bundle.js` plus icons and assets).
+
 ## Docker environment
-
-For the project a Docker environment is already prepared and ready to use with all necessary prerequisites.
-
-These Docker containers are the same as used by the continuous integration servers.
-
-### Installation
-
-Install [Docker](https://docs.docker.com/install/) (with Docker Compose) locally on your machine.
-
-### Dependenices
-
-First, install all dependencies:
 
 ```bash
 docker-compose run --rm app /bin/bash -c "npm install"
-```
-
-### Start and stop the containers
-
-Before start working you have to start the Docker containers:
-
-```
 docker-compose up --build --detach
 ```
 
-After finished working you can stop the Docker containers:
+App is mapped to host port **8999** → container port 3000.
 
-```
+```bash
+docker-compose run --rm app /bin/bash -c "npm run build"
 docker-compose stop
-```
-
-### Running commands inside the container
-
-When the containers are running, you can execute any command inside the environment. Just replace the dots `...` in the following example with the command you wish to execute:
-
-```bash
-docker-compose run --rm app /bin/bash -c "..."
-```
-
-Some examples are:
-
-```bash
-docker-compose run --rm app /bin/bash -c "npm run test"
 ```
 
 ## Information
 
 ### Support
 
-For support, please contact [help@opendatahub.com](help@opendatahub.com),
-[d@vide.bz](mailto:d@vide.bz) or [chiara@huprocess.com](mailto:chiara@huprocess.com).
+[help@opendatahub.com](mailto:help@opendatahub.com)
 
 ### Contributing
 
-If you'd like to contribute, please follow the Contributor Guidelines that can be found at [https://github.com/noi-techpark/odh-docs/wiki/Contributor-Guidelines%3A-Getting-started](https://github.com/noi-techpark/odh-docs/wiki/Contributor-Guidelines%3A-Getting-started).
+See [Contributor Guidelines](https://github.com/noi-techpark/odh-docs/wiki/Contributor-Guidelines%3A-Getting-started) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Documentation
 
-More documentation can be found at [https://opendatahub.readthedocs.io/en/latest/index.html](https://opendatahub.readthedocs.io/en/latest/index.html).
+[Open Data Hub docs](https://opendatahub.readthedocs.io/en/latest/index.html)
 
 ### Boilerplate
 
-The project uses this boilerplate: [https://github.com/noi-techpark/webcomp-boilerplate](https://github.com/noi-techpark/webcomp-boilerplate).
+[webcomp-boilerplate](https://github.com/noi-techpark/webcomp-boilerplate)
 
 ### License
 
-The code in this project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE Version 3 license. See the [LICENSE.md](LICENSE.md) file for more information.
+GNU Affero General Public License v3. See [LICENSE.md](LICENSE.md).
 
 ### REUSE
 
-This project is [REUSE](https://reuse.software) compliant, more information about the usage of REUSE in NOI Techpark repositories can be found [here](https://github.com/noi-techpark/odh-docs/wiki/Guidelines-for-developers-and-licenses#guidelines-for-contributors-and-new-developers).
+This project is [REUSE](https://reuse.software) compliant. See the
+[NOI REUSE guidelines](https://github.com/noi-techpark/odh-docs/wiki/Guidelines-for-developers-and-licenses#guidelines-for-contributors-and-new-developers).
 
-Since the CI for this project checks for REUSE compliance you might find it useful to use a pre-commit hook checking for REUSE compliance locally. The [pre-commit-config](.pre-commit-config.yaml) file in the repository root is already configured to check for REUSE compliance with help of the [pre-commit](https://pre-commit.com) tool.
-
-Install the tool by running:
 ```bash
 pip install pre-commit
-```
-Then install the pre-commit hook via the config file by running:
-```bash
 pre-commit install
 ```
-

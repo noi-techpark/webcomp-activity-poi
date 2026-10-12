@@ -5,6 +5,9 @@
 require("./dist_directories.js");
 require('./src/strings.js');
 
+require("./src/shared_components/button/button.js");
+require("./src/shared_components/languagePicker/languagePicker.js");
+
 require("./src/ActivityPOIComponent.js");
 require("./src/CategoriesChoiceComponent.js");
 require("./src/InteractiveMapComponent.js");
