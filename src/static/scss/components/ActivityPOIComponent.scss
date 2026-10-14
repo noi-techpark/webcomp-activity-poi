@@ -15,6 +15,15 @@ html, body, #webcomponentsContainer {
     display: block;
     height: 100%;
   }
+
+  .activity-poi__language_picker {
+    display: inline;
+    position: absolute;
+    /* Top-right corner; search panel keeps right padding so text never sits under it */
+    top: 12px;
+    right: 12px;
+    z-index: 100001;
+  }
   
   #categoriesContainer {
   
@@ -45,6 +54,56 @@ html, body, #webcomponentsContainer {
   
     @media only screen and (max-width:768px){
       z-index: 99999 !important;
+    }
+
+    &.minimized {
+      display: none !important;
+    }
+  }
+
+  #itemRestoreTab {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    z-index: 10001;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    padding: 12px 14px 12px 10px;
+    cursor: pointer;
+    font-family: calibri, verdana, arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: #f7f7f7;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #2f6fed;
+      outline-offset: 2px;
+    }
+
+    &[hidden] {
+      display: none !important;
+    }
+
+    @media only screen and (max-width: 768px) {
+      top: auto;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 8px;
     }
   }
   

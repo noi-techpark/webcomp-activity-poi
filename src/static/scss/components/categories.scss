@@ -54,8 +54,19 @@
 	}
 }
 
-.dropdownCategory:hover .subCategory {
+/* Keep menu open via .is-open (JS) so moving to a detached/fixed submenu
+   on small screens does not close it. Hover still helps on desktop. */
+.dropdownCategory:hover .subCategory,
+.dropdownCategory.is-open .subCategory {
 	display: block;
+}
+
+.dropdownCategory.is-open {
+	z-index: 20;
+
+	.subCategory {
+		z-index: 30;
+	}
 }
 
 .category {
@@ -93,6 +104,10 @@
 		right: 10vw;
 		left: 10vw;
 		bottom: 20vh;
+		max-height: 55vh;
+		overflow-y: auto;
+		white-space: normal;
+		z-index: 100000;
 	}
 
 	&::before {
@@ -145,33 +160,44 @@
 	right:16px;
 }
 
-.subCategoryTitleAnderes {
+.subCategoryTitle-other {
 	color: #6554B7;
 }
-.subCategoryTitleEssen {
+.subCategoryTitle-eating-drinking {
 	color: #7fCC86;
 }
-.subCategoryTitleGeschäfte {
+.subCategoryTitle-shops-and-service-providers {
 	color: #E37454;
 }
-.subCategoryTitleKultur {
+.subCategoryTitle-culture-attractions {
 	color: #FB8464;
 }
-.subCategoryTitleVerkehr {
+.subCategoryTitle-traffic-and-transport {
 	color: #846CEC;
 }
-.subCategoryTitleSommer {
+.subCategoryTitle-summer {
 	color: #3DDCD4;
 }
-.subCategoryTitleWellness {
+.subCategoryTitle-wellness-relaxation {
 	color: #E9E28C;
 }
-.subCategoryTitleWinter {
+.subCategoryTitle-winter {
 	color: #3D8CC4;
 }
 
 .subCategoryItem{
 	margin-top: 10px;
+}
+
+.subCategoryLevel3 {
+	margin-left: 18px;
+	margin-top: 4px;
+}
+
+.subCategoryItem.nested {
+	margin-top: 6px;
+	font-size: 0.95em;
+	opacity: 0.95;
 }
 
 @media only screen and (min-width: 768px) {

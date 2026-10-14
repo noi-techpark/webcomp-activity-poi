@@ -2,6 +2,12 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import {
+	mapMarkerIconUrl,
+	resolveItemMainCategoryId,
+	tourismUrl
+} from './odhApi.js'
+
 const interactiveMap_template = document.createElement('template');
 
 interactiveMap_template.innerHTML = `
@@ -37,6 +43,7 @@ class InteractiveMapComponent extends HTMLElement
 		this.gpx_layer = null
 		this.currentLocationMarker = null
 		this.currentLocationCircle = null
+		this.pendingItemsJson = null
 	}
 
 	/**
@@ -44,9 +51,6 @@ class InteractiveMapComponent extends HTMLElement
 	 * */
 	async connectedCallback()
 	{
-
-		console.log('map connected')
-
 		// dinamically load scripts, if not already added
 
 		let leaflet_js = document.querySelector('script[data-activity-poi-webcomponent-loaded]')
@@ -149,6 +153,12 @@ class InteractiveMapComponent extends HTMLElement
 					thiswebcomponent.handleCurrentLocationChange(showCurrentLocation)
 				}
 
+				if (thiswebcomponent.pendingItemsJson !== null)
+				{
+					thiswebcomponent.renderItems(thiswebcomponent.pendingItemsJson)
+					thiswebcomponent.pendingItemsJson = null
+				}
+
 			},
 			500)
 	}
@@ -196,55 +206,12 @@ class InteractiveMapComponent extends HTMLElement
 
 		if (name == 'items')
 		{
-			this.markerClusterGroup.clearLayers();
-			let items = JSON.parse(newVal)
-			let marker_arr = []
-
-			for (let i = 0; i < items.length; i++)
+			if (!this.markerClusterGroup)
 			{
-				let item = items[i]
-				
-				// Skip items without ODHActivityPoiTypes or GpsInfo
-				if (!item.ODHActivityPoiTypes || !item.ODHActivityPoiTypes[0] || !item.GpsInfo || !item.GpsInfo[0])
-				{
-					continue;
-				}
-				
-				var markerIcon = L.icon(
-				{
-					iconUrl: paths.img_map_markers + "map_markers_" + item.ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_') + '.png',
-					iconSize: [60 / 2, 99 / 2]
-				});
-
-				if (item.GpsInfo != undefined && item.GpsInfo[0] != undefined)
-				{
-					let marker = L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude],
-					{
-						icon: markerIcon
-					}).on('click', (function(item)
-					{
-						return function()
-						{
-							thiswebcomponent.markerclick(item);
-						}
-
-					})(item));
-
-					marker_arr.push(marker)
-
-					this.markerClusterGroup.addLayer(marker);
-				}
+				this.pendingItemsJson = newVal
+				return;
 			}
-
-			if (marker_arr.length >= 2)
-			{
-				let group = new L.featureGroup(marker_arr);
-				this.map.fitBounds(group.getBounds(),
-				{
-					maxZoom: 14
-				});
-			}
-
+			this.renderItems(newVal)
 		}
 
 		if (name == 'lat-lon-zoom' && thiswebcomponent.map !== null)
@@ -270,7 +237,10 @@ class InteractiveMapComponent extends HTMLElement
 			if (newVal !== null)
 			{
 				let gpxurl = newVal
-				gpxurl = gpxurl.replace('https://lcs.lts.it/downloads/gpx/','https://tourism.opendatahub.com/v1/Activity/Gpx?origin=webcomp-activity-poi')
+				gpxurl = gpxurl.replace(
+					'https://lcs.lts.it/downloads/gpx/',
+					tourismUrl('/v1/Activity/Gpx?origin=webcomp-activity-poi')
+				)
 				this.gpx_layer = omnivore.gpx(gpxurl).addTo(this.map);
 			}
 		}
@@ -289,6 +259,60 @@ class InteractiveMapComponent extends HTMLElement
 			}
 		}
 
+	}
+
+	/**
+	 * Render activity/POI markers from a JSON attribute payload.
+	 * @param {string} itemsJson
+	 */
+	renderItems(itemsJson)
+	{
+		const thiswebcomponent = this
+		this.markerClusterGroup.clearLayers();
+		let items = JSON.parse(itemsJson || '[]')
+		let marker_arr = []
+
+		for (let i = 0; i < items.length; i++)
+		{
+			let item = items[i]
+
+			if (!item.GpsInfo || !item.GpsInfo[0])
+			{
+				continue;
+			}
+
+			const mainCategoryId = resolveItemMainCategoryId(item)
+			var markerIcon = L.icon(
+			{
+				iconUrl: mapMarkerIconUrl(mainCategoryId),
+				iconSize: [60 / 2, 99 / 2]
+			});
+
+			let marker = L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude],
+			{
+				icon: markerIcon
+			}).on('click', (function(clickedItem)
+			{
+				return function()
+				{
+					thiswebcomponent.markerclick(clickedItem);
+				}
+
+			})(item));
+
+			marker_arr.push(marker)
+
+			this.markerClusterGroup.addLayer(marker);
+		}
+
+		if (marker_arr.length >= 2 && this.map)
+		{
+			let group = new L.featureGroup(marker_arr);
+			this.map.fitBounds(group.getBounds(),
+			{
+				maxZoom: 14
+			});
+		}
 	}
 
 	/**

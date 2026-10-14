@@ -5,12 +5,22 @@
 import themeStyle from './static/scss/theme.scss';
 import componentStyle from './static/scss/components/search.scss'
 import atomsStyle from './static/scss/atoms.scss'
+import {
+	categoryIconUrl,
+	resolveItemMainCategoryId
+} from './odhApi.js'
 
 const search_template = document.createElement('template');
 
 search_template.innerHTML = `
 
         <div class="mainContainer notShowingResults">
+
+    <div class="panelActions">
+      <button type="button" id="minimizeSearchButton" title="Minimize search" aria-label="Minimize search" hidden>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 320 512" width="14" height="14"><path fill="currentColor" d="M34.5 239L285.1 39.4c15.4-12.3 38.9-1.3 38.9 18.6v396c0 19.9-23.5 30.9-38.9 18.6L34.5 273c-11.9-9.5-11.9-28.5 0-34z"/></svg>
+      </button>
+    </div>
 
     <div class="searchBox">
      <input type="text">
@@ -98,24 +108,76 @@ class SearchComponent extends HTMLElement
 		});
 
 		this.actionButton = this._shadowRoot.querySelector(".action");
+		this.minimizeButton = this._shadowRoot.querySelector("#minimizeSearchButton");
+		this._resultsCollapsed = false;
+		this._hasResultItems = false;
+
 		this.actionButton.addEventListener("click", function()
 		{
 			if (webcomponent.actionButton.classList.contains("fa-search"))
 			{
-				// webcomponent.doSearch(input.value)
+				if (webcomponent._resultsCollapsed && webcomponent._hasResultItems)
+				{
+					webcomponent.expandResults();
+					return;
+				}
 				webcomponent.on_search_text_changed(input.value)
 			}
 			else if (webcomponent.actionButton.classList.contains("fa-times"))
 			{
-				webcomponent.mainContainer.classList.remove("showingResults");
-				webcomponent.mainContainer.classList.add("notShowingResults");
-				webcomponent.actionButton.classList.remove("fa-times");
-				webcomponent.actionButton.classList.add("fa-search");
+				webcomponent.collapseResults();
 			}
 		})
 
+		this.minimizeButton.addEventListener("click", function()
+		{
+			webcomponent.collapseResults();
+		});
+
 		this.warningText = this._shadowRoot.querySelector(".warning p");
 
+	}
+
+	collapseResults()
+	{
+		this._resultsCollapsed = true;
+		this.mainContainer.classList.remove("showingResults");
+		this.mainContainer.classList.add("notShowingResults");
+		this.resultsContainer.style.display = "none";
+		this.actionButton.classList.remove("fa-times");
+		this.actionButton.classList.add("fa-search");
+		this.minimizeButton.hidden = true;
+		if (typeof this.onminimize === 'function')
+		{
+			this.onminimize();
+		}
+	}
+
+	expandResults()
+	{
+		if (!this._hasResultItems)
+		{
+			return;
+		}
+		this._resultsCollapsed = false;
+		this.resultsContainer.style.display = "block";
+		this.mainContainer.classList.remove("notShowingResults");
+		this.mainContainer.classList.add("showingResults");
+		this.actionButton.classList.remove("fa-search");
+		this.actionButton.classList.add("fa-times");
+		this.minimizeButton.hidden = false;
+		if (typeof this.onexpand === 'function')
+		{
+			this.onexpand();
+		}
+	}
+
+	updateMinimizeLabel(lang)
+	{
+		const safeLang = ['en', 'de', 'it'].indexOf(lang) >= 0 ? lang : 'en';
+		const label = strings['minimize-search'][safeLang];
+		this.minimizeButton.setAttribute('title', label);
+		this.minimizeButton.setAttribute('aria-label', label);
 	}
 
 	async on_search_text_changed(txt)
@@ -138,10 +200,17 @@ class SearchComponent extends HTMLElement
 			resultContainer.style.display = "none";
 			inputBox.style.borderColor = "#cc8d7b";
 			lensBox.style.borderColor = "#cc8d7b";
-			err.textContent = 'Almeno 3 caratteri';
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
+			err.textContent = strings['search-min-chars'][lang];
 
 			return
 		}
+		// New search should open results again after a minimize
+		this._resultsCollapsed = false;
 		this.search_text_changed(txt)
 	}
 
@@ -153,27 +222,36 @@ class SearchComponent extends HTMLElement
 	attributeChangedCallback(name, oldVal, newVal)
 	{
 		if (name == 'lang'){
-			let lang = this.getAttribute('lang');
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
 			let inputBox = this._shadowRoot.querySelector('.searchBox input[type="text"]');
-			inputBox.placeholder = strings["search"][lang];
-			this.warningText.textContent = window.strings["warning-filters"][lang];
-
+			inputBox.placeholder = strings.search[lang];
+			this.warningText.textContent = window.strings['warning-filters'][lang];
+			this.updateMinimizeLabel(lang);
 		}
 		if (name == 'items')
 		{
 			let webcomponent = this;
 
-			let lang = this.getAttribute('lang')
+			let lang = (this.getAttribute('lang') || 'en').toLowerCase();
+			if (['en', 'de', 'it'].indexOf(lang) < 0)
+			{
+				lang = 'en';
+			}
 
 			this.resultsContainer.textContent = ''
-			let list = JSON.parse(newVal);
+			let list = JSON.parse(newVal || '[]');
+			this._hasResultItems = true;
 
 			if (list.length == 0){
 				let noResultsDiv = document.createElement("div");
 				noResultsDiv.className = "no-results-warning";
 
 				let noResultsP = document.createElement("p");
-				noResultsP.textContent = strings["no-results"][lang];
+				noResultsP.textContent = strings['no-results'][lang];
 
 				noResultsDiv.append(noResultsP);
 				this.resultsContainer.append(noResultsDiv);
@@ -181,36 +259,47 @@ class SearchComponent extends HTMLElement
 
 		for (let i = 0; i < list.length; i++)
 		{
-			// Skip items without required data
-			if (!list[i].ODHActivityPoiTypes || !list[i].ODHActivityPoiTypes[0] || !list[i].Detail || !list[i].Detail[lang])
+			const item = list[i]
+			const detail = item.Detail && (item.Detail[lang] || item.Detail.en || item.Detail.de || item.Detail.it)
+			if (!detail || !detail.Title)
 			{
 				continue;
 			}
-			
-			console.log(i)
+
 			let row = this.searchInstance_template.cloneNode(true)
 			this.resultsContainer.appendChild(row)
 
-			//this part added
-			let imageFileName = list[i].ODHActivityPoiTypes[0].Id.trim().replace(/[^a-z]/gi,'_');
-			console.log(imageFileName);
-			row.querySelector('img').src = paths.img_category_icons + "category_icons_" + imageFileName + ".png"
-
-			row.querySelector('p.text').textContent = list[i].Detail[lang].Title
-				row.addEventListener('click', (function(item)
+			row.querySelector('img').src = categoryIconUrl(resolveItemMainCategoryId(item))
+			row.querySelector('p.text').textContent = detail.Title
+			row.addEventListener('click', (function(clickedItem)
+			{
+				return function()
 				{
-					return function()
-					{
-						webcomponent.mainContainer.classList.remove("showingResults");
-						webcomponent.mainContainer.classList.add("notShowingResults");
-						webcomponent.onresultclick(item)
-					}
-				})(list[i]));
-			}
+					webcomponent._resultsCollapsed = false;
+					webcomponent.minimizeButton.hidden = true;
+					webcomponent.actionButton.classList.remove("fa-times");
+					webcomponent.actionButton.classList.add("fa-search");
+					webcomponent.mainContainer.classList.remove("showingResults");
+					webcomponent.mainContainer.classList.add("notShowingResults");
+					webcomponent.onresultclick(clickedItem)
+				}
+			})(item));
+		}
 
-			this.resultsContainer.style.display = "block";
-			this.mainContainer.classList.remove("notShowingResults");
-			this.mainContainer.classList.add("showingResults");
+			// Keep collapsed if the user minimized (e.g. language refresh must not trap them)
+			if (this._resultsCollapsed)
+			{
+				this.resultsContainer.style.display = "none";
+				this.mainContainer.classList.remove("showingResults");
+				this.mainContainer.classList.add("notShowingResults");
+				this.actionButton.classList.remove("fa-times");
+				this.actionButton.classList.add("fa-search");
+				this.minimizeButton.hidden = true;
+			}
+			else
+			{
+				this.expandResults();
+			}
 		}
 	}
 

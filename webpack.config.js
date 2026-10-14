@@ -15,16 +15,37 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(s*)css$/,
+                test: /\.css$/,
                 use: [
-                    'to-string-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                    {
+                        loader: 'css-loader',
+                        options: { exportType: 'string' },
+                    },
+                ],
             },
             {
-                test: /\.(png|jpg|svg)$/,
-                loader: 'file'
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'css-loader',
+                        options: { exportType: 'string' },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: { api: 'modern' },
+                    },
+                ],
+            },
+            {
+                test: /\.svg$/,
+                use: {
+                    loader: 'svg-url-loader',
+                    options: {},
+                },
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
