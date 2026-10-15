@@ -109,7 +109,7 @@ async function main()
 	}
 
 	const sampleL2 = tree.find((m) => m.tag.Id === 'eating drinking').children[0].tag.Id;
-	const searchUrl = `${BASE}/v1/ODHActivityPoi?pagenumber=1&pagesize=5&tagfilter=${encodeURIComponent(sampleL2)}&fields=Id,Tags,GpsInfo,Detail&origin=${ORIGIN}`;
+	const searchUrl = `${BASE}/v1/ODHActivityPoi?pagenumber=1&pagesize=5&active=true&tagfilter=${encodeURIComponent(sampleL2)}&fields=Id,Tags,GpsInfo,Detail&origin=${ORIGIN}`;
 	const searchRes = await fetch(searchUrl);
 	if (!searchRes.ok) throw new Error('Search failed ' + searchRes.status);
 	const searchJson = await searchRes.json();

@@ -21,11 +21,27 @@ interactiveMap_template.innerHTML = `
     <style>
        #mapid{
           height: 100%;
+          width: 100%;
        }
        :host {
         display: block;
+        width: 100%;
         height: 100%;
+        max-height: 100%;
+        overflow: hidden;
     	}
+       /* Keep zoom / attribution clear of the mobile category bar */
+       @media only screen and (max-width: 768px) {
+         .leaflet-bottom {
+           bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+         }
+         .leaflet-control-attribution {
+           max-width: calc(100vw - 72px);
+           overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+         }
+       }
     </style>
     <div id="mapid"></div>
 `;
@@ -117,7 +133,23 @@ class InteractiveMapComponent extends HTMLElement
 					shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
 				});
 
-				let map = L.map(mapdiv, { zoomControl: false })
+				// Keep zoom from going so far out that world tiles repeat endlessly
+				// Lower = more zoomed out. Floor keeps world tiles from repeating endlessly.
+				const MIN_ZOOM = 5;
+				const maxZoom = 19;
+				const requestedZoom = Number(lat_lon_zoom[2]);
+				const initialZoom = Number.isFinite(requestedZoom)
+					? Math.max(MIN_ZOOM, Math.min(maxZoom, requestedZoom))
+					: 10;
+
+				let map = L.map(mapdiv, {
+					zoomControl: false,
+					minZoom: MIN_ZOOM,
+					maxZoom: maxZoom,
+					maxBounds: [[-85, -180], [85, 180]],
+					maxBoundsViscosity: 1.0,
+					worldCopyJump: false
+				})
 				thiswebcomponent.map = map
 
 				L.control.zoom({
@@ -128,12 +160,14 @@ class InteractiveMapComponent extends HTMLElement
 				{
 					lon: lat_lon_zoom[1],
 					lat: lat_lon_zoom[0]
-				}, lat_lon_zoom[2]);
+				}, initialZoom);
 
 				L.tileLayer(
 					'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 					{
-						maxZoom: 19,
+						minZoom: MIN_ZOOM,
+						maxZoom: maxZoom,
+						noWrap: true,
 						attribution:'<a target="_blank" href="https://opendatahub.com">OpenDataHub.com</a> | &copy; <a target="_blank" href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
 
 					}).addTo(map);

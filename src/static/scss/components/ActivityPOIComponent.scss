@@ -5,168 +5,262 @@
  */
 
 html, body, #webcomponentsContainer {
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow: hidden;
-  }
-  
-  :host {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#webcomponentsContainer {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.activity-poi__language_picker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  position: absolute;
+  /* Top-right corner; search panel keeps right padding so text never sits under it */
+  top: 12px;
+  right: 12px;
+  z-index: 100001;
+}
+
+.activity-poi__reset_filters {
+  appearance: none;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+
+  svg {
     display: block;
-    height: 100%;
+    flex-shrink: 0;
   }
 
-  .activity-poi__language_picker {
-    display: inline;
-    position: absolute;
-    /* Top-right corner; search panel keeps right padding so text never sits under it */
-    top: 12px;
-    right: 12px;
-    z-index: 100001;
-  }
-  
-  #categoriesContainer {
-  
-    position: absolute;
-    top: 0;
-    right: 35vw;
-    width: 40vw;
-    margin-right: -20vw;
-  
-    @media only screen and (max-width: 768px){
-      bottom: 0;
-      top: auto;
-      width: 100vw;
-      margin-right: 0;
-      right: 0;
-      z-index: 9999;
-    }
-  }
-  
-  #itemContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    height: 100vh;
-    box-sizing: border-box;
-    z-index: 9999;
-  
-    @media only screen and (max-width:768px){
-      z-index: 99999 !important;
-    }
+  &:hover {
+    background: #f7f7f7;
 
-    &.minimized {
-      display: none !important;
+    .activity-poi__reset_filters_tooltip {
+      display: block;
     }
   }
 
-  #itemRestoreTab {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    z-index: 10001;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 0;
-    border-radius: 0 8px 8px 0;
-    background: #ffffff;
-    color: #333;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-    padding: 12px 14px 12px 10px;
-    cursor: pointer;
-    font-family: calibri, verdana, arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-
-    svg {
-      flex-shrink: 0;
-    }
-
-    &:hover {
-      background: #f7f7f7;
-    }
-
-    &:focus-visible {
-      outline: 2px solid #2f6fed;
-      outline-offset: 2px;
-    }
-
-    &[hidden] {
-      display: none !important;
-    }
-
-    @media only screen and (max-width: 768px) {
-      top: auto;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 8px;
-    }
+  &:focus-visible {
+    outline: 2px solid #2f6fed;
+    outline-offset: 2px;
   }
-  
-  #searchContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 9999;
-    //height: 100vh;
-    box-sizing: border-box;
+}
+
+.activity-poi__reset_filters_tooltip {
+  display: none;
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  white-space: nowrap;
+  background: #333;
+  color: #fff;
+  font-family: calibri, verdana, arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 4px 7px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  z-index: 2;
+}
+
+#categoriesContainer {
+  position: absolute;
+  top: 0;
+  right: 35vw;
+  width: 40vw;
+  max-width: 100%;
+  margin-right: -20vw;
+  box-sizing: border-box;
+  pointer-events: none;
+
+  /* Re-enable interaction on the category UI itself */
+  > * {
+    pointer-events: auto;
   }
-  
-  #loading{
-    position: fixed;
-    z-index: 999999999;
+
+  @media only screen and (max-width: 768px) {
     bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(55, 55, 55, 0.7);
-  
-    .lds-ring {
-      display: block;
-      width: 80px;
-      height: 80px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 45vh;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    /* Keep icons clear of the device home indicator / map chrome */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+#itemContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  z-index: 9999;
+
+  @media only screen and (max-width: 768px) {
+    z-index: 99999 !important;
+    width: 100%;
+  }
+
+  &.minimized {
+    display: none !important;
+  }
+}
+
+#itemRestoreTab {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 0 8px 8px 0;
+  background: #ffffff;
+  color: #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  padding: 12px 14px 12px 10px;
+  cursor: pointer;
+  font-family: calibri, verdana, arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
+
+  #itemRestoreLabel {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: #f7f7f7;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #2f6fed;
+    outline-offset: 2px;
+  }
+
+  &[hidden] {
+    display: none !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    top: auto;
+    /* Sit above the category icon bar */
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+  }
+}
+
+#searchContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9999;
+  max-height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#loading {
+  position: absolute;
+  inset: 0;
+  z-index: 999999999;
+  width: 100%;
+  height: 100%;
+  background: rgba(55, 55, 55, 0.7);
+  box-sizing: border-box;
+
+  .lds-ring {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45%;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #ffffff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #ffffff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
     }
-    .lds-ring div {
-      box-sizing: border-box;
-      display: block;
-      position: absolute;
-      width: 64px;
-      height: 64px;
-      margin: 8px;
-      border: 8px solid #ffffff;
-      border-radius: 50%;
-      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #ffffff transparent transparent transparent;
-    }
-    .lds-ring div:nth-child(1) {
-      animation-delay: -0.45s;
-    }
-    .lds-ring div:nth-child(2) {
-      animation-delay: -0.3s;
-    }
-    .lds-ring div:nth-child(3) {
-      animation-delay: -0.15s;
-    }
-    @keyframes lds-ring {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  
-  
-    p{
-      text-align: center;
-      font-family: calibri, verdana, arial;
-      color: #ffffff;
+    100% {
+      transform: rotate(360deg);
     }
   }
+
+  p {
+    text-align: center;
+    font-family: calibri, verdana, arial;
+    color: #ffffff;
+  }
+}

@@ -148,6 +148,19 @@
         }
       },
       {
+        "key": "show-subcategories",
+        "type": "select",
+        "label": "Show Level 2/3 category menu entries (e.g. Health / Dentists). false = Level 1 only.",
+        "required": false,
+        "options": {
+          "values": [
+            "true",
+            "false"
+          ],
+          "default": "true"
+        }
+      },
+      {
         "key": "category-filter",
         "type": "multiselect",
         "label": "Optional whitelist of Tag Ids for menu entries (main, L2 or L3). Empty = all children of the configured main categories.",

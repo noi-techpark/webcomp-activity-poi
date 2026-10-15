@@ -55,7 +55,7 @@ export const MAP_MARKER_BASENAME = {
 	other: 'Anderes'
 };
 
-/** CSS theme class names used by item visualizer (legacy German Type first word). */
+/** CSS theme class names used by item visualizer. */
 export const CATEGORY_THEME_CLASS = {
 	'wellness relaxation': 'Wellness',
 	'eating drinking': 'Essen',
@@ -100,21 +100,67 @@ export function parseCommaList(value)
 		.filter(Boolean);
 }
 
+/**
+ * Deduplicate Activity/POI items by Id (first occurrence wins).
+ */
+export function uniqueItemsById(items)
+{
+	if (!items || !items.length)
+	{
+		return [];
+	}
+	const seen = Object.create(null);
+	const result = [];
+	for (let i = 0; i < items.length; i++)
+	{
+		const item = items[i];
+		const id = item && item.Id != null ? String(item.Id) : '';
+		if (!id || seen[id])
+		{
+			continue;
+		}
+		seen[id] = true;
+		result.push(item);
+	}
+	return result;
+}
+
 export function resolveMainCategories(categoriesAttr)
 {
 	const parsed = parseCommaList(categoriesAttr);
 	return parsed.length > 0 ? parsed : DEFAULT_CATEGORIES.slice();
 }
 
+/**
+ * Display fixes for Tag API labels (typos / wrong-language strings).
+ * Applied after resolving the localized TagName.
+ */
+const TAG_LABEL_TEXT_OVERRIDES = {
+	en: {
+		'Tattoos und Piercing': 'Tattoos and Piercing'
+	}
+};
+
 export function tagLabel(tag, lang)
 {
-	const names = tag && tag.TagName ? tag.TagName : null;
-	if (!names)
-	{
-		return tag && tag.Id ? tag.Id : '';
-	}
 	const normalized = (lang || 'en').toLowerCase();
-	return names[normalized] || names.en || names.de || names.it || tag.Id;
+	const id = tag && tag.Id != null ? String(tag.Id) : '';
+	const names = tag && tag.TagName ? tag.TagName : null;
+	let label = '';
+	if (names)
+	{
+		label = names[normalized] || names.en || names.de || names.it || id;
+	}
+	else
+	{
+		label = id;
+	}
+	const fixes = TAG_LABEL_TEXT_OVERRIDES[normalized];
+	if (fixes && fixes[label])
+	{
+		return fixes[label];
+	}
+	return label;
 }
 
 function mappingIdm(tag)
@@ -263,6 +309,103 @@ export async function fetchActivityPoiTags()
 }
 
 /**
+ * True when `plural` looks like the plural form of `singular` (Id or label).
+ * Used to merge near-duplicate tags like "indoor pool" / "indoor pools".
+ */
+function isPluralForm(singular, plural)
+{
+	const s = String(singular || '').toLowerCase().replace(/\s+/g, ' ').trim();
+	const p = String(plural || '').toLowerCase().replace(/\s+/g, ' ').trim();
+	if (!s || !p || s === p)
+	{
+		return false;
+	}
+	return p === s + 's' || p === s + 'es' || p === s.replace(/y$/, 'ies');
+}
+
+function tagsAreSingularPluralPair(a, b)
+{
+	if (isPluralForm(a.Id, b.Id) || isPluralForm(b.Id, a.Id))
+	{
+		return true;
+	}
+	const an = (a.TagName && (a.TagName.en || a.TagName.de)) || '';
+	const bn = (b.TagName && (b.TagName.en || b.TagName.de)) || '';
+	return isPluralForm(an, bn) || isPluralForm(bn, an);
+}
+
+/**
+ * Merge sibling tags that share the same IDM id and are singular/plural variants
+ * (e.g. Indoor pool + Indoor pools under Spa & Water Worlds).
+ * The kept tag exposes `_filterIds` with every merged Id for tagfilter.
+ */
+export function mergeSingularPluralSiblings(tags)
+{
+	if (!tags || tags.length < 2)
+	{
+		return tags || [];
+	}
+	const used = Object.create(null);
+	const merged = [];
+	for (let i = 0; i < tags.length; i++)
+	{
+		if (used[i])
+		{
+			continue;
+		}
+		const group = [tags[i]];
+		const treeI = tagTreeId(tags[i]);
+		for (let j = i + 1; j < tags.length; j++)
+		{
+			if (used[j])
+			{
+				continue;
+			}
+			if (treeI && tagTreeId(tags[j]) === treeI && tagsAreSingularPluralPair(tags[i], tags[j]))
+			{
+				group.push(tags[j]);
+				used[j] = true;
+			}
+		}
+		used[i] = true;
+		if (group.length === 1)
+		{
+			merged.push(group[0]);
+			continue;
+		}
+		// Prefer plural Id/label for display
+		group.sort(function (a, b)
+		{
+			return String(b.Id).length - String(a.Id).length;
+		});
+		const primary = group[0];
+		const filterIds = [];
+		const seenId = Object.create(null);
+		for (let g = 0; g < group.length; g++)
+		{
+			const id = group[g].Id;
+			if (!seenId[id])
+			{
+				seenId[id] = true;
+				filterIds.push(id);
+			}
+		}
+		merged.push(Object.assign({}, primary, { _filterIds: filterIds }));
+	}
+	return merged;
+}
+
+/** Tag Ids to send in tagfilter for a menu tag (includes merged aliases). */
+export function filterIdsForTag(tag)
+{
+	if (tag && tag._filterIds && tag._filterIds.length)
+	{
+		return tag._filterIds.slice();
+	}
+	return tag && tag.Id != null ? [tag.Id] : [];
+}
+
+/**
  * Build L1 → L2 → L3 tree for the given main category Ids.
  * Resolves IDM aliases (e.g. traffic and transport ↔ mobility).
  */
@@ -321,13 +464,14 @@ export function buildCategoryTree(allTags, mainCategoryIds)
 				result.push(child);
 			}
 		}
-		result.sort(function (a, b)
+		const collapsed = mergeSingularPluralSiblings(result);
+		collapsed.sort(function (a, b)
 		{
 			const an = (a.TagName && (a.TagName.en || a.TagName.de)) || a.Id;
 			const bn = (b.TagName && (b.TagName.en || b.TagName.de)) || b.Id;
 			return an.localeCompare(bn);
 		});
-		return result;
+		return collapsed;
 	}
 
 	const tree = [];
@@ -401,31 +545,6 @@ export function resolveItemMainCategoryId(item)
 		return walked[0];
 	}
 
-	// Legacy Type field (German), map back to Tag Id when possible
-	const type = item && item.Type ? String(item.Type) : '';
-	const legacy = {
-		Sommer: 'summer',
-		Winter: 'winter',
-		Anderes: 'other',
-		'Essen Trinken': 'eating drinking',
-		'Wellness Entspannung': 'wellness relaxation',
-		'Kultur Sehenswürdigkeiten': 'culture attractions',
-		'Geschäfte und Dienstleister': 'shops and service providers',
-		'Verkehr und Transport': 'traffic and transport',
-		Mobilität: 'traffic and transport'
-	};
-	if (legacy[type])
-	{
-		return legacy[type];
-	}
-	if (item && item.ODHActivityPoiTypes && item.ODHActivityPoiTypes[0])
-	{
-		const odhId = item.ODHActivityPoiTypes[0].Id;
-		if (legacy[odhId])
-		{
-			return legacy[odhId];
-		}
-	}
 	return 'other';
 }
 

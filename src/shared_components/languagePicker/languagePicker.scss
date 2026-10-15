@@ -10,11 +10,46 @@
 @import '../baseline/elevations.scss';
 
 .languagePicker {
-  margin-bottom: 8px;
+  margin-bottom: 0;
 
   .languagePicker__trigger {
     display: flex;
     justify-content: flex-end;
+  }
+
+  .languagePicker__flag {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    &:hover img {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #2f6fed;
+      outline-offset: 2px;
+    }
   }
 
   .languagePicker__menu {
