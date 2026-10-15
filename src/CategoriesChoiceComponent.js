@@ -9,6 +9,7 @@ import {
 	buildCategoryTree,
 	categoryIconUrl,
 	fetchActivityPoiTags,
+	filterIdsForTag,
 	parseCommaList,
 	resolveMainCategories,
 	tagLabel
@@ -40,6 +41,8 @@ categoriesChoice_template.innerHTML = `
 	</style>
 `;
 
+const SELECTION_STORAGE_KEY = 'odh-activity-poi.selected-tags';
+
 class CategoriesChoiceComponent extends HTMLElement
 {
 	constructor()
@@ -51,13 +54,88 @@ class CategoriesChoiceComponent extends HTMLElement
 		// callback before upgrade, and a null write in the constructor would wipe it.
 	}
 
+	persistSelection()
+	{
+		try
+		{
+			if (typeof localStorage === 'undefined')
+			{
+				return;
+			}
+			localStorage.setItem(
+				SELECTION_STORAGE_KEY,
+				JSON.stringify(Array.from(this.selectedTagIds))
+			);
+		}
+		catch (err)
+		{
+			// private mode / quota — ignore
+		}
+	}
+
+	loadPersistedSelection()
+	{
+		try
+		{
+			if (typeof localStorage === 'undefined')
+			{
+				return [];
+			}
+			const raw = localStorage.getItem(SELECTION_STORAGE_KEY);
+			if (!raw)
+			{
+				return [];
+			}
+			const parsed = JSON.parse(raw);
+			if (!Array.isArray(parsed))
+			{
+				return [];
+			}
+			return parsed.map(function (id)
+			{
+				return String(id).trim();
+			}).filter(Boolean);
+		}
+		catch (err)
+		{
+			return [];
+		}
+	}
+
+	clearPersistedSelection()
+	{
+		try
+		{
+			if (typeof localStorage === 'undefined')
+			{
+				return;
+			}
+			localStorage.removeItem(SELECTION_STORAGE_KEY);
+		}
+		catch (err)
+		{
+			// ignore
+		}
+	}
+
 	static get observedAttributes()
 	{
-		return ['lang', 'categories', 'category-filter'];
+		return ['lang', 'categories', 'category-filter', 'show-subcategories'];
+	}
+
+	/**
+	 * Level 2/3 submenu entries are shown unless explicitly disabled.
+	 * Default: enabled (attribute missing, empty, or anything other than "false").
+	 */
+	showSubcategoriesEnabled()
+	{
+		const value = this.getAttribute('show-subcategories');
+		return value === null || String(value).trim().toLowerCase() !== 'false';
 	}
 
 	emitFilter()
 	{
+		this.persistSelection();
 		const filter = Array.from(this.selectedTagIds).join(',');
 		if (typeof this.oncategorychange === 'function')
 		{
@@ -65,26 +143,249 @@ class CategoriesChoiceComponent extends HTMLElement
 		}
 	}
 
-	toggleTag(tagId, checked, categoryEl, selectedCountRef)
+	/**
+	 * Uncheck every category checkbox and notify the host (empty tagfilter).
+	 */
+	clearSelection()
+	{
+		this.selectedTagIds = new Set();
+		this.clearPersistedSelection();
+		const root = this.shadowRoot;
+		if (root)
+		{
+			const inputs = root.querySelectorAll('input[type="checkbox"]');
+			for (let i = 0; i < inputs.length; i++)
+			{
+				inputs[i].checked = false;
+				inputs[i].indeterminate = false;
+			}
+			const selected = root.querySelectorAll('.dropdownCategory.selected');
+			for (let j = 0; j < selected.length; j++)
+			{
+				selected[j].classList.remove('selected');
+			}
+		}
+		this.emitFilter();
+	}
+
+	inputMatchesSelection(input, selected)
+	{
+		const ids = this.filterIdsFromInput(input);
+		for (let i = 0; i < ids.length; i++)
+		{
+			if (selected.has(ids[i]))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Re-check boxes and badges after a DOM rebuild (language change / refresh).
+	 */
+	applySelection(tagIds)
+	{
+		const selected = new Set(tagIds || []);
+		this.selectedTagIds = new Set(selected);
+		const root = this.shadowRoot;
+		if (!root)
+		{
+			return;
+		}
+
+		const categories = root.querySelectorAll('div.dropdownCategory');
+		for (let c = 0; c < categories.length; c++)
+		{
+			const categoryEl = categories[c];
+			const l2Items = categoryEl.querySelectorAll('.subCategory > .subCategoryItem');
+			for (let i = 0; i < l2Items.length; i++)
+			{
+				const l2Item = l2Items[i];
+				const l2Input = l2Item.querySelector(':scope > input[type="checkbox"]');
+				if (!l2Input)
+				{
+					continue;
+				}
+				const l3Inputs = l2Item.querySelectorAll('.subCategoryLevel3 input[type="checkbox"]');
+				if (l3Inputs.length > 0)
+				{
+					if (this.inputMatchesSelection(l2Input, selected))
+					{
+						l2Input.checked = true;
+						l2Input.indeterminate = false;
+						for (let k = 0; k < l3Inputs.length; k++)
+						{
+							l3Inputs[k].checked = true;
+						}
+					}
+					else
+					{
+						let checkedCount = 0;
+						for (let k = 0; k < l3Inputs.length; k++)
+						{
+							const on = this.inputMatchesSelection(l3Inputs[k], selected);
+							l3Inputs[k].checked = on;
+							if (on)
+							{
+								checkedCount++;
+							}
+						}
+						if (checkedCount === 0)
+						{
+							l2Input.checked = false;
+							l2Input.indeterminate = false;
+						}
+						else if (checkedCount === l3Inputs.length)
+						{
+							l2Input.checked = true;
+							l2Input.indeterminate = false;
+						}
+						else
+						{
+							l2Input.checked = false;
+							l2Input.indeterminate = true;
+						}
+					}
+				}
+				else
+				{
+					l2Input.checked = this.inputMatchesSelection(l2Input, selected);
+					l2Input.indeterminate = false;
+				}
+			}
+			this.syncMainCategoryBadge(categoryEl);
+		}
+		this.persistSelection();
+	}
+
+	setTagSelected(tagId, checked)
 	{
 		if (checked)
 		{
 			this.selectedTagIds.add(tagId);
-			if (selectedCountRef.value === 0)
-			{
-				categoryEl.classList.add('selected');
-			}
-			selectedCountRef.value++;
 		}
 		else
 		{
 			this.selectedTagIds.delete(tagId);
-			selectedCountRef.value = Math.max(0, selectedCountRef.value - 1);
-			if (selectedCountRef.value === 0)
+		}
+	}
+
+	filterIdsFromInput(input)
+	{
+		const raw = input.getAttribute('data-filter-ids');
+		if (raw && String(raw).trim() !== '')
+		{
+			return String(raw).split(',').map(function (part)
 			{
-				categoryEl.classList.remove('selected');
+				return part.trim();
+			}).filter(Boolean);
+		}
+		return input.value ? [input.value] : [];
+	}
+
+	setInputFilterSelected(input, checked)
+	{
+		const ids = this.filterIdsFromInput(input);
+		for (let i = 0; i < ids.length; i++)
+		{
+			this.setTagSelected(ids[i], checked);
+		}
+	}
+
+	/**
+	 * Marker on the L1 icon: on while this category contributes any filter
+	 * (checked or partially-checked parent). Off when nothing under it is selected.
+	 */
+	syncMainCategoryBadge(categoryEl)
+	{
+		if (!categoryEl)
+		{
+			return;
+		}
+		const inputs = categoryEl.querySelectorAll('input[type="checkbox"]');
+		let anyActive = false;
+		for (let i = 0; i < inputs.length; i++)
+		{
+			if (inputs[i].checked || inputs[i].indeterminate)
+			{
+				anyActive = true;
+				break;
 			}
 		}
+		categoryEl.classList.toggle('selected', anyActive);
+	}
+
+	/**
+	 * Keep an L2 parent checkbox in sync with its L3 children:
+	 * all checked → parent checked (filter = parent only, no child Ids);
+	 * none → unchecked; some → indeterminate (filter = checked children only).
+	 * Avoids sending parent+children together (duplicate coverage in results).
+	 */
+	syncParentFromChildren(l2Input, l3Inputs)
+	{
+		let checkedCount = 0;
+		for (let i = 0; i < l3Inputs.length; i++)
+		{
+			if (l3Inputs[i].checked)
+			{
+				checkedCount++;
+			}
+		}
+		if (checkedCount === 0)
+		{
+			l2Input.checked = false;
+			l2Input.indeterminate = false;
+			this.setInputFilterSelected(l2Input, false);
+			for (let i = 0; i < l3Inputs.length; i++)
+			{
+				this.setInputFilterSelected(l3Inputs[i], false);
+			}
+		}
+		else if (checkedCount === l3Inputs.length)
+		{
+			l2Input.checked = true;
+			l2Input.indeterminate = false;
+			// Fully selected group → only the parent Id(s) in the filter
+			this.setInputFilterSelected(l2Input, true);
+			for (let i = 0; i < l3Inputs.length; i++)
+			{
+				this.setInputFilterSelected(l3Inputs[i], false);
+			}
+		}
+		else
+		{
+			l2Input.checked = false;
+			l2Input.indeterminate = true;
+			this.setInputFilterSelected(l2Input, false);
+			for (let i = 0; i < l3Inputs.length; i++)
+			{
+				this.setInputFilterSelected(l3Inputs[i], l3Inputs[i].checked);
+			}
+		}
+	}
+
+	/**
+	 * Selecting an L2 with children selects all children in the UI;
+	 * the filter stores only the parent Id (not every child) to avoid duplicates.
+	 */
+	applyParentToChildren(l2Input, l3Inputs, checked)
+	{
+		l2Input.checked = checked;
+		l2Input.indeterminate = false;
+		this.setInputFilterSelected(l2Input, checked);
+		for (let i = 0; i < l3Inputs.length; i++)
+		{
+			l3Inputs[i].checked = checked;
+			// Children are shown checked but not added to the filter when parent is on
+			this.setInputFilterSelected(l3Inputs[i], false);
+		}
+	}
+
+	toggleTag(input, checked, categoryEl)
+	{
+		this.setInputFilterSelected(input, checked);
+		this.syncMainCategoryBadge(categoryEl);
 		this.emitFilter();
 	}
 
@@ -95,6 +396,36 @@ class CategoriesChoiceComponent extends HTMLElement
 			return true;
 		}
 		return categoryFilter.indexOf(tagId) >= 0;
+	}
+
+	/**
+	 * True when category-filter matches this main or any of its L2/L3 descendants.
+	 * Used in L1-only mode so a filter like "health" still shows the parent main.
+	 */
+	mainHasFilteredDescendant(mainNode, categoryFilter)
+	{
+		if (!categoryFilter || categoryFilter.length === 0)
+		{
+			return true;
+		}
+		const level2 = mainNode.children || [];
+		for (let i = 0; i < level2.length; i++)
+		{
+			const node = level2[i];
+			if (categoryFilter.indexOf(node.tag.Id) >= 0)
+			{
+				return true;
+			}
+			const l3 = node.children || [];
+			for (let j = 0; j < l3.length; j++)
+			{
+				if (categoryFilter.indexOf(l3[j].Id) >= 0)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -138,32 +469,78 @@ class CategoriesChoiceComponent extends HTMLElement
 		return result;
 	}
 
-	setupCheckbox(input, label, tag, lang, categoryEl, selectedCountRef)
+	bindCheckboxLabel(input, label, tag, lang)
 	{
 		const checkboxId = 'tag-' + tag.Id.replace(/\s+/g, '-');
+		const filterIds = filterIdsForTag(tag);
 		input.id = checkboxId;
 		input.name = tag.Id;
 		input.value = tag.Id;
+		input.setAttribute('data-filter-ids', filterIds.join(','));
 		label.setAttribute('for', checkboxId);
 		label.textContent = tagLabel(tag, lang);
+	}
 
+	setupCheckbox(input, label, tag, lang, categoryEl)
+	{
+		this.bindCheckboxLabel(input, label, tag, lang);
 		const thiswebcomponent = this;
 		input.addEventListener('change', function ()
 		{
-			thiswebcomponent.toggleTag(tag.Id, input.checked, categoryEl, selectedCountRef);
+			thiswebcomponent.toggleTag(input, input.checked, categoryEl);
 		});
 	}
 
-	renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter)
+	/**
+	 * L2 + L3 group: parent selects/deselects all children; any child change
+	 * updates the parent checked / indeterminate state.
+	 */
+	setupParentChildGroup(l2Input, l2Label, l2Tag, l3Inputs, lang, categoryEl)
+	{
+		this.bindCheckboxLabel(l2Input, l2Label, l2Tag, lang);
+		const thiswebcomponent = this;
+
+		l2Input.addEventListener('change', function ()
+		{
+			thiswebcomponent.applyParentToChildren(l2Input, l3Inputs, l2Input.checked);
+			thiswebcomponent.syncMainCategoryBadge(categoryEl);
+			thiswebcomponent.emitFilter();
+		});
+
+		for (let i = 0; i < l3Inputs.length; i++)
+		{
+			l3Inputs[i].addEventListener('change', function ()
+			{
+				thiswebcomponent.setInputFilterSelected(l3Inputs[i], l3Inputs[i].checked);
+				thiswebcomponent.syncParentFromChildren(l2Input, l3Inputs);
+				thiswebcomponent.syncMainCategoryBadge(categoryEl);
+				thiswebcomponent.emitFilter();
+			});
+		}
+	}
+
+	renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter, showSubcategories)
 	{
 		for (let i = 0; i < tree.length; i++)
 		{
 			const mainNode = tree[i];
 			const mainTag = mainNode.tag;
-			const level2Nodes = this.filterLevel2Nodes(mainNode.children || [], mainTag.Id, categoryFilter);
+			const level2Nodes = showSubcategories
+				? this.filterLevel2Nodes(mainNode.children || [], mainTag.Id, categoryFilter)
+				: [];
 
-			if (level2Nodes.length === 0 && categoryFilter && categoryFilter.length > 0
+			if (showSubcategories
+				&& level2Nodes.length === 0
+				&& categoryFilter && categoryFilter.length > 0
 				&& categoryFilter.indexOf(mainTag.Id) < 0)
+			{
+				continue;
+			}
+			// L1-only: show main if it is whitelisted, or any of its L2/L3 children are
+			if (!showSubcategories
+				&& categoryFilter && categoryFilter.length > 0
+				&& categoryFilter.indexOf(mainTag.Id) < 0
+				&& !this.mainHasFilteredDescendant(mainNode, categoryFilter))
 			{
 				continue;
 			}
@@ -181,7 +558,6 @@ class CategoriesChoiceComponent extends HTMLElement
 			const itemParent = itemTemplate.parentElement;
 			itemTemplate.remove();
 
-			const selectedCountRef = { value: 0 };
 			let renderedCount = 0;
 
 			for (let j = 0; j < level2Nodes.length; j++)
@@ -193,8 +569,7 @@ class CategoriesChoiceComponent extends HTMLElement
 				const l3Container = l2Item.querySelector('.subCategoryLevel3');
 				l3Container.textContent = '';
 
-				this.setupCheckbox(l2Input, l2Label, l2Node.tag, lang, category, selectedCountRef);
-
+				const l3Inputs = [];
 				const l3Children = l2Node.children || [];
 				for (let k = 0; k < l3Children.length; k++)
 				{
@@ -214,21 +589,31 @@ class CategoriesChoiceComponent extends HTMLElement
 					l3Item.appendChild(l3Input);
 					l3Item.appendChild(l3Label);
 					l3Container.appendChild(l3Item);
-					this.setupCheckbox(l3Input, l3Label, l3Tag, lang, category, selectedCountRef);
+					this.bindCheckboxLabel(l3Input, l3Label, l3Tag, lang);
+					l3Inputs.push(l3Input);
+				}
+
+				if (l3Inputs.length > 0)
+				{
+					this.setupParentChildGroup(l2Input, l2Label, l2Node.tag, l3Inputs, lang, category);
+				}
+				else
+				{
+					this.setupCheckbox(l2Input, l2Label, l2Node.tag, lang, category);
 				}
 
 				itemParent.appendChild(l2Item);
 				renderedCount++;
 			}
 
-			// Main category with no L2 (e.g. rare): still show a checkbox for the main tag itself
+			// L1-only mode, or main category with no L2: checkbox for the main tag itself
 			if (renderedCount === 0)
 			{
 				const mainItem = itemTemplate.cloneNode(true);
 				const mainInput = mainItem.querySelector('input');
 				const mainLabel = mainItem.querySelector('label');
 				mainItem.querySelector('.subCategoryLevel3').remove();
-				this.setupCheckbox(mainInput, mainLabel, mainTag, lang, category, selectedCountRef);
+				this.setupCheckbox(mainInput, mainLabel, mainTag, lang, category);
 				itemParent.appendChild(mainItem);
 				renderedCount++;
 			}
@@ -353,7 +738,8 @@ class CategoriesChoiceComponent extends HTMLElement
 		{
 			return;
 		}
-		if (name === 'lang' || name === 'categories' || name === 'category-filter')
+		if (name === 'lang' || name === 'categories' || name === 'category-filter'
+			|| name === 'show-subcategories')
 		{
 			await this.rebuild();
 		}
@@ -362,7 +748,10 @@ class CategoriesChoiceComponent extends HTMLElement
 	async rebuild()
 	{
 		const rebuildToken = (this._rebuildToken = (this._rebuildToken || 0) + 1);
-		const hadSelection = this.selectedTagIds && this.selectedTagIds.size > 0;
+		const hadInMemory = this.selectedTagIds && this.selectedTagIds.size > 0;
+		const preserved = hadInMemory
+			? Array.from(this.selectedTagIds)
+			: this.loadPersistedSelection();
 
 		const content = categoriesChoice_template.content.cloneNode(true);
 		const categoryTemplate = content.querySelector('div.dropdownCategory');
@@ -377,6 +766,7 @@ class CategoriesChoiceComponent extends HTMLElement
 		const lang = this.getAttribute('lang') || 'en';
 		const mainCategories = resolveMainCategories(this.getAttribute('categories'));
 		const categoryFilter = parseCommaList(this.getAttribute('category-filter'));
+		const showSubcategories = this.showSubcategoriesEnabled();
 
 		try
 		{
@@ -387,17 +777,27 @@ class CategoriesChoiceComponent extends HTMLElement
 				return;
 			}
 			const tree = buildCategoryTree(allTags, mainCategories);
-			this.renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter);
+			this.renderTree(tree, categoryTemplate, categoryParent, lang, categoryFilter, showSubcategories);
 		}
 		catch (err)
 		{
 			console.error('Failed to build category menu from Tag API', err);
 		}
 
-		// Selection was cleared with the DOM rebuild — notify parent so map/list reset
-		if (hadSelection && typeof this.oncategorychange === 'function')
+		if (rebuildToken !== this._rebuildToken)
 		{
-			this.oncategorychange('');
+			return;
+		}
+
+		// Keep selection across language changes and hard refresh (localStorage)
+		if (preserved.length > 0)
+		{
+			this.applySelection(preserved);
+			if (!hadInMemory)
+			{
+				// Restored after page load — notify host to run search
+				this.emitFilter();
+			}
 		}
 	}
 }

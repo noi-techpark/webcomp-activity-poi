@@ -31,6 +31,7 @@ Include `dist/bundle.js` and place the element:
   showradius="false"
   categories="wellness relaxation,eating drinking,summer,winter,culture attractions,traffic and transport,shops and service providers,other"
   category-filter=""
+  show-subcategories="true"
   directions
 ></odh-activity-poi>
 ```
@@ -46,6 +47,7 @@ Include `dist/bundle.js` and place the element:
 | `language` | `en`, `de`, or `it` |
 | `categories` | Comma-separated **main Tag Ids** shown in the picker. Defaults to the eight ODH main categories listed below |
 | `category-filter` | Optional whitelist of Tag Ids (main, L2, or L3) to limit menu entries |
+| `show-subcategories` | `true` (default) show L2/L3 menu entries; `false` show only Level 1 checkboxes |
 | `directions` | Presence flag for the “Get directions” control |
 | `show-current-location` | Show a marker at the map center coordinates |
 | `marker-color` | Color for the current-location marker |
@@ -64,8 +66,13 @@ Include `dist/bundle.js` and place the element:
 Submenus (L2 and L3) are built from the Tourism Tag API in one request
 (`validforentity=odhactivitypoi`, `pagesize=0`, fields `Id,Mapping.idm,TagName`).
 Main categories are included (they have no `parent_id`), then L2/L3 are derived
-from parent associations. Filtering uses the Content API `tagfilter` parameter
-with the selected Tag Ids, comma-separated.
+from parent associations. Set `show-subcategories="false"` to hide L2/L3 and
+offer only a checkbox per main category. Filtering uses the Content API
+`tagfilter` parameter with the selected Tag Ids, comma-separated.
+
+List and detail requests to `/v1/ODHActivityPoi` send `active=true` so only
+active records are returned. Search `fields` are limited to
+`Id,Detail,GpsInfo,GpsTrack,Tags` (icons and labels resolve from Tags).
 
 ### APIs
 
@@ -101,10 +108,16 @@ npm run build
 ## Development
 
 ```bash
+npm install
 npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Then open **[http://localhost:3000](http://localhost:3000/)** in your browser.
+
+Do **not** open `index.html` as a `file://` URL — Leaflet scripts and icon
+assets require the local HTTP server (`npm run start`).
+
+If port 3000 is busy: `PORT=3001 npm run start`.
 
 ## Deployment
 

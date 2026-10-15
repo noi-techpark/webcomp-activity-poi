@@ -4,14 +4,31 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-.categoriesContainer {
-	text-align:center;
-	width: auto !important;
-	//height: 15vh;
+:host {
+	display: block;
+	max-width: 100%;
+	box-sizing: border-box;
+}
 
-	@media screen and (max-width:768px){
+.categoriesContainer {
+	text-align: center;
+	width: auto !important;
+	max-width: 100%;
+	box-sizing: border-box;
+
+	@media screen and (max-width: 768px) {
 		background: white;
-		padding: 10px;
+		padding: 10px 8px calc(10px + env(safe-area-inset-bottom, 0px));
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		gap: 4px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		width: 100% !important;
+		box-sizing: border-box;
 	}
 }
 
@@ -25,9 +42,11 @@
 	min-width: 35px;
 	text-align: left;
 	position: relative;
+	flex: 0 0 auto;
+	vertical-align: top;
+	box-sizing: border-box;
 
-
-	&.selected .category::before{
+	&.selected .category::before {
 		content: '';
 		display: inline-block;
 		width: 15px;
@@ -38,11 +57,11 @@
 		background-color: #dc5d3a;
 
 		position: absolute;
-		z-index: 99999999999999999999;
+		z-index: 2;
 		bottom: 5px;
 		right: 5px;
 
-		@media screen and (max-width:768px){
+		@media screen and (max-width: 768px) {
 			width: 10px;
 			height: 10px;
 			-moz-border-radius: 5px;
@@ -78,6 +97,8 @@
 	min-height: 35px;
 	min-width: 35px;
 	overflow: hidden;
+	position: relative;
+	box-sizing: border-box;
 }
 
 .categoryImage {
@@ -85,26 +106,42 @@
 	height: 100%;
 	position: absolute;
 	left: 0;
+	top: 0;
+	object-fit: contain;
+	object-position: center;
+	display: block;
+	pointer-events: none;
 }
 
 .subCategory {
-	padding: 20px;
+	padding: 16px 20px;
 	text-align: left;
 	display: none;
 	background-color: white;
 	border-radius: 7px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-	position: absolute; 
-	white-space: nowrap;
-	width:auto; 
+	position: absolute;
+	/* Allow long labels to wrap instead of stretching off-screen */
+	white-space: normal;
+	width: max-content;
+	max-width: min(320px, 90vw);
+	/* Viewport-based only — parent icon is ~65px, so % max-height would collapse the menu */
+	max-height: min(70vh, 560px);
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
 	z-index: 1;
+	box-sizing: border-box;
 
-	@media only screen and (max-width:768px){
+	@media only screen and (max-width: 768px) {
 		position: fixed;
-		right: 10vw;
-		left: 10vw;
-		bottom: 20vh;
-		max-height: 55vh;
+		right: 5vw;
+		left: 5vw;
+		bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+		top: auto;
+		width: auto;
+		max-width: none;
+		max-height: min(55vh, 560px);
 		overflow-y: auto;
 		white-space: normal;
 		z-index: 100000;
@@ -118,20 +155,20 @@
 		border-color: transparent transparent #ccc transparent;
 		top: -8px;
 
-		@media only screen and (max-width:1024px){
-			content:none;
+		@media only screen and (max-width: 1024px) {
+			content: none;
 		}
 	}
 	&::after {
 		content: "";
 		position: absolute;
-		border-style:solid;
+		border-style: solid;
 		border-width: 0 9px 7px 0;
 		border-color: transparent transparent #fff transparent;
 		top: -7px;
 
-		@media only screen and (max-width:768px){
-			content:none;
+		@media only screen and (max-width: 768px) {
+			content: none;
 		}
 	}
 }
@@ -147,17 +184,24 @@
 	left: 15px;
 }
 .subCategoryLeft::after {
-	left:16px;
+	left: 16px;
 }
 
 .subCategoryRight {
-	right: 0px;
+	right: 0;
 }
 .subCategoryRight::before {
 	right: 15px;
 }
 .subCategoryRight::after {
-	right:16px;
+	right: 16px;
+}
+
+.subCategoryTitle,
+[class^="subCategoryTitle-"] {
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	margin: 0 0 4px;
 }
 
 .subCategoryTitle-other {
@@ -185,13 +229,43 @@
 	color: #3D8CC4;
 }
 
-.subCategoryItem{
+.subCategoryItem {
 	margin-top: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	column-gap: 8px;
+	row-gap: 4px;
+	max-width: 100%;
+	box-sizing: border-box;
+
+	input[type="checkbox"] {
+		flex: 0 0 auto;
+		width: 14px;
+		height: 14px;
+		margin: 0.2em 0 0;
+		padding: 0;
+	}
+
+	/* Stay beside the checkbox; shrink/wrap text instead of dropping to the next line */
+	label {
+		flex: 1 1 0;
+		min-width: 0;
+		max-width: calc(100% - 22px);
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		hyphens: auto;
+		white-space: normal;
+		line-height: 1.35;
+	}
 }
 
 .subCategoryLevel3 {
+	flex: 0 0 100%;
+	width: 100%;
 	margin-left: 18px;
 	margin-top: 4px;
+	box-sizing: border-box;
 }
 
 .subCategoryItem.nested {
@@ -207,13 +281,14 @@
 		top: 20px;
 		position: relative;
 		z-index: 9999;
+		padding: 0 8px;
 	}
-	
+
 	.dropdownCategory {
 		width: 5vw;
 		height: 5vw;
 	}
-	
+
 	.category {
 		width: 5vw;
 		height: 5vw;

@@ -8,45 +8,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <link href="src/static/css/all.css" rel="stylesheet" type="text/css">
+    <title>ODH Activity &amp; POI — use npm start</title>
+    <meta http-equiv="refresh" content="0; url=http://localhost:3000/">
     <style>
-    html, body{
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
+        body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+        code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }
     </style>
 </head>
 <body>
-<odh-activity-poi
-    lat-lon-zoom="[46.6,11.4,12]"
-    radius="10000"
-    showradius="true"
-    lang="de"
-    xcategory-filter="sommer/*,winter/skirundtouren pisten"
-    ></odh-activity-poi>
-
-<script>
-    window.paths = {
-        css: "./src/static/css/",
-        css_components: "./src/static/css/components/",
-        img: "./src/static/img/",
-        img_category_icons: "./src/static/img/category_icons/",
-        img_map_markers: "./src/static/img/map_markers/",
-        img_fa_icons: "./src/static/img/fa_icons/",
-        data:"./src/static/data/"
-    };
-</script>
-
-<script src="src/strings.js"></script>
-<script src="src/InteractiveMapComponent.js"></script>
-<script src="src/CategoriesChoiceComponent.js"></script>
-<script src="src/ItemVisualizerComponent.js"></script>
-<script src="src/SearchComponent.js"></script>
-<script src="src/ActivityPOIComponent.js"></script>
-
+    <h1>Local demo</h1>
+    <p>This file is not a standalone demo. Run the HTTP server and open the app there:</p>
+    <pre><code>npm install
+npm run start</code></pre>
+    <p>Then open <a href="http://localhost:3000/">http://localhost:3000/</a></p>
+    <p>Opening HTML via <code>file://</code> will not load Leaflet or webpack assets correctly.</p>
 </body>
 </html>

@@ -177,6 +177,8 @@ async function main()
 			ok('bundle uses tagfilter', src.includes('tagfilter'));
 			ok('bundle does not use odhtagfilter', !src.includes('odhtagfilter'));
 			ok('bundle has Tag fetch', src.includes('/v1/Tag'));
+			ok('bundle sends active=true', src.includes("append('active', 'true')") || src.includes('active","true"') || src.includes("active', 'true'"));
+			ok('bundle has show-subcategories', src.includes('show-subcategories'));
 		}
 	});
 
@@ -215,7 +217,8 @@ async function main()
 			const params = new URLSearchParams({
 				pagenumber: '1',
 				pagesize: '25',
-				fields: 'Id,Detail,GpsInfo,Tags,Type,PoiType,ODHActivityPoiTypes',
+				active: 'true',
+				fields: 'Id,Detail,GpsInfo,GpsTrack,Tags',
 				tagfilter: c.tag,
 				origin: ORIGIN,
 				radius: '50000',
@@ -242,17 +245,17 @@ async function main()
 
 	await section('Detail endpoint', async () =>
 	{
-		const listRes = await fetch(`${BASE}/v1/ODHActivityPoi?pagesize=1&pagenumber=1&tagfilter=museums&fields=Id&origin=${ORIGIN}`);
+		const listRes = await fetch(`${BASE}/v1/ODHActivityPoi?pagesize=1&pagenumber=1&active=true&tagfilter=museums&fields=Id&origin=${ORIGIN}`);
 		const list = await listRes.json();
 		const id = list.Items?.[0]?.Id;
 		ok('got sample id', !!id, id);
 		if (id)
 		{
-			const res = await fetch(`${BASE}/v1/ODHActivityPoi/${encodeURIComponent(id)}?origin=${ORIGIN}`);
+			const res = await fetch(`${BASE}/v1/ODHActivityPoi/${encodeURIComponent(id)}?active=true&origin=${ORIGIN}`);
 			ok('detail HTTP 200', res.ok, String(res.status));
 			const item = await res.json();
 			ok('detail has Detail', !!(item.Detail && (item.Detail.de || item.Detail.en)));
-			ok('detail has Tags or Type', !!(item.Tags?.length || item.Type));
+			ok('detail has Tags', !!(item.Tags && item.Tags.length));
 			const main = resolveItemMainCategoryId(item);
 			ok('detail main category resolvable', !!MAP_MARKER_BASENAME[main], main);
 		}
@@ -276,7 +279,17 @@ async function main()
 		}
 		const act = fs.readFileSync(path.join(root, 'src/ActivityPOIComponent.js'), 'utf8');
 		ok('doSearch uses tagfilter', act.includes("append('tagfilter'"));
+		ok('doSearch sends active=true', act.includes("append('active', 'true')"));
+		ok('doSearch fields omit Type/PoiType/ODHActivityPoiTypes',
+			act.includes("fields', 'Id,Detail,GpsInfo,GpsTrack,Tags'")
+			&& !act.includes('ODHActivityPoiTypes'));
+		ok('host observes show-subcategories', act.includes('show-subcategories'));
 		ok('doSearch has race guard', act.includes('_searchSeq'));
+		const cats = fs.readFileSync(path.join(root, 'src/CategoriesChoiceComponent.js'), 'utf8');
+		ok('menu supports show-subcategories', cats.includes('showSubcategoriesEnabled'));
+		const itemViz = fs.readFileSync(path.join(root, 'src/ItemVisualizerComponent.js'), 'utf8');
+		ok('detail sends active=true', itemViz.includes("append('active', 'true')"));
+		ok('detail label does not use PoiType', !itemViz.includes('item.PoiType'));
 		const cat = fs.readFileSync(path.join(root, 'src/CategoriesChoiceComponent.js'), 'utf8');
 		ok('categories rebuild notifies clear', cat.includes("oncategorychange('')"));
 	});

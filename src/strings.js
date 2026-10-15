@@ -127,5 +127,10 @@ window.strings = {
     "en": "Close",
     "it": "Chiudi",
     "de": "Schließen"
+  },
+  "reset-selection": {
+    "en": "Reset Selection",
+    "it": "Reimposta selezione",
+    "de": "Auswahl zurücksetzen"
   }
 }

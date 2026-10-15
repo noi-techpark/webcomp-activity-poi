@@ -24,17 +24,23 @@
 
 .text{
 	font-size: 14px;
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
 
 .titleParagraph{
 	margin-block-start: 1vw;
 	margin-block-end: 1vw;
 	font-size: 18px;
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
 
 .infoTitleParagraph{
 	font-size: 14px;
 	margin: 0;
+	overflow-wrap: anywhere;
+	word-break: break-word;
 }
 
 input[type="text"]{

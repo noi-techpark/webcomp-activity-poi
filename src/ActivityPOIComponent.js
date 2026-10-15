@@ -6,6 +6,7 @@ import componentStyle from './static/scss/components/ActivityPOIComponent.scss'
 import {
 	DEFAULT_CATEGORIES,
 	tourismUrl,
+	uniqueItemsById,
 	withOrigin
 } from './odhApi.js'
 
@@ -16,6 +17,12 @@ activityPOI_template.innerHTML = `
         <interactive-map></interactive-map>
         <div class="activity-poi__language_picker">
             <wc-languagepicker></wc-languagepicker>
+            <button type="button" id="resetFiltersButton" class="activity-poi__reset_filters" aria-label="Reset Selection">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="14" height="14">
+                    <path fill="currentColor" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.89l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.5 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.91 175.91 0 0 1 255.83 432z"/>
+                </svg>
+                <span id="resetFiltersTooltip" class="activity-poi__reset_filters_tooltip">Reset Selection</span>
+            </button>
         </div>
         <div id="categoriesContainer">
             <categories-choice></categories-choice>
@@ -51,6 +58,8 @@ const LANGUAGES = {
 	IT: 'it'
 };
 
+const LANGUAGE_STORAGE_KEY = 'odh-activity-poi.language';
+
 function normalizeLanguage(value)
 {
 	let lang = (value || 'en').toLowerCase().trim();
@@ -64,6 +73,43 @@ function normalizeLanguage(value)
 		lang = 'en';
 	}
 	return lang;
+}
+
+function loadPersistedLanguage()
+{
+	try
+	{
+		if (typeof localStorage === 'undefined')
+		{
+			return '';
+		}
+		const raw = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+		if (!raw)
+		{
+			return '';
+		}
+		return normalizeLanguage(raw);
+	}
+	catch (err)
+	{
+		return '';
+	}
+}
+
+function persistLanguage(lang)
+{
+	try
+	{
+		if (typeof localStorage === 'undefined')
+		{
+			return;
+		}
+		localStorage.setItem(LANGUAGE_STORAGE_KEY, normalizeLanguage(lang));
+	}
+	catch (err)
+	{
+		// private mode / quota — ignore
+	}
 }
 
 class ActivityPOIComponent extends HTMLElement
@@ -83,6 +129,8 @@ class ActivityPOIComponent extends HTMLElement
 		this.last_search = '';
 		this.last_subcategories = '';
 		this._searchSeq = 0;
+		// Avoid HTML language="en" overwriting localStorage during element upgrade
+		this._languagePersistenceReady = false;
 
 		this.search_items = null
 		this.interactive_map = null
@@ -119,10 +167,19 @@ class ActivityPOIComponent extends HTMLElement
 		// categories-choice
 		//
 
-		const currentLang = normalizeLanguage(this.getAttribute('language'));
-		if ((this.getAttribute('language') || '').toLowerCase() !== currentLang)
+		// Prefer last chosen language (localStorage) over HTML language="en" on refresh.
+		// Must run before enabling persistence — upgrade already applied the HTML attr.
+		const persistedLang = loadPersistedLanguage();
+		const currentLang = persistedLang
+			|| normalizeLanguage(this.getAttribute('language') || 'en');
+		this._languagePersistenceReady = true;
+		if (normalizeLanguage(this.getAttribute('language')) !== currentLang)
 		{
 			this.setAttribute('language', currentLang);
+		}
+		else
+		{
+			persistLanguage(currentLang);
 		}
 
 		let categories_choice = content.querySelector('categories-choice')
@@ -137,6 +194,9 @@ class ActivityPOIComponent extends HTMLElement
 		)
 		if (this.getAttribute('category-filter'))
 			categories_choice.setAttribute('category-filter', this.getAttribute('category-filter'))
+		// Default: show L2/L3; only forward when host sets the attribute
+		if (this.getAttribute('show-subcategories') !== null)
+			categories_choice.setAttribute('show-subcategories', this.getAttribute('show-subcategories'))
 
 		//
 		// item-visualizer
@@ -256,6 +316,24 @@ class ActivityPOIComponent extends HTMLElement
 		const languagePicker = content.querySelector('wc-languagepicker');
 		this.languagePicker = languagePicker;
 
+		const resetFiltersButton = content.querySelector('#resetFiltersButton');
+		const resetFiltersTooltip = content.querySelector('#resetFiltersTooltip');
+		this.resetFiltersButton = resetFiltersButton;
+		this.resetFiltersTooltip = resetFiltersTooltip;
+
+		function updateResetFiltersLabel()
+		{
+			const lang = normalizeLanguage(thiswebcomponent.getAttribute('language'));
+			const label = strings['reset-selection'][lang];
+			resetFiltersButton.setAttribute('aria-label', label);
+			if (resetFiltersTooltip)
+			{
+				resetFiltersTooltip.textContent = label;
+			}
+		}
+		updateResetFiltersLabel();
+		this.updateResetFiltersLabel = updateResetFiltersLabel;
+
 		// Append first so child custom elements upgrade, then wire callbacks
 		// (assigning callbacks before upgrade can be wiped by constructors).
 		this.shadowRoot.appendChild(content)
@@ -267,6 +345,24 @@ class ActivityPOIComponent extends HTMLElement
 			thiswebcomponent.last_subcategories = tagfilter
 			thiswebcomponent.doSearch()
 		}
+		// If selection was restored from storage before this callback was wired, sync now
+		if (categories_choice.selectedTagIds && categories_choice.selectedTagIds.size > 0)
+		{
+			thiswebcomponent.last_subcategories = Array.from(categories_choice.selectedTagIds).join(',')
+			thiswebcomponent.doSearch()
+		}
+		resetFiltersButton.addEventListener('click', function()
+		{
+			if (typeof categories_choice.clearSelection === 'function')
+			{
+				categories_choice.clearSelection();
+			}
+			else
+			{
+				thiswebcomponent.last_subcategories = '';
+				thiswebcomponent.doSearch();
+			}
+		})
 		item_visualizer.closebuttonfunction = function()
 		{
 			searchContainer.style.display = "block";
@@ -386,6 +482,19 @@ class ActivityPOIComponent extends HTMLElement
 			this.restoreTab.setAttribute('aria-label', strings['expand-panel'][safeLang]);
 			this.restoreTab.setAttribute('title', strings['expand-panel'][safeLang]);
 		}
+		if (typeof this.updateResetFiltersLabel === 'function')
+		{
+			this.updateResetFiltersLabel();
+		}
+		else if (this.resetFiltersButton)
+		{
+			const label = strings['reset-selection'][safeLang];
+			this.resetFiltersButton.setAttribute('aria-label', label);
+			if (this.resetFiltersTooltip)
+			{
+				this.resetFiltersTooltip.textContent = label;
+			}
+		}
 	}
 
 
@@ -417,8 +526,10 @@ class ActivityPOIComponent extends HTMLElement
 			let params = withOrigin(new URLSearchParams())
 			params.append('pagenumber', '1')
 			params.append('pagesize', '10000')
+			params.append('active', 'true')
 			params.append('searchfilter', this.last_search)
-			params.append('fields', 'Id,Detail,GpsInfo,GpsTrack,Tags,Type,PoiType,ODHActivityPoiTypes')
+			// Icons/labels resolve from Tags only
+			params.append('fields', 'Id,Detail,GpsInfo,GpsTrack,Tags')
 			if (tagfilter.length > 0)
 			{
 				params.append('tagfilter', tagfilter)
@@ -439,7 +550,7 @@ class ActivityPOIComponent extends HTMLElement
 					throw new Error('ODHActivityPoi HTTP ' + response.status)
 				}
 				let json = await response.json();
-				list = json.Items || [];
+				list = uniqueItemsById(json.Items || []);
 			}
 			catch (err)
 			{
@@ -454,6 +565,7 @@ class ActivityPOIComponent extends HTMLElement
 			return
 		}
 
+		list = uniqueItemsById(list)
 		this.search_items.setAttribute('items', JSON.stringify(list))
 		this.interactive_map.setAttribute('items', JSON.stringify(list))
 
@@ -467,11 +579,12 @@ class ActivityPOIComponent extends HTMLElement
 	 * - language ('it','de','en')
 	 * - categories: comma-separated main Tag Ids for the picker (defaults to DEFAULT_CATEGORIES)
 	 * - category-filter: optional whitelist of Tag Ids for menu entries
+	 * - show-subcategories: 'true' (default) show L2/L3; 'false' = L1 checkboxes only
 	 * - directions, show-current-location, marker-color
 	 */
 	static get observedAttributes()
 	{
-		return ['lat', 'lon', 'radius', 'categories', 'category-filter', 'directions', 'language', 'show-current-location', 'marker-color'];
+		return ['lat', 'lon', 'radius', 'categories', 'category-filter', 'show-subcategories', 'directions', 'language', 'show-current-location', 'marker-color'];
 	}
 
 	async attributeChangedCallback(name, oldVal, newVal)
@@ -501,11 +614,19 @@ class ActivityPOIComponent extends HTMLElement
 		if (name === 'language')
 		{
 			const lang = normalizeLanguage(newVal);
+			// Skip persist during upgrade: HTML language="en" must not wipe saved choice
+			if (this._languagePersistenceReady)
+			{
+				persistLanguage(lang);
+			}
 			if (this.languagePicker)
 			{
 				this.languagePicker.language = lang;
 			}
-			this.applyLanguageToChildren(lang);
+			if (this.isConnected)
+			{
+				this.applyLanguageToChildren(lang);
+			}
 		}
 		if (name === 'directions' && this.item_visualizer)
 		{
@@ -518,7 +639,8 @@ class ActivityPOIComponent extends HTMLElement
 				this.item_visualizer.removeAttribute('directions');
 			}
 		}
-		if ((name === 'categories' || name === 'category-filter') && this.shadowRoot)
+		if ((name === 'categories' || name === 'category-filter' || name === 'show-subcategories')
+			&& this.shadowRoot)
 		{
 			const categoriesChoice = this.shadowRoot.querySelector('categories-choice')
 			if (categoriesChoice)
@@ -531,6 +653,17 @@ class ActivityPOIComponent extends HTMLElement
 							? newVal
 							: DEFAULT_CATEGORIES.join(',')
 					)
+				}
+				else if (name === 'show-subcategories')
+				{
+					if (newVal !== null)
+					{
+						categoriesChoice.setAttribute('show-subcategories', newVal)
+					}
+					else
+					{
+						categoriesChoice.removeAttribute('show-subcategories')
+					}
 				}
 				else if (newVal !== null)
 				{

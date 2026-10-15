@@ -249,6 +249,7 @@ class ItemVisualizerComponent extends HTMLElement
 		this._uiLang = lang;
 
 		const params = withOrigin(new URLSearchParams())
+		params.append('active', 'true')
 		let response = await fetch(tourismUrl('/v1/ODHActivityPoi/' + encodeURIComponent(id) + '?' + params.toString()))
 		if (!response.ok)
 		{
@@ -284,7 +285,6 @@ class ItemVisualizerComponent extends HTMLElement
 
 		const mainCategoryId = resolveItemMainCategoryId(item);
 		const categoryLabel = tagLabelById(mainCategoryId, lang)
-			|| item.PoiType
 			|| (item.Tags && item.Tags[0] && item.Tags[0].Name)
 			|| '';
 		root_element.querySelector('span#category').textContent = categoryLabel;

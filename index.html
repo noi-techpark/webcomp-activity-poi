@@ -8,30 +8,37 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ODH Activity &amp; POI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <style>
-        html, body{
+        html, body {
             height: 100%;
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
+        }
+        odh-activity-poi {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
+<!--
+  Local demo: run `npm run start` then open http://localhost:3000/
+  Do not open this file via file:// — Leaflet and assets need the HTTP server.
+-->
 <odh-activity-poi
   lat="46.6"
   lon="11.4"
   zoom="8"
   radius="500000"
   language="en"
+  show-subcategories="true"
   categories="wellness relaxation,eating drinking,summer,winter,culture attractions,traffic and transport,shops and service providers,other"
 ></odh-activity-poi>
 
-<script>
-
-</script>
 <script src="bundle.js"></script>
 </body>
 </html>

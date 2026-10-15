@@ -4,7 +4,6 @@
 
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import style from './languagePicker.scss';
-import '../button/button.js';
 
 import flagIt from '../assets/flags/flag_it.svg';
 import flagDe from '../assets/flags/flag_de.svg';
@@ -70,13 +69,16 @@ export class LanguagePicker extends LitElement {
 
     return html`<div class="languagePicker">
       <div class="languagePicker__trigger">
-        <wc-button
+        <button
+          type="button"
+          class="languagePicker__flag"
+          aria-label="Change language"
           @click="${() => {
             this.isOpen = !this.isOpen;
           }}"
-          type="square"
-          .image="${mapLanguageToFlag[this.language]}"
-        ></wc-button>
+        >
+          <img src="${mapLanguageToFlag[this.language]}" alt="" />
+        </button>
       </div>
       ${this.isOpen
         ? html` <div class="languagePicker__menu">
