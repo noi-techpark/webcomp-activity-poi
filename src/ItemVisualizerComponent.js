@@ -4,6 +4,7 @@
 
 import {
 	categoryThemeClass,
+	itemLatLon,
 	resolveItemMainCategoryId,
 	tagLabelById,
 	tourismUrl,
@@ -345,11 +346,12 @@ class ItemVisualizerComponent extends HTMLElement
 			root_element.querySelector('span#country').innerHTML = contact.CountryName;
 			root_element.querySelector('span#email').innerHTML = contact.Email;
 			root_element.querySelector('span#phoneNumber').innerHTML = contact.Phonenumber;
-			if (item.GpsInfo && item.GpsInfo[0])
+			const latLon = itemLatLon(item)
+			if (latLon)
 			{
 				root_element.querySelector('a#directions').setAttribute(
 					"href",
-					"https://maps.google.com/maps?q=" + item.GpsInfo[0].Latitude + "," + item.GpsInfo[0].Longitude
+					"https://maps.google.com/maps?q=" + latLon[0] + "," + latLon[1]
 				);
 			}
 		}

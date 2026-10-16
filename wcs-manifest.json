@@ -105,7 +105,7 @@
       {
         "key": "radius",
         "type": "text",
-        "label": "Map search radius (m): Empty means unlimited (that is, no radius filter)",
+        "label": "Map search radius (m): Empty means 85000 (all of South Tyrol), 0 means unlimited (no radius filter)",
         "required": false,
         "options": {
           "default": ""

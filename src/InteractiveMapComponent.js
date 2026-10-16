@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import {
+	itemLatLon,
 	mapMarkerIconUrl,
 	resolveItemMainCategoryId,
 	tourismUrl
@@ -310,7 +311,8 @@ class InteractiveMapComponent extends HTMLElement
 		{
 			let item = items[i]
 
-			if (!item.GpsInfo || !item.GpsInfo[0])
+			const latLon = itemLatLon(item)
+			if (!latLon)
 			{
 				continue;
 			}
@@ -322,7 +324,7 @@ class InteractiveMapComponent extends HTMLElement
 				iconSize: [60 / 2, 99 / 2]
 			});
 
-			let marker = L.marker([item.GpsInfo[0].Latitude, item.GpsInfo[0].Longitude],
+			let marker = L.marker(latLon,
 			{
 				icon: markerIcon
 			}).on('click', (function(clickedItem)

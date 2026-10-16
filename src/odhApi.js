@@ -8,6 +8,32 @@ export const TOURISM_API_BASE = 'https://tourism.api.opendatahub.com';
 export const API_ORIGIN = 'webcomp-activity-poi';
 
 /**
+ * Search radius (m) used when the `radius` attribute is empty or missing.
+ * ~80 km from the center of South Tyrol reaches its farthest border; 85 km
+ * leaves margin and keeps border-area Dolomites POIs (Sella, Fassa, Arabba)
+ * while dropping records with broken coordinates (0/0, Aosta, Zurich).
+ */
+export const DEFAULT_SEARCH_RADIUS = 85000;
+
+/**
+ * Effective search radius in meters from the `radius` attribute, or null
+ * for no radius filter. Empty/missing → DEFAULT_SEARCH_RADIUS, "0" → none.
+ */
+export function resolveSearchRadius(value)
+{
+	if (value == null || String(value).trim() === '' || value === 'null')
+	{
+		return DEFAULT_SEARCH_RADIUS;
+	}
+	const radius = parseInt(value, 10);
+	if (!Number.isFinite(radius))
+	{
+		return DEFAULT_SEARCH_RADIUS;
+	}
+	return radius > 0 ? radius : null;
+}
+
+/**
  * Default main categories shown in the category picker.
  * Override with the `categories` attribute (comma-separated Tag Ids).
  */
@@ -83,6 +109,36 @@ export function withOrigin(params)
 {
 	params.set('origin', API_ORIGIN);
 	return params;
+}
+
+/**
+ * First GpsInfo point of an item as [lat, lon], or null when coordinates
+ * are not set. Treated as not set: missing GpsInfo, empty/non-numeric
+ * values, latitude out of range, and 0/0 (source placeholder, would put a
+ * marker off West Africa and stretch fitBounds).
+ * Longitude is wrapped into [-180, 180]: some records carry values like
+ * 371.78 (= 11.78 + 360), which would stretch fitBounds around the globe.
+ */
+export function itemLatLon(item)
+{
+	const gps = item && item.GpsInfo && item.GpsInfo[0];
+	if (!gps || gps.Latitude == null || gps.Longitude == null
+		|| gps.Latitude === '' || gps.Longitude === '')
+	{
+		return null;
+	}
+	const lat = Number(gps.Latitude);
+	let lon = Number(gps.Longitude);
+	if (!Number.isFinite(lat) || !Number.isFinite(lon) || lat < -90 || lat > 90)
+	{
+		return null;
+	}
+	if (lat === 0 && lon === 0)
+	{
+		return null;
+	}
+	lon = ((lon + 180) % 360 + 360) % 360 - 180;
+	return [lat, lon];
 }
 
 export function parseCommaList(value)
