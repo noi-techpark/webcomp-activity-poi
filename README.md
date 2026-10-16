@@ -42,7 +42,7 @@ Include `dist/bundle.js` and place the element:
 |-----------|-------------|
 | `lat` / `lon` | Map center (required) |
 | `zoom` | Initial map zoom |
-| `radius` | Search radius in **meters** around `lat`/`lon`. Empty = 85000 (covers all of South Tyrol), `0` = no radius filter |
+| `radius` | Search radius in **meters** around `lat`/`lon` (e.g. `95000` covers all of South Tyrol). Empty = no radius filter |
 | `showradius` | `true` / `false` — draw the radius circle on the map |
 | `language` | `en`, `de`, or `it` |
 | `categories` | Comma-separated **main Tag Ids** shown in the picker. Defaults to the eight ODH main categories listed below |

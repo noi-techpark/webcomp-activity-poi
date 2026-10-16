@@ -6,7 +6,6 @@ import componentStyle from './static/scss/components/ActivityPOIComponent.scss'
 import {
 	DEFAULT_CATEGORIES,
 	itemLatLon,
-	resolveSearchRadius,
 	tourismUrl,
 	uniqueItemsById,
 	withOrigin
@@ -288,7 +287,7 @@ class ActivityPOIComponent extends HTMLElement
 		let zoom = parseInt(this.getAttribute('zoom'))
 
 		this.interactive_map.setAttribute('lat-lon-zoom', JSON.stringify([lat,lon,zoom]))
-		this.interactive_map.setAttribute('radius', String(resolveSearchRadius(this.getAttribute('radius'))))
+		this.interactive_map.setAttribute('radius', this.getAttribute('radius'))
 		this.interactive_map.setAttribute('showradius', this.getAttribute('showradius'))
 		// Forward show-current-location attribute if present
 		if (this.getAttribute('show-current-location'))
@@ -517,7 +516,7 @@ class ActivityPOIComponent extends HTMLElement
 		let lat = parseFloat(this.getAttribute('lat'))
 		let lon = parseFloat(this.getAttribute('lon'))
 
-		const radius = resolveSearchRadius(this.getAttribute('radius'))
+		let radius = this.getAttribute('radius')
 
 		// Active checkbox selection wins; category-filter is only a fallback
 		// when the host wants a fixed filter without UI selection.
@@ -538,9 +537,9 @@ class ActivityPOIComponent extends HTMLElement
 				params.append('tagfilter', tagfilter)
 			}
 
-			if (radius !== null && Number.isFinite(lat) && Number.isFinite(lon))
+			if (radius !== null && radius !== '')
 			{
-				params.append('radius', String(radius))
+				params.append('radius', radius)
 				params.append('latitude', String(lat))
 				params.append('longitude', String(lon))
 			}

@@ -8,32 +8,6 @@ export const TOURISM_API_BASE = 'https://tourism.api.opendatahub.com';
 export const API_ORIGIN = 'webcomp-activity-poi';
 
 /**
- * Search radius (m) used when the `radius` attribute is empty or missing.
- * ~80 km from the center of South Tyrol reaches its farthest border; 85 km
- * leaves margin and keeps border-area Dolomites POIs (Sella, Fassa, Arabba)
- * while dropping records with broken coordinates (0/0, Aosta, Zurich).
- */
-export const DEFAULT_SEARCH_RADIUS = 85000;
-
-/**
- * Effective search radius in meters from the `radius` attribute, or null
- * for no radius filter. Empty/missing → DEFAULT_SEARCH_RADIUS, "0" → none.
- */
-export function resolveSearchRadius(value)
-{
-	if (value == null || String(value).trim() === '' || value === 'null')
-	{
-		return DEFAULT_SEARCH_RADIUS;
-	}
-	const radius = parseInt(value, 10);
-	if (!Number.isFinite(radius))
-	{
-		return DEFAULT_SEARCH_RADIUS;
-	}
-	return radius > 0 ? radius : null;
-}
-
-/**
  * Default main categories shown in the category picker.
  * Override with the `categories` attribute (comma-separated Tag Ids).
  */
