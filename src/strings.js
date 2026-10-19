@@ -23,31 +23,6 @@ window.strings = {
     "it": "Categoria",
     "de": "Kategorie"
   },
-  "suitable-age": {
-    "en": "Suitable age",
-    "it": "Età adatta",
-    "de": "Geeignetes Alter"
-  },
-  "difference-altitude": {
-    "en": "Altitude",
-    "it": "Altitudine",
-    "de": "Höhe"
-  },
-  "altitude-total": {
-    "en": "Total ascent",
-    "it": "Dislivello totale",
-    "de": "Gesamter Anstieg"
-  },
-  "altitude-lowest": {
-    "en": "Lowest point",
-    "it": "Punto più basso",
-    "de": "Tiefster Punkt"
-  },
-  "altitude-highest": {
-    "en": "Highest point",
-    "it": "Punto più alto",
-    "de": "Höchster Punkt"
-  },
   "locality": {
     "en": "Locality",
     "it": "Località",

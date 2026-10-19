@@ -36,7 +36,7 @@ itemVisualizer_template.innerHTML = `
       </div>
       </div>
 
-      <!--General info such as category, age, altitude, place and "get directions" button--->
+      <!--General info such as category, place and "get directions" button--->
       <div class="resultContainer">
       <div class="itemInfo" id="itemInformation">
           <div class="infoTitle" id="informationTitle">
@@ -50,20 +50,6 @@ itemVisualizer_template.innerHTML = `
               <p class="text categoryLabel">
               <b id="categoryLabel" >Categoria</b><br>
               <span id="category"></span></p>
-          </div>
-
-          <div class="informationInstance">
-            <p class="text">
-            <b id="ageLabel">Età adatta</b><br>
-            <span id="ageFrom"></span>-<span id="ageTo"></span></p>
-          </div>
-
-          <div class="informationInstance" id="altitudeBlock">
-            <p class="text">
-            <b id="altitudeLabel">Altitude</b><br>
-            <span id="altitudeTotalLabel">Total ascent</span>: <span id="altitudeDifference"></span> m<br>
-            <span id="altitudeLowestLabel">Lowest point</span>: <span id="altitudeLowestPoint"></span> m<br>
-            <span id="altitudeHighestLabel">Highest point</span>: <span id="altitudeHighestPoint"></span> m</p>
           </div>
 
           <div class="informationInstance">
@@ -261,7 +247,6 @@ class ItemVisualizerComponent extends HTMLElement
 		this._loadedItem = item;
 
 		var root_element = this.shadowRoot;
-		// Labels first so writeItem never races with wiped altitude markup
 		this.updateLabels(root_element, lang);
 		this.writeItem(item, root_element, lang);
 
@@ -297,32 +282,6 @@ class ItemVisualizerComponent extends HTMLElement
 		else
 		{
 			root_element.querySelector('span#category').parentElement.style.display = "block"
-		}
-
-		root_element.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
-		root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
-
-		if (item.AgeTo == 0 || item.AgeFrom == 0)
-		{
-			root_element.querySelector('span#ageTo').parentElement.style.display = "none"
-		}
-		else
-		{
-			root_element.querySelector('span#ageTo').parentElement.style.display = "block"
-		}
-
-		root_element.querySelector('span#altitudeDifference').textContent = item.AltitudeDifference;
-		root_element.querySelector('span#altitudeLowestPoint').textContent = item.AltitudeLowestPoint;
-		root_element.querySelector('span#altitudeHighestPoint').textContent = item.AltitudeHighestPoint;
-
-		const altitudeBlock = root_element.querySelector('#altitudeBlock');
-		if (item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0)
-		{
-			altitudeBlock.style.display = 'none';
-		}
-		else
-		{
-			altitudeBlock.style.display = 'block';
 		}
 
 		const locationName = item.LocationInfo
@@ -367,13 +326,8 @@ class ItemVisualizerComponent extends HTMLElement
 		root_element.querySelector('#itemInformation .infoTitleParagraph').textContent = strings.information[safeLang];
 		root_element.querySelector('#itemDescription .infoTitleParagraph').textContent = strings.description[safeLang];
 		root_element.querySelector('#categoryLabel').textContent = strings.category[safeLang];
-		root_element.querySelector('#ageLabel').textContent = strings['suitable-age'][safeLang];
 		root_element.querySelector('#localityLabel').textContent = strings.locality[safeLang];
 		root_element.querySelector('#itemContacts .infoTitleParagraph').textContent = strings.contacts[safeLang];
-		root_element.querySelector('#altitudeLabel').textContent = strings['difference-altitude'][safeLang];
-		root_element.querySelector('#altitudeTotalLabel').textContent = strings['altitude-total'][safeLang];
-		root_element.querySelector('#altitudeLowestLabel').textContent = strings['altitude-lowest'][safeLang];
-		root_element.querySelector('#altitudeHighestLabel').textContent = strings['altitude-highest'][safeLang];
 		root_element.querySelector('a#directions').textContent = strings['get-directions'][safeLang];
 		this.applyDirectionsVisibility();
 
