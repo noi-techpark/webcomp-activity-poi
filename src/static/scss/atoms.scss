@@ -62,7 +62,10 @@ button,a.button{
 	border-radius:5px;
 	text-decoration:none;
 	color:#fff;
-	display: -webkit-inline-box;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
 
 	&:hover{
 		cursor:pointer;
