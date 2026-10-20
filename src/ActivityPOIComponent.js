@@ -228,11 +228,23 @@ class ActivityPOIComponent extends HTMLElement
 			restoreTab.setAttribute('title', strings['expand-panel'][lang]);
 		}
 
+		const languagePickerHost = content.querySelector('.activity-poi__language_picker');
+
+		function setDetailsChromeVisible(visible)
+		{
+			// On narrow embeds the language/reset controls sit over the detail panel.
+			if (languagePickerHost)
+			{
+				languagePickerHost.classList.toggle('is-obscured-by-details', !!visible);
+			}
+		}
+
 		function expandItemPanel()
 		{
 			itemContainer.classList.remove('minimized');
 			itemContainer.style.display = 'block';
 			restoreTab.hidden = true;
+			setDetailsChromeVisible(true);
 		}
 
 		function minimizeItemPanel()
@@ -241,6 +253,7 @@ class ActivityPOIComponent extends HTMLElement
 			itemContainer.style.display = 'none';
 			updateRestoreLabel();
 			restoreTab.hidden = false;
+			setDetailsChromeVisible(false);
 		}
 
 		function show_item_visualizer(item)
@@ -370,6 +383,7 @@ class ActivityPOIComponent extends HTMLElement
 			itemContainer.classList.remove('minimized');
 			itemContainer.style.display = "none";
 			restoreTab.hidden = true;
+			setDetailsChromeVisible(false);
 			thiswebcomponent.interactive_map.removeAttribute('gpx')
 		}
 		item_visualizer.minimizebuttonfunction = function()

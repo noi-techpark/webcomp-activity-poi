@@ -36,7 +36,7 @@ itemVisualizer_template.innerHTML = `
       </div>
       </div>
 
-      <!--General info such as category, age, altitude, place and "get directions" button--->
+      <!--General info such as category, place and "get directions" button--->
       <div class="resultContainer">
       <div class="itemInfo" id="itemInformation">
           <div class="infoTitle" id="informationTitle">
@@ -50,20 +50,6 @@ itemVisualizer_template.innerHTML = `
               <p class="text categoryLabel">
               <b id="categoryLabel" >Categoria</b><br>
               <span id="category"></span></p>
-          </div>
-
-          <div class="informationInstance">
-            <p class="text">
-            <b id="ageLabel">Età adatta</b><br>
-            <span id="ageFrom"></span>-<span id="ageTo"></span></p>
-          </div>
-
-          <div class="informationInstance" id="altitudeBlock">
-            <p class="text">
-            <b id="altitudeLabel">Altitude</b><br>
-            <span id="altitudeTotalLabel">Total ascent</span>: <span id="altitudeDifference"></span> m<br>
-            <span id="altitudeLowestLabel">Lowest point</span>: <span id="altitudeLowestPoint"></span> m<br>
-            <span id="altitudeHighestLabel">Highest point</span>: <span id="altitudeHighestPoint"></span> m</p>
           </div>
 
           <div class="informationInstance">
@@ -102,20 +88,15 @@ itemVisualizer_template.innerHTML = `
       </div>
 
       <div class="info" id="contacts">
-          <p class="text"><b><span id="companyName"></span></b><br>
-        <span id="address"></span>, <span id="city"></span>, <span id="country"></span></p>
-        <p class="text">
-        <span>
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
-        <span id="email"></span>
-        </span>
+        <p class="text contactCompany" id="companyRow"><b><span id="companyName"></span></b></p>
+        <p class="text contactAddress" id="addressRow"><span id="addressLine"></span></p>
+        <p class="text contactRow" id="emailRow">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+          <span id="email"></span>
         </p>
-
-        <p class="text" style="clear: both;">
-        <span>
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
-        <span id="phoneNumber"></span>
-        </span>
+        <p class="text contactRow" id="phoneRow">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-alt" class="svg-inline--fa fa-phone-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.39 361.8l-112-48a24 24 0 0 0-28 6.9l-49.6 60.6A370.66 370.66 0 0 1 130.6 204.11l60.6-49.6a23.94 23.94 0 0 0 6.9-28l-48-112A24.16 24.16 0 0 0 122.6.61l-104 24A24 24 0 0 0 0 48c0 256.5 207.9 464 464 464a24 24 0 0 0 23.4-18.6l24-104a24.29 24.29 0 0 0-14.01-27.6z"></path></svg>
+          <span id="phoneNumber"></span>
         </p>
       </div>
     </div>
@@ -261,7 +242,6 @@ class ItemVisualizerComponent extends HTMLElement
 		this._loadedItem = item;
 
 		var root_element = this.shadowRoot;
-		// Labels first so writeItem never races with wiped altitude markup
 		this.updateLabels(root_element, lang);
 		this.writeItem(item, root_element, lang);
 
@@ -281,8 +261,21 @@ class ItemVisualizerComponent extends HTMLElement
 	writeItem(item, root_element, lang)
 	{
 		const detail = (item.Detail && (item.Detail[lang] || item.Detail.en || item.Detail.de || item.Detail.it)) || {};
-		root_element.querySelector('div#Title > p').innerHTML = detail.Title || '';
-		root_element.querySelector('div#description > p').innerHTML = detail.BaseText || '';
+		root_element.querySelector('div#Title > p').textContent = detail.Title || '';
+
+		const descriptionText = (detail.BaseText || '').trim();
+		const descriptionSection = root_element.querySelector('#itemDescription');
+		const descriptionBody = root_element.querySelector('div#description > p');
+		if (descriptionText)
+		{
+			descriptionBody.innerHTML = detail.BaseText;
+			descriptionSection.style.display = '';
+		}
+		else
+		{
+			descriptionBody.textContent = '';
+			descriptionSection.style.display = 'none';
+		}
 
 		const mainCategoryId = resolveItemMainCategoryId(item);
 		const categoryLabel = tagLabelById(mainCategoryId, lang)
@@ -290,40 +283,9 @@ class ItemVisualizerComponent extends HTMLElement
 			|| '';
 		root_element.querySelector('span#category').textContent = categoryLabel;
 
-		if (!categoryLabel)
-		{
-			root_element.querySelector('span#category').parentElement.style.display = "none"
-		}
-		else
-		{
-			root_element.querySelector('span#category').parentElement.style.display = "block"
-		}
-
-		root_element.querySelector('span#ageFrom').innerHTML = item.AgeFrom;
-		root_element.querySelector('span#ageTo').innerHTML = item.AgeTo;
-
-		if (item.AgeTo == 0 || item.AgeFrom == 0)
-		{
-			root_element.querySelector('span#ageTo').parentElement.style.display = "none"
-		}
-		else
-		{
-			root_element.querySelector('span#ageTo').parentElement.style.display = "block"
-		}
-
-		root_element.querySelector('span#altitudeDifference').textContent = item.AltitudeDifference;
-		root_element.querySelector('span#altitudeLowestPoint').textContent = item.AltitudeLowestPoint;
-		root_element.querySelector('span#altitudeHighestPoint').textContent = item.AltitudeHighestPoint;
-
-		const altitudeBlock = root_element.querySelector('#altitudeBlock');
-		if (item.AltitudeDifference == 0 || item.AltitudeLowestPoint == 0 || item.AltitudeHighestPoint == 0)
-		{
-			altitudeBlock.style.display = 'none';
-		}
-		else
-		{
-			altitudeBlock.style.display = 'block';
-		}
+		const categoryEl = root_element.querySelector('span#category');
+		const categoryBlock = categoryEl.closest('.informationInstance') || categoryEl.parentElement;
+		categoryBlock.style.display = categoryLabel ? '' : 'none';
 
 		const locationName = item.LocationInfo
 			&& item.LocationInfo.TvInfo
@@ -332,32 +294,45 @@ class ItemVisualizerComponent extends HTMLElement
 				|| item.LocationInfo.TvInfo.Name.en
 				|| item.LocationInfo.TvInfo.Name.de
 				|| item.LocationInfo.TvInfo.Name.it);
-		root_element.querySelector('span#location').innerHTML = locationName || '';
+		const locationEl = root_element.querySelector('span#location');
+		const locationBlock = locationEl.closest('.informationInstance') || locationEl.parentElement;
+		locationEl.textContent = locationName || '';
+		locationBlock.style.display = locationName ? '' : 'none';
 
 		const contact = item.ContactInfos
 			&& (item.ContactInfos[lang] || item.ContactInfos.en || item.ContactInfos.de || item.ContactInfos.it);
 
-		if (contact)
+		const contactsSection = root_element.querySelector('#itemContacts');
+		const companyName = contact && contact.CompanyName ? String(contact.CompanyName).trim() : '';
+		const street = contact && contact.Address ? String(contact.Address).trim() : '';
+		const city = contact && contact.City ? String(contact.City).trim() : '';
+		const country = contact && contact.CountryName ? String(contact.CountryName).trim() : '';
+		// Skip country-only lines ("Italy") — they look like broken contact data
+		const addressLine = (street || city)
+			? [street, city, country].filter(Boolean).join(', ')
+			: '';
+		const email = contact && contact.Email ? String(contact.Email).trim() : '';
+		const phone = contact && contact.Phonenumber ? String(contact.Phonenumber).trim() : '';
+		const hasContacts = !!(companyName || addressLine || email || phone);
+
+		root_element.querySelector('#companyName').textContent = companyName;
+		root_element.querySelector('#addressLine').textContent = addressLine;
+		root_element.querySelector('#email').textContent = email;
+		root_element.querySelector('#phoneNumber').textContent = phone;
+
+		root_element.querySelector('#companyRow').style.display = companyName ? '' : 'none';
+		root_element.querySelector('#addressRow').style.display = addressLine ? '' : 'none';
+		root_element.querySelector('#emailRow').style.display = email ? '' : 'none';
+		root_element.querySelector('#phoneRow').style.display = phone ? '' : 'none';
+		contactsSection.style.display = hasContacts ? '' : 'none';
+
+		const latLon = itemLatLon(item)
+		if (latLon)
 		{
-			root_element.querySelector('span#companyName').parentElement.style.display = "block";
-			root_element.querySelector('span#companyName').innerHTML = contact.CompanyName;
-			root_element.querySelector('span#address').innerHTML = contact.Address;
-			root_element.querySelector('span#city').innerHTML = contact.City;
-			root_element.querySelector('span#country').innerHTML = contact.CountryName;
-			root_element.querySelector('span#email').innerHTML = contact.Email;
-			root_element.querySelector('span#phoneNumber').innerHTML = contact.Phonenumber;
-			const latLon = itemLatLon(item)
-			if (latLon)
-			{
-				root_element.querySelector('a#directions').setAttribute(
-					"href",
-					"https://maps.google.com/maps?q=" + latLon[0] + "," + latLon[1]
-				);
-			}
-		}
-		else
-		{
-			root_element.querySelector('span#companyName').parentElement.style.display = "none"
+			root_element.querySelector('a#directions').setAttribute(
+				"href",
+				"https://maps.google.com/maps?q=" + latLon[0] + "," + latLon[1]
+			);
 		}
 	}
 
@@ -367,13 +342,8 @@ class ItemVisualizerComponent extends HTMLElement
 		root_element.querySelector('#itemInformation .infoTitleParagraph').textContent = strings.information[safeLang];
 		root_element.querySelector('#itemDescription .infoTitleParagraph').textContent = strings.description[safeLang];
 		root_element.querySelector('#categoryLabel').textContent = strings.category[safeLang];
-		root_element.querySelector('#ageLabel').textContent = strings['suitable-age'][safeLang];
 		root_element.querySelector('#localityLabel').textContent = strings.locality[safeLang];
 		root_element.querySelector('#itemContacts .infoTitleParagraph').textContent = strings.contacts[safeLang];
-		root_element.querySelector('#altitudeLabel').textContent = strings['difference-altitude'][safeLang];
-		root_element.querySelector('#altitudeTotalLabel').textContent = strings['altitude-total'][safeLang];
-		root_element.querySelector('#altitudeLowestLabel').textContent = strings['altitude-lowest'][safeLang];
-		root_element.querySelector('#altitudeHighestLabel').textContent = strings['altitude-highest'][safeLang];
 		root_element.querySelector('a#directions').textContent = strings['get-directions'][safeLang];
 		this.applyDirectionsVisibility();
 

@@ -37,6 +37,13 @@ html, body, #webcomponentsContainer {
   top: 12px;
   right: 12px;
   z-index: 100001;
+
+  /* Detail panel is full-bleed on small screens — hide host chrome so it doesn't cover controls */
+  &.is-obscured-by-details {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 .activity-poi__reset_filters {
